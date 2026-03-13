@@ -31,7 +31,7 @@ export const jobs: Job[] = [
     shortDescription:
       "Design and implement secure, scalable cloud infrastructure for federal agency modernization initiatives.",
     overview:
-      "TG Federal is seeking a Senior Cloud Engineer to support cloud modernization initiatives for federal agencies. In this role you will architect, deploy, and maintain FedRAMP-compliant cloud environments and guide migration of legacy systems to modern cloud platforms.",
+      "EaseOrigin is seeking a Senior Cloud Engineer to support cloud modernization initiatives for federal agencies. In this role you will architect, deploy, and maintain FedRAMP-compliant cloud environments and guide migration of legacy systems to modern cloud platforms.",
     responsibilities: [
       "Design and implement cloud-native architectures on AWS GovCloud and Azure Government",
       "Lead migration of legacy on-premises workloads to cloud environments",
@@ -60,7 +60,7 @@ export const jobs: Job[] = [
     shortDescription:
       "Implement federal cybersecurity frameworks, monitor threats, and support ATO processes for government systems.",
     overview:
-      "TG Federal is looking for a Cybersecurity Analyst to support federal clients in implementing security compliance programs, continuous monitoring, and incident response. You will play a key role in helping agencies achieve and maintain their Authority to Operate (ATO).",
+      "EaseOrigin is looking for a Cybersecurity Analyst to support federal clients in implementing security compliance programs, continuous monitoring, and incident response. You will play a key role in helping agencies achieve and maintain their Authority to Operate (ATO).",
     responsibilities: [
       "Perform security assessments and gap analyses against NIST SP 800-53 controls",
       "Support ATO package development, including SSP, SAR, and POA&M documentation",
@@ -89,7 +89,7 @@ export const jobs: Job[] = [
     shortDescription:
       "Build data pipelines and analytics infrastructure to help agencies turn complex datasets into actionable insights.",
     overview:
-      "TG Federal is seeking a Data Engineer to design, build, and maintain scalable data pipelines and analytics platforms for federal agencies. You will work closely with analysts and agency stakeholders to deliver data solutions that support mission-critical decision making.",
+      "EaseOrigin is seeking a Data Engineer to design, build, and maintain scalable data pipelines and analytics platforms for federal agencies. You will work closely with analysts and agency stakeholders to deliver data solutions that support mission-critical decision making.",
     responsibilities: [
       "Design and implement ETL/ELT pipelines across multiple source systems",
       "Build and manage cloud-native data lakes and data warehouses",
@@ -118,7 +118,7 @@ export const jobs: Job[] = [
     shortDescription:
       "Build and maintain CI/CD pipelines, container platforms, and developer tooling for federal IT projects.",
     overview:
-      "TG Federal is looking for a DevOps / Platform Engineer to accelerate software delivery for federal clients. You will design and operate modern CI/CD infrastructure, container orchestration platforms, and developer tooling that enables secure, high-velocity delivery in government environments.",
+      "EaseOrigin is looking for a DevOps / Platform Engineer to accelerate software delivery for federal clients. You will design and operate modern CI/CD infrastructure, container orchestration platforms, and developer tooling that enables secure, high-velocity delivery in government environments.",
     responsibilities: [
       "Design and maintain CI/CD pipelines using GitLab, Jenkins, or GitHub Actions",
       "Manage Kubernetes clusters and containerized workloads in FedRAMP environments",
@@ -147,7 +147,7 @@ export const jobs: Job[] = [
     shortDescription:
       "Lead delivery of complex federal IT programs, managing cross-functional teams and stakeholder relationships.",
     overview:
-      "TG Federal is seeking an experienced Federal IT Project Manager to lead delivery of technology programs for government agency clients. You will manage scope, schedule, budget, and stakeholder communications across complex multi-team engagements.",
+      "EaseOrigin is seeking an experienced Federal IT Project Manager to lead delivery of technology programs for government agency clients. You will manage scope, schedule, budget, and stakeholder communications across complex multi-team engagements.",
     responsibilities: [
       "Lead planning, execution, and closure of federal IT projects",
       "Manage project scope, schedule, risks, and budget using Agile and waterfall methodologies",

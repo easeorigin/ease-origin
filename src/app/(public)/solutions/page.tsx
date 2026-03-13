@@ -139,7 +139,7 @@ function SolutionsHero() {
             Our Solutions
           </h1>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
-            TG Federal delivers specialized technology consulting services that help government agencies and prime contractors modernize systems, strengthen security, and unlock the value of data.
+            EaseOrigin delivers specialized technology consulting services that help government agencies and prime contractors modernize systems, strengthen security, and unlock the value of data.
           </p>
           <Link href="/solutions#contact">
             <span className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-tg-gold text-tg-navy font-bold hover:bg-yellow-400 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 cursor-pointer">
@@ -304,7 +304,7 @@ function ContractVehicles() {
           <h2 className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-3">Procurement</h2>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">Contract Vehicles</h3>
           <p className="text-lg text-gray-300 leading-relaxed">
-            TG Federal provides services through approved government contract vehicles, making it easier for agencies and prime contractors to access our expertise quickly and compliantly.
+            EaseOrigin provides services through approved government contract vehicles, making it easier for agencies and prime contractors to access our expertise quickly and compliantly.
           </p>
         </div>
 
@@ -392,7 +392,7 @@ function SolutionsCTA() {
         >
           <h2 className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-4">Get Started</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Partner With TG Federal
+            Partner With EaseOrigin
           </h3>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
             Our team works alongside government agencies and prime contractors to deliver high-impact technology solutions tailored to your mission.

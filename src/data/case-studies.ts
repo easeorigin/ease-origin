@@ -22,11 +22,11 @@ export const caseStudies: CaseStudy[] = [
     heroDescription:
       "Helping a federal agency modernize legacy systems through secure cloud migration and infrastructure optimization.",
     overview:
-      "TG Federal partnered with a federal agency to modernize legacy infrastructure and transition mission-critical systems to a scalable cloud platform. The engagement spanned 18 months and involved migrating over 40 on-premises applications to a FedRAMP-authorized cloud environment while ensuring zero disruption to agency operations.",
+      "EaseOrigin partnered with a federal agency to modernize legacy infrastructure and transition mission-critical systems to a scalable cloud platform. The engagement spanned 18 months and involved migrating over 40 on-premises applications to a FedRAMP-authorized cloud environment while ensuring zero disruption to agency operations.",
     challenge:
       "The agency relied on outdated on-premises infrastructure that had grown beyond its original capacity. Systems were siloed, difficult to maintain, and increasingly unable to support modern interoperability requirements. Operational costs were rising as legacy hardware required frequent maintenance, and the agency faced mounting pressure to meet federal cloud mandates under the Cloud Smart initiative.",
     solution:
-      "TG Federal implemented a cloud-first architecture using a phased migration approach. We conducted a thorough application portfolio assessment, categorized workloads for lift-and-shift versus re-platforming, and established secure landing zones within a FedRAMP High authorized environment. We deployed automated compliance monitoring, continuous integration pipelines, and cloud-native disaster recovery — reducing recovery time objectives from hours to minutes.",
+      "EaseOrigin implemented a cloud-first architecture using a phased migration approach. We conducted a thorough application portfolio assessment, categorized workloads for lift-and-shift versus re-platforming, and established secure landing zones within a FedRAMP High authorized environment. We deployed automated compliance monitoring, continuous integration pipelines, and cloud-native disaster recovery — reducing recovery time objectives from hours to minutes.",
     results: [
       "40+ applications migrated with zero downtime",
       "42% reduction in annual infrastructure operating costs",
@@ -47,11 +47,11 @@ export const caseStudies: CaseStudy[] = [
     heroDescription:
       "Building a robust NIST-aligned cybersecurity compliance program for a federal civilian agency.",
     overview:
-      "TG Federal was engaged to design and implement a comprehensive cybersecurity compliance program for a large federal civilian agency. The engagement covered NIST SP 800-53 controls implementation, continuous monitoring, penetration testing, and an agency-wide security awareness training rollout across 3,200+ personnel.",
+      "EaseOrigin was engaged to design and implement a comprehensive cybersecurity compliance program for a large federal civilian agency. The engagement covered NIST SP 800-53 controls implementation, continuous monitoring, penetration testing, and an agency-wide security awareness training rollout across 3,200+ personnel.",
     challenge:
       "The agency had received an IG audit finding identifying critical gaps in its security control implementation. Systems lacked consistent patching schedules, access controls were not aligned with the principle of least privilege, and there was no mature incident response capability. Achieving Authority to Operate (ATO) renewals was at risk.",
     solution:
-      "TG Federal performed a gap analysis against NIST SP 800-53 Rev. 5 controls and developed a remediation roadmap prioritized by risk severity. We deployed a SIEM solution for continuous monitoring, implemented zero-trust network segmentation, enforced multi-factor authentication agency-wide, and built a Security Operations Center (SOC) capability. We also delivered a role-based security awareness training curriculum.",
+      "EaseOrigin performed a gap analysis against NIST SP 800-53 Rev. 5 controls and developed a remediation roadmap prioritized by risk severity. We deployed a SIEM solution for continuous monitoring, implemented zero-trust network segmentation, enforced multi-factor authentication agency-wide, and built a Security Operations Center (SOC) capability. We also delivered a role-based security awareness training curriculum.",
     results: [
       "100% ATO renewals achieved on schedule",
       "Zero critical vulnerabilities remaining at program close",
@@ -72,11 +72,11 @@ export const caseStudies: CaseStudy[] = [
     heroDescription:
       "Delivering a modern data analytics platform that turns complex federal datasets into clear, actionable intelligence.",
     overview:
-      "TG Federal designed and deployed an enterprise data analytics platform for a federal agency managing large volumes of program performance data. The solution consolidated data from 12 disparate source systems into a unified data lake and provided analysts and executives with self-service dashboards and automated reporting capabilities.",
+      "EaseOrigin designed and deployed an enterprise data analytics platform for a federal agency managing large volumes of program performance data. The solution consolidated data from 12 disparate source systems into a unified data lake and provided analysts and executives with self-service dashboards and automated reporting capabilities.",
     challenge:
       "Agency analysts spent an estimated 60% of their time manually extracting and reconciling data from disconnected systems. Leadership lacked real-time visibility into program performance metrics, and reporting cycles took three to four weeks to complete. Data quality issues were common, undermining confidence in reported outcomes.",
     solution:
-      "TG Federal architected a cloud-native data lake on AWS GovCloud, implemented ETL pipelines to ingest and normalize data from all 12 source systems, and deployed a Tableau-based analytics layer with role-based access control. We built automated data quality validation rules, created executive-level KPI dashboards, and established a DataOps practice to support continuous improvement of the analytics environment.",
+      "EaseOrigin architected a cloud-native data lake on AWS GovCloud, implemented ETL pipelines to ingest and normalize data from all 12 source systems, and deployed a Tableau-based analytics layer with role-based access control. We built automated data quality validation rules, created executive-level KPI dashboards, and established a DataOps practice to support continuous improvement of the analytics environment.",
     results: [
       "12 source systems integrated into a single data lake",
       "Reporting cycle reduced from 4 weeks to 2 hours",

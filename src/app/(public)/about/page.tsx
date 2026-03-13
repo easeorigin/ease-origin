@@ -55,7 +55,7 @@ function AboutHero() {
             Est. 2002 · Arlington, VA
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.06] mb-6">
-            About TG Federal
+            About EaseOrigin
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
             Delivering trusted technology consulting services that help government agencies modernize systems, strengthen security, and drive mission success.
@@ -89,7 +89,7 @@ function WhoWeAre() {
           <p className="text-xs font-semibold uppercase tracking-widest text-tg-gold mb-2">Our Story</p>
           <h2 className="text-3xl md:text-4xl font-bold text-tg-navy mb-6 leading-tight">Who We Are</h2>
           <p className="text-gray-600 leading-relaxed mb-4 text-lg">
-            TG Federal is a technology consulting firm that partners with government agencies and prime contractors to deliver specialized IT expertise across mission-critical initiatives.
+            EaseOrigin is a technology consulting firm that partners with government agencies and prime contractors to deliver specialized IT expertise across mission-critical initiatives.
           </p>
           <p className="text-gray-500 leading-relaxed mb-8">
             Our consultants support federal programs through deep expertise in cloud infrastructure, cybersecurity, enterprise platforms, and advanced data analytics — helping agencies modernize systems and strengthen their technological foundation.
@@ -171,8 +171,8 @@ const timelineItems = [
   },
   {
     year: "2023",
-    title: "Rebranded as TG Federal",
-    description: "Rebranded as TG Federal to reflect our focused commitment to federal IT consulting and mission support.",
+    title: "Rebranded as EaseOrigin",
+    description: "Rebranded as EaseOrigin to reflect our focused commitment to federal IT consulting and mission support.",
   },
 ];
 
@@ -452,7 +452,7 @@ function Impact() {
           className="flex flex-col gap-4"
         >
           <p className="text-gray-600 leading-relaxed mb-4">
-            TG Federal consultants support programs that strengthen national infrastructure, enhance cybersecurity, and modernize federal systems — making government technology more resilient, efficient, and mission-ready.
+            EaseOrigin consultants support programs that strengthen national infrastructure, enhance cybersecurity, and modernize federal systems — making government technology more resilient, efficient, and mission-ready.
           </p>
           {impactPoints.map((point, i) => (
             <motion.div
@@ -486,7 +486,7 @@ function AboutCTA() {
         className="max-w-2xl mx-auto text-center text-white"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-tg-gold mb-3">Partner With Us</p>
-        <h2 className="text-3xl md:text-4xl font-bold mb-5">Work With TG Federal</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-5">Work With EaseOrigin</h2>
         <p className="text-gray-300 leading-relaxed mb-8">
           Whether you're a government agency, prime contractor, or consultant, we would love to partner with you on your next federal technology initiative.
         </p>

@@ -136,7 +136,7 @@ export default function SubmitResumePage() {
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -184,7 +184,7 @@ export default function SubmitResumePage() {
                     Resume Submitted!
                   </h3>
                   <p className="text-gray-500 max-w-sm leading-relaxed">
-                    Thank you for your interest in TG Federal. Our recruiting
+                    Thank you for your interest in EaseOrigin. Our recruiting
                     team will review your profile and be in touch.
                   </p>
                   <Link href="/careers/jobs">

@@ -38,7 +38,7 @@ function CaseStudiesHero() {
             Case Studies
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Discover how TG Federal delivers impactful technology solutions for government agencies and prime contractors.
+            Discover how EaseOrigin delivers impactful technology solutions for government agencies and prime contractors.
           </p>
         </motion.div>
       </div>
@@ -84,7 +84,7 @@ function CaseStudiesCTA() {
         className="max-w-2xl mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-tg-navy mb-4">
-          Ready to Work with TG Federal?
+          Ready to Work with EaseOrigin?
         </h2>
         <p className="text-gray-500 leading-relaxed mb-8">
           Our team is ready to support your agency's next technology initiative — from cloud modernization to cybersecurity and data strategy.

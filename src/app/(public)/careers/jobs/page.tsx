@@ -128,7 +128,7 @@ export default function JobsListingPage() {
                 Open Positions
               </h1>
               <p className="text-gray-300 max-w-xl leading-relaxed">
-                Browse available opportunities and find your next federal IT engagement with TG Federal.
+                Browse available opportunities and find your next federal IT engagement with EaseOrigin.
               </p>
             </motion.div>
           </div>

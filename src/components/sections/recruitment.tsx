@@ -35,7 +35,7 @@ export function Recruitment() {
           <h2 className="text-tg-gold font-semibold tracking-wider uppercase text-sm mb-4">Careers</h2>
           <h3 className="text-3xl md:text-5xl font-bold mb-6">Join Our Team of Experts</h3>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-            TG Federal supports consultants throughout their careers with strong partnerships, competitive benefits, and opportunities to work on exciting, mission-critical federal projects.
+            EaseOrigin supports consultants throughout their careers with strong partnerships, competitive benefits, and opportunities to work on exciting, mission-critical federal projects.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12">

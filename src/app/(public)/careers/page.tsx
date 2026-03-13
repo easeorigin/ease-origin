@@ -37,7 +37,7 @@ function CareersHero() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-5">
-              Careers at TG Federal
+              Careers at EaseOrigin
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
               Join a team of highly skilled consultants delivering mission-critical technology solutions for federal agencies across the United States.
@@ -116,10 +116,10 @@ function WhyWorkWithUs() {
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-2">Why TG Federal</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-2">Why EaseOrigin</p>
         <h2 className="text-3xl md:text-4xl font-bold text-tg-navy">Why Work With Us</h2>
         <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
-          We believe great technology starts with great people. Here's what makes TG Federal different.
+          We believe great technology starts with great people. Here's what makes EaseOrigin different.
         </p>
       </motion.div>
 
@@ -169,7 +169,7 @@ function CareersCTA() {
           <div className="relative z-10 text-center text-white">
             <p className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-3">Join Our Team</p>
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Explore Opportunities With TG Federal
+              Explore Opportunities With EaseOrigin
             </h2>
             <p className="text-gray-300 leading-relaxed mb-8 max-w-xl mx-auto">
               We're actively hiring federal IT professionals across cloud, cybersecurity, data, and project management disciplines.

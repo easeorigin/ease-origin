@@ -120,7 +120,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-tg-gold mr-3 flex-shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 text-tg-gold mr-3 shrink-0 mt-0.5" />
                 <span>
                   123 Federal Drive, Suite 400
                   <br />
@@ -128,11 +128,11 @@ export function Footer() {
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-tg-gold mr-3 flex-shrink-0" />
+                <Phone className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
                 <span>(202) 555-0100</span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-tg-gold mr-3 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
                 <a
                   href="mailto:info@tgfederal.com"
                   className="hover:text-white transition-colors"
@@ -147,7 +147,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
           <p className="mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} TG Federal. All rights reserved.
+            &copy; {new Date().getFullYear()} EaseOrigin. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors">
