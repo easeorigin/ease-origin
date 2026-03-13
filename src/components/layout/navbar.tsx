@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link, useLocation } from "wouter";
+import Link from "next/link";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,14 +17,11 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [location] = useLocation();
-  const isOnHome = location === "/";
-
   const navLinks = [
     { name: "Solutions", href: "/solutions", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
     { name: "Careers", href: "/careers", internal: true },
-    { name: "About", href: isOnHome ? "#about" : "/#about", internal: false },
+    { name: "About", href: "/about", internal: false },
     { name: "Contact", href: "/contact", internal: true },
   ];
 
@@ -34,18 +31,18 @@ export function Navbar() {
         "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out",
         isScrolled
           ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 py-3"
-          : "bg-transparent py-5"
+          : "bg-transparent py-5",
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="shrink-0 flex items-center">
-            <a 
-              href="#" 
+            <a
+              href="/"
               className={cn(
                 "font-bold text-2xl tracking-tight transition-colors",
-                isScrolled ? "text-tg-navy" : "text-white"
+                isScrolled ? "text-tg-navy" : "text-white",
               )}
             >
               TG <span className="text-tg-gold">Federal</span>
@@ -54,14 +51,16 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <div className="flex space-x-6">
-              {navLinks.map((link) => (
+            <div className="flex space-x-6 items-center">
+              {navLinks.map((link) =>
                 link.internal ? (
                   <Link key={link.name} href={link.href}>
-                    <span className={cn(
-                      "text-sm font-medium transition-colors hover:text-tg-gold cursor-pointer",
-                      isScrolled ? "text-gray-600" : "text-gray-200"
-                    )}>
+                    <span
+                      className={cn(
+                        "text-sm font-medium transition-colors hover:text-tg-gold cursor-pointer",
+                        isScrolled ? "text-gray-600" : "text-gray-200",
+                      )}
+                    >
                       {link.name}
                     </span>
                   </Link>
@@ -71,13 +70,13 @@ export function Navbar() {
                     href={link.href}
                     className={cn(
                       "text-sm font-medium transition-colors hover:text-tg-gold",
-                      isScrolled ? "text-gray-600" : "text-gray-200"
+                      isScrolled ? "text-gray-600" : "text-gray-200",
                     )}
                   >
                     {link.name}
                   </a>
-                )
-              ))}
+                ),
+              )}
             </div>
             <a
               href="#contact"
@@ -85,7 +84,7 @@ export function Navbar() {
                 "px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200",
                 isScrolled
                   ? "bg-tg-navy text-white hover:bg-tg-blue shadow-md hover:shadow-lg"
-                  : "bg-white text-tg-navy hover:bg-gray-100 shadow-lg"
+                  : "bg-white text-tg-navy hover:bg-gray-100 shadow-lg",
               )}
             >
               Partner With Us
@@ -98,7 +97,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "focus:outline-none",
-                isScrolled ? "text-tg-navy" : "text-white"
+                isScrolled ? "text-tg-navy" : "text-white",
               )}
             >
               {isMobileMenuOpen ? (
@@ -117,11 +116,11 @@ export function Navbar() {
           "md:hidden absolute w-full bg-white border-b border-gray-100 shadow-xl transition-all duration-300 ease-in-out origin-top",
           isMobileMenuOpen
             ? "opacity-100 scale-y-100"
-            : "opacity-0 scale-y-0 pointer-events-none"
+            : "opacity-0 scale-y-0 pointer-events-none",
         )}
       >
         <div className="px-4 pt-2 pb-6 space-y-1">
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
             link.internal ? (
               <Link key={link.name} href={link.href}>
                 <span
@@ -140,8 +139,8 @@ export function Navbar() {
               >
                 {link.name}
               </a>
-            )
-          ))}
+            ),
+          )}
           <div className="pt-4 pb-2">
             <a
               href="#contact"

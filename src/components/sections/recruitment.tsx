@@ -55,7 +55,7 @@ export function Recruitment() {
               View Open Positions
             </a>
             <a
-              href="#contact"
+              href="/submit-resume"
               className="px-8 py-4 text-base font-semibold rounded-md bg-transparent border-2 border-white text-white hover:bg-white/10 transition-colors"
             >
               Submit Resume

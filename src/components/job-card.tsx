@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Wifi, Building2, Layers, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import Link from "next/link";
 import { type Job } from "@/data/jobs";
 import { cn } from "@/lib/utils";
 

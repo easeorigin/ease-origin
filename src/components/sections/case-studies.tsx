@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { caseStudies } from "@/data/case-studies";
+import Image from "next/image";
 
 export function CaseStudies() {
   const featured = caseStudies.slice(0, 3);
@@ -13,15 +14,14 @@ export function CaseStudies() {
   return (
     <Section id="case-studies" className="relative overflow-hidden">
       {/* DC skyline / monument photo — very subtle */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url("images/dc-skyline-monument.jpg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center bottom",
-          opacity: 0.07,
-        }}
-      />
+      <div className="absolute inset-0 opacity-[1] pointer-events-none">
+        <Image
+          src={"/images/capitol-building.png"}
+          alt=""
+          fill
+          className="w-full h-full object-cover"
+        />
+      </div>
       {/* Warm gradient wash */}
       <div className="absolute inset-0 bg-linear-to-br from-white/97 via-amber-50/90 to-blue-50/85 pointer-events-none" />
       {/* Decorative corner glows */}

@@ -8,7 +8,7 @@ export function Footer() {
           
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
-            <a href="#" className="inline-block font-bold text-2xl tracking-tight text-white mb-6">
+            <a href="/" className="inline-block font-bold text-2xl tracking-tight text-white mb-6">
               TG <span className="text-tg-gold">Federal</span>
             </a>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed pr-4">
