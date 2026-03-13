@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Cloud, ShieldCheck, BarChart3 } from "lucide-react";
-import { Link } from "wouter";
+import Link from "next/link";
 import { type CaseStudy } from "@/data/case-studies";
 
 const categoryIcons: Record<string, React.ElementType> = {

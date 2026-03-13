@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import Link from "next/link";
 import {
   ShieldCheck, Users, Lightbulb, Star,
   ArrowRight, Cloud, Lock, BarChart3, Layers,

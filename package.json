@@ -1,5 +1,5 @@
 {
-  "name": "tg-mimic",
+  "name": "ease-origin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.4",
     "@radix-ui/react-alert-dialog": "^1.1.7",
@@ -49,8 +46,11 @@
     "framer-motion": "12.35.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.545.0",
+    "next": "16.1.6",
     "next-themes": "^0.4.6",
+    "react": "19.2.3",
     "react-day-picker": "^9.11.1",
+    "react-dom": "19.2.3",
     "react-hook-form": "^7.55.0",
     "react-icons": "^5.4.0",
     "react-resizable-panels": "^2.1.7",
@@ -64,19 +64,20 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/vite": "^4.1.14",
     "@types/dotenv": "^6.1.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.27",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.17",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5",
-    "@tailwindcss/typography": "^0.5.15",
-    "@tailwindcss/vite": "^4.1.14",
-    "@vitejs/plugin-react": "^5.0.4",
     "vite": "^7.3.0"
   }
 }

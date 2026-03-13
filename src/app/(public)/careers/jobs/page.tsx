@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, SlidersHorizontal, X, ArrowRight, FileText } from "lucide-react";
-import { Link } from "wouter";
+import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { JobCard } from "@/components/job-card";
 import { jobs, CATEGORIES, WORK_TYPES, LOCATIONS, type Category, type WorkType } from "@/data/jobs";
