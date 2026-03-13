@@ -42,7 +42,7 @@ export function Hero() {
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
-              TG Federal provides specialized technology consultants and
+              Ease Origin provides specialized technology consultants and
               enterprise IT solutions to U.S. government agencies and prime
               contractors nationwide.
             </p>
@@ -79,7 +79,7 @@ export function Hero() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-tg-navy border border-tg-gold/50 rounded-full flex items-center justify-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
                   <div className="w-24 h-24 bg-linear-to-br from-tg-blue to-tg-navy rounded-full border border-white/10 flex items-center justify-center">
                     <span className="font-bold text-xl text-white tracking-wider">
-                      TG
+                      EO
                     </span>
                   </div>
                 </div>

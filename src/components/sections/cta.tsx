@@ -11,7 +11,7 @@ export function CTA() {
 
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extrabold text-tg-navy mb-4">
-            Ready to Partner With TG Federal?
+            Ready to Partner With Ease Origin?
           </h2>
           <p className="text-lg text-gray-600 mb-10">
             Whether you are a prime contractor looking for specialized talent or

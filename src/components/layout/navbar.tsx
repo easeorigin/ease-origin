@@ -45,7 +45,7 @@ export function Navbar() {
                 isScrolled ? "text-tg-navy" : "text-white",
               )}
             >
-              TG <span className="text-tg-gold">Federal</span>
+              Ease <span className="text-tg-gold">Origin</span>
             </a>
           </div>
 
