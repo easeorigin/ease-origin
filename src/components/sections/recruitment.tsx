@@ -50,7 +50,7 @@ export function Recruitment() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="#contact"
-              className="px-8 py-4 text-base font-semibold rounded-md bg-tg-gold text-tg-navy hover:bg-yellow-400 transition-colors shadow-lg"
+              className="px-8 py-4 text-base font-semibold rounded-md bg-tg-gold text-tg-navy hover:bg-white transition-colors shadow-lg"
             >
               View Open Positions
             </a>

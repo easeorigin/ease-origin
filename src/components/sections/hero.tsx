@@ -50,7 +50,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-tg-gold text-tg-navy hover:bg-yellow-400 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-0.5"
+                className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-tg-gold text-tg-navy hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-0.5"
               >
                 Partner With Us
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -78,9 +78,13 @@ export function Hero() {
                 {/* Central Node */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-tg-navy border border-tg-gold/50 rounded-full flex items-center justify-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
                   <div className="w-24 h-24 bg-linear-to-br from-tg-blue to-tg-navy rounded-full border border-white/10 flex items-center justify-center">
-                    <span className="font-bold text-xl text-white tracking-wider">
-                      EO
-                    </span>
+                    <Image 
+                      src={"/logo/2nd-logo.png"}
+                      alt="EaseOrigin Logo"
+                      width={80}
+                      height={80}
+                      // className="object-contain"
+                      />
                   </div>
                 </div>
 
@@ -102,7 +106,7 @@ export function Hero() {
                     cx="200"
                     cy="40"
                     r="6"
-                    fill="#D4AF37"
+                    fill="#f05123"
                     className="animate-pulse"
                   />
                   <circle cx="61" cy="280" r="4" fill="#ffffff" />
@@ -121,7 +125,7 @@ export function Hero() {
                     stroke="rgba(255,255,255,0.15)"
                     strokeWidth="1"
                   />
-                  <circle cx="90" cy="200" r="5" fill="#D4AF37" />
+                  <circle cx="90" cy="200" r="5" fill="#f05123" />
                   <circle cx="280" cy="120" r="4" fill="#ffffff" />
                 </svg>
 

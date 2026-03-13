@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,11 +42,18 @@ export function Navbar() {
             <a
               href="/"
               className={cn(
-                "font-bold text-2xl tracking-tight transition-colors",
-                isScrolled ? "text-tg-navy" : "text-white",
+                "font-bold font-mont text-2xl tracking-tight transition-colors flex items-center",
+                isScrolled ? "text-[#202433]" : "text-white",
               )}
             >
-              Ease <span className="text-tg-gold">Origin</span>
+            <Image 
+            src={isScrolled ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}            
+            alt="EaseOrigin Logo"
+            width={60}
+            height={50}
+            className="object-contain"
+            />
+              <h2 className="">EaseOrigin</h2>
             </a>
           </div>
 

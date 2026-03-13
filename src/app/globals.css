@@ -37,9 +37,10 @@
 
   --color-tg-navy: hsl(216 60% 10%);
   --color-tg-blue: hsl(214 52% 25%);
-  --color-tg-gold: hsl(46 65% 52%);
+  --color-tg-gold: hsl(14 87% 54%);
 
   --font-sans: 'Inter', sans-serif;
+  --font-mont: var(--font-montserrat), sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -84,6 +85,8 @@
   --ring: 216 60% 10%;
 
   --radius: 0.5rem;
+
+  --font-mont: var(--font-montserrat), sans-serif;
 }
 
 .dark {

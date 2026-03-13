@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Playfair_Display, DM_Sans, Outfit, Teko } from "next/font/google";
+import { Playfair_Display, DM_Sans, Outfit, Teko, Montserrat } from "next/font/google";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -12,6 +12,12 @@ const teko = Teko({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-teko",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-montserrat",
 });
 
 const dm = DM_Sans({
@@ -40,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${dm.variable} ${outfit.variable} ${teko.variable} antialiased`}
+        className={`${playfair.variable} ${dm.variable} ${outfit.variable} ${teko.variable} ${montserrat.variable} antialiased`}
       >
         {children}
       </body>
