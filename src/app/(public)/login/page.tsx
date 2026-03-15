@@ -9,13 +9,15 @@ import {
   Mail,
   Shield,
   Loader2,
-  AlertCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email."),
@@ -26,8 +28,9 @@ type LoginValues = z.infer<typeof loginSchema>;
 
 export default function AdminLoginPage() {
   const [showPw, setShowPw] = useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
@@ -37,14 +40,32 @@ export default function AdminLoginPage() {
     },
   });
 
-  async function onSubmit(_values: LoginValues) {
+  async function onSubmit(values: LoginValues) {
     setIsLoading(true);
-    setError(null);
 
-    // Simulate network delay then show unavailable message
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    const res = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+
     setIsLoading(false);
-    setError("Admin portal is not yet available. Contact your administrator for access.");
+
+    if (res?.error) {
+      toast({
+        title: "Invalid Credentials",
+        description: "Please check your email and password.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Login Successful",
+      description: "Welcome back, Admin.",
+    });
+
+    router.push("/admin/dashboard");
   }
 
   const inputBase =
@@ -64,7 +85,7 @@ export default function AdminLoginPage() {
 
       {/* Glow orbs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-blue-600 rounded-full blur-[140px] opacity-10 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-100 h-100 bg-eo-gold rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-100 h-100 bg-tg-gold rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -113,14 +134,6 @@ export default function AdminLoginPage() {
                 noValidate
                 className="flex flex-col gap-5"
               >
-                {/* Error banner */}
-                {error && (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-red-500/10 border border-red-500/20">
-                    <AlertCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-red-300">{error}</p>
-                  </div>
-                )}
-
                 {/* Email */}
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
@@ -131,11 +144,11 @@ export default function AdminLoginPage() {
                     <input
                       type="email"
                       autoComplete="email"
-                      placeholder="admin@easeorigin.com"
+                      placeholder="admin@tgfederal.com"
                       {...form.register("email")}
                       className={cn(
                         inputBase,
-                        "border-white/10 focus:border-eo-blue/60 focus:ring-eo-blue/20",
+                        "border-white/10 focus:border-tg-blue/60 focus:ring-tg-blue/20",
                       )}
                     />
                   </div>
@@ -147,6 +160,12 @@ export default function AdminLoginPage() {
                     <label className="text-xs font-semibold uppercase tracking-wider text-gray-400">
                       Password
                     </label>
+                    <button
+                      type="button"
+                      className="text-xs text-tg-gold hover:text-white transition-colors font-medium"
+                    >
+                      Forgot password?
+                    </button>
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
@@ -158,7 +177,7 @@ export default function AdminLoginPage() {
                       className={cn(
                         inputBase,
                         "pr-11",
-                        "border-white/10 focus:border-eo-blue/60 focus:ring-eo-blue/20",
+                        "border-white/10 focus:border-tg-blue/60 focus:ring-tg-blue/20",
                       )}
                     />
                     <button
@@ -179,16 +198,16 @@ export default function AdminLoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-lg bg-eo-navy border border-eo-blue/30 text-white font-bold text-sm hover:bg-eo-blue transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-lg bg-tg-navy border border-tg-blue/30 text-white font-bold text-sm hover:bg-tg-blue transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed mt-1"
                 >
                   {isLoading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />{" "}
-                      Authenticating...
+                      Authenticating…
                     </>
                   ) : (
                     <>
-                      <Shield className="h-4 w-4 text-eo-gold" /> Sign In
+                      <Shield className="h-4 w-4 text-tg-gold" /> Sign In
                       Securely
                     </>
                   )}
@@ -201,13 +220,13 @@ export default function AdminLoginPage() {
           <div className="px-8 py-4 bg-white/2 border-t border-white/6 flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <p className="text-xs text-gray-500">
-              Secure connection
+              Secure connection · TLS 1.3 encrypted
             </p>
           </div>
         </div>
 
         <p className="text-center text-xs text-gray-600 mt-6">
-          &copy; {new Date().getFullYear()} EaseOrigin. All rights reserved.
+          © {new Date().getFullYear()} EaseOrigin · All rights reserved
         </p>
       </motion.div>
     </div>
