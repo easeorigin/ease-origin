@@ -8,7 +8,6 @@ import {
   Lock,
   Mail,
   Shield,
-  AlertCircle,
   Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,7 +15,6 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";

@@ -39,7 +39,7 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="shrink-0 flex items-center">
-            <a
+            <Link
               href="/"
               className={cn(
                 "font-bold font-mont text-2xl tracking-tight transition-colors flex items-center",
@@ -54,7 +54,7 @@ export function Navbar() {
             className="object-contain"
             />
               <h2 className="">EaseOrigin</h2>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Nav */}
@@ -73,7 +73,7 @@ export function Navbar() {
                     </span>
                   </Link>
                 ) : (
-                  <a
+                  <Link
                     key={link.name}
                     href={link.href}
                     className={cn(
@@ -82,11 +82,11 @@ export function Navbar() {
                     )}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ),
               )}
             </div>
-            <a
+            <Link
               href="#contact"
               className={cn(
                 "px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200",
@@ -96,7 +96,7 @@ export function Navbar() {
               )}
             >
               Partner With Us
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -139,24 +139,24 @@ export function Navbar() {
                 </span>
               </Link>
             ) : (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-tg-navy hover:bg-gray-50 rounded-md"
               >
                 {link.name}
-              </a>
+              </Link>
             ),
           )}
           <div className="pt-4 pb-2">
-            <a
+            <Link
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="block w-full text-center px-5 py-3 text-base font-medium bg-tg-navy text-white hover:bg-tg-blue rounded-md shadow-sm"
             >
               Partner With Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>

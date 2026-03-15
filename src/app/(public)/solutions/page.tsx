@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import Link from "next/link";
+import Image from "next/image";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -267,9 +268,10 @@ function CapabilityDetails() {
                   className="relative"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-4/3">
-                    <img
+                    <Image
                       src={cap.image}
                       alt={cap.imageAlt}
+                      fill
                       className="w-full h-full object-cover"
                     />
                     {/* Subtle overlay */}

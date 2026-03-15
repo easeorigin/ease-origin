@@ -4,6 +4,7 @@ import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import type { AdminStats } from "@/types/stat";
 
+
 export function useStats() {
   return useQuery<AdminStats>({
     queryKey: ["admin-stats"],

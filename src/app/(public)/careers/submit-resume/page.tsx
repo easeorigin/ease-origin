@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   Upload,
   CheckCircle2,
-  AlertCircle,
   ArrowLeft,
   Send,
 } from "lucide-react";
@@ -13,6 +12,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { CATEGORIES, LOCATIONS } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { ErrorMsg } from "@/components/ErrorMsg";
 
 interface FormValues {
   name: string;
@@ -115,12 +115,6 @@ export default function SubmitResumePage() {
   const fieldCls = (field: keyof FormValues) =>
     cn(inputBase, errors[field] && touched[field] ? inputError : inputNormal);
 
-  const ErrorMsg = ({ field }: { field: keyof FormErrors }) =>
-    errors[field] && touched[field] ? (
-      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
-        <AlertCircle className="h-3 w-3" /> {errors[field]}
-      </p>
-    ) : null;
 
   return (
     <div className="min-h-screen bg-white">
@@ -160,7 +154,7 @@ export default function SubmitResumePage() {
               </h1>
               <p className="text-gray-300 leading-relaxed max-w-xl">
                 We partner with highly skilled consultants supporting federal
-                technology initiatives. Submit your resume and we'll reach out
+                technology initiatives. Submit your resume and we&apos;ll reach out
                 when a matching opportunity arises.
               </p>
             </motion.div>
@@ -199,7 +193,7 @@ export default function SubmitResumePage() {
                     Your Information
                   </h2>
                   <p className="text-sm text-gray-400 mb-7">
-                    We'll use this to match you with future opportunities.
+                    We&apos;ll use this to match you with future opportunities.
                   </p>
 
                   <form
@@ -225,7 +219,7 @@ export default function SubmitResumePage() {
                           onBlur={() => handleBlur("name")}
                           className={fieldCls("name")}
                         />
-                        <ErrorMsg field="name" />
+                        <ErrorMsg touched={touched} errors={errors} field="name" />
                       </div>
                       <div>
                         <label
@@ -243,7 +237,7 @@ export default function SubmitResumePage() {
                           onBlur={() => handleBlur("email")}
                           className={fieldCls("email")}
                         />
-                        <ErrorMsg field="email" />
+                        <ErrorMsg errors={errors} touched={touched} field="email" />
                       </div>
                     </div>
 
@@ -292,7 +286,7 @@ export default function SubmitResumePage() {
                             </svg>
                           </div>
                         </div>
-                        <ErrorMsg field="country" />
+                        <ErrorMsg errors={errors} touched={touched} field="country" />
                       </div>
                       <div>
                         <label
@@ -335,7 +329,7 @@ export default function SubmitResumePage() {
                             </svg>
                           </div>
                         </div>
-                        <ErrorMsg field="expertise" />
+                        <ErrorMsg errors={errors} touched={touched} field="expertise" />
                       </div>
                     </div>
 
@@ -402,7 +396,7 @@ export default function SubmitResumePage() {
                           </div>
                         )}
                       </div>
-                      <ErrorMsg field="file" />
+                      <ErrorMsg errors={errors} touched={touched} field="file" />
                     </div>
 
                     {/* Message */}

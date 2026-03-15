@@ -20,8 +20,8 @@ function CareersHero() {
             backgroundSize: "50px 50px",
           }}
         />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-tg-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/3" />
+        <div className="absolute top-0 right-0 w-175 h-175 bg-tg-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-100 h-100 bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/3" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -119,7 +119,7 @@ function WhyWorkWithUs() {
         <p className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-2">Why EaseOrigin</p>
         <h2 className="text-3xl md:text-4xl font-bold text-tg-navy">Why Work With Us</h2>
         <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
-          We believe great technology starts with great people. Here's what makes EaseOrigin different.
+          We believe great technology starts with great people. Here&apos;s what makes EaseOrigin different.
         </p>
       </motion.div>
 
@@ -172,7 +172,7 @@ function CareersCTA() {
               Explore Opportunities With EaseOrigin
             </h2>
             <p className="text-gray-300 leading-relaxed mb-8 max-w-xl mx-auto">
-              We're actively hiring federal IT professionals across cloud, cybersecurity, data, and project management disciplines.
+              We&apos;re actively hiring federal IT professionals across cloud, cybersecurity, data, and project management disciplines.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href="/careers/jobs">

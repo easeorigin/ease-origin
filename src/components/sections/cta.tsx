@@ -15,7 +15,7 @@ export function CTA() {
           </h2>
           <p className="text-lg text-gray-600 mb-10">
             Whether you are a prime contractor looking for specialized talent or
-            an agency seeking innovative IT solutions, let's discuss how our
+            an agency seeking innovative IT solutions, let&apos;s discuss how our
             team can support your mission.
           </p>
 

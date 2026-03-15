@@ -5,13 +5,21 @@ import { JobModel } from "@/models/Job";
 export async function GET() {
   try {
     await connectDB();
-    const jobs = await JobModel.find().sort({ createdAt: -1 });
+
+    const jobs = await JobModel.find({ status: "published" })
+      .sort({ createdAt: -1 })
+      .select(
+        "title slug category location workType employmentType shortDescription applicationDeadline"
+      );
+
     return NextResponse.json(jobs);
+
   } catch (error) {
-    console.error("Error fetching jobs:", error);
+    console.error("Fetch public jobs error:", error);
+
     return NextResponse.json(
-      { error: "Failed to fetch jobs" },
-      { status: 500 },
+      { message: "Failed to fetch jobs" },
+      { status: 500 }
     );
   }
 }

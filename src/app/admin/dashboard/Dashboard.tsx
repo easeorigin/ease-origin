@@ -1,8 +1,10 @@
+"use client";
+
 import { useStats } from "@/hooks/use-stats";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, FileText, Newspaper, Mail, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import Link from "next/link";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,7 +18,7 @@ export default function Dashboard() {
         <PageHeader title="Dashboard" description="Overview of your platform activity" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map(i => (
-            <div key={i} className="h-32 rounded-xl bg-card border border-border animate-pulse" />
+            <div key={i} className="h-32 rounded-xl bg-tg-navy z-20 animate-pulse" />
           ))}
         </div>
       </div>
@@ -32,16 +34,16 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <PageHeader title="Dashboard" description="Overview of your platform activity" />
+      <PageHeader title="Dashboard" description="Overview of your platform activity"/>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((stat, index) => (
-          <Card key={index} className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
+          <Card key={index} className="border-[#080f1c] bg-tg-navy z-20 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground mb-1">{stat.title}</p>
-                <h3 className="text-3xl font-display font-bold text-foreground">{stat.value}</h3>
+                <p className="text-sm font-medium text-white mb-1">{stat.title}</p>
+                <h3 className="text-3xl font-sans font-bold text-white">{stat.value}</h3>
               </div>
               <div className={`w-12 h-12 rounded-xl ${stat.bg} flex items-center justify-center`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
@@ -53,10 +55,10 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Applications */}
-        <Card className="border-border/50 shadow-sm flex flex-col">
+        <Card className="border-[#080f1c] bg-tg-navy z-20 shadow-sm flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50">
-            <CardTitle className="text-lg font-display">Recent Applications</CardTitle>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary" asChild>
+            <CardTitle className="text-lg font-sans text-muted-foreground">Recent Applications</CardTitle>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-tg-blue" asChild>
               <Link href="/admin/applications" className="flex items-center gap-1">
                 View all <ArrowRight className="w-4 h-4" />
               </Link>
@@ -91,10 +93,10 @@ export default function Dashboard() {
         </Card>
 
         {/* Recent Contacts */}
-        <Card className="border-border/50 shadow-sm flex flex-col">
+        <Card className="border-[#080f1c] bg-tg-navy z-20 shadow-sm flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50">
-            <CardTitle className="text-lg font-display">Recent Messages</CardTitle>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary" asChild>
+            <CardTitle className="text-lg font-sans text-muted-foreground">Recent Messages</CardTitle>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-tg-blue" asChild>
               <Link href="/admin/contacts" className="flex items-center gap-1">
                 View all <ArrowRight className="w-4 h-4" />
               </Link>

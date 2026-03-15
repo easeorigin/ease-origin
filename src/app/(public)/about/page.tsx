@@ -488,7 +488,7 @@ function AboutCTA() {
         <p className="text-xs font-semibold uppercase tracking-widest text-tg-gold mb-3">Partner With Us</p>
         <h2 className="text-3xl md:text-4xl font-bold mb-5">Work With EaseOrigin</h2>
         <p className="text-gray-300 leading-relaxed mb-8">
-          Whether you're a government agency, prime contractor, or consultant, we would love to partner with you on your next federal technology initiative.
+          Whether you&apos;re a government agency, prime contractor, or consultant, we would love to partner with you on your next federal technology initiative.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link href="/solutions">

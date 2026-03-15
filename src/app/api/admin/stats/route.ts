@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { NextResponse, NextRequest } from "next/server";
 import { ApplicationModel } from "@/models/Application";
 import { JobModel } from "@/models/Job";

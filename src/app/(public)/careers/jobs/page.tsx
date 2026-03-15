@@ -40,7 +40,7 @@ function NoJobsFallback() {
       </div>
       <h3 className="text-2xl font-bold text-tg-navy mb-3">No Open Positions Right Now</h3>
       <p className="text-gray-500 max-w-md leading-relaxed mb-7">
-        We are always looking for talented consultants. Submit your resume and we'll contact you when opportunities arise.
+        We are always looking for talented consultants. Submit your resume and we&apos;ll contact you when opportunities arise.
       </p>
       <Link href="/careers/submit-resume">
         <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-colors cursor-pointer">
@@ -317,9 +317,9 @@ export default function JobsListingPage() {
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-2xl font-bold text-tg-navy mb-3">Don't See the Right Fit?</h2>
+            <h2 className="text-2xl font-bold text-tg-navy mb-3">Don&apos;t See the Right Fit?</h2>
             <p className="text-gray-500 mb-6 leading-relaxed">
-              Submit your resume and we'll reach out when a matching opportunity becomes available.
+              Submit your resume and we&apos;ll reach out when a matching opportunity becomes available.
             </p>
             <Link href="/careers/submit-resume">
               <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-all shadow-md cursor-pointer">

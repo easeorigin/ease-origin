@@ -1,5 +1,6 @@
 import { Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -8,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
-            <a
+            <Link
               href="/"
               className="font-bold text-2xl tracking-tight text-white mb-6 flex items-center gap-2"
             >
@@ -21,27 +22,27 @@ export function Footer() {
               <h2 className="font-mont">
                 Ease<span className="text-tg-gold">Origin</span>
               </h2>
-            </a>
+            </Link>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed pr-4">
               Delivering federal IT expertise and specialized technology
               consultants to government agencies and prime contractors
               nationwide.
             </p>
             <div className="flex space-x-4">
-              <a
+              <Link
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="h-5 w-5 text-tg-gold" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <span className="sr-only">Twitter</span>
                 <Twitter className="h-5 w-5 text-tg-gold" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -52,29 +53,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   SaaS Solutions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Cloud & Infrastructure
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Cybersecurity
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Data & Analytics
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Contract Vehicles
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -86,9 +87,9 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/about" className="hover:text-tg-gold transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-tg-gold transition-colors">
@@ -96,19 +97,19 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Case Studies
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="#" className="hover:text-tg-gold transition-colors">
                   Fraud Prevention
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -133,12 +134,12 @@ export function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
-                <a
+                <Link
                   href="mailto:info@tgfederal.com"
                   className="hover:text-white transition-colors"
                 >
                   info@tgfederal.com
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -150,15 +151,15 @@ export function Footer() {
             &copy; {new Date().getFullYear()} EaseOrigin. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="#" className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
               Cookie Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

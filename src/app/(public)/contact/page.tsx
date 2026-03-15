@@ -41,8 +41,8 @@ function ContactHero() {
             backgroundSize: "50px 50px",
           }}
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tg-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
+        <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-100 h-100 bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -160,7 +160,7 @@ function ContactFormSection() {
 
   return (
     <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-white via-slate-50/60 to-blue-50/30 pointer-events-none" />
 
       <div className="relative z-10 grid lg:grid-cols-5 gap-12 lg:gap-16">
 
@@ -175,14 +175,14 @@ function ContactFormSection() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-tg-navy mb-3">Contact Information</h2>
             <p className="text-gray-500 leading-relaxed">
-              Reach out directly or complete the form and we'll connect you with the right team.
+              Reach out directly or complete the form and we&apos;ll connect you with the right team.
             </p>
           </div>
 
           <div className="flex flex-col gap-6">
             {contactItems.map(({ icon: Icon, label, lines }, i) => (
               <div key={i} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                <div className="shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-tg-blue" />
                 </div>
                 <div>
@@ -205,7 +205,7 @@ function ContactFormSection() {
               "Technology Consultants",
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 mb-2.5">
-                <CheckCircle2 className="h-4 w-4 text-tg-gold flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-tg-gold shrink-0" />
                 <span className="text-sm text-gray-300">{item}</span>
               </div>
             ))}
@@ -418,7 +418,7 @@ function MapSection() {
 function ConsultantCTA() {
   return (
     <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-white via-blue-50/30 to-indigo-50/20 pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -430,14 +430,14 @@ function ConsultantCTA() {
         <div className="bg-tg-navy rounded-3xl p-10 md:p-14 relative overflow-hidden">
           {/* Background grid */}
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-          <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-tg-blue/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-87.5 h-87.5 bg-tg-blue/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-start md:items-center">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-tg-gold/10 border border-tg-gold/20 flex items-center justify-center">
+            <div className="shrink-0 w-16 h-16 rounded-2xl bg-tg-gold/10 border border-tg-gold/20 flex items-center justify-center">
               <Briefcase className="h-8 w-8 text-tg-gold" />
             </div>
 
-            <div className="flex-grow">
+            <div className="grow">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Interested in Working With EaseOrigin?
               </h3>

@@ -19,8 +19,8 @@ function CaseStudiesHero() {
             backgroundSize: "50px 50px",
           }}
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tg-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
+        <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-100 h-100 bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -87,7 +87,7 @@ function CaseStudiesCTA() {
           Ready to Work with EaseOrigin?
         </h2>
         <p className="text-gray-500 leading-relaxed mb-8">
-          Our team is ready to support your agency's next technology initiative — from cloud modernization to cybersecurity and data strategy.
+          Our team is ready to support your agency&apos;s next technology initiative — from cloud modernization to cybersecurity and data strategy.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link href="/solutions">
