@@ -1,5 +1,6 @@
-import { Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -8,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}
           <div className="lg:col-span-1">
-            <a
+            <Link
               href="/"
               className="font-bold text-2xl tracking-tight text-white mb-6 flex items-center gap-2"
             >
@@ -19,28 +20,23 @@ export function Footer() {
                 height={40}
               />
               <h2 className="font-mont">
-                Ease<span className="text-tg-gold">Origin</span>
+                Ease<span className="text-eo-gold">Origin</span>
               </h2>
-            </a>
+            </Link>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed pr-4">
-              Delivering federal IT expertise and specialized technology
-              consultants to government agencies and prime contractors
-              nationwide.
+              Delivering specialized technology consulting and IT solutions
+              to government agencies, prime contractors, and private sector
+              organizations nationwide.
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://linkedin.com/company/easeorigin"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
-                <Linkedin className="h-5 w-5 text-tg-gold" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <span className="sr-only">Twitter</span>
-                <Twitter className="h-5 w-5 text-tg-gold" />
+                <Linkedin className="h-5 w-5 text-eo-gold" />
               </a>
             </div>
           </div>
@@ -52,29 +48,44 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
-                  SaaS Solutions
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/cloud-infrastructure" className="hover:text-eo-gold transition-colors">
                   Cloud & Infrastructure
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/devops-platform" className="hover:text-eo-gold transition-colors">
+                  DevOps & Platform Engineering
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/cybersecurity" className="hover:text-eo-gold transition-colors">
                   Cybersecurity
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/ai-ml" className="hover:text-eo-gold transition-colors">
+                  AI/ML Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/data-analytics" className="hover:text-eo-gold transition-colors">
                   Data & Analytics
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
-                  Contract Vehicles
-                </a>
+                <Link href="/solutions/saas-solutions" className="hover:text-eo-gold transition-colors">
+                  SaaS Solutions
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/program-management" className="hover:text-eo-gold transition-colors">
+                  Program Management
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/agile-delivery" className="hover:text-eo-gold transition-colors">
+                  Agile Delivery & RTM
+                </Link>
               </li>
             </ul>
           </div>
@@ -86,29 +97,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/about" className="hover:text-eo-gold transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
-                  Leadership
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/careers" className="hover:text-eo-gold transition-colors">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/case-studies" className="hover:text-eo-gold transition-colors">
                   Case Studies
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
-                  Fraud Prevention
-                </a>
+                <Link href="/contract-vehicles" className="hover:text-eo-gold transition-colors">
+                  Contract Vehicles
+                </Link>
+              </li>
+              <li>
+                <Link href="/capability-statement" className="hover:text-eo-gold transition-colors">
+                  Capability Statement
+                </Link>
               </li>
             </ul>
           </div>
@@ -120,24 +131,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-tg-gold mr-3 shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 text-eo-gold mr-3 shrink-0 mt-0.5" />
                 <span>
-                  123 Federal Drive, Suite 400
+                  211 E Avenue G, 306
                   <br />
-                  Washington, DC 20001
+                  Midlothian, TX 76065
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
-                <span>(202) 555-0100</span>
+                <Phone className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
+                <span>(470) 464-5199</span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
+                <Mail className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
                 <a
-                  href="mailto:info@tgfederal.com"
+                  href="mailto:info@easeorigin.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@tgfederal.com
+                  info@easeorigin.com
                 </a>
               </li>
             </ul>
@@ -150,15 +161,12 @@ export function Footer() {
             &copy; {new Date().getFullYear()} EaseOrigin. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Cookie Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

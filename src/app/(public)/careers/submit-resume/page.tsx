@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Upload,
   CheckCircle2,
   AlertCircle,
   ArrowLeft,
@@ -13,6 +12,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { CATEGORIES, LOCATIONS } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { submitResumeForm, type ResumeFormResponse } from "./actions";
 
 interface FormValues {
   name: string;
@@ -20,7 +20,6 @@ interface FormValues {
   country: string;
   expertise: string;
   message: string;
-  file: File | null;
 }
 
 interface FormErrors {
@@ -29,7 +28,6 @@ interface FormErrors {
   country?: string;
   expertise?: string;
   message?: string;
-  file?: string;
 }
 
 function validate(values: FormValues): FormErrors {
@@ -43,7 +41,6 @@ function validate(values: FormValues): FormErrors {
   if (!values.country) errors.country = "Please select a country.";
   if (!values.expertise)
     errors.expertise = "Please select an area of expertise.";
-  if (!values.file) errors.file = "Please upload your resume or CV.";
   return errors;
 }
 
@@ -54,7 +51,6 @@ export default function SubmitResumePage() {
     country: "",
     expertise: "",
     message: "",
-    file: null,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<
@@ -62,15 +58,15 @@ export default function SubmitResumePage() {
   >({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [dragOver, setDragOver] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const setField = (
     field: keyof FormValues,
-    value: FormValues[keyof FormValues],
+    value: string,
   ) => {
     setValues((v) => ({ ...v, [field]: value }));
     if (touched[field]) {
-      const e = validate({ ...values, [field]: value as string });
+      const e = validate({ ...values, [field]: value });
       setErrors((prev) => ({ ...prev, [field]: e[field as keyof FormErrors] }));
     }
   };
@@ -81,18 +77,9 @@ export default function SubmitResumePage() {
     setErrors((prev) => ({ ...prev, [field]: e[field as keyof FormErrors] }));
   };
 
-  const handleFile = (file: File | null) => {
-    if (file && file.size > 10 * 1024 * 1024) {
-      setErrors((prev) => ({ ...prev, file: "File must be under 10 MB." }));
-      return;
-    }
-    setValues((v) => ({ ...v, file }));
-    setErrors((prev) => ({ ...prev, file: undefined }));
-    setTouched((t) => ({ ...t, file: true }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
     const allTouched = Object.fromEntries(
       (Object.keys(values) as (keyof FormValues)[]).map((k) => [k, true]),
     );
@@ -100,17 +87,26 @@ export default function SubmitResumePage() {
     const e2 = validate(values);
     setErrors(e2);
     if (Object.keys(e2).length > 0) return;
+
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const result: ResumeFormResponse = await submitResumeForm(values);
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setServerError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setServerError("An unexpected error occurred. Please try again.");
+    } finally {
       setSubmitting(false);
-      setSubmitted(true);
-    }, 1200);
+    }
   };
 
   const inputBase =
     "w-full px-4 py-3 rounded-lg border text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-200";
   const inputNormal =
-    "border-gray-200 focus:border-tg-blue focus:ring-tg-blue/20";
+    "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
   const inputError = "border-red-400 focus:border-red-400 focus:ring-red-200";
   const fieldCls = (field: keyof FormValues) =>
     cn(inputBase, errors[field] && touched[field] ? inputError : inputNormal);
@@ -125,8 +121,8 @@ export default function SubmitResumePage() {
   return (
     <div className="min-h-screen bg-white">
       <main>
-        {/* ── Hero ── */}
-        <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-16 overflow-hidden bg-tg-navy text-white">
+        {/* Hero */}
+        <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-16 overflow-hidden bg-eo-navy text-white">
           <div className="absolute inset-0 z-0">
             <div
               className="absolute inset-0 opacity-[0.03]"
@@ -136,7 +132,7 @@ export default function SubmitResumePage() {
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-150 h-150 bg-eo-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -151,8 +147,8 @@ export default function SubmitResumePage() {
                   Back to Careers
                 </span>
               </Link>
-              <div className="flex w-auto items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-5">
-                <span className="flex h-2 w-2 rounded-full bg-tg-gold animate-pulse" />
+              <div className="flex w-auto items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-5">
+                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
                 Join Our Talent Network
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
@@ -160,16 +156,17 @@ export default function SubmitResumePage() {
               </h1>
               <p className="text-gray-300 leading-relaxed max-w-xl">
                 We partner with highly skilled consultants supporting federal
-                technology initiatives. Submit your resume and we'll reach out
+                technology initiatives. Submit your information and we&apos;ll reach out
                 when a matching opportunity arises.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* ── Form ── */}
-        <Section className="bg-slate-50 border-b border-gray-100">
-          <div className="max-w-2xl mx-auto">
+        {/* Form */}
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/15 to-slate-50 border-b border-gray-100">
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
+          <div className="max-w-2xl mx-auto relative z-10">
             <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 md:p-10">
               {submitted ? (
                 <motion.div
@@ -180,27 +177,34 @@ export default function SubmitResumePage() {
                   <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
                     <CheckCircle2 className="h-8 w-8 text-green-500" />
                   </div>
-                  <h3 className="text-2xl font-bold text-tg-navy">
-                    Resume Submitted!
+                  <h3 className="text-2xl font-bold text-eo-navy">
+                    Submission Received!
                   </h3>
                   <p className="text-gray-500 max-w-sm leading-relaxed">
                     Thank you for your interest in EaseOrigin. Our recruiting
                     team will review your profile and be in touch.
                   </p>
                   <Link href="/careers/jobs">
-                    <span className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-tg-blue hover:text-tg-navy transition-colors cursor-pointer">
+                    <span className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-eo-blue hover:text-eo-navy transition-colors cursor-pointer">
                       View Open Positions
                     </span>
                   </Link>
                 </motion.div>
               ) : (
                 <>
-                  <h2 className="text-xl font-bold text-tg-navy mb-1">
+                  <h2 className="text-xl font-bold text-eo-navy mb-1">
                     Your Information
                   </h2>
                   <p className="text-sm text-gray-400 mb-7">
-                    We'll use this to match you with future opportunities.
+                    We&apos;ll use this to match you with future opportunities.
                   </p>
+
+                  {serverError && (
+                    <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 flex items-start gap-3">
+                      <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-red-700">{serverError}</p>
+                    </div>
+                  )}
 
                   <form
                     onSubmit={handleSubmit}
@@ -339,72 +343,6 @@ export default function SubmitResumePage() {
                       </div>
                     </div>
 
-                    {/* File Upload */}
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5">
-                        Resume / CV
-                      </label>
-                      <div
-                        onDragOver={(e) => {
-                          e.preventDefault();
-                          setDragOver(true);
-                        }}
-                        onDragLeave={() => setDragOver(false)}
-                        onDrop={(e) => {
-                          e.preventDefault();
-                          setDragOver(false);
-                          const file = e.dataTransfer.files[0];
-                          if (file) handleFile(file);
-                        }}
-                        className={cn(
-                          "relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-8 text-center transition-all duration-200 cursor-pointer",
-                          dragOver
-                            ? "border-tg-blue bg-blue-50"
-                            : errors.file && touched.file
-                              ? "border-red-300 bg-red-50"
-                              : "border-gray-200 bg-slate-50 hover:border-tg-blue hover:bg-blue-50/30",
-                        )}
-                      >
-                        <input
-                          type="file"
-                          accept=".pdf,.doc,.docx"
-                          onChange={(e) =>
-                            handleFile(e.target.files?.[0] ?? null)
-                          }
-                          className="absolute inset-0 opacity-0 cursor-pointer"
-                        />
-                        <Upload
-                          className={cn(
-                            "h-8 w-8",
-                            dragOver ? "text-tg-blue" : "text-gray-300",
-                          )}
-                        />
-                        {values.file ? (
-                          <div>
-                            <p className="text-sm font-semibold text-tg-navy">
-                              {values.file.name}
-                            </p>
-                            <p className="text-xs text-gray-400">
-                              Click to replace
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            <p className="text-sm font-medium text-gray-600">
-                              Drag & drop or{" "}
-                              <span className="text-tg-blue font-semibold">
-                                browse
-                              </span>
-                            </p>
-                            <p className="text-xs text-gray-400 mt-0.5">
-                              PDF, DOC, DOCX — max 10 MB
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                      <ErrorMsg field="file" />
-                    </div>
-
                     {/* Message */}
                     <div>
                       <label
@@ -419,7 +357,7 @@ export default function SubmitResumePage() {
                       <textarea
                         id="cv-message"
                         rows={4}
-                        placeholder="Tell us about your experience, clearance level, or ideal engagement…"
+                        placeholder="Tell us about your experience, clearance level, or ideal engagement..."
                         value={values.message}
                         onChange={(e) => setField("message", e.target.value)}
                         className={cn(fieldCls("message"), "resize-none")}
@@ -429,16 +367,16 @@ export default function SubmitResumePage() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-1"
+                      className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-1"
                     >
                       {submitting ? (
                         <>
                           <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                          Submitting…
+                          Submitting...
                         </>
                       ) : (
                         <>
-                          <Send className="h-4 w-4" /> Submit Resume
+                          <Send className="h-4 w-4" /> Submit
                         </>
                       )}
                     </button>

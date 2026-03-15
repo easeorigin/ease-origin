@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
+import { submitContactForm, type ContactFormResponse } from "./actions";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -31,7 +32,7 @@ interface FormErrors {
 
 function ContactHero() {
   return (
-    <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden bg-tg-navy text-white">
+    <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden bg-eo-navy text-white">
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 opacity-[0.035]"
@@ -41,8 +42,8 @@ function ContactHero() {
             backgroundSize: "50px 50px",
           }}
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tg-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-eo-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-eo-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -52,8 +53,8 @@ function ContactHero() {
           transition={{ duration: 0.65 }}
           className="max-w-2xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-6">
-            <span className="flex h-2 w-2 rounded-full bg-tg-gold animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
+            <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
             Get In Touch
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-5">
@@ -96,9 +97,11 @@ function ContactFormSection() {
   const [touched, setTouched] = useState<Partial<Record<keyof FormValues, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const handleChange = (field: keyof FormValues, value: string) => {
     setValues((v) => ({ ...v, [field]: value }));
+    if (serverError) setServerError(null);
     if (touched[field]) {
       const e = validateForm({ ...values, [field]: value });
       setErrors((prev) => ({ ...prev, [field]: e[field] }));
@@ -111,8 +114,9 @@ function ContactFormSection() {
     setErrors((prev) => ({ ...prev, [field]: e[field] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
     const allTouched = Object.fromEntries(
       (Object.keys(values) as (keyof FormValues)[]).map((k) => [k, true])
     );
@@ -121,15 +125,23 @@ function ContactFormSection() {
     setErrors(e2);
     if (Object.keys(e2).length > 0) return;
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const result: ContactFormResponse = await submitContactForm(values);
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setServerError(result.error ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      setServerError("An unexpected error occurred. Please try again.");
+    } finally {
       setSubmitting(false);
-      setSubmitted(true);
-    }, 1200);
+    }
   };
 
   const inputBase =
     "w-full px-4 py-3 rounded-lg border text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-200";
-  const inputNormal = "border-gray-200 focus:border-tg-blue focus:ring-tg-blue/20";
+  const inputNormal = "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
   const inputError = "border-red-400 focus:border-red-400 focus:ring-red-200";
 
   const fieldClass = (field: keyof FormValues) =>
@@ -139,17 +151,17 @@ function ContactFormSection() {
     {
       icon: MapPin,
       label: "Address",
-      lines: ["4501 Fairfax Dr Suite 500", "Arlington, VA 22203"],
+      lines: ["211 E Avenue G, 306", "Midlothian, TX 76065"],
     },
     {
       icon: Phone,
       label: "Phone",
-      lines: ["(919) 229-4446"],
+      lines: ["(470) 464-5199"],
     },
     {
       icon: Mail,
       label: "Email",
-      lines: ["info@tgfederal.com"],
+      lines: ["info@easeorigin.com"],
     },
     {
       icon: Clock,
@@ -160,7 +172,9 @@ function ContactFormSection() {
 
   return (
     <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="relative z-10 grid lg:grid-cols-5 gap-12 lg:gap-16">
 
@@ -173,7 +187,7 @@ function ContactFormSection() {
           className="lg:col-span-2 flex flex-col gap-8"
         >
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-tg-navy mb-3">Contact Information</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-eo-navy mb-3">Contact Information</h2>
             <p className="text-gray-500 leading-relaxed">
               Reach out directly or complete the form and we'll connect you with the right team.
             </p>
@@ -183,10 +197,10 @@ function ContactFormSection() {
             {contactItems.map(({ icon: Icon, label, lines }, i) => (
               <div key={i} className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-                  <Icon className="h-5 w-5 text-tg-blue" />
+                  <Icon className="h-5 w-5 text-eo-blue" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-tg-gold mb-1">{label}</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-1">{label}</p>
                   {lines.map((line, j) => (
                     <p key={j} className="text-sm text-gray-700 leading-snug">{line}</p>
                   ))}
@@ -196,7 +210,7 @@ function ContactFormSection() {
           </div>
 
           {/* Who we work with */}
-          <div className="bg-tg-navy rounded-2xl p-7 text-white mt-2">
+          <div className="bg-eo-navy rounded-2xl p-7 text-white mt-2">
             <h3 className="font-bold text-base mb-4">Who We Work With</h3>
             {[
               "Federal Government Agencies",
@@ -205,7 +219,7 @@ function ContactFormSection() {
               "Technology Consultants",
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 mb-2.5">
-                <CheckCircle2 className="h-4 w-4 text-tg-gold flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0" />
                 <span className="text-sm text-gray-300">{item}</span>
               </div>
             ))}
@@ -226,20 +240,20 @@ function ContactFormSection() {
                 <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
                   <CheckCircle2 className="h-8 w-8 text-green-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-tg-navy">Message Sent!</h3>
+                <h3 className="text-2xl font-bold text-eo-navy">Message Sent!</h3>
                 <p className="text-gray-500 max-w-sm leading-relaxed">
                   Thank you for reaching out. A member of our team will be in touch within one business day.
                 </p>
                 <button
-                  onClick={() => { setSubmitted(false); setValues({ name: "", email: "", company: "", subject: "", message: "" }); setTouched({}); setErrors({}); }}
-                  className="mt-2 text-sm font-semibold text-tg-blue hover:text-tg-navy transition-colors"
+                  onClick={() => { setSubmitted(false); setServerError(null); setValues({ name: "", email: "", company: "", subject: "", message: "" }); setTouched({}); setErrors({}); }}
+                  className="mt-2 text-sm font-semibold text-eo-blue hover:text-eo-navy transition-colors"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
               <>
-                <h2 className="text-2xl font-bold text-tg-navy mb-1">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold text-eo-navy mb-1">Send Us a Message</h2>
                 <p className="text-sm text-gray-500 mb-8">All fields are required.</p>
 
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
@@ -351,10 +365,17 @@ function ContactFormSection() {
                     )}
                   </div>
 
+                  {serverError && (
+                    <div className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 border border-red-200">
+                      <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-red-700">{serverError}</p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-1"
+                    className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-1"
                   >
                     {submitting ? (
                       <>
@@ -383,7 +404,7 @@ function ContactFormSection() {
 
 function MapSection() {
   return (
-    <Section className="relative overflow-hidden bg-slate-50 border-b border-gray-100" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
+    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white/60 to-slate-50/80 border-b border-gray-100" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -391,16 +412,16 @@ function MapSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-2">Location</h2>
-          <h3 className="text-2xl md:text-3xl font-bold text-tg-navy">Our Office</h3>
-          <p className="text-gray-500 mt-2">4501 Fairfax Dr Suite 500, Arlington, VA 22203</p>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Location</h2>
+          <h3 className="text-2xl md:text-3xl font-bold text-eo-navy">Our Office</h3>
+          <p className="text-gray-500 mt-2">211 E Avenue G, 306, Midlothian, TX 76065</p>
         </motion.div>
       </div>
 
       <div className="w-full h-80 md:h-96 relative overflow-hidden shadow-inner">
         <iframe
-          title="EaseOrigin Office Location — Arlington, VA"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.4799!2d-77.1148!3d38.8832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b6e1a5e5e5e5%3A0x0!2s4501+Fairfax+Dr%2C+Arlington%2C+VA+22203!5e0!3m2!1sen!2sus!4v1000000000000!5m2!1sen!2sus"
+          title="EaseOrigin Office Location, Midlothian, TX"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.2!2d-96.9945!3d32.4824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s211+E+Avenue+G%2C+Midlothian%2C+TX+76065!5e0!3m2!1sen!2sus!4v1000000000000!5m2!1sen!2sus"
           width="100%"
           height="100%"
           style={{ border: 0, filter: "grayscale(20%) contrast(1.05)" }}
@@ -417,8 +438,8 @@ function MapSection() {
 
 function ConsultantCTA() {
   return (
-    <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20 pointer-events-none" />
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white border-b border-gray-100">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-white pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -427,14 +448,14 @@ function ConsultantCTA() {
         transition={{ duration: 0.6 }}
         className="relative z-10 max-w-4xl mx-auto"
       >
-        <div className="bg-tg-navy rounded-3xl p-10 md:p-14 relative overflow-hidden">
+        <div className="bg-eo-navy rounded-3xl p-10 md:p-14 relative overflow-hidden">
           {/* Background grid */}
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-          <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-tg-blue/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-eo-blue/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-start md:items-center">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-tg-gold/10 border border-tg-gold/20 flex items-center justify-center">
-              <Briefcase className="h-8 w-8 text-tg-gold" />
+            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-eo-gold/10 border border-eo-gold/20 flex items-center justify-center">
+              <Briefcase className="h-8 w-8 text-eo-gold" />
             </div>
 
             <div className="flex-grow">
@@ -446,13 +467,13 @@ function ConsultantCTA() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-tg-gold text-tg-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md"
+                  href="/careers"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-eo-gold text-eo-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md"
                 >
                   View Careers <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
-                  href="/contact"
+                  href="/careers/submit-resume"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-white/20 text-white font-semibold text-sm hover:bg-white/10 transition-all"
                 >
                   Submit Resume <ChevronRight className="h-4 w-4" />

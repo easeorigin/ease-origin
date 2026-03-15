@@ -14,20 +14,22 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
     { name: "Solutions", href: "/solutions", internal: true },
+    { name: "Contract Vehicles", href: "/contract-vehicles", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
     { name: "Careers", href: "/careers", internal: true },
-    { name: "About", href: "/about", internal: false },
+    { name: "About", href: "/about", internal: true },
     { name: "Contact", href: "/contact", internal: true },
   ];
 
   return (
     <nav
+      aria-label="Main navigation"
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out",
         isScrolled
@@ -39,22 +41,22 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="shrink-0 flex items-center">
-            <a
+            <Link
               href="/"
               className={cn(
                 "font-bold font-mont text-2xl tracking-tight transition-colors flex items-center",
                 isScrolled ? "text-[#202433]" : "text-white",
               )}
             >
-            <Image 
-            src={isScrolled ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}            
+            <Image
+            src={isScrolled ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
             alt="EaseOrigin Logo"
             width={60}
             height={50}
             className="object-contain"
             />
               <h2 className="">EaseOrigin</h2>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Nav */}
@@ -65,7 +67,7 @@ export function Navbar() {
                   <Link key={link.name} href={link.href}>
                     <span
                       className={cn(
-                        "text-sm font-medium transition-colors hover:text-tg-gold cursor-pointer",
+                        "text-sm font-medium transition-colors hover:text-eo-gold cursor-pointer",
                         isScrolled ? "text-gray-600" : "text-gray-200",
                       )}
                     >
@@ -77,7 +79,7 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={cn(
-                      "text-sm font-medium transition-colors hover:text-tg-gold",
+                      "text-sm font-medium transition-colors hover:text-eo-gold",
                       isScrolled ? "text-gray-600" : "text-gray-200",
                     )}
                   >
@@ -86,26 +88,28 @@ export function Navbar() {
                 ),
               )}
             </div>
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className={cn(
                 "px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200",
                 isScrolled
-                  ? "bg-tg-navy text-white hover:bg-tg-blue shadow-md hover:shadow-lg"
-                  : "bg-white text-tg-navy hover:bg-gray-100 shadow-lg",
+                  ? "bg-eo-navy text-white hover:bg-eo-blue shadow-md hover:shadow-lg"
+                  : "bg-white text-eo-navy hover:bg-gray-100 shadow-lg",
               )}
             >
               Partner With Us
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "focus:outline-none",
-                isScrolled ? "text-tg-navy" : "text-white",
+                isScrolled ? "text-eo-navy" : "text-white",
               )}
             >
               {isMobileMenuOpen ? (
@@ -133,7 +137,7 @@ export function Navbar() {
               <Link key={link.name} href={link.href}>
                 <span
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-tg-navy hover:bg-gray-50 rounded-md cursor-pointer"
+                  className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-eo-navy hover:bg-gray-50 rounded-md cursor-pointer"
                 >
                   {link.name}
                 </span>
@@ -143,20 +147,20 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-tg-navy hover:bg-gray-50 rounded-md"
+                className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-eo-navy hover:bg-gray-50 rounded-md"
               >
                 {link.name}
               </a>
             ),
           )}
           <div className="pt-4 pb-2">
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center px-5 py-3 text-base font-medium bg-tg-navy text-white hover:bg-tg-blue rounded-md shadow-sm"
+              className="block w-full text-center px-5 py-3 text-base font-medium bg-eo-navy text-white hover:bg-eo-blue rounded-md shadow-sm"
             >
               Partner With Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>
