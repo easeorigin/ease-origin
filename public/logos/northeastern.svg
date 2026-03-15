@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <text x="100" y="30" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="700" font-size="15" fill="white" letter-spacing="3">NORTHEASTERN</text>
+  <text x="100" y="46" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="400" font-size="10" fill="white" letter-spacing="5" opacity="0.55">UNIVERSITY</text>
+  <rect x="30" y="18" width="140" height="0.8" rx="0.4" fill="white" opacity="0.25"/>
+  <rect x="30" y="52" width="140" height="0.8" rx="0.4" fill="white" opacity="0.25"/>
+</svg>

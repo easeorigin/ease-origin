@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <text x="100" y="36" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="700" font-size="20" fill="white" letter-spacing="2">STEAMPUNK</text>
+  <rect x="34" y="44" width="132" height="1.5" rx="0.75" fill="white" opacity="0.35"/>
+  <circle cx="34" cy="44.75" r="2" fill="white" opacity="0.5"/>
+  <circle cx="166" cy="44.75" r="2" fill="white" opacity="0.5"/>
+</svg>

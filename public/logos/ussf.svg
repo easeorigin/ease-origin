@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="ussf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D1F3C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="75" fill="url(#ussf-grad)" stroke="#D4AF37" stroke-width="3"/>
+  <!-- Star/space motif -->
+  <polygon points="100,40 106,58 125,58 110,68 116,86 100,76 84,86 90,68 75,58 94,58" fill="#D4AF37" opacity="0.9"/>
+  <!-- Orbit rings -->
+  <ellipse cx="100" cy="100" rx="55" ry="20" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.4" transform="rotate(-20 100 100)"/>
+  <ellipse cx="100" cy="100" rx="55" ry="20" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.3" transform="rotate(20 100 100)"/>
+  <!-- Small stars -->
+  <circle cx="55" cy="110" r="2" fill="#D4AF37" opacity="0.5"/>
+  <circle cx="145" cy="90" r="2" fill="#D4AF37" opacity="0.5"/>
+  <circle cx="70" cy="140" r="1.5" fill="#D4AF37" opacity="0.4"/>
+  <circle cx="130" cy="135" r="1.5" fill="#D4AF37" opacity="0.4"/>
+  <text x="100" y="155" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="18" fill="#D4AF37">USSF</text>
+</svg>
