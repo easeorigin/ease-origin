@@ -15,10 +15,10 @@ const workTypeIcon: Record<string, React.ElementType> = {
 
 function NotFoundState() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-screen bg-surface flex items-center justify-center">
       <div className="text-center px-4">
-        <h1 className="text-3xl font-bold text-eo-navy mb-4">Job Not Found</h1>
-        <p className="text-gray-500 mb-6">This position may have been filled or removed.</p>
+        <h1 className="text-3xl font-bold text-text-primary mb-4">Job Not Found</h1>
+        <p className="text-text-tertiary mb-6">This position may have been filled or removed.</p>
         <Link href="/careers/jobs">
           <span className="inline-flex items-center gap-2 px-6 py-3 bg-eo-navy text-white font-bold rounded-lg cursor-pointer hover:bg-eo-blue transition-colors">
             <ArrowLeft className="h-4 w-4" /> View All Positions
@@ -43,7 +43,7 @@ export default async function JobDetailPage({
   const related = jobs.filter((j) => j.slug !== job.slug && j.category === job.category).slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
 
         {/* Hero */}
@@ -96,7 +96,7 @@ export default async function JobDetailPage({
         </section>
 
         {/* Content + Sidebar */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/25 to-white border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <div className="max-w-5xl mx-auto relative z-10 grid lg:grid-cols-3 gap-10 lg:gap-14">
 
@@ -106,18 +106,18 @@ export default async function JobDetailPage({
               {/* Overview */}
               <div className="animate-fade-in-up">
                 <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Job Overview</p>
-                <h2 className="text-2xl font-bold text-eo-navy mb-4">About This Role</h2>
-                <p className="text-gray-600 leading-relaxed">{job.overview}</p>
+                <h2 className="text-2xl font-bold text-text-primary mb-4">About This Role</h2>
+                <p className="text-text-tertiary leading-relaxed">{job.overview}</p>
               </div>
 
               {/* Responsibilities */}
               <div className="animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-                <h2 className="text-xl font-bold text-eo-navy mb-4">Responsibilities</h2>
+                <h2 className="text-xl font-bold text-text-primary mb-4">Responsibilities</h2>
                 <ul className="flex flex-col gap-3">
                   {job.responsibilities.map((r, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-eo-gold flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600 text-sm leading-relaxed">{r}</span>
+                      <span className="text-text-tertiary text-sm leading-relaxed">{r}</span>
                     </li>
                   ))}
                 </ul>
@@ -125,12 +125,12 @@ export default async function JobDetailPage({
 
               {/* Qualifications */}
               <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <h2 className="text-xl font-bold text-eo-navy mb-4">Qualifications</h2>
+                <h2 className="text-xl font-bold text-text-primary mb-4">Qualifications</h2>
                 <ul className="flex flex-col gap-3">
                   {job.qualifications.map((q, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-eo-blue mt-2 flex-shrink-0" />
-                      <span className="text-gray-600 text-sm leading-relaxed">{q}</span>
+                      <span className="text-text-tertiary text-sm leading-relaxed">{q}</span>
                     </li>
                   ))}
                 </ul>
@@ -140,13 +140,13 @@ export default async function JobDetailPage({
               <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
                 <div className="flex items-center gap-2 mb-4">
                   <Tag className="h-4 w-4 text-eo-blue" />
-                  <h2 className="text-xl font-bold text-eo-navy">Technologies</h2>
+                  <h2 className="text-xl font-bold text-text-primary">Technologies</h2>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {job.technologies.map((tech, i) => (
                     <span
                       key={i}
-                      className="inline-block px-3 py-1.5 bg-slate-50 border border-gray-200 text-sm font-medium text-eo-navy rounded-full"
+                      className="inline-block px-3 py-1.5 bg-slate-50 border border-border-default text-sm font-medium text-text-primary rounded-full"
                     >
                       {tech}
                     </span>
@@ -182,25 +182,25 @@ export default async function JobDetailPage({
                 </div>
 
                 {/* Job meta card */}
-                <div className="bg-slate-50 rounded-2xl border border-gray-100 p-6 flex flex-col gap-4">
-                  <h4 className="text-sm font-bold text-eo-navy">Position Details</h4>
+                <div className="bg-surface-muted rounded-2xl border border-border-subtle p-6 flex flex-col gap-4">
+                  <h4 className="text-sm font-bold text-text-primary">Position Details</h4>
                   <div className="flex flex-col gap-3">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Category</p>
-                      <p className="text-sm font-medium text-eo-navy">{job.category}</p>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-1">Category</p>
+                      <p className="text-sm font-medium text-text-primary">{job.category}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Work Type</p>
-                      <p className="text-sm font-medium text-eo-navy">{job.workType}</p>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-1">Work Type</p>
+                      <p className="text-sm font-medium text-text-primary">{job.workType}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Location</p>
-                      <p className="text-sm font-medium text-eo-navy">{job.location}</p>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-1">Location</p>
+                      <p className="text-sm font-medium text-text-primary">{job.location}</p>
                     </div>
                     {job.clearance && (
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Clearance</p>
-                        <p className="text-sm font-medium text-eo-navy">{job.clearance}</p>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-1">Clearance</p>
+                        <p className="text-sm font-medium text-text-primary">{job.clearance}</p>
                       </div>
                     )}
                   </div>
@@ -212,8 +212,8 @@ export default async function JobDetailPage({
 
         {/* Related Positions */}
         {related.length > 0 && (
-          <Section className="bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-gray-100">
-            <h2 className="text-xl font-bold text-eo-navy mb-6">Similar Positions</h2>
+          <Section className="bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
+            <h2 className="text-xl font-bold text-text-primary mb-6">Similar Positions</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               {related.map((j, i) => <JobCard key={j.slug} job={j} index={i} />)}
             </div>

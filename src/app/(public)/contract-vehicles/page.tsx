@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function ContractVehiclesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         {/* Hero */}
         <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-eo-navy text-white">
@@ -71,7 +71,7 @@ export default function ContractVehiclesPage() {
         </section>
 
         {/* Vehicle Cards */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="relative z-10">
@@ -79,7 +79,7 @@ export default function ContractVehiclesPage() {
               <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">
                 Active Vehicles
               </h2>
-              <h3 className="text-2xl font-bold text-eo-navy mb-8">
+              <h3 className="text-2xl font-bold text-text-primary mb-8">
                 Contract Vehicles
               </h3>
 
@@ -92,7 +92,7 @@ export default function ContractVehiclesPage() {
                   return (
                     <div
                       key={vehicle.slug}
-                      className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
+                      className="bg-surface border border-border-subtle rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <span className="inline-block px-3 py-1 rounded-full bg-eo-gold/10 border border-eo-gold/20 text-eo-gold text-xs font-bold uppercase tracking-wider">
@@ -100,29 +100,29 @@ export default function ContractVehiclesPage() {
                         </span>
                       </div>
 
-                      <h4 className="text-xl font-bold text-eo-navy mb-2">
+                      <h4 className="text-xl font-bold text-text-primary mb-2">
                         {vehicle.vehicleName}
                       </h4>
 
                       <div className="space-y-1 mb-4">
-                        <p className="text-sm text-gray-500">
-                          <span className="font-semibold text-gray-600">
+                        <p className="text-sm text-text-tertiary">
+                          <span className="font-semibold text-text-secondary">
                             Agency:
                           </span>{" "}
                           {vehicle.agency}
                         </p>
-                        <p className="text-sm text-gray-500">
-                          <span className="font-semibold text-gray-600">
+                        <p className="text-sm text-text-tertiary">
+                          <span className="font-semibold text-text-secondary">
                             Prime:
                           </span>{" "}
                           {vehicle.prime}
                         </p>
-                        <p className="text-xs text-gray-400 font-mono">
+                        <p className="text-xs text-text-muted font-mono">
                           {vehicle.contractNumber}
                         </p>
                       </div>
 
-                      <p className="text-sm text-gray-600 leading-relaxed mb-5">
+                      <p className="text-sm text-text-tertiary leading-relaxed mb-5">
                         {vehicle.description}
                       </p>
 
@@ -130,14 +130,14 @@ export default function ContractVehiclesPage() {
                         {vehicle.scope.map((item, i) => (
                           <div key={i} className="flex items-start gap-2">
                             <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-text-tertiary">
                               {item}
                             </span>
                           </div>
                         ))}
                       </div>
 
-                      <div className="pt-4 border-t border-gray-100 flex flex-wrap gap-3">
+                      <div className="pt-4 border-t border-border-subtle flex flex-wrap gap-3">
                         {caseStudy && (
                           <Link
                             href={`/case-studies/${caseStudy.slug}`}
@@ -171,49 +171,49 @@ export default function ContractVehiclesPage() {
         </Section>
 
         {/* Government Registration */}
-        <Section className="relative overflow-hidden bg-white border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
           <div className="absolute -top-16 -right-16 w-72 h-72 bg-blue-100/15 rounded-full blur-[90px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">
               Registration
             </h2>
-            <h3 className="text-2xl font-bold text-eo-navy mb-8">
+            <h3 className="text-2xl font-bold text-text-primary mb-8">
               Government Registration
             </h3>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-eo-navy/[0.03] border border-gray-200 rounded-xl p-5 text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   UEI
                 </p>
-                <p className="text-lg font-bold text-eo-navy font-mono">
+                <p className="text-lg font-bold text-text-primary font-mono">
                   {registrationInfo.uei}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-gray-200 rounded-xl p-5 text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   CAGE Code
                 </p>
-                <p className="text-lg font-bold text-eo-navy font-mono">
+                <p className="text-lg font-bold text-text-primary font-mono">
                   {registrationInfo.cage}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-gray-200 rounded-xl p-5 text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   Business Type
                 </p>
-                <p className="text-lg font-bold text-eo-navy">
+                <p className="text-lg font-bold text-text-primary">
                   {registrationInfo.businessType}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-gray-200 rounded-xl p-5 text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   SAM.gov
                 </p>
                 <div className="flex items-center justify-center gap-2">
                   <span className="flex h-2 w-2 rounded-full bg-green-500" />
-                  <p className="text-lg font-bold text-eo-navy">
+                  <p className="text-lg font-bold text-text-primary">
                     {registrationInfo.samStatus}
                   </p>
                 </div>
@@ -223,7 +223,7 @@ export default function ContractVehiclesPage() {
         </Section>
 
         {/* NAICS Codes */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
           <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
@@ -235,7 +235,7 @@ export default function ContractVehiclesPage() {
                 <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold">
                   Classification
                 </h2>
-                <h3 className="text-2xl font-bold text-eo-navy">
+                <h3 className="text-2xl font-bold text-text-primary">
                   NAICS Codes
                 </h3>
               </div>
@@ -245,16 +245,16 @@ export default function ContractVehiclesPage() {
               {naicsCodes.map((naics) => (
                 <div
                   key={naics.code}
-                  className="flex items-start gap-4 bg-white rounded-xl border border-gray-100 px-5 py-4 shadow-sm"
+                  className="flex items-start gap-4 bg-surface rounded-xl border border-border-subtle px-5 py-4 shadow-sm"
                 >
                   <span className="inline-block px-3 py-1 rounded-lg bg-eo-navy text-white text-sm font-bold font-mono flex-shrink-0">
                     {naics.code}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-eo-navy">
+                    <p className="text-sm font-medium text-text-primary">
                       {naics.description}
                     </p>
-                    <p className="text-xs text-gray-400 mt-0.5">
+                    <p className="text-xs text-text-muted mt-0.5">
                       Size Standard: {naics.sizeStandard}
                     </p>
                   </div>
@@ -265,7 +265,7 @@ export default function ContractVehiclesPage() {
         </Section>
 
         {/* How to Work With Us */}
-        <Section className="relative overflow-hidden bg-white border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
           <div className="absolute top-1/3 right-0 w-80 h-80 bg-blue-100/15 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
@@ -277,90 +277,90 @@ export default function ContractVehiclesPage() {
                 <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold">
                   Partnerships
                 </h2>
-                <h3 className="text-2xl font-bold text-eo-navy">
+                <h3 className="text-2xl font-bold text-text-primary">
                   How to Work With Us
                 </h3>
               </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-gray-100 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Shield className="h-5 w-5 text-eo-gold" />
                 </div>
-                <h4 className="text-lg font-bold text-eo-navy mb-3">
+                <h4 className="text-lg font-bold text-text-primary mb-3">
                   For Government Agencies
                 </h4>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                <p className="text-sm text-text-tertiary leading-relaxed mb-4">
                   Access EaseOrigin services through our established contract
                   vehicles or direct engagement. We hold active security
                   clearances and are SAM.gov registered for federal procurement.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Task order through existing vehicles
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Direct small business engagement
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Active security clearance holders
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-gray-100 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <FileCheck className="h-5 w-5 text-eo-gold" />
                 </div>
-                <h4 className="text-lg font-bold text-eo-navy mb-3">
+                <h4 className="text-lg font-bold text-text-primary mb-3">
                   For Prime Contractors
                 </h4>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                <p className="text-sm text-text-tertiary leading-relaxed mb-4">
                   Partner with EaseOrigin as a subcontractor to extend your team
                   with specialized cloud, DevSecOps, cybersecurity, and program
                   management expertise.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Proven teaming with SAIC, Leidos, Booz Allen
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Small business subcontracting credit
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Rapid onboarding and clearance-ready staff
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-gray-100 rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Briefcase className="h-5 w-5 text-eo-gold" />
                 </div>
-                <h4 className="text-lg font-bold text-eo-navy mb-3">
+                <h4 className="text-lg font-bold text-text-primary mb-3">
                   For Private Sector & Enterprise
                 </h4>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                <p className="text-sm text-text-tertiary leading-relaxed mb-4">
                   Direct engagement for commercial organizations seeking cloud,
                   DevOps, AI/ML, and platform engineering expertise.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Direct consulting engagement
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Enterprise cloud and platform expertise
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-gray-600">
+                  <li className="flex items-start gap-2 text-sm text-text-tertiary">
                     <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
                     Flexible SOW-based delivery
                   </li>

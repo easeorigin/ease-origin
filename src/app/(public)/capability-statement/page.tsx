@@ -190,11 +190,11 @@ export default function CapabilityStatementPage() {
       `}</style>
 
       {/* Sticky Action Bar (hidden on print) */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 print:hidden">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-border-default print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-eo-navy hover:text-eo-blue transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-eo-blue transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Home
@@ -213,7 +213,7 @@ export default function CapabilityStatementPage() {
       <div className="h-16 print:hidden" />
 
       {/* Capability Statement Content */}
-      <div className="cap-statement bg-white min-h-screen">
+      <div className="cap-statement bg-surface print:bg-white min-h-screen">
 
         {/* ══════════════════════════════════════════════════════════════════════
             PAGE 1
@@ -233,7 +233,7 @@ export default function CapabilityStatementPage() {
 
         {/* Gold Accent Bar */}
         <div className="bg-eo-gold/10 border-y border-eo-gold/30 py-3 px-8 print:py-2 print:px-6">
-          <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-sm font-semibold text-eo-navy">
+          <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-x-6 gap-y-1 text-sm font-semibold text-text-primary">
             <span>UEI: GTWUARASDLN5</span>
             <span className="text-eo-gold/60">|</span>
             <span>CAGE: 8DUE2</span>
@@ -245,12 +245,12 @@ export default function CapabilityStatementPage() {
         <div className="max-w-5xl mx-auto px-8 print:px-6">
 
           {/* Company Overview */}
-          <div className="py-6 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-eo-navy mb-3 flex items-center gap-2">
+          <div className="py-6 border-b border-border-default">
+            <h2 className="text-lg font-bold text-text-primary mb-3 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-eo-blue flex-shrink-0" />
               Company Overview
             </h2>
-            <p className="text-gray-600 leading-relaxed text-sm">
+            <p className="text-text-tertiary leading-relaxed text-sm">
               EaseOrigin LLC is a small business delivering specialized technology consulting
               services to federal agencies, prime contractors, and private sector organizations. With deep expertise
               in cloud infrastructure, cybersecurity, DevSecOps, enterprise platforms, program management, and agile delivery, we help organizations
@@ -261,8 +261,8 @@ export default function CapabilityStatementPage() {
           </div>
 
           {/* Core Competencies */}
-          <div className="py-6 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-eo-navy mb-4 flex items-center gap-2">
+          <div className="py-6 border-b border-border-default">
+            <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               <Star className="h-5 w-5 text-eo-blue flex-shrink-0" />
               Core Competencies
             </h2>
@@ -272,15 +272,15 @@ export default function CapabilityStatementPage() {
                 return (
                   <div
                     key={comp.title}
-                    className="border border-gray-200 rounded-lg p-4 print:p-3 hover:border-eo-blue/30 transition-colors"
+                    className="border border-border-default rounded-lg p-4 print:p-3 hover:border-eo-blue/30 transition-colors"
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-8 h-8 rounded-md bg-eo-navy/5 flex items-center justify-center flex-shrink-0 print:w-6 print:h-6">
                         <Icon className="h-4 w-4 text-eo-blue print:h-3 print:w-3" />
                       </div>
-                      <h3 className="text-sm font-bold text-eo-navy">{comp.title}</h3>
+                      <h3 className="text-sm font-bold text-text-primary">{comp.title}</h3>
                     </div>
-                    <p className="text-xs text-gray-500 leading-relaxed mb-2">
+                    <p className="text-xs text-text-tertiary leading-relaxed mb-2">
                       {comp.description}
                     </p>
                     <div className="flex flex-wrap gap-1">
@@ -300,8 +300,8 @@ export default function CapabilityStatementPage() {
           </div>
 
           {/* Contract Vehicles */}
-          <div className="py-6 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-eo-navy mb-4 flex items-center gap-2">
+          <div className="py-6 border-b border-border-default">
+            <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               <Award className="h-5 w-5 text-eo-blue flex-shrink-0" />
               Contract Vehicles
             </h2>
@@ -309,12 +309,12 @@ export default function CapabilityStatementPage() {
               {contractVehicles.map((cv) => (
                 <div
                   key={cv.name}
-                  className="flex items-center gap-3 bg-eo-navy/[0.03] border border-gray-200 rounded-lg px-4 py-3 print:px-3 print:py-2"
+                  className="flex items-center gap-3 bg-eo-navy/[0.03] border border-border-default rounded-lg px-4 py-3 print:px-3 print:py-2"
                 >
                   <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-bold text-eo-navy">{cv.name}</p>
-                    <p className="text-xs text-gray-500">{cv.scope}</p>
+                    <p className="text-sm font-bold text-text-primary">{cv.name}</p>
+                    <p className="text-xs text-text-tertiary">{cv.scope}</p>
                   </div>
                 </div>
               ))}
@@ -323,7 +323,7 @@ export default function CapabilityStatementPage() {
 
           {/* Company Details */}
           <div className="py-6">
-            <h2 className="text-lg font-bold text-eo-navy mb-4 flex items-center gap-2">
+            <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-eo-blue flex-shrink-0" />
               Company Details
             </h2>
@@ -336,12 +336,12 @@ export default function CapabilityStatementPage() {
               ].map((detail) => (
                 <div
                   key={detail.label}
-                  className="bg-eo-navy/[0.03] border border-gray-200 rounded-lg p-4 print:p-3 text-center"
+                  className="bg-eo-navy/[0.03] border border-border-default rounded-lg p-4 print:p-3 text-center"
                 >
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                     {detail.label}
                   </p>
-                  <p className="text-sm font-bold text-eo-navy">{detail.value}</p>
+                  <p className="text-sm font-bold text-text-primary">{detail.value}</p>
                 </div>
               ))}
             </div>
@@ -358,11 +358,11 @@ export default function CapabilityStatementPage() {
             <div className="max-w-5xl mx-auto flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">EaseOrigin LLC</h2>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-text-muted">
                   Capability Statement (continued)
                 </p>
               </div>
-              <div className="text-right text-xs text-gray-400">
+              <div className="text-right text-xs text-text-muted">
                 <p>UEI: GTWUARASDLN5 | CAGE: 8DUE2</p>
               </div>
             </div>
@@ -371,8 +371,8 @@ export default function CapabilityStatementPage() {
           <div className="max-w-5xl mx-auto px-8 print:px-6">
 
             {/* Past Performance */}
-            <div className="py-6 border-b border-gray-200">
-              <h2 className="text-lg font-bold text-eo-navy mb-4 flex items-center gap-2">
+            <div className="py-6 border-b border-border-default">
+              <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
                 <Award className="h-5 w-5 text-eo-blue flex-shrink-0" />
                 Past Performance
               </h2>
@@ -380,12 +380,12 @@ export default function CapabilityStatementPage() {
                 {pastPerformance.map((pp) => (
                   <div
                     key={pp.title}
-                    className="border border-gray-200 rounded-lg p-4 print:p-3"
+                    className="border border-border-default rounded-lg p-4 print:p-3"
                   >
                     <p className="text-[10px] font-bold uppercase tracking-wider text-eo-gold mb-1">
                       {pp.client}
                     </p>
-                    <h3 className="text-sm font-bold text-eo-navy mb-2">
+                    <h3 className="text-sm font-bold text-text-primary mb-2">
                       {pp.title}
                     </h3>
                     <div className="flex flex-wrap gap-2 mb-2">
@@ -398,7 +398,7 @@ export default function CapabilityStatementPage() {
                         </span>
                       ))}
                     </div>
-                    <p className="text-xs text-gray-500 leading-relaxed">
+                    <p className="text-xs text-text-tertiary leading-relaxed">
                       {pp.summary}
                     </p>
                   </div>
@@ -407,8 +407,8 @@ export default function CapabilityStatementPage() {
             </div>
 
             {/* Differentiators */}
-            <div className="py-6 border-b border-gray-200">
-              <h2 className="text-lg font-bold text-eo-navy mb-4 flex items-center gap-2">
+            <div className="py-6 border-b border-border-default">
+              <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
                 <Star className="h-5 w-5 text-eo-blue flex-shrink-0" />
                 Differentiators
               </h2>
@@ -416,7 +416,7 @@ export default function CapabilityStatementPage() {
                 {differentiators.map((diff, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-text-tertiary leading-relaxed">
                       {diff}
                     </p>
                   </div>

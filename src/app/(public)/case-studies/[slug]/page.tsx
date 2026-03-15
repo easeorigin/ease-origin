@@ -56,10 +56,10 @@ export default async function CaseStudyDetail({
 
   if (!study) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-surface flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-eo-navy mb-4">Case Study Not Found</h1>
-          <p className="text-gray-500 mb-8">The case study you are looking for does not exist.</p>
+          <h1 className="text-4xl font-bold text-text-primary mb-4">Case Study Not Found</h1>
+          <p className="text-text-tertiary mb-8">The case study you are looking for does not exist.</p>
           <Link href="/case-studies" className="text-eo-blue font-semibold hover:underline">
             View All Case Studies
           </Link>
@@ -90,7 +90,7 @@ export default async function CaseStudyDetail({
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -168,48 +168,48 @@ export default async function CaseStudyDetail({
 
         {/* Engagement Metadata Bar */}
         {(study.sector || study.clientLabel || study.duration || study.easeOriginRole || study.contractVehicle || study.complianceFrameworks) && (
-          <section className="bg-slate-50 border-b border-gray-200">
+          <section className="bg-surface-muted border-b border-border-default">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
               <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
                 {study.sector && (
                   <div className="flex items-center gap-2">
                     <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Sector:</span>
-                    <span className="text-gray-600">{study.sector}</span>
+                    <span className="font-semibold text-text-primary">Sector:</span>
+                    <span className="text-text-tertiary">{study.sector}</span>
                   </div>
                 )}
                 {study.clientLabel && (
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Client:</span>
-                    <span className="text-gray-600">{study.clientLabel}</span>
+                    <span className="font-semibold text-text-primary">Client:</span>
+                    <span className="text-text-tertiary">{study.clientLabel}</span>
                   </div>
                 )}
                 {study.duration && (
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Duration:</span>
-                    <span className="text-gray-600">{study.duration}</span>
+                    <span className="font-semibold text-text-primary">Duration:</span>
+                    <span className="text-text-tertiary">{study.duration}</span>
                   </div>
                 )}
                 {study.easeOriginRole && (
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Role:</span>
-                    <span className="text-gray-600">{study.easeOriginRole}</span>
+                    <span className="font-semibold text-text-primary">Role:</span>
+                    <span className="text-text-tertiary">{study.easeOriginRole}</span>
                   </div>
                 )}
                 {study.contractVehicle && (
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Contract:</span>
-                    <span className="text-gray-600">{study.contractVehicle}</span>
+                    <span className="font-semibold text-text-primary">Contract:</span>
+                    <span className="text-text-tertiary">{study.contractVehicle}</span>
                   </div>
                 )}
                 {study.complianceFrameworks && study.complianceFrameworks.length > 0 && (
                   <div className="flex items-center gap-2">
                     <Shield className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold text-eo-navy">Compliance:</span>
+                    <span className="font-semibold text-text-primary">Compliance:</span>
                     <div className="flex flex-wrap gap-1.5">
                       {study.complianceFrameworks.map((fw) => (
                         <span key={fw} className="px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">
@@ -225,15 +225,15 @@ export default async function CaseStudyDetail({
         )}
 
         {/* Overview */}
-        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-gray-100">
+        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
           <div className="animate-fade-in-up max-w-4xl mx-auto border-l-4 border-eo-gold/30 pl-6">
-            <h2 className="text-2xl font-bold text-eo-navy mb-4">Overview</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">{study.overview}</p>
+            <h2 className="text-2xl font-bold text-text-primary mb-4">Overview</h2>
+            <p className="text-text-tertiary leading-relaxed text-lg">{study.overview}</p>
           </div>
         </Section>
 
         {/* Challenge & Solution */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
           {/* Centered blue glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
 
@@ -242,35 +242,35 @@ export default async function CaseStudyDetail({
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-sm font-medium text-red-600 mb-4">
                 The Challenge
               </div>
-              <p className="text-gray-600 leading-relaxed">{study.challenge}</p>
+              <p className="text-text-tertiary leading-relaxed">{study.challenge}</p>
             </div>
 
             <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-sm font-medium text-emerald-600 mb-4">
                 Our Solution
               </div>
-              <p className="text-gray-600 leading-relaxed">{study.solution}</p>
+              <p className="text-text-tertiary leading-relaxed">{study.solution}</p>
             </div>
           </div>
         </Section>
 
         {/* Results */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
           {/* Gold corner glow */}
           <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto">
             <div className="animate-fade-in-up">
-              <h2 className="text-2xl font-bold text-eo-navy mb-8">Results</h2>
+              <h2 className="text-2xl font-bold text-text-primary mb-8">Results</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {study.results.map((result, i) => (
                   <div
                     key={i}
-                    className="animate-fade-in-up flex items-start gap-3 bg-slate-50 rounded-xl border border-gray-100 px-5 py-4"
+                    className="animate-fade-in-up flex items-start gap-3 bg-surface-muted rounded-xl border border-border-subtle px-5 py-4"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <CheckCircle2 className="h-5 w-5 text-eo-gold flex-shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-eo-navy">{result}</span>
+                    <span className="text-sm font-medium text-text-primary">{result}</span>
                   </div>
                 ))}
               </div>
@@ -279,15 +279,15 @@ export default async function CaseStudyDetail({
         </Section>
 
         {/* Technologies */}
-        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-gray-100">
+        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-border-subtle">
           <div className="max-w-4xl mx-auto">
             <div className="animate-fade-in-up">
-              <h2 className="text-2xl font-bold text-eo-navy mb-6">Technologies Used</h2>
+              <h2 className="text-2xl font-bold text-text-primary mb-6">Technologies Used</h2>
               <div className="flex flex-wrap gap-3">
                 {study.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-eo-navy"
+                    className="px-4 py-2 rounded-full bg-surface border border-border-default text-sm font-medium text-text-primary"
                   >
                     {tech}
                   </span>

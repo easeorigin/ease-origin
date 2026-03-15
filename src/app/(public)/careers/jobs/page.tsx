@@ -38,8 +38,8 @@ function NoJobsFallback() {
       <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-5">
         <FileText className="h-7 w-7 text-slate-400" />
       </div>
-      <h3 className="text-2xl font-bold text-eo-navy mb-3">No Open Positions Right Now</h3>
-      <p className="text-gray-500 max-w-md leading-relaxed mb-7">
+      <h3 className="text-2xl font-bold text-text-primary mb-3">No Open Positions Right Now</h3>
+      <p className="text-text-tertiary max-w-md leading-relaxed mb-7">
         We are always looking for talented consultants. Submit your resume and we'll contact you when opportunities arise.
       </p>
       <Link href="/careers/submit-resume">
@@ -89,10 +89,10 @@ export default function JobsListingPage() {
   }, [filters]);
 
   const selectClass =
-    "px-3 py-2.5 pr-8 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue appearance-none cursor-pointer transition-colors hover:border-gray-300";
+    "px-3 py-2.5 pr-8 rounded-lg border border-border-default bg-surface text-sm text-text-secondary focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue appearance-none cursor-pointer transition-colors hover:border-gray-300";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
 
         {/* ── Hero ── */}
@@ -135,7 +135,7 @@ export default function JobsListingPage() {
         </section>
 
         {/* ── Search + Filters + Cards ── */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Search + filter bar */}
@@ -148,7 +148,7 @@ export default function JobsListingPage() {
                 placeholder="Search jobs by title or keyword…"
                 value={filters.query}
                 onChange={(e) => setFilter("query", e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 bg-white text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue transition-colors"
+                className="w-full pl-11 pr-4 py-3 rounded-lg border border-border-default bg-surface text-sm text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue transition-colors"
               />
             </div>
 
@@ -159,7 +159,7 @@ export default function JobsListingPage() {
                 "sm:hidden inline-flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-colors",
                 filtersOpen
                   ? "bg-eo-navy text-white border-eo-navy"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
+                  : "bg-surface text-text-secondary border-border-default hover:border-gray-300"
               )}
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -238,7 +238,7 @@ export default function JobsListingPage() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="sm:hidden bg-white rounded-xl border border-gray-200 p-4 mb-4 flex flex-col gap-3"
+              className="sm:hidden bg-surface rounded-xl border border-border-default p-4 mb-4 flex flex-col gap-3"
             >
               <div className="relative">
                 <select
@@ -283,9 +283,9 @@ export default function JobsListingPage() {
 
           {/* Results count */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-sm text-gray-500">
-              Showing <span className="font-semibold text-eo-navy">{filtered.length}</span> of{" "}
-              <span className="font-semibold text-eo-navy">{jobs.length}</span> positions
+            <p className="text-sm text-text-tertiary">
+              Showing <span className="font-semibold text-text-primary">{filtered.length}</span> of{" "}
+              <span className="font-semibold text-text-primary">{jobs.length}</span> positions
             </p>
             {hasActiveFilters && (
               <button
@@ -319,8 +319,8 @@ export default function JobsListingPage() {
             transition={{ duration: 0.5 }}
             className="relative z-10 max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-2xl font-bold text-eo-navy mb-3">Don't See the Right Fit?</h2>
-            <p className="text-gray-500 mb-6 leading-relaxed">
+            <h2 className="text-2xl font-bold text-text-primary mb-3">Don't See the Right Fit?</h2>
+            <p className="text-text-tertiary mb-6 leading-relaxed">
               Submit your resume and we'll reach out when a matching opportunity becomes available.
             </p>
             <Link href="/careers/submit-resume">

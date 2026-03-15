@@ -140,8 +140,8 @@ function ContactFormSection() {
   };
 
   const inputBase =
-    "w-full px-4 py-3 rounded-lg border text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-200";
-  const inputNormal = "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
+    "w-full px-4 py-3 rounded-lg border text-sm text-text-primary bg-surface placeholder-text-muted focus:outline-none focus:ring-2 transition-all duration-200";
+  const inputNormal = "border-border-default focus:border-eo-blue focus:ring-eo-blue/20";
   const inputError = "border-red-400 focus:border-red-400 focus:ring-red-200";
 
   const fieldClass = (field: keyof FormValues) =>
@@ -171,8 +171,8 @@ function ContactFormSection() {
   ];
 
   return (
-    <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white pointer-events-none" />
+    <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900 pointer-events-none" />
       <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
 
@@ -187,8 +187,8 @@ function ContactFormSection() {
           className="lg:col-span-2 flex flex-col gap-8"
         >
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-eo-navy mb-3">Contact Information</h2>
-            <p className="text-gray-500 leading-relaxed">
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-3">Contact Information</h2>
+            <p className="text-text-tertiary leading-relaxed">
               Reach out directly or complete the form and we'll connect you with the right team.
             </p>
           </div>
@@ -202,7 +202,7 @@ function ContactFormSection() {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-1">{label}</p>
                   {lines.map((line, j) => (
-                    <p key={j} className="text-sm text-gray-700 leading-snug">{line}</p>
+                    <p key={j} className="text-sm text-text-secondary leading-snug">{line}</p>
                   ))}
                 </div>
               </div>
@@ -234,14 +234,14 @@ function ContactFormSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="lg:col-span-3"
         >
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 md:p-10">
+          <div className="bg-surface rounded-2xl border border-border-subtle shadow-lg p-8 md:p-10">
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-16 gap-5">
                 <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
                   <CheckCircle2 className="h-8 w-8 text-green-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-eo-navy">Message Sent!</h3>
-                <p className="text-gray-500 max-w-sm leading-relaxed">
+                <h3 className="text-2xl font-bold text-text-primary">Message Sent!</h3>
+                <p className="text-text-tertiary max-w-sm leading-relaxed">
                   Thank you for reaching out. A member of our team will be in touch within one business day.
                 </p>
                 <button
@@ -253,15 +253,15 @@ function ContactFormSection() {
               </div>
             ) : (
               <>
-                <h2 className="text-2xl font-bold text-eo-navy mb-1">Send Us a Message</h2>
-                <p className="text-sm text-gray-500 mb-8">All fields are required.</p>
+                <h2 className="text-2xl font-bold text-text-primary mb-1">Send Us a Message</h2>
+                <p className="text-sm text-text-tertiary mb-8">All fields are required.</p>
 
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
 
                   {/* Name + Email */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5" htmlFor="name">
+                      <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5" htmlFor="name">
                         Full Name
                       </label>
                       <input
@@ -281,7 +281,7 @@ function ContactFormSection() {
                       )}
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5" htmlFor="email">
+                      <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5" htmlFor="email">
                         Email Address
                       </label>
                       <input
@@ -304,7 +304,7 @@ function ContactFormSection() {
 
                   {/* Company */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5" htmlFor="company">
+                    <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5" htmlFor="company">
                       Company / Organization
                     </label>
                     <input
@@ -325,7 +325,7 @@ function ContactFormSection() {
 
                   {/* Subject */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5" htmlFor="subject">
+                    <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5" htmlFor="subject">
                       Subject
                     </label>
                     <input
@@ -346,7 +346,7 @@ function ContactFormSection() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5" htmlFor="message">
+                    <label className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5" htmlFor="message">
                       Message
                     </label>
                     <textarea
@@ -404,7 +404,7 @@ function ContactFormSection() {
 
 function MapSection() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white/60 to-slate-50/80 border-b border-gray-100" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
+    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white/60 to-slate-50/80 dark:from-gray-900 dark:via-gray-900/60 dark:to-gray-900/80 border-b border-border-subtle" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -413,12 +413,12 @@ function MapSection() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Location</h2>
-          <h3 className="text-2xl md:text-3xl font-bold text-eo-navy">Our Office</h3>
-          <p className="text-gray-500 mt-2">211 E Avenue G, 306, Midlothian, TX 76065</p>
+          <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Our Office</h3>
+          <p className="text-text-tertiary mt-2">211 E Avenue G, 306, Midlothian, TX 76065</p>
         </motion.div>
       </div>
 
-      <div className="w-full h-80 md:h-96 relative overflow-hidden shadow-inner">
+      <div className="w-full h-80 md:h-96 relative overflow-hidden shadow-inner dark:invert dark:hue-rotate-180">
         <iframe
           title="EaseOrigin Office Location, Midlothian, TX"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.2!2d-96.9945!3d32.4824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s211+E+Avenue+G%2C+Midlothian%2C+TX+76065!5e0!3m2!1sen!2sus!4v1000000000000!5m2!1sen!2sus"
@@ -438,7 +438,7 @@ function MapSection() {
 
 function ConsultantCTA() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white border-b border-border-subtle">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-white pointer-events-none" />
 
       <motion.div
@@ -491,7 +491,7 @@ function ConsultantCTA() {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <ContactHero />
         <ContactFormSection />

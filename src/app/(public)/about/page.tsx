@@ -82,7 +82,7 @@ function WhoWeAre() {
   ];
 
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 border-b border-border-subtle">
       {/* Subtle glow */}
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow orb */}
@@ -96,18 +96,18 @@ function WhoWeAre() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Story</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-eo-navy mb-6 leading-tight">Who We Are</h2>
-          <p className="text-gray-600 leading-relaxed mb-4 text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6 leading-tight">Who We Are</h2>
+          <p className="text-text-tertiary leading-relaxed mb-4 text-lg">
             EaseOrigin is a technology consulting firm that partners with government agencies, prime contractors, and private sector organizations to deliver specialized IT expertise across mission-critical initiatives.
           </p>
-          <p className="text-gray-500 leading-relaxed mb-8">
+          <p className="text-text-tertiary leading-relaxed mb-8">
             Our team delivers deep expertise in cloud infrastructure, cybersecurity, enterprise platforms, data analytics, and program delivery, helping organizations across government and industry modernize systems and strengthen their technological foundation.
           </p>
 
           {/* Mission statement */}
           <div className="border-l-4 border-eo-gold pl-6 py-1">
             <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Mission</p>
-            <p className="text-eo-navy font-medium leading-relaxed">
+            <p className="text-text-primary font-medium leading-relaxed">
               To be the most trusted technology consulting partner, delivering expertise and outcomes that strengthen the technology foundation of organizations across government and industry.
             </p>
           </div>
@@ -128,12 +128,12 @@ function WhoWeAre() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.1 }}
-              className="flex flex-col items-start gap-4 bg-slate-50 rounded-2xl border border-gray-100 p-7 hover:shadow-md hover:border-blue-100 transition-all duration-300"
+              className="flex flex-col items-start gap-4 bg-surface-muted rounded-2xl border border-border-subtle p-7 hover:shadow-md hover:border-blue-100 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
                 <Icon className="h-6 w-6 text-eo-blue" />
               </div>
-              <p className="text-sm font-bold text-eo-navy">{label}</p>
+              <p className="text-sm font-bold text-text-primary">{label}</p>
             </motion.div>
           ))}
           {/* Stats box */}
@@ -187,7 +187,7 @@ const timelineItems = [
 
 function Timeline() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
       {/* Blue glow orb */}
       <div className="absolute -top-10 -right-20 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <motion.div
@@ -198,7 +198,7 @@ function Timeline() {
         className="text-center mb-14"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Company History</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-eo-navy">Our Journey</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Journey</h2>
       </motion.div>
 
       {/* Vertical timeline */}
@@ -220,12 +220,12 @@ function Timeline() {
               >
                 {/* Content card */}
                 <div className={`flex-1 pl-16 md:pl-0 ${isLeft ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
-                  <div className={`inline-block bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow max-w-xs w-full ${isLeft ? "md:ml-auto" : ""}`}>
+                  <div className={`inline-block bg-surface rounded-2xl border border-border-subtle shadow-sm p-6 hover:shadow-md transition-shadow max-w-xs w-full ${isLeft ? "md:ml-auto" : ""}`}>
                     <span className="inline-block px-2.5 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-bold rounded-full mb-3">
                       {item.year}
                     </span>
-                    <h3 className="text-base font-bold text-eo-navy mb-1.5">{item.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+                    <h3 className="text-base font-bold text-text-primary mb-1.5">{item.title}</h3>
+                    <p className="text-sm text-text-tertiary leading-relaxed">{item.description}</p>
                   </div>
                 </div>
 
@@ -304,7 +304,7 @@ function LeadershipPhoto({ member }: { member: TeamMember }) {
 
 function Leadership() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50/40 to-blue-50/20 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50/40 to-blue-50/20 border-b border-border-subtle">
       {/* Subtle background accent */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-blue-50/40 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow bottom-left */}
@@ -320,7 +320,7 @@ function Leadership() {
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">
           Meet Our Founder
         </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-eo-navy">
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
           Leadership
         </h2>
       </motion.div>
@@ -333,7 +333,7 @@ function Leadership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.15 }}
-            className="bg-slate-50 rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+            className="bg-surface-muted rounded-2xl border border-border-subtle shadow-sm overflow-hidden hover:shadow-md transition-shadow"
           >
             <div className="flex flex-col md:flex-row">
               {/* Photo / Avatar */}
@@ -344,7 +344,7 @@ function Leadership() {
               {/* Content */}
               <div className="flex-1 p-7 sm:p-8 lg:p-10 flex flex-col justify-center">
                 <div className="mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-eo-navy">
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary">
                     {member.name}
                   </h3>
                   <p className="text-sm font-semibold text-eo-gold mt-1">
@@ -352,13 +352,13 @@ function Leadership() {
                   </p>
                 </div>
 
-                <p className="text-gray-600 leading-relaxed mb-6 text-sm sm:text-base">
+                <p className="text-text-tertiary leading-relaxed mb-6 text-sm sm:text-base">
                   {member.bio}
                 </p>
 
                 {/* Certifications */}
                 <div className="mb-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
                     Certifications
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -387,7 +387,7 @@ function Leadership() {
                   </a>
                   <a
                     href={`mailto:${member.email}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-eo-navy text-sm font-medium hover:border-eo-blue/30 hover:bg-blue-50/50 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border-default bg-surface text-text-primary text-sm font-medium hover:border-eo-blue/30 hover:bg-blue-50/50 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
                     {member.email}
@@ -441,7 +441,7 @@ const expertiseCards = [
 
 function OurExpertise() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-border-subtle">
       {/* Decorative corner glow */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-100/20 rounded-full blur-[80px] pointer-events-none" />
       {/* Dot pattern */}
@@ -460,8 +460,8 @@ function OurExpertise() {
         className="text-center mb-12"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Credentials</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-eo-navy">Our Expertise</h2>
-        <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Expertise</h2>
+        <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
           Certified, cleared, and experienced across the technologies that matter most to government and enterprise organizations.
         </p>
       </motion.div>
@@ -474,13 +474,13 @@ function OurExpertise() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm p-7 hover:shadow-md transition-shadow"
+            className="flex flex-col bg-surface rounded-2xl border border-border-subtle shadow-sm p-7 hover:shadow-md transition-shadow"
           >
             <div className={`w-12 h-12 rounded-xl ${bg} ${border} border flex items-center justify-center mb-5`}>
               <Icon className={`h-6 w-6 ${iconColor}`} />
             </div>
-            <h3 className="text-base font-bold text-eo-navy mb-2">{title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
+            <h3 className="text-base font-bold text-text-primary mb-2">{title}</h3>
+            <p className="text-sm text-text-tertiary leading-relaxed">{description}</p>
           </motion.div>
         ))}
       </div>
@@ -527,7 +527,7 @@ const values = [
 
 function OurValues() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-amber-50/15 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-amber-50/15 border-b border-border-subtle">
       {/* Accent glow */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-amber-100/15 rounded-full blur-[80px] pointer-events-none" />
       {/* Blue glow bottom-right */}
@@ -540,8 +540,8 @@ function OurValues() {
         className="text-center mb-12"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">What Drives Us</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-eo-navy">Our Values</h2>
-        <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Values</h2>
+        <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
           Our values shape how we engage with clients, partners, and the consultants who carry our mission forward.
         </p>
       </motion.div>
@@ -554,13 +554,13 @@ function OurValues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm p-7 hover:shadow-md transition-shadow"
+            className="flex flex-col bg-surface rounded-2xl border border-border-subtle shadow-sm p-7 hover:shadow-md transition-shadow"
           >
             <div className={`w-12 h-12 rounded-xl ${bg} ${border} border flex items-center justify-center mb-5`}>
               <Icon className={`h-6 w-6 ${iconColor}`} />
             </div>
-            <h3 className="text-base font-bold text-eo-navy mb-2">{title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
+            <h3 className="text-base font-bold text-text-primary mb-2">{title}</h3>
+            <p className="text-sm text-text-tertiary leading-relaxed">{description}</p>
           </motion.div>
         ))}
       </div>
@@ -587,7 +587,7 @@ const impactPoints = [
 
 function Impact() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
       {/* Subtle glow */}
       <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -599,7 +599,7 @@ function Impact() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Reach</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-eo-navy mb-8">Supporting Mission-Critical Technology</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-8">Supporting Mission-Critical Technology</h2>
 
           <div className="grid grid-cols-2 gap-4">
             {impactStats.map(({ num, label }, i) => (
@@ -626,7 +626,7 @@ function Impact() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex flex-col gap-4"
         >
-          <p className="text-gray-600 leading-relaxed mb-4">
+          <p className="text-text-tertiary leading-relaxed mb-4">
             EaseOrigin supports programs that strengthen infrastructure, enhance cybersecurity, and modernize critical systems, making technology across government and industry more resilient, efficient, and mission-ready.
           </p>
           {impactPoints.map((point, i) => (
@@ -636,10 +636,10 @@ function Impact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center gap-3 bg-slate-50 rounded-xl border border-gray-100 px-5 py-4"
+              className="flex items-center gap-3 bg-surface-muted rounded-xl border border-border-subtle px-5 py-4"
             >
               <CheckCircle2 className="h-5 w-5 text-eo-gold flex-shrink-0" />
-              <span className="text-sm font-medium text-eo-navy">{point}</span>
+              <span className="text-sm font-medium text-text-primary">{point}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -702,7 +702,7 @@ function AboutCTA() {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <AboutHero />
         <WhoWeAre />

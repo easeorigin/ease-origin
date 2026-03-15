@@ -113,10 +113,10 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
     categoryColors[study.category] ?? categoryColors["Data & Analytics"];
 
   return (
-    <div className="flex flex-col h-full bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+    <div className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
       {/* Card header */}
       <div
-        className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-gray-100`}
+        className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}
       >
         <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 blur-2xl" />
         <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 blur-xl" />
@@ -124,10 +124,10 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
           <div className="absolute top-4 right-4 text-right z-10">
-            <div className="text-2xl font-extrabold text-eo-navy leading-none">
+            <div className="text-2xl font-extrabold text-text-primary leading-none">
               {study.metrics[0].value}
             </div>
-            <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mt-0.5">
+            <div className="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mt-0.5">
               {study.metrics[0].label}
             </div>
           </div>
@@ -149,7 +149,7 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
 
       {/* Card body */}
       <div className="p-8 flex flex-col flex-grow">
-        <h4 className="text-xl font-bold text-eo-navy mb-2 leading-tight group-hover:text-eo-blue transition-colors">
+        <h4 className="text-xl font-bold text-text-primary mb-2 leading-tight group-hover:text-eo-blue transition-colors">
           {study.title}
         </h4>
 
@@ -172,7 +172,7 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
           </div>
         )}
 
-        <p className="text-gray-600 mb-8 flex-grow leading-relaxed text-sm">
+        <p className="text-text-tertiary mb-8 flex-grow leading-relaxed text-sm">
           {study.shortDescription}
         </p>
         <Link href={`/case-studies/${study.slug}`}>
@@ -228,12 +228,12 @@ export default async function SolutionDetailPage({
 
   if (!solution) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-surface flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-eo-navy mb-4">
+          <h1 className="text-4xl font-bold text-text-primary mb-4">
             Solution Not Found
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-text-tertiary mb-8">
             The solution you are looking for does not exist.
           </p>
           <Link
@@ -255,7 +255,7 @@ export default async function SolutionDetailPage({
     .filter((cs): cs is CaseStudy => cs !== undefined);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         {/* Hero */}
         <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-eo-navy text-white">
@@ -305,33 +305,33 @@ export default async function SolutionDetailPage({
         </section>
 
         {/* Overview */}
-        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-gray-100">
+        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
           <div className="animate-fade-in-up max-w-4xl mx-auto border-l-4 border-eo-gold/30 pl-6">
-            <h2 className="text-2xl font-bold text-eo-navy mb-4">Overview</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
+            <h2 className="text-2xl font-bold text-text-primary mb-4">Overview</h2>
+            <p className="text-text-tertiary leading-relaxed text-lg">
               {solution.overview}
             </p>
           </div>
         </Section>
 
         {/* Key Capabilities */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
-            <h2 className="text-2xl font-bold text-eo-navy mb-8">
+            <h2 className="text-2xl font-bold text-text-primary mb-8">
               Key Capabilities
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {solution.keyCapabilities.map((capability, i) => (
                 <div
                   key={i}
-                  className="animate-fade-in-up flex items-start gap-3 bg-white rounded-xl border border-gray-100 px-5 py-4 shadow-sm"
+                  className="animate-fade-in-up flex items-start gap-3 bg-surface rounded-xl border border-border-subtle px-5 py-4 shadow-sm"
                   style={{ animationDelay: `${i * 0.05}s` }}
                 >
                   <CheckCircle2 className="h-5 w-5 text-eo-blue flex-shrink-0 mt-0.5" />
-                  <span className="text-sm font-medium text-eo-navy">
+                  <span className="text-sm font-medium text-text-primary">
                     {capability}
                   </span>
                 </div>
@@ -341,17 +341,17 @@ export default async function SolutionDetailPage({
         </Section>
 
         {/* Technologies */}
-        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-gray-100">
+        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-border-subtle">
           <div className="max-w-4xl mx-auto">
             <div className="animate-fade-in-up">
-              <h2 className="text-2xl font-bold text-eo-navy mb-6">
+              <h2 className="text-2xl font-bold text-text-primary mb-6">
                 Technologies
               </h2>
               <div className="flex flex-wrap gap-3">
                 {solution.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-eo-navy shadow-sm"
+                    className="px-4 py-2 rounded-full bg-surface border border-border-default text-sm font-medium text-text-primary shadow-sm"
                   >
                     {tech}
                   </span>
@@ -364,12 +364,12 @@ export default async function SolutionDetailPage({
         {/* Compliance Frameworks */}
         {solution.complianceFrameworks &&
           solution.complianceFrameworks.length > 0 && (
-            <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50/10 to-slate-50 border-b border-gray-100">
+            <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50/10 to-slate-50 border-b border-border-subtle">
               <div className="absolute -top-16 -left-16 w-72 h-72 bg-amber-100/15 rounded-full blur-[90px] pointer-events-none" />
 
               <div className="max-w-4xl mx-auto relative z-10">
                 <div className="animate-fade-in-up">
-                  <h2 className="text-2xl font-bold text-eo-navy mb-6">
+                  <h2 className="text-2xl font-bold text-text-primary mb-6">
                     Compliance Frameworks
                   </h2>
                   <div className="flex flex-wrap gap-3">
@@ -389,7 +389,7 @@ export default async function SolutionDetailPage({
 
         {/* Related Case Studies */}
         {relatedStudies.length > 0 && (
-          <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-gray-100">
+          <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
             <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-200/15 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute -top-16 -left-16 w-64 h-64 bg-eo-gold/[0.05] rounded-full blur-[80px] pointer-events-none" />
 
@@ -398,7 +398,7 @@ export default async function SolutionDetailPage({
                 <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">
                   Related Work
                 </h2>
-                <h3 className="text-2xl font-bold text-eo-navy mb-8">
+                <h3 className="text-2xl font-bold text-text-primary mb-8">
                   Case Studies
                 </h3>
                 <div

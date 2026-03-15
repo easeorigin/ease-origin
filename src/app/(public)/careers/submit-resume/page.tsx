@@ -104,9 +104,9 @@ export default function SubmitResumePage() {
   };
 
   const inputBase =
-    "w-full px-4 py-3 rounded-lg border text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-200";
+    "w-full px-4 py-3 rounded-lg border text-sm text-text-primary bg-surface placeholder-text-muted focus:outline-none focus:ring-2 transition-all duration-200";
   const inputNormal =
-    "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
+    "border-border-default focus:border-eo-blue focus:ring-eo-blue/20";
   const inputError = "border-red-400 focus:border-red-400 focus:ring-red-200";
   const fieldCls = (field: keyof FormValues) =>
     cn(inputBase, errors[field] && touched[field] ? inputError : inputNormal);
@@ -119,7 +119,7 @@ export default function SubmitResumePage() {
     ) : null;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         {/* Hero */}
         <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-16 overflow-hidden bg-eo-navy text-white">
@@ -164,10 +164,10 @@ export default function SubmitResumePage() {
         </section>
 
         {/* Form */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/15 to-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/15 to-slate-50 border-b border-border-subtle">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
           <div className="max-w-2xl mx-auto relative z-10">
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 md:p-10">
+            <div className="bg-surface rounded-2xl border border-border-subtle shadow-lg p-8 md:p-10">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -177,10 +177,10 @@ export default function SubmitResumePage() {
                   <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
                     <CheckCircle2 className="h-8 w-8 text-green-500" />
                   </div>
-                  <h3 className="text-2xl font-bold text-eo-navy">
+                  <h3 className="text-2xl font-bold text-text-primary">
                     Submission Received!
                   </h3>
-                  <p className="text-gray-500 max-w-sm leading-relaxed">
+                  <p className="text-text-tertiary max-w-sm leading-relaxed">
                     Thank you for your interest in EaseOrigin. Our recruiting
                     team will review your profile and be in touch.
                   </p>
@@ -192,10 +192,10 @@ export default function SubmitResumePage() {
                 </motion.div>
               ) : (
                 <>
-                  <h2 className="text-xl font-bold text-eo-navy mb-1">
+                  <h2 className="text-xl font-bold text-text-primary mb-1">
                     Your Information
                   </h2>
-                  <p className="text-sm text-gray-400 mb-7">
+                  <p className="text-sm text-text-muted mb-7">
                     We&apos;ll use this to match you with future opportunities.
                   </p>
 
@@ -215,7 +215,7 @@ export default function SubmitResumePage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label
-                          className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5"
+                          className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5"
                           htmlFor="cv-name"
                         >
                           Full Name
@@ -233,7 +233,7 @@ export default function SubmitResumePage() {
                       </div>
                       <div>
                         <label
-                          className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5"
+                          className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5"
                           htmlFor="cv-email"
                         >
                           Email Address
@@ -255,7 +255,7 @@ export default function SubmitResumePage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label
-                          className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5"
+                          className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5"
                           htmlFor="cv-country"
                         >
                           Country
@@ -300,7 +300,7 @@ export default function SubmitResumePage() {
                       </div>
                       <div>
                         <label
-                          className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5"
+                          className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5"
                           htmlFor="cv-expertise"
                         >
                           Area of Expertise
@@ -346,7 +346,7 @@ export default function SubmitResumePage() {
                     {/* Message */}
                     <div>
                       <label
-                        className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5"
+                        className="block text-xs font-semibold text-text-secondary uppercase tracking-wider mb-1.5"
                         htmlFor="cv-message"
                       >
                         Additional Notes{" "}

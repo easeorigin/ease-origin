@@ -1,6 +1,6 @@
 export default function CaseStudyLoading() {
   return (
-    <div className="min-h-screen bg-white animate-pulse">
+    <div className="min-h-screen bg-surface animate-pulse">
       {/* Hero skeleton */}
       <div className="bg-eo-navy pt-32 pb-16 lg:pt-44 lg:pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,10 +13,10 @@ export default function CaseStudyLoading() {
       {/* Content skeleton */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="space-y-4">
-          <div className="h-8 w-40 bg-gray-200 rounded" />
-          <div className="h-4 w-full bg-gray-100 rounded" />
-          <div className="h-4 w-5/6 bg-gray-100 rounded" />
-          <div className="h-4 w-4/6 bg-gray-100 rounded" />
+          <div className="h-8 w-40 bg-border-default rounded" />
+          <div className="h-4 w-full bg-border-subtle rounded" />
+          <div className="h-4 w-5/6 bg-border-subtle rounded" />
+          <div className="h-4 w-4/6 bg-border-subtle rounded" />
         </div>
       </div>
     </div>

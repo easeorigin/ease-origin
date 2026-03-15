@@ -108,7 +108,7 @@ const benefits = [
 
 function WhyWorkWithUs() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-border-subtle">
       {/* Subtle glows */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
@@ -120,8 +120,8 @@ function WhyWorkWithUs() {
         className="text-center mb-12"
       >
         <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Why EaseOrigin</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-eo-navy">Why Work With Us</h2>
-        <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Why Work With Us</h2>
+        <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
           We believe great technology starts with great people. Here's what makes EaseOrigin different.
         </p>
       </motion.div>
@@ -134,13 +134,13 @@ function WhyWorkWithUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.1 }}
-            className="flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm p-7 hover:shadow-md transition-shadow"
+            className="flex flex-col bg-surface rounded-2xl border border-border-subtle shadow-sm p-7 hover:shadow-md transition-shadow"
           >
             <div className={`w-12 h-12 rounded-xl ${bg} ${border} border flex items-center justify-center mb-5`}>
               <Icon className={`h-6 w-6 ${color}`} />
             </div>
-            <h3 className="text-base font-bold text-eo-navy mb-2">{title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
+            <h3 className="text-base font-bold text-text-primary mb-2">{title}</h3>
+            <p className="text-sm text-text-tertiary leading-relaxed">{description}</p>
           </motion.div>
         ))}
       </div>
@@ -199,7 +199,7 @@ function CareersCTA() {
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <CareersHero />
         <WhyWorkWithUs />

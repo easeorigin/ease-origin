@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <section className="relative pt-32 pb-12 lg:pt-44 lg:pb-16 bg-eo-navy text-white overflow-hidden">
           <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
@@ -24,30 +24,30 @@ export default function PrivacyPolicy() {
 
         <Section className="bg-gradient-to-b from-slate-50/60 via-blue-50/15 to-white">
           <div className="max-w-4xl mx-auto prose prose-gray">
-            <h2 className="text-xl font-bold text-eo-navy">Introduction</h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <h2 className="text-xl font-bold text-text-primary">Introduction</h2>
+            <p className="text-text-tertiary leading-relaxed mb-6">
               EaseOrigin (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage with our services.
             </p>
 
-            <h2 className="text-xl font-bold text-eo-navy mt-8">Information We Collect</h2>
-            <p className="text-gray-600 leading-relaxed mb-4">We may collect information that you provide directly to us, including:</p>
-            <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-6">
+            <h2 className="text-xl font-bold text-text-primary mt-8">Information We Collect</h2>
+            <p className="text-text-tertiary leading-relaxed mb-4">We may collect information that you provide directly to us, including:</p>
+            <ul className="list-disc pl-6 text-text-tertiary space-y-2 mb-6">
               <li>Name, email address, phone number, and company information submitted through contact forms</li>
               <li>Resume and professional information submitted through our careers portal</li>
               <li>Information provided during business communications</li>
             </ul>
 
-            <h2 className="text-xl font-bold text-eo-navy mt-8">How We Use Your Information</h2>
-            <p className="text-gray-600 leading-relaxed mb-4">We use the information we collect to:</p>
-            <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-6">
+            <h2 className="text-xl font-bold text-text-primary mt-8">How We Use Your Information</h2>
+            <p className="text-text-tertiary leading-relaxed mb-4">We use the information we collect to:</p>
+            <ul className="list-disc pl-6 text-text-tertiary space-y-2 mb-6">
               <li>Respond to inquiries and provide requested services</li>
               <li>Process job applications and recruitment activities</li>
               <li>Improve our website and services</li>
               <li>Comply with legal obligations</li>
             </ul>
 
-            <h2 className="text-xl font-bold text-eo-navy mt-8">Contact Us</h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <h2 className="text-xl font-bold text-text-primary mt-8">Contact Us</h2>
+            <p className="text-text-tertiary leading-relaxed mb-6">
               If you have questions about this Privacy Policy, please contact us at{" "}
               <a href="mailto:info@easeorigin.com" className="text-eo-blue hover:underline">info@easeorigin.com</a> or write to us at 211 E Avenue G, 306, Midlothian, TX 76065.
             </p>

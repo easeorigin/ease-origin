@@ -64,7 +64,7 @@ function CaseStudiesGrid() {
   }, [activeSector]);
 
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-gray-100">
+    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
       {/* Decorative glow orbs */}
       <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
@@ -77,8 +77,8 @@ function CaseStudiesGrid() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Work</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-eo-navy">Proven Delivery. Measurable Results.</h3>
-          <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
+          <h3 className="text-3xl md:text-4xl font-bold text-text-primary">Proven Delivery. Measurable Results.</h3>
+          <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
             Each engagement reflects our commitment to mission-driven technology and accountable delivery.
           </p>
         </motion.div>
@@ -92,7 +92,7 @@ function CaseStudiesGrid() {
           className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
             activeSector === ""
               ? "bg-eo-navy text-white shadow-md"
-              : "bg-white text-gray-600 border border-gray-200 hover:border-eo-navy hover:text-eo-navy"
+              : "bg-surface text-text-tertiary border border-border-default hover:border-eo-navy hover:text-eo-navy"
           }`}
         >
           All
@@ -105,7 +105,7 @@ function CaseStudiesGrid() {
             className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
               activeSector === sector
                 ? "bg-eo-navy text-white shadow-md"
-                : "bg-white text-gray-600 border border-gray-200 hover:border-eo-navy hover:text-eo-navy"
+                : "bg-surface text-text-tertiary border border-border-default hover:border-eo-navy hover:text-eo-navy"
             }`}
           >
             {sector}
@@ -167,7 +167,7 @@ function CaseStudiesCTA() {
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <CaseStudiesHero />
         <CaseStudiesGrid />

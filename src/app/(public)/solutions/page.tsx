@@ -218,8 +218,8 @@ function SolutionsHero() {
 
 function OverviewGrid() {
   return (
-    <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 pointer-events-none" />
+    <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 pointer-events-none" />
       {/* Blue glow top-right */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow bottom-left */}
@@ -228,7 +228,7 @@ function OverviewGrid() {
         {/* Technology Solutions */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Capabilities</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-eo-navy">Technology Solutions</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-text-primary">Technology Solutions</h3>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
@@ -241,15 +241,15 @@ function OverviewGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group relative bg-surface border border-border-subtle rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
                     <Icon className="h-7 w-7 text-eo-blue group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
-                  <h4 className="text-lg font-bold text-eo-navy mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
+                  <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
+                  <p className="text-sm text-text-tertiary leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
                   <Link href={`/solutions/${cap.slug}`} className="inline-flex items-center gap-1 mt-5 text-sm font-semibold text-eo-blue group-hover:text-eo-gold transition-colors duration-300">
                     Learn more <ChevronRight className="h-4 w-4" />
                   </Link>
@@ -262,7 +262,7 @@ function OverviewGrid() {
         {/* Program Delivery & Advisory */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Program Delivery</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-eo-navy">Program Delivery & Advisory</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-text-primary">Program Delivery & Advisory</h3>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -275,15 +275,15 @@ function OverviewGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group relative bg-surface border border-border-subtle rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
                     <Icon className="h-7 w-7 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
-                  <h4 className="text-lg font-bold text-eo-navy mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
+                  <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
+                  <p className="text-sm text-text-tertiary leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
                   <Link href={`/solutions/${cap.slug}`} className="inline-flex items-center gap-1 mt-5 text-sm font-semibold text-eo-blue group-hover:text-eo-gold transition-colors duration-300">
                     Learn more <ChevronRight className="h-4 w-4" />
                   </Link>
@@ -299,7 +299,7 @@ function OverviewGrid() {
 
 function CapabilityDetails() {
   return (
-    <div className="bg-white">
+    <div className="bg-surface">
       {allCapabilities.map((cap, i) => {
         const Icon = cap.icon;
         const isEven = i % 2 === 0;
@@ -308,7 +308,7 @@ function CapabilityDetails() {
           <section
             key={cap.id}
             id={cap.id}
-            className={`relative overflow-hidden py-20 md:py-28 border-b border-gray-100 ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white"}`}
+            className={`relative overflow-hidden py-20 md:py-28 border-b border-border-subtle ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white"}`}
           >
             {/* Glow orb per section */}
             {isEven ? (
@@ -340,8 +340,8 @@ function CapabilityDetails() {
                     </div>
                     <span className="text-sm font-semibold uppercase tracking-widest text-eo-gold">Capability</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-eo-navy mb-5">{cap.title}</h3>
-                  <p className="text-lg text-gray-600 leading-relaxed mb-8">{cap.shortDesc}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-5">{cap.title}</h3>
+                  <p className="text-lg text-text-tertiary leading-relaxed mb-8">{cap.shortDesc}</p>
 
                   <div className="space-y-3">
                     {cap.services.map((service, j) => (
@@ -354,7 +354,7 @@ function CapabilityDetails() {
                         className="flex items-start gap-3"
                       >
                         <CheckCircle2 className="h-5 w-5 text-eo-blue flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{service}</span>
+                        <span className="text-text-secondary">{service}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -437,8 +437,8 @@ function ContractVehiclesCallout() {
 
 function AgenciesGrid() {
   return (
-    <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 pointer-events-none" />
+    <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/capitol-building.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
       <div className="absolute -bottom-16 -right-16 w-96 h-96 bg-indigo-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow top-left */}
@@ -447,7 +447,7 @@ function AgenciesGrid() {
       <div className="relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Partners</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-eo-navy mb-4">Agencies We&apos;ve Supported</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Agencies We&apos;ve Supported</h3>
           <p className="text-gray-500 text-lg">Supporting the agencies that serve our nation through specialized IT expertise and prime contractor partnerships.</p>
         </div>
 
@@ -459,9 +459,9 @@ function AgenciesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="group relative flex flex-col items-center justify-center p-6 h-32 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:border-eo-blue/30 hover:-translate-y-1 transition-all duration-300 cursor-default"
+              className="group relative flex flex-col items-center justify-center p-6 h-32 bg-surface border border-border-subtle rounded-2xl shadow-sm hover:shadow-lg hover:border-eo-blue/30 hover:-translate-y-1 transition-all duration-300 cursor-default"
             >
-              <span className="text-2xl font-black text-gray-300 group-hover:text-eo-blue transition-colors duration-300 mb-2">
+              <span className="text-2xl font-black text-text-muted group-hover:text-eo-blue transition-colors duration-300 mb-2">
                 {agency.abbr}
               </span>
               <span className="text-[10px] font-medium text-gray-400 group-hover:text-gray-600 transition-colors text-center leading-tight">
@@ -517,7 +517,7 @@ function SolutionsCTA() {
 
 export default function SolutionsPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <SolutionsHero />
         <OverviewGrid />
