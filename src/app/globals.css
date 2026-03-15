@@ -45,6 +45,18 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-surface: hsl(var(--surface));
+  --color-surface-muted: hsl(var(--surface-muted));
+  --color-surface-raised: hsl(var(--surface-raised));
+
+  --color-text-primary: hsl(var(--text-primary));
+  --color-text-secondary: hsl(var(--text-secondary));
+  --color-text-tertiary: hsl(var(--text-tertiary));
+  --color-text-muted: hsl(var(--text-muted));
+
+  --color-border-subtle: hsl(var(--border-subtle));
+  --color-border-default: hsl(var(--border-default));
 }
 
 :root {
@@ -85,6 +97,21 @@
 
   --radius: 0.5rem;
 
+  /* Semantic Surface Tokens */
+  --surface: 0 0% 100%;
+  --surface-muted: 210 40% 98%;
+  --surface-raised: 0 0% 100%;
+
+  /* Semantic Text Tokens */
+  --text-primary: 216 60% 10%;
+  --text-secondary: 215 14% 34%;
+  --text-tertiary: 215 16% 47%;
+  --text-muted: 215 20% 65%;
+
+  /* Semantic Border Tokens */
+  --border-subtle: 214 32% 93%;
+  --border-default: 214 32% 91%;
+
   --font-mont: var(--font-montserrat), sans-serif;
 }
 
@@ -120,6 +147,21 @@
   --border: 216 40% 20%;
   --input: 216 40% 20%;
   --ring: 214 52% 40%;
+
+  /* Semantic Surface Tokens */
+  --surface: 216 55% 8%;
+  --surface-muted: 216 50% 12%;
+  --surface-raised: 216 45% 15%;
+
+  /* Semantic Text Tokens */
+  --text-primary: 0 0% 95%;
+  --text-secondary: 215 20% 75%;
+  --text-tertiary: 215 20% 60%;
+  --text-muted: 215 15% 45%;
+
+  /* Semantic Border Tokens */
+  --border-subtle: 216 40% 20%;
+  --border-default: 216 40% 23%;
 }
 
 @layer base {
@@ -131,6 +173,12 @@
   }
   html {
     scroll-behavior: smooth;
+  }
+  html.transitioning,
+  html.transitioning *,
+  html.transitioning *::before,
+  html.transitioning *::after {
+    transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease !important;
   }
 }
 
@@ -163,6 +211,16 @@
 .bg-subtle-dots {
   background-image: radial-gradient(circle, rgba(10, 22, 40, 0.04) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+/* Dark mode background patterns */
+.dark .bg-subtle-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+.dark .bg-subtle-dots {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 /* Gold gradient separator between sections */

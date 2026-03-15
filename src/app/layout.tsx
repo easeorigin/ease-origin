@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Inter, Montserrat } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -100,7 +101,9 @@ export default function RootLayout({
       <body suppressHydrationWarning
         className={`${inter.variable} ${montserrat.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
         <script
