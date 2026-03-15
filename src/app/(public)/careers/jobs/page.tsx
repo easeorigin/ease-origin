@@ -106,7 +106,7 @@ export default function JobsListingPage() {
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -120,7 +120,7 @@ export default function JobsListingPage() {
                   ← Back to Careers
                 </span>
               </Link>
-              <div className="flex w-full md:w-1/2 lg:w-1/4 items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-4">
+              <div className="flex self-start items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-4">
                 <span className="flex h-2 w-2 rounded-full bg-tg-gold animate-pulse" />
                 {jobs.length} Open Position{jobs.length !== 1 ? "s" : ""}
               </div>
@@ -140,7 +140,7 @@ export default function JobsListingPage() {
           {/* Search + filter bar */}
           <div className="flex flex-col sm:flex-row gap-3 mb-4">
             {/* Search input */}
-            <div className="relative flex-grow">
+            <div className="relative grow">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"

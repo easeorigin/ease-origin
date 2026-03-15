@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import Link from "next/link";
 
 export function Recruitment() {
   const benefits = [
@@ -48,18 +49,18 @@ export function Recruitment() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              href="/careers"
               className="px-8 py-4 text-base font-semibold rounded-md bg-tg-gold text-tg-navy hover:bg-white transition-colors shadow-lg"
             >
               View Open Positions
-            </a>
-            <a
-              href="/submit-resume"
+            </Link>
+            <Link
+              href="/careers/submit-resume"
               className="px-8 py-4 text-base font-semibold rounded-md bg-transparent border-2 border-white text-white hover:bg-white/10 transition-colors"
             >
               Submit Resume
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

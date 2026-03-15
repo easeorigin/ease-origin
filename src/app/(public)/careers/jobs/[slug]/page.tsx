@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -10,6 +11,9 @@ import {
 import { Section } from "@/components/ui/section";
 import { getJobBySlug, jobs } from "@/data/jobs";
 import { JobCard } from "@/components/job-card";
+import { ApplicationDrawer } from "@/components/application-drawer";
+
+
 
 const workTypeIcon: Record<string, React.ElementType> = {
   Remote: Wifi,
@@ -36,6 +40,7 @@ function NotFoundState() {
 export default function JobDetailPage() {
   const params = useParams<{ slug: string }>();
   const job = getJobBySlug(params.slug);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   if (!job) return <NotFoundState />;
 
@@ -57,7 +62,7 @@ export default function JobDetailPage() {
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-tg-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-175 h-175 bg-tg-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -130,7 +135,7 @@ export default function JobDetailPage() {
                 <ul className="flex flex-col gap-3">
                   {job.responsibilities.map((r, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-tg-gold flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-tg-gold shrink-0 mt-0.5" />
                       <span className="text-gray-600 text-sm leading-relaxed">{r}</span>
                     </li>
                   ))}
@@ -148,7 +153,7 @@ export default function JobDetailPage() {
                 <ul className="flex flex-col gap-3">
                   {job.qualifications.map((q, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-tg-blue mt-2 flex-shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-tg-blue mt-2 shrink-0" />
                       <span className="text-gray-600 text-sm leading-relaxed">{q}</span>
                     </li>
                   ))}
@@ -198,16 +203,9 @@ export default function JobDetailPage() {
                     Apply now or submit your resume for future consideration.
                   </p>
                   <div className="flex flex-col gap-3">
-                    <Link href="/contact">
-                      <span className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg bg-tg-gold text-tg-navy font-bold text-sm hover:bg-yellow-400 transition-colors cursor-pointer">
+                    <button onClick={() => setDrawerOpen(true)} className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg bg-tg-gold text-tg-navy font-bold text-sm hover:bg-white transition-colors cursor-pointer">
                         Apply Now <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </Link>
-                    <Link href="/careers/submit-resume">
-                      <span className="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-lg border-2 border-white/20 text-white font-semibold text-sm hover:bg-white/10 transition-colors cursor-pointer">
-                        Submit Resume
-                      </span>
-                    </Link>
+                      </button>
                   </div>
                 </div>
 
@@ -251,6 +249,11 @@ export default function JobDetailPage() {
         )}
 
       </main>
+      <ApplicationDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        jobTitle={job.title}
+      />
     </div>
   );
 }

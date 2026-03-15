@@ -120,8 +120,8 @@ function SolutionsHero() {
       {/* Background texture */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-tg-blue rounded-full blur-[130px] opacity-30 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
+        <div className="absolute top-0 right-0 w-175 h-175 bg-tg-blue rounded-full blur-[130px] opacity-30 translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-125 h-125 bg-tg-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -155,7 +155,7 @@ function SolutionsHero() {
 function OverviewGrid() {
   return (
     <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/70 to-blue-50/40 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-white via-slate-50/70 to-blue-50/40 pointer-events-none" />
       <div className="relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-tg-gold mb-3">Capabilities</h2>
@@ -174,13 +174,13 @@ function OverviewGrid() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="group relative bg-white border border-gray-100 rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-tg-navy to-tg-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                <div className="absolute inset-0 bg-linear-to-br from-tg-navy to-tg-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
                     <Icon className="h-7 w-7 text-tg-blue group-hover:text-tg-gold transition-colors duration-300" />
                   </div>
                   <h4 className="text-lg font-bold text-tg-navy mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
+                  <p className="text-sm text-gray-500 leading-relaxed grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
                   <a href={`#${cap.id}`} className="inline-flex items-center gap-1 mt-5 text-sm font-semibold text-tg-blue group-hover:text-tg-gold transition-colors duration-300">
                     Learn more <ChevronRight className="h-4 w-4" />
                   </a>
@@ -244,7 +244,7 @@ function CapabilityDetails() {
                         transition={{ duration: 0.3, delay: j * 0.06 }}
                         className="flex items-start gap-3"
                       >
-                        <CheckCircle2 className="h-5 w-5 text-tg-blue flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-tg-blue shrink-0 mt-0.5" />
                         <span className="text-gray-700">{service}</span>
                       </motion.div>
                     ))}
@@ -266,14 +266,14 @@ function CapabilityDetails() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="relative"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-4/3">
                     <img
                       src={cap.image}
                       alt={cap.imageAlt}
                       className="w-full h-full object-cover"
                     />
                     {/* Subtle overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-tg-navy/30 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-tr from-tg-navy/30 to-transparent" />
                     {/* Floating label badge */}
                     <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
                       <Icon className="h-4 w-4 text-tg-blue" />
@@ -297,7 +297,7 @@ function ContractVehicles() {
   return (
     <Section className="relative overflow-hidden bg-tg-navy text-white">
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-tg-blue/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-tg-blue/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         <div className="max-w-2xl mb-14">
@@ -343,7 +343,7 @@ function ContractVehicles() {
 function AgenciesGrid() {
   return (
     <Section className="relative overflow-hidden bg-white border-b border-gray-100">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/60 to-blue-50/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-white via-slate-50/60 to-blue-50/30 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/capitol-building.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.04 }} />
 
       <div className="relative z-10">
@@ -380,7 +380,7 @@ function AgenciesGrid() {
 function SolutionsCTA() {
   return (
     <Section id="contact" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-tg-blue via-tg-navy to-[#050B14] pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-tg-blue via-tg-navy to-[#050B14] pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">

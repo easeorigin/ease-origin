@@ -24,8 +24,8 @@ function AboutHero() {
         }}
       />
       {/* Glow orbs */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-tg-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-tg-gold rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-175 h-175 bg-tg-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-125 h-125 bg-tg-gold rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
 
       {/* Abstract circuit lines */}
       <svg
@@ -52,7 +52,7 @@ function AboutHero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-6">
             <Building2 className="h-3.5 w-3.5" />
-            Est. 2002 · Arlington, VA
+            Est. 2017 · Dallas, TX
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.06] mb-6">
             About EaseOrigin
@@ -193,7 +193,7 @@ function Timeline() {
       {/* Vertical timeline */}
       <div className="relative max-w-3xl mx-auto">
         {/* Vertical line */}
-        <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-tg-blue/30 via-tg-blue/60 to-tg-blue/10 -translate-x-1/2" />
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-tg-blue/30 via-tg-blue/60 to-tg-blue/10 -translate-x-1/2" />
 
         <div className="flex flex-col gap-0">
           {timelineItems.map((item, i) => {
@@ -219,7 +219,7 @@ function Timeline() {
                 </div>
 
                 {/* Center dot */}
-                <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-tg-navy border-4 border-white shadow-md flex items-center justify-center flex-shrink-0 z-10 top-6 md:top-auto">
+                <div className="absolute left-7 md:left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-tg-navy border-4 border-white shadow-md flex items-center justify-center shrink-0 z-10 top-6 md:top-auto">
                   <div className="w-2 h-2 rounded-full bg-tg-gold" />
                 </div>
 
@@ -296,7 +296,7 @@ function Leadership() {
           >
             {/* Avatar */}
             <div className="relative h-44 bg-slate-50 flex items-center justify-center border-b border-gray-100">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50/40" />
+              <div className="absolute inset-0 bg-linear-to-br from-slate-50 to-blue-50/40" />
               <div className={`relative z-10 w-20 h-20 rounded-2xl ${color} flex items-center justify-center shadow-lg`}>
                 <span className="text-white text-2xl font-bold">{initials}</span>
               </div>
@@ -306,7 +306,7 @@ function Leadership() {
             </div>
 
             {/* Content */}
-            <div className="p-6 flex flex-col flex-grow">
+            <div className="p-6 flex flex-col grow">
               <h3 className="text-base font-bold text-tg-navy mb-0.5 group-hover:text-tg-blue transition-colors">
                 {name}
               </h3>
@@ -463,7 +463,7 @@ function Impact() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="flex items-center gap-3 bg-slate-50 rounded-xl border border-gray-100 px-5 py-4"
             >
-              <CheckCircle2 className="h-5 w-5 text-tg-gold flex-shrink-0" />
+              <CheckCircle2 className="h-5 w-5 text-tg-gold shrink-0" />
               <span className="text-sm font-medium text-tg-navy">{point}</span>
             </motion.div>
           ))}
