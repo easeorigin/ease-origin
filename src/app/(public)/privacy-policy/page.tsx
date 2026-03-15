@@ -22,8 +22,8 @@ export default function PrivacyPolicy() {
           </div>
         </section>
 
-        <Section className="bg-gradient-to-b from-slate-50/60 via-blue-50/15 to-white">
-          <div className="max-w-4xl mx-auto prose prose-gray">
+        <Section className="bg-gradient-to-b from-slate-50/60 dark:from-gray-900/60 via-blue-50/15 dark:via-gray-900/15 to-white dark:to-gray-900">
+          <div className="max-w-4xl mx-auto prose prose-gray dark:prose-invert">
             <h2 className="text-xl font-bold text-text-primary">Introduction</h2>
             <p className="text-text-tertiary leading-relaxed mb-6">
               EaseOrigin (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage with our services.

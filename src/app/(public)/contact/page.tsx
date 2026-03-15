@@ -196,7 +196,7 @@ function ContactFormSection() {
           <div className="flex flex-col gap-6">
             {contactItems.map(({ icon: Icon, label, lines }, i) => (
               <div key={i} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-eo-blue" />
                 </div>
                 <div>
@@ -438,8 +438,8 @@ function MapSection() {
 
 function ConsultantCTA() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white border-b border-border-subtle">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-white pointer-events-none" />
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 border-b border-border-subtle">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

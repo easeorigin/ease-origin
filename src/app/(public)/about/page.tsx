@@ -130,7 +130,7 @@ function WhoWeAre() {
               transition={{ duration: 0.45, delay: i * 0.1 }}
               className="flex flex-col items-start gap-4 bg-surface-muted rounded-2xl border border-border-subtle p-7 hover:shadow-md hover:border-blue-100 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                 <Icon className="h-6 w-6 text-eo-blue" />
               </div>
               <p className="text-sm font-bold text-text-primary">{label}</p>
@@ -187,7 +187,7 @@ const timelineItems = [
 
 function Timeline() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
       {/* Blue glow orb */}
       <div className="absolute -top-10 -right-20 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <motion.div
@@ -221,7 +221,7 @@ function Timeline() {
                 {/* Content card */}
                 <div className={`flex-1 pl-16 md:pl-0 ${isLeft ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
                   <div className={`inline-block bg-surface rounded-2xl border border-border-subtle shadow-sm p-6 hover:shadow-md transition-shadow max-w-xs w-full ${isLeft ? "md:ml-auto" : ""}`}>
-                    <span className="inline-block px-2.5 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-bold rounded-full mb-3">
+                    <span className="inline-block px-2.5 py-1 bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-eo-blue text-xs font-bold rounded-full mb-3">
                       {item.year}
                     </span>
                     <h3 className="text-base font-bold text-text-primary mb-1.5">{item.title}</h3>
@@ -304,7 +304,7 @@ function LeadershipPhoto({ member }: { member: TeamMember }) {
 
 function Leadership() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50/40 to-blue-50/20 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-slate-50/40 dark:via-gray-900/40 to-blue-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Subtle background accent */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-blue-50/40 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow bottom-left */}
@@ -365,7 +365,7 @@ function Leadership() {
                     {member.certifications.map((cert) => (
                       <span
                         key={cert}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-eo-navy"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy"
                       >
                         <Award className="h-3 w-3 text-eo-gold flex-shrink-0" />
                         {cert}
@@ -409,39 +409,39 @@ const expertiseCards = [
     icon: Award,
     title: "Cloud Architecture",
     description: "Multiple cloud platform certifications ensuring best-practice design and delivery across AWS, Azure, and multi-cloud environments.",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-950",
+    border: "border-blue-100 dark:border-blue-900",
     iconColor: "text-eo-blue",
   },
   {
     icon: ShieldCheck,
     title: "Security Cleared",
     description: "Active security clearance with military service background, qualified for work in classified and sensitive government environments.",
-    bg: "bg-emerald-50",
-    border: "border-emerald-100",
+    bg: "bg-emerald-50 dark:bg-emerald-950",
+    border: "border-emerald-100 dark:border-emerald-900",
     iconColor: "text-emerald-600",
   },
   {
     icon: Cloud,
     title: "Compliance & Security",
     description: "Certified in cloud administration and cybersecurity, enabling secure deployments across regulated industries including healthcare and defense.",
-    bg: "bg-violet-50",
-    border: "border-violet-100",
+    bg: "bg-violet-50 dark:bg-violet-950",
+    border: "border-violet-100 dark:border-violet-900",
     iconColor: "text-violet-600",
   },
   {
     icon: Code,
     title: "Full-Stack Engineering",
     description: "Deep technical expertise spanning cloud infrastructure, AI/ML platforms, DevOps pipelines, modern data engineering, and program delivery.",
-    bg: "bg-amber-50",
-    border: "border-amber-100",
+    bg: "bg-amber-50 dark:bg-amber-950",
+    border: "border-amber-100 dark:border-amber-900",
     iconColor: "text-amber-600",
   },
 ];
 
 function OurExpertise() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Decorative corner glow */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-100/20 rounded-full blur-[80px] pointer-events-none" />
       {/* Dot pattern */}
@@ -495,39 +495,39 @@ const values = [
     icon: ShieldCheck,
     title: "Integrity",
     description: "We operate with transparency and accountability. Our team understands the responsibility of working in trusted environments across government and industry.",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-950",
+    border: "border-blue-100 dark:border-blue-900",
     iconColor: "text-eo-blue",
   },
   {
     icon: Users,
     title: "Collaboration",
     description: "We integrate seamlessly with your teams, whether supporting prime contractors on government missions or partnering with enterprise technology organizations.",
-    bg: "bg-emerald-50",
-    border: "border-emerald-100",
+    bg: "bg-emerald-50 dark:bg-emerald-950",
+    border: "border-emerald-100 dark:border-emerald-900",
     iconColor: "text-emerald-600",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
     description: "From AI-powered platforms to cloud-native architectures, we bring modern solutions and forward-thinking approaches to every engagement.",
-    bg: "bg-amber-50",
-    border: "border-amber-100",
+    bg: "bg-amber-50 dark:bg-amber-950",
+    border: "border-amber-100 dark:border-amber-900",
     iconColor: "text-amber-600",
   },
   {
     icon: Star,
     title: "Excellence",
     description: "We measure success by outcomes: reliable infrastructure, compliant systems, and scalable platforms that perform under real-world demands.",
-    bg: "bg-violet-50",
-    border: "border-violet-100",
+    bg: "bg-violet-50 dark:bg-violet-950",
+    border: "border-violet-100 dark:border-violet-900",
     iconColor: "text-violet-600",
   },
 ];
 
 function OurValues() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-amber-50/15 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-amber-50/15 dark:to-gray-800/15 border-b border-border-subtle">
       {/* Accent glow */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-amber-100/15 rounded-full blur-[80px] pointer-events-none" />
       {/* Blue glow bottom-right */}
@@ -587,7 +587,7 @@ const impactPoints = [
 
 function Impact() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/25 dark:via-gray-900/25 to-white dark:to-gray-900 border-b border-border-subtle">
       {/* Subtle glow */}
       <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">

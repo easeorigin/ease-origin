@@ -245,7 +245,7 @@ function OverviewGrid() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
                     <Icon className="h-7 w-7 text-eo-blue group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
                   <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
@@ -279,7 +279,7 @@ function OverviewGrid() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="w-14 h-14 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-purple-50 dark:bg-purple-950 border border-purple-100 dark:border-purple-900 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
                     <Icon className="h-7 w-7 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
                   <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
@@ -308,7 +308,7 @@ function CapabilityDetails() {
           <section
             key={cap.id}
             id={cap.id}
-            className={`relative overflow-hidden py-20 md:py-28 border-b border-border-subtle ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white"}`}
+            className={`relative overflow-hidden py-20 md:py-28 border-b border-border-subtle ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white dark:from-gray-900/50 dark:via-gray-900/40 dark:to-gray-900"}`}
           >
             {/* Glow orb per section */}
             {isEven ? (
@@ -320,7 +320,7 @@ function CapabilityDetails() {
             {i === 0 && (
               <>
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/federal-building-columns.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.04 }} />
-                <div className="absolute inset-0 bg-white/96 pointer-events-none" />
+                <div className="absolute inset-0 bg-white/96 dark:bg-gray-900/96 pointer-events-none" />
               </>
             )}
 
@@ -335,7 +335,7 @@ function CapabilityDetails() {
                   transition={{ duration: 0.6 }}
                 >
                   <div className="inline-flex items-center gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                       <Icon className="h-5 w-5 text-eo-blue" />
                     </div>
                     <span className="text-sm font-semibold uppercase tracking-widest text-eo-gold">Capability</span>
@@ -385,7 +385,7 @@ function CapabilityDetails() {
                     {/* Subtle overlay */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-eo-navy/30 to-transparent" />
                     {/* Floating label badge */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                    <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
                       <Icon className="h-4 w-4 text-eo-blue" />
                       <span className="text-sm font-bold text-eo-navy">{cap.title}</span>
                     </div>

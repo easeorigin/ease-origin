@@ -71,7 +71,7 @@ export default function ContractVehiclesPage() {
         </section>
 
         {/* Vehicle Cards */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 dark:from-gray-900/60 via-white dark:via-gray-900 to-slate-50/40 dark:to-gray-900/40 border-b border-border-subtle">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="relative z-10">
@@ -223,12 +223,12 @@ export default function ContractVehiclesPage() {
         </Section>
 
         {/* NAICS Codes */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                 <Hash className="h-5 w-5 text-eo-blue" />
               </div>
               <div>
@@ -270,7 +270,7 @@ export default function ContractVehiclesPage() {
 
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                 <Building2 className="h-5 w-5 text-eo-blue" />
               </div>
               <div>
@@ -284,7 +284,7 @@ export default function ContractVehiclesPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Shield className="h-5 w-5 text-eo-gold" />
                 </div>
@@ -312,7 +312,7 @@ export default function ContractVehiclesPage() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <FileCheck className="h-5 w-5 text-eo-gold" />
                 </div>
@@ -340,7 +340,7 @@ export default function ContractVehiclesPage() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Briefcase className="h-5 w-5 text-eo-gold" />
                 </div>

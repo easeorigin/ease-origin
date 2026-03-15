@@ -164,7 +164,7 @@ export default function SubmitResumePage() {
         </section>
 
         {/* Form */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/15 to-slate-50 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-blue-50/15 dark:via-gray-900/15 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
           <div className="max-w-2xl mx-auto relative z-10">
             <div className="bg-surface rounded-2xl border border-border-subtle shadow-lg p-8 md:p-10">

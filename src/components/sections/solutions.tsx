@@ -160,7 +160,7 @@ export function Solutions() {
               <div className="absolute inset-0 bg-linear-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <div className="w-16 h-16 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-6 group-hover:bg-white/10 group-hover:border-white/20 transition-colors duration-300">
+                <div className="w-16 h-16 rounded-xl bg-purple-50 dark:bg-purple-950 border border-purple-100 dark:border-purple-900 flex items-center justify-center mb-6 group-hover:bg-white/10 group-hover:border-white/20 transition-colors duration-300">
                   <solution.icon className="h-8 w-8 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
                 </div>
 

@@ -96,7 +96,7 @@ export default async function JobDetailPage({
         </section>
 
         {/* Content + Sidebar */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-blue-50/25 dark:via-gray-900/25 to-white dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <div className="max-w-5xl mx-auto relative z-10 grid lg:grid-cols-3 gap-10 lg:gap-14">
 
@@ -212,7 +212,7 @@ export default async function JobDetailPage({
 
         {/* Related Positions */}
         {related.length > 0 && (
-          <Section className="bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
+          <Section className="bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
             <h2 className="text-xl font-bold text-text-primary mb-6">Similar Positions</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               {related.map((j, i) => <JobCard key={j.slug} job={j} index={i} />)}

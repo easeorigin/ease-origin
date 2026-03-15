@@ -88,8 +88,8 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
     >
       {/* Card header */}
       <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
-        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 blur-2xl" />
-        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 blur-xl" />
+        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 dark:bg-white/10 blur-2xl" />
+        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 dark:bg-white/8 blur-xl" />
 
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
@@ -119,12 +119,12 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
         {(study.sector || study.clientLabel) && (
           <div className="flex flex-wrap gap-2 mb-3">
             {study.sector && (
-              <span className="inline-block px-2 py-0.5 bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 rounded-full uppercase tracking-wider">
+              <span className="inline-block px-2 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-600 dark:text-slate-300 rounded-full uppercase tracking-wider">
                 {study.sector}
               </span>
             )}
             {study.clientLabel && (
-              <span className="inline-block px-2 py-0.5 bg-slate-50 border border-slate-150 text-[11px] font-medium text-slate-500 rounded-full truncate max-w-[200px]" title={study.clientLabel}>
+              <span className="inline-block px-2 py-0.5 bg-slate-50 dark:bg-slate-800 border border-slate-150 dark:border-slate-700 text-[11px] font-medium text-slate-500 dark:text-slate-400 rounded-full truncate max-w-[200px]" title={study.clientLabel}>
                 {study.clientLabel}
               </span>
             )}

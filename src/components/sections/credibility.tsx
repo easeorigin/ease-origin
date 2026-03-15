@@ -48,7 +48,7 @@ export function Credibility() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="bg-surface/80 backdrop-blur-sm rounded-xl p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.07)] border border-border-subtle hover:shadow-[0_8px_30px_-4px_rgba(30,58,95,0.15)] transition-shadow duration-300"
           >
-            <div className="w-14 h-14 rounded-lg bg-blue-50 flex items-center justify-center mb-6">
+            <div className="w-14 h-14 rounded-lg bg-blue-50 dark:bg-blue-950 flex items-center justify-center mb-6">
               <feature.icon className="h-7 w-7 text-eo-blue" />
             </div>
             <h3 className="text-xl font-bold text-text-primary mb-3">{feature.title}</h3>

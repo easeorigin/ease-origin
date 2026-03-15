@@ -38,56 +38,56 @@ const categoryColors: Record<
   { bg: string; border: string; text: string; headerBg: string }
 > = {
   "Cloud Infrastructure": {
-    bg: "bg-blue-50",
-    border: "border-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-950",
+    border: "border-blue-100 dark:border-blue-900",
     text: "text-eo-blue",
     headerBg: "from-blue-50 to-indigo-50",
   },
   Cybersecurity: {
-    bg: "bg-amber-50",
-    border: "border-amber-100",
+    bg: "bg-amber-50 dark:bg-amber-950",
+    border: "border-amber-100 dark:border-amber-900",
     text: "text-amber-700",
     headerBg: "from-amber-50 to-orange-50",
   },
   "Cybersecurity & Compliance": {
-    bg: "bg-amber-50",
-    border: "border-amber-100",
+    bg: "bg-amber-50 dark:bg-amber-950",
+    border: "border-amber-100 dark:border-amber-900",
     text: "text-amber-700",
     headerBg: "from-amber-50 to-orange-50",
   },
   "Data & Analytics": {
-    bg: "bg-emerald-50",
-    border: "border-emerald-100",
+    bg: "bg-emerald-50 dark:bg-emerald-950",
+    border: "border-emerald-100 dark:border-emerald-900",
     text: "text-emerald-700",
     headerBg: "from-emerald-50 to-teal-50",
   },
   "AI/ML Infrastructure": {
-    bg: "bg-violet-50",
-    border: "border-violet-100",
+    bg: "bg-violet-50 dark:bg-violet-950",
+    border: "border-violet-100 dark:border-violet-900",
     text: "text-violet-700",
     headerBg: "from-violet-50 to-purple-50",
   },
   "DevOps & Platform Engineering": {
-    bg: "bg-indigo-50",
-    border: "border-indigo-100",
+    bg: "bg-indigo-50 dark:bg-indigo-950",
+    border: "border-indigo-100 dark:border-indigo-900",
     text: "text-indigo-700",
     headerBg: "from-indigo-50 to-blue-50",
   },
   "SaaS Solutions": {
-    bg: "bg-sky-50",
-    border: "border-sky-100",
+    bg: "bg-sky-50 dark:bg-sky-950",
+    border: "border-sky-100 dark:border-sky-900",
     text: "text-sky-700",
     headerBg: "from-sky-50 to-cyan-50",
   },
   "Program Management": {
-    bg: "bg-purple-50",
-    border: "border-purple-100",
+    bg: "bg-purple-50 dark:bg-purple-950",
+    border: "border-purple-100 dark:border-purple-900",
     text: "text-purple-700",
     headerBg: "from-purple-50 to-violet-50",
   },
   "Agile Delivery & Release Train Management": {
-    bg: "bg-red-50",
-    border: "border-red-100",
+    bg: "bg-red-50 dark:bg-red-950",
+    border: "border-red-100 dark:border-red-900",
     text: "text-red-700",
     headerBg: "from-red-50 to-rose-50",
   },
@@ -118,8 +118,8 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
       <div
         className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}
       >
-        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 blur-2xl" />
-        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 blur-xl" />
+        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 dark:bg-white/10 blur-2xl" />
+        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 dark:bg-white/8 blur-xl" />
 
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
@@ -157,13 +157,13 @@ function StaticCaseStudyCard({ study }: { study: CaseStudy }) {
         {(study.sector || study.clientLabel) && (
           <div className="flex flex-wrap gap-2 mb-3">
             {study.sector && (
-              <span className="inline-block px-2 py-0.5 bg-slate-100 border border-slate-200 text-[11px] font-semibold text-slate-600 rounded-full uppercase tracking-wider">
+              <span className="inline-block px-2 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-600 dark:text-slate-300 rounded-full uppercase tracking-wider">
                 {study.sector}
               </span>
             )}
             {study.clientLabel && (
               <span
-                className="inline-block px-2 py-0.5 bg-slate-50 border border-slate-150 text-[11px] font-medium text-slate-500 rounded-full truncate max-w-[200px]"
+                className="inline-block px-2 py-0.5 bg-slate-50 dark:bg-slate-800 border border-slate-150 dark:border-slate-700 text-[11px] font-medium text-slate-500 dark:text-slate-400 rounded-full truncate max-w-[200px]"
                 title={study.clientLabel}
               >
                 {study.clientLabel}
@@ -305,7 +305,7 @@ export default async function SolutionDetailPage({
         </section>
 
         {/* Overview */}
-        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
+        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-gray-900/60 dark:via-gray-900 dark:to-gray-900/40 border-b border-border-subtle">
           <div className="animate-fade-in-up max-w-4xl mx-auto border-l-4 border-eo-gold/30 pl-6">
             <h2 className="text-2xl font-bold text-text-primary mb-4">Overview</h2>
             <p className="text-text-tertiary leading-relaxed text-lg">
@@ -315,7 +315,7 @@ export default async function SolutionDetailPage({
         </Section>
 
         {/* Key Capabilities */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
 
@@ -341,7 +341,7 @@ export default async function SolutionDetailPage({
         </Section>
 
         {/* Technologies */}
-        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-border-subtle">
+        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 dark:from-gray-900 dark:via-gray-900/80 dark:to-gray-900 border-b border-border-subtle">
           <div className="max-w-4xl mx-auto">
             <div className="animate-fade-in-up">
               <h2 className="text-2xl font-bold text-text-primary mb-6">
@@ -364,7 +364,7 @@ export default async function SolutionDetailPage({
         {/* Compliance Frameworks */}
         {solution.complianceFrameworks &&
           solution.complianceFrameworks.length > 0 && (
-            <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50/10 to-slate-50 border-b border-border-subtle">
+            <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50/10 to-slate-50 dark:from-gray-900 dark:via-gray-900/10 dark:to-gray-900 border-b border-border-subtle">
               <div className="absolute -top-16 -left-16 w-72 h-72 bg-amber-100/15 rounded-full blur-[90px] pointer-events-none" />
 
               <div className="max-w-4xl mx-auto relative z-10">
@@ -389,7 +389,7 @@ export default async function SolutionDetailPage({
 
         {/* Related Case Studies */}
         {relatedStudies.length > 0 && (
-          <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
+          <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white dark:from-gray-900 dark:via-gray-900/25 dark:to-gray-900 border-b border-border-subtle">
             <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-200/15 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute -top-16 -left-16 w-64 h-64 bg-eo-gold/[0.05] rounded-full blur-[80px] pointer-events-none" />
 

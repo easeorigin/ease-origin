@@ -21,8 +21,8 @@ export default function TermsOfService() {
           </div>
         </section>
 
-        <Section className="bg-gradient-to-b from-slate-50/60 via-blue-50/15 to-white">
-          <div className="max-w-4xl mx-auto prose prose-gray">
+        <Section className="bg-gradient-to-b from-slate-50/60 dark:from-gray-900/60 via-blue-50/15 dark:via-gray-900/15 to-white dark:to-gray-900">
+          <div className="max-w-4xl mx-auto prose prose-gray dark:prose-invert">
             <h2 className="text-xl font-bold text-text-primary">Agreement to Terms</h2>
             <p className="text-text-tertiary leading-relaxed mb-6">
               By accessing or using the EaseOrigin website, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not access the website.

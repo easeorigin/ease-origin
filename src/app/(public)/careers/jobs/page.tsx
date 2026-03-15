@@ -89,7 +89,7 @@ export default function JobsListingPage() {
   }, [filters]);
 
   const selectClass =
-    "px-3 py-2.5 pr-8 rounded-lg border border-border-default bg-surface text-sm text-text-secondary focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue appearance-none cursor-pointer transition-colors hover:border-gray-300";
+    "px-3 py-2.5 pr-8 rounded-lg border border-border-default bg-surface text-sm text-text-secondary focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue appearance-none cursor-pointer transition-colors hover:border-gray-300 dark:hover:border-gray-600";
 
   return (
     <div className="min-h-screen bg-surface">
@@ -135,7 +135,7 @@ export default function JobsListingPage() {
         </section>
 
         {/* ── Search + Filters + Cards ── */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Search + filter bar */}
@@ -159,7 +159,7 @@ export default function JobsListingPage() {
                 "sm:hidden inline-flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-colors",
                 filtersOpen
                   ? "bg-eo-navy text-white border-eo-navy"
-                  : "bg-surface text-text-secondary border-border-default hover:border-gray-300"
+                  : "bg-surface text-text-secondary border-border-default hover:border-gray-300 dark:hover:border-gray-600"
               )}
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -310,7 +310,7 @@ export default function JobsListingPage() {
         </Section>
 
         {/* ── Submit CV CTA ── */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/20 to-slate-50/30">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50/30 dark:to-gray-900/30">
           <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}

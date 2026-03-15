@@ -225,7 +225,7 @@ export default async function CaseStudyDetail({
         )}
 
         {/* Overview */}
-        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 border-b border-border-subtle">
+        <Section className="bg-gradient-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-gray-900/60 dark:via-gray-900 dark:to-gray-900/40 border-b border-border-subtle">
           <div className="animate-fade-in-up max-w-4xl mx-auto border-l-4 border-eo-gold/30 pl-6">
             <h2 className="text-2xl font-bold text-text-primary mb-4">Overview</h2>
             <p className="text-text-tertiary leading-relaxed text-lg">{study.overview}</p>
@@ -233,20 +233,20 @@ export default async function CaseStudyDetail({
         </Section>
 
         {/* Challenge & Solution */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50 dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 border-b border-border-subtle">
           {/* Centered blue glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-sm font-medium text-red-600 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950 border border-red-100 dark:border-red-900 text-sm font-medium text-red-600 mb-4">
                 The Challenge
               </div>
               <p className="text-text-tertiary leading-relaxed">{study.challenge}</p>
             </div>
 
             <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-sm font-medium text-emerald-600 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950 border border-emerald-100 dark:border-emerald-900 text-sm font-medium text-emerald-600 mb-4">
                 Our Solution
               </div>
               <p className="text-text-tertiary leading-relaxed">{study.solution}</p>
@@ -255,7 +255,7 @@ export default async function CaseStudyDetail({
         </Section>
 
         {/* Results */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/25 to-white dark:from-gray-900 dark:via-gray-900/25 dark:to-gray-900 border-b border-border-subtle">
           {/* Gold corner glow */}
           <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
 
@@ -279,7 +279,7 @@ export default async function CaseStudyDetail({
         </Section>
 
         {/* Technologies */}
-        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 border-b border-border-subtle">
+        <Section className="bg-gradient-to-b from-slate-50 via-white/80 to-slate-50 dark:from-gray-900 dark:via-gray-900/80 dark:to-gray-900 border-b border-border-subtle">
           <div className="max-w-4xl mx-auto">
             <div className="animate-fade-in-up">
               <h2 className="text-2xl font-bold text-text-primary mb-6">Technologies Used</h2>
