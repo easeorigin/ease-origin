@@ -212,7 +212,7 @@ export default async function CaseStudyDetail({
                     <span className="font-semibold text-text-primary">Compliance:</span>
                     <div className="flex flex-wrap gap-1.5">
                       {study.complianceFrameworks.map((fw) => (
-                        <span key={fw} className="px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">
+                        <span key={fw} className="px-2 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 text-[11px] font-semibold text-amber-700 dark:text-amber-300">
                           {fw}
                         </span>
                       ))}

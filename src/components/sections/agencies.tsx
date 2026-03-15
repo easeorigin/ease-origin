@@ -6,7 +6,7 @@ import { governmentAgencies, industryPartners } from "@/data/agencies";
 
 export function Agencies() {
   return (
-    <Section className="relative overflow-hidden border-y border-gray-200">
+    <Section className="relative overflow-hidden border-y border-gray-200 dark:border-gray-800">
       <div className="absolute inset-0 bg-linear-to-br from-[#0A1628] via-[#0D1F3C] to-[#1E3A5F] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-0 right-0 w-75 h-75 bg-yellow-400/5 rounded-full blur-3xl pointer-events-none" />

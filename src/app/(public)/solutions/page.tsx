@@ -280,7 +280,7 @@ function OverviewGrid() {
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 rounded-xl bg-purple-50 dark:bg-purple-950 border border-purple-100 dark:border-purple-900 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
-                    <Icon className="h-7 w-7 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
+                    <Icon className="h-7 w-7 text-purple-600 dark:text-purple-400 group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
                   <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
                   <p className="text-sm text-text-tertiary leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
@@ -319,7 +319,7 @@ function CapabilityDetails() {
             {/* Background government building photo (subtle) */}
             {i === 0 && (
               <>
-                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/federal-building-columns.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.04 }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(/images/federal-building-columns.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.04 }} />
                 <div className="absolute inset-0 bg-white/96 dark:bg-gray-900/96 pointer-events-none" />
               </>
             )}
@@ -439,7 +439,7 @@ function AgenciesGrid() {
   return (
     <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/capitol-building.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(/images/capitol-building.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
       <div className="absolute -bottom-16 -right-16 w-96 h-96 bg-indigo-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow top-left */}
       <div className="absolute -top-16 -left-16 w-72 h-72 bg-eo-gold/[0.06] rounded-full blur-[90px] pointer-events-none" />

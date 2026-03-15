@@ -264,7 +264,7 @@ const teamMembers: TeamMember[] = [
     initials: "JU",
     title: "Founder & CEO",
     photo: "/images/team/jimi-umar.jpg",
-    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for federal clients including DOD, DHS, NIH, and GSA.",
+    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for federal clients including DoW, DHS, NIH, and GSA.",
     certifications: [
       "AWS Solutions Architect",
       "AWS SysOps Administrator",
@@ -707,7 +707,7 @@ export default function AboutPage() {
         <AboutHero />
         <WhoWeAre />
         <Timeline />
-        <Leadership />
+        {/* <Leadership /> */}
         <OurExpertise />
         <OurValues />
         <Impact />

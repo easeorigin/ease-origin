@@ -98,7 +98,7 @@ export function Navbar() {
                 "px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200",
                 isScrolled
                   ? "bg-eo-navy text-white hover:bg-eo-blue shadow-md hover:shadow-lg"
-                  : "bg-white text-eo-navy hover:bg-gray-100 shadow-lg",
+                  : "bg-white text-eo-navy hover:bg-gray-100 shadow-lg dark:bg-surface dark:text-text-primary dark:hover:bg-surface-muted",
               )}
             >
               Partner With Us
