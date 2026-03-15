@@ -80,7 +80,7 @@ export function Solutions() {
         />
       </div>
       {/* Gradient wash for readability */}
-      <div className="absolute inset-0 bg-linear-to-b from-white/90 via-slate-50/88 to-blue-50/82 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-white/90 via-slate-50/88 to-blue-50/82 dark:from-gray-900/90 dark:via-gray-900/88 dark:to-gray-800/82 pointer-events-none" />
       {/* Soft corner glows */}
       <div className="absolute top-0 right-0 w-125 h-125 bg-linear-to-bl from-blue-100/30 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-100 h-100 bg-linear-to-tr from-indigo-100/25 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -91,10 +91,10 @@ export function Solutions() {
         <h2 className="text-eo-gold font-semibold tracking-wider uppercase text-sm mb-3">
           Capabilities
         </h2>
-        <h3 className="text-3xl md:text-4xl font-bold text-eo-navy mb-6">
+        <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">
           Comprehensive Solutions
         </h3>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-text-tertiary">
           We provide specialized technical expertise and program delivery to solve complex challenges
           and modernize infrastructure across government and enterprise environments.
         </p>
@@ -109,21 +109,21 @@ export function Solutions() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="group relative p-8 md:p-10 bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-transparent transition-all duration-300"
+            className="group relative p-8 md:p-10 bg-surface border border-border-default rounded-2xl overflow-hidden hover:border-transparent transition-all duration-300"
           >
             {/* Hover Background Gradient */}
             <div className="absolute inset-0 bg-linear-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10">
-              <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-6 group-hover:bg-white/10 group-hover:border-white/20 transition-colors duration-300">
+              <div className="w-16 h-16 rounded-xl bg-surface-muted border border-border-subtle flex items-center justify-center mb-6 group-hover:bg-white/10 group-hover:border-white/20 transition-colors duration-300">
                 <solution.icon className="h-8 w-8 text-eo-blue group-hover:text-eo-gold transition-colors duration-300" />
               </div>
 
-              <h4 className="text-2xl font-bold text-eo-navy mb-4 group-hover:text-white transition-colors duration-300">
+              <h4 className="text-2xl font-bold text-text-primary mb-4 group-hover:text-white transition-colors duration-300">
                 {solution.title}
               </h4>
 
-              <p className="text-gray-600 mb-6 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
+              <p className="text-text-tertiary mb-6 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
                 {solution.description}
               </p>
 
@@ -143,7 +143,7 @@ export function Solutions() {
       <div className="relative z-10 mt-16">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h3 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Program Delivery</h3>
-          <h4 className="text-2xl md:text-3xl font-bold text-eo-navy">Program Delivery & Advisory</h4>
+          <h4 className="text-2xl md:text-3xl font-bold text-text-primary">Program Delivery & Advisory</h4>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -154,7 +154,7 @@ export function Solutions() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative p-8 md:p-10 bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-transparent transition-all duration-300"
+              className="group relative p-8 md:p-10 bg-surface border border-border-default rounded-2xl overflow-hidden hover:border-transparent transition-all duration-300"
             >
               {/* Hover Background Gradient */}
               <div className="absolute inset-0 bg-linear-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -164,11 +164,11 @@ export function Solutions() {
                   <solution.icon className="h-8 w-8 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
                 </div>
 
-                <h4 className="text-2xl font-bold text-eo-navy mb-4 group-hover:text-white transition-colors duration-300">
+                <h4 className="text-2xl font-bold text-text-primary mb-4 group-hover:text-white transition-colors duration-300">
                   {solution.title}
                 </h4>
 
-                <p className="text-gray-600 mb-6 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
+                <p className="text-text-tertiary mb-6 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
                   {solution.description}
                 </p>
 

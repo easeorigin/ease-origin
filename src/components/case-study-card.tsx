@@ -84,18 +84,18 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
     >
       {/* Card header */}
-      <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-gray-100`}>
+      <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
         <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 blur-2xl" />
         <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 blur-xl" />
 
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
           <div className="absolute top-4 right-4 text-right z-10">
-            <div className="text-2xl font-extrabold text-eo-navy leading-none">{study.metrics[0].value}</div>
-            <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mt-0.5">{study.metrics[0].label}</div>
+            <div className="text-2xl font-extrabold text-text-primary leading-none">{study.metrics[0].value}</div>
+            <div className="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mt-0.5">{study.metrics[0].label}</div>
           </div>
         )}
 
@@ -111,7 +111,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
 
       {/* Card body */}
       <div className="p-8 flex flex-col flex-grow">
-        <h4 className="text-xl font-bold text-eo-navy mb-2 leading-tight group-hover:text-eo-blue transition-colors">
+        <h4 className="text-xl font-bold text-text-primary mb-2 leading-tight group-hover:text-eo-blue transition-colors">
           {study.title}
         </h4>
 
@@ -131,7 +131,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
           </div>
         )}
 
-        <p className="text-gray-600 mb-8 flex-grow leading-relaxed text-sm">
+        <p className="text-text-tertiary mb-8 flex-grow leading-relaxed text-sm">
           {study.shortDescription}
         </p>
         <Link href={`/case-studies/${study.slug}`}>

@@ -30,9 +30,9 @@ export function CTASection({
   if (variant === "card") {
     return (
       <Section id={id} className="bg-eo-blue py-20">
-        <div className="bg-white rounded-3xl p-10 md:p-16 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
+        <div className="bg-surface rounded-3xl p-10 md:p-16 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
           {/* Decorative corner elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-bl-[100px] z-0" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-surface-muted rounded-bl-[100px] z-0" />
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-eo-gold/10 rounded-tr-[80px] z-0" />
 
           <div className="relative z-10 max-w-3xl mx-auto">
@@ -41,10 +41,10 @@ export function CTASection({
                 {eyebrow}
               </p>
             )}
-            <h2 className="text-3xl md:text-4xl font-extrabold text-eo-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary mb-4">
               {title}
             </h2>
-            <p className="text-lg text-gray-600 mb-10">{description}</p>
+            <p className="text-lg text-text-tertiary mb-10">{description}</p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href={primaryCta.href}>
@@ -54,7 +54,7 @@ export function CTASection({
               </Link>
               {secondaryCta && (
                 <Link href={secondaryCta.href}>
-                  <span className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-md bg-gray-100 text-eo-navy hover:bg-gray-200 transition-colors border border-gray-200 cursor-pointer">
+                  <span className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-md bg-surface-muted text-text-primary hover:bg-border-default transition-colors border border-border-default cursor-pointer">
                     {secondaryCta.label}
                   </span>
                 </Link>

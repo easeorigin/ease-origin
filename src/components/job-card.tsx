@@ -36,7 +36,7 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.07 }}
-      className="flex flex-col bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden"
+      className="flex flex-col bg-surface border border-border-subtle rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden"
     >
       {/* Color accent stripe */}
       <div className={cn("h-1 w-full", colors.bg.replace("50", "300"))} />
@@ -47,27 +47,27 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
           {job.category}
         </span>
 
-        <h3 className="text-lg font-bold text-eo-navy mb-2 group-hover:text-eo-blue transition-colors leading-tight">
+        <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-eo-blue transition-colors leading-tight">
           {job.title}
         </h3>
 
-        <p className="text-sm text-gray-500 leading-relaxed mb-5 flex-grow">
+        <p className="text-sm text-text-tertiary leading-relaxed mb-5 flex-grow">
           {job.shortDescription}
         </p>
 
         {/* Meta row */}
         <div className="flex flex-wrap gap-3 mb-6">
-          <div className="flex items-center gap-1.5 text-xs text-gray-500">
-            <MapPin className="h-3.5 w-3.5 text-gray-400" />
+          <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
+            <MapPin className="h-3.5 w-3.5 text-text-muted" />
             {job.location}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-gray-500">
-            <WorkIcon className="h-3.5 w-3.5 text-gray-400" />
+          <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
+            <WorkIcon className="h-3.5 w-3.5 text-text-muted" />
             {job.workType}
           </div>
           {job.clearance && (
-            <div className="flex items-center gap-1.5 text-xs text-gray-500">
-              <Layers className="h-3.5 w-3.5 text-gray-400" />
+            <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <Layers className="h-3.5 w-3.5 text-text-muted" />
               {job.clearance}
             </div>
           )}
