@@ -57,7 +57,7 @@ export default async function JobDetailPage({
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-eo-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-175 h-175 bg-eo-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
