@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <text x="100" y="38" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="700" font-size="30" fill="white" letter-spacing="6">SAIC</text>
+  <line x1="52" y1="16" x2="148" y2="16" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <line x1="52" y1="48" x2="148" y2="48" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+</svg>

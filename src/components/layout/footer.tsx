@@ -1,4 +1,4 @@
-import { Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,29 +20,24 @@ export function Footer() {
                 height={40}
               />
               <h2 className="font-mont">
-                Ease<span className="text-tg-gold">Origin</span>
+                Ease<span className="text-eo-gold">Origin</span>
               </h2>
             </Link>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed pr-4">
-              Delivering federal IT expertise and specialized technology
-              consultants to government agencies and prime contractors
-              nationwide.
+              Delivering specialized technology consulting and IT solutions
+              to government agencies, prime contractors, and private sector
+              organizations nationwide.
             </p>
             <div className="flex space-x-4">
-              <Link
-                href="#"
+              <a
+                href="https://linkedin.com/company/easeorigin"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
-                <Linkedin className="h-5 w-5 text-tg-gold" />
-              </Link>
-              <Link
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <span className="sr-only">Twitter</span>
-                <Twitter className="h-5 w-5 text-tg-gold" />
-              </Link>
+                <Linkedin className="h-5 w-5 text-eo-gold" />
+              </a>
             </div>
           </div>
 
@@ -53,28 +48,43 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
-                  SaaS Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/cloud-infrastructure" className="hover:text-eo-gold transition-colors">
                   Cloud & Infrastructure
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/devops-platform" className="hover:text-eo-gold transition-colors">
+                  DevOps & Platform Engineering
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/cybersecurity" className="hover:text-eo-gold transition-colors">
                   Cybersecurity
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/solutions/ai-ml" className="hover:text-eo-gold transition-colors">
+                  AI/ML Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/data-analytics" className="hover:text-eo-gold transition-colors">
                   Data & Analytics
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
-                  Contract Vehicles
+                <Link href="/solutions/saas-solutions" className="hover:text-eo-gold transition-colors">
+                  SaaS Solutions
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/program-management" className="hover:text-eo-gold transition-colors">
+                  Program Management
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/agile-delivery" className="hover:text-eo-gold transition-colors">
+                  Agile Delivery & RTM
                 </Link>
               </li>
             </ul>
@@ -87,28 +97,28 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <Link href="/about" className="hover:text-tg-gold transition-colors">
+                <Link href="/about" className="hover:text-eo-gold transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-tg-gold transition-colors">
-                  Leadership
-                </a>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/careers" className="hover:text-eo-gold transition-colors">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
+                <Link href="/case-studies" className="hover:text-eo-gold transition-colors">
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-tg-gold transition-colors">
-                  Fraud Prevention
+                <Link href="/contract-vehicles" className="hover:text-eo-gold transition-colors">
+                  Contract Vehicles
+                </Link>
+              </li>
+              <li>
+                <Link href="/capability-statement" className="hover:text-eo-gold transition-colors">
+                  Capability Statement
                 </Link>
               </li>
             </ul>
@@ -121,25 +131,25 @@ export function Footer() {
             </h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-tg-gold mr-3 shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 text-eo-gold mr-3 shrink-0 mt-0.5" />
                 <span>
-                  123 Federal Drive, Suite 400
+                  211 E Avenue G, 306
                   <br />
-                  Washington, DC 20001
+                  Midlothian, TX 76065
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
-                <span>(202) 555-0100</span>
+                <Phone className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
+                <span>(470) 464-5199</span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-tg-gold mr-3 shrink-0" />
-                <Link
-                  href="mailto:info@tgfederal.com"
+                <Mail className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
+                <a
+                  href="mailto:info@easeorigin.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@tgfederal.com
-                </Link>
+                  info@easeorigin.com
+                </a>
               </li>
             </ul>
           </div>
@@ -151,13 +161,10 @@ export function Footer() {
             &copy; {new Date().getFullYear()} EaseOrigin. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
-              Cookie Policy
-            </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
           </div>

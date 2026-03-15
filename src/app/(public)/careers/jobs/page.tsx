@@ -38,12 +38,12 @@ function NoJobsFallback() {
       <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-5">
         <FileText className="h-7 w-7 text-slate-400" />
       </div>
-      <h3 className="text-2xl font-bold text-tg-navy mb-3">No Open Positions Right Now</h3>
-      <p className="text-gray-500 max-w-md leading-relaxed mb-7">
-        We are always looking for talented consultants. Submit your resume and we&apos;ll contact you when opportunities arise.
+      <h3 className="text-2xl font-bold text-text-primary mb-3">No Open Positions Right Now</h3>
+      <p className="text-text-tertiary max-w-md leading-relaxed mb-7">
+        We are always looking for talented consultants. Submit your resume and we'll contact you when opportunities arise.
       </p>
       <Link href="/careers/submit-resume">
-        <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-colors cursor-pointer">
+        <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-colors cursor-pointer">
           Submit Resume <ArrowRight className="h-4 w-4" />
         </span>
       </Link>
@@ -89,14 +89,14 @@ export default function JobsListingPage() {
   }, [filters]);
 
   const selectClass =
-    "px-3 py-2.5 pr-8 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-tg-blue/30 focus:border-tg-blue appearance-none cursor-pointer transition-colors hover:border-gray-300";
+    "px-3 py-2.5 pr-8 rounded-lg border border-border-default bg-surface text-sm text-text-secondary focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue appearance-none cursor-pointer transition-colors hover:border-gray-300 dark:hover:border-gray-600";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
 
         {/* ── Hero ── */}
-        <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 overflow-hidden bg-tg-navy text-white">
+        <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 overflow-hidden bg-eo-navy text-white">
           <div className="absolute inset-0 z-0">
             <div
               className="absolute inset-0 opacity-[0.03]"
@@ -106,7 +106,7 @@ export default function JobsListingPage() {
                 backgroundSize: "50px 50px",
               }}
             />
-            <div className="absolute top-0 right-0 w-150 h-150 bg-tg-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-eo-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -120,8 +120,8 @@ export default function JobsListingPage() {
                   ← Back to Careers
                 </span>
               </Link>
-              <div className="flex self-start items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-tg-gold mb-4">
-                <span className="flex h-2 w-2 rounded-full bg-tg-gold animate-pulse" />
+              <div className="flex w-full md:w-1/2 lg:w-1/4 items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-4">
+                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
                 {jobs.length} Open Position{jobs.length !== 1 ? "s" : ""}
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
@@ -135,19 +135,20 @@ export default function JobsListingPage() {
         </section>
 
         {/* ── Search + Filters + Cards ── */}
-        <Section className="bg-slate-50 border-b border-gray-100">
+        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Search + filter bar */}
           <div className="flex flex-col sm:flex-row gap-3 mb-4">
             {/* Search input */}
-            <div className="relative grow">
+            <div className="relative flex-grow">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search jobs by title or keyword…"
                 value={filters.query}
                 onChange={(e) => setFilter("query", e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 bg-white text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-tg-blue/30 focus:border-tg-blue transition-colors"
+                className="w-full pl-11 pr-4 py-3 rounded-lg border border-border-default bg-surface text-sm text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-eo-blue/30 focus:border-eo-blue transition-colors"
               />
             </div>
 
@@ -157,14 +158,14 @@ export default function JobsListingPage() {
               className={cn(
                 "sm:hidden inline-flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-colors",
                 filtersOpen
-                  ? "bg-tg-navy text-white border-tg-navy"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
+                  ? "bg-eo-navy text-white border-eo-navy"
+                  : "bg-surface text-text-secondary border-border-default hover:border-gray-300 dark:hover:border-gray-600"
               )}
             >
               <SlidersHorizontal className="h-4 w-4" />
               Filters
               {hasActiveFilters && (
-                <span className="ml-1 px-1.5 py-0.5 rounded-full bg-tg-gold text-tg-navy text-xs font-bold">
+                <span className="ml-1 px-1.5 py-0.5 rounded-full bg-eo-gold text-eo-navy text-xs font-bold">
                   {[filters.category, filters.workType, filters.location].filter(Boolean).length}
                 </span>
               )}
@@ -237,7 +238,7 @@ export default function JobsListingPage() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="sm:hidden bg-white rounded-xl border border-gray-200 p-4 mb-4 flex flex-col gap-3"
+              className="sm:hidden bg-surface rounded-xl border border-border-default p-4 mb-4 flex flex-col gap-3"
             >
               <div className="relative">
                 <select
@@ -282,9 +283,9 @@ export default function JobsListingPage() {
 
           {/* Results count */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-sm text-gray-500">
-              Showing <span className="font-semibold text-tg-navy">{filtered.length}</span> of{" "}
-              <span className="font-semibold text-tg-navy">{jobs.length}</span> positions
+            <p className="text-sm text-text-tertiary">
+              Showing <span className="font-semibold text-text-primary">{filtered.length}</span> of{" "}
+              <span className="font-semibold text-text-primary">{jobs.length}</span> positions
             </p>
             {hasActiveFilters && (
               <button
@@ -309,20 +310,21 @@ export default function JobsListingPage() {
         </Section>
 
         {/* ── Submit CV CTA ── */}
-        <Section className="bg-white">
+        <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50/30 dark:to-gray-900/30">
+          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-2xl mx-auto text-center"
+            className="relative z-10 max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-2xl font-bold text-tg-navy mb-3">Don&apos;t See the Right Fit?</h2>
-            <p className="text-gray-500 mb-6 leading-relaxed">
-              Submit your resume and we&apos;ll reach out when a matching opportunity becomes available.
+            <h2 className="text-2xl font-bold text-text-primary mb-3">Don't See the Right Fit?</h2>
+            <p className="text-text-tertiary mb-6 leading-relaxed">
+              Submit your resume and we'll reach out when a matching opportunity becomes available.
             </p>
             <Link href="/careers/submit-resume">
-              <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-tg-navy text-white font-bold text-sm hover:bg-tg-blue transition-all shadow-md cursor-pointer">
+              <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-all shadow-md cursor-pointer">
                 Submit Resume <ArrowRight className="h-4 w-4" />
               </span>
             </Link>

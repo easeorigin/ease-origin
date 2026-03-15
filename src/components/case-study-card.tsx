@@ -1,34 +1,71 @@
-"use client";
-
 import { motion } from "framer-motion";
-import { ArrowRight, Cloud, ShieldCheck, BarChart3 } from "lucide-react";
+import { ArrowRight, Cloud, ShieldCheck, BarChart3, BrainCircuit, GitBranch, Layers, ClipboardList, Workflow } from "lucide-react";
 import Link from "next/link";
 import { type CaseStudy } from "@/data/case-studies";
 
 const categoryIcons: Record<string, React.ElementType> = {
   "Cloud Infrastructure": Cloud,
   "Cybersecurity": ShieldCheck,
+  "Cybersecurity & Compliance": ShieldCheck,
   "Data & Analytics": BarChart3,
+  "AI/ML Infrastructure": BrainCircuit,
+  "DevOps & Platform Engineering": GitBranch,
+  "SaaS Solutions": Layers,
+  "Program Management": ClipboardList,
+  "Agile Delivery": Workflow,
+};
+
+const CYBER_COLORS = {
+  bg: "bg-amber-50",
+  border: "border-amber-100",
+  text: "text-amber-700",
+  headerBg: "from-amber-50 to-orange-50",
 };
 
 const categoryColors: Record<string, { bg: string; border: string; text: string; headerBg: string }> = {
   "Cloud Infrastructure": {
     bg: "bg-blue-50",
     border: "border-blue-100",
-    text: "text-tg-blue",
+    text: "text-eo-blue",
     headerBg: "from-blue-50 to-indigo-50",
   },
-  "Cybersecurity": {
-    bg: "bg-amber-50",
-    border: "border-amber-100",
-    text: "text-amber-700",
-    headerBg: "from-amber-50 to-orange-50",
-  },
+  "Cybersecurity": CYBER_COLORS,
+  "Cybersecurity & Compliance": CYBER_COLORS,
   "Data & Analytics": {
     bg: "bg-emerald-50",
     border: "border-emerald-100",
     text: "text-emerald-700",
     headerBg: "from-emerald-50 to-teal-50",
+  },
+  "AI/ML Infrastructure": {
+    bg: "bg-violet-50",
+    border: "border-violet-100",
+    text: "text-violet-700",
+    headerBg: "from-violet-50 to-purple-50",
+  },
+  "DevOps & Platform Engineering": {
+    bg: "bg-indigo-50",
+    border: "border-indigo-100",
+    text: "text-indigo-700",
+    headerBg: "from-indigo-50 to-blue-50",
+  },
+  "SaaS Solutions": {
+    bg: "bg-sky-50",
+    border: "border-sky-100",
+    text: "text-sky-700",
+    headerBg: "from-sky-50 to-cyan-50",
+  },
+  "Program Management": {
+    bg: "bg-purple-50",
+    border: "border-purple-100",
+    text: "text-purple-700",
+    headerBg: "from-purple-50 to-violet-50",
+  },
+  "Agile Delivery": {
+    bg: "bg-red-50",
+    border: "border-red-100",
+    text: "text-red-700",
+    headerBg: "from-red-50 to-rose-50",
   },
 };
 
@@ -47,12 +84,21 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
     >
       {/* Card header */}
-      <div className={`h-36 bg-linear-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-gray-100`}>
-        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 blur-2xl" />
-        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 blur-xl" />
+      <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
+        <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 dark:bg-white/10 blur-2xl" />
+        <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 dark:bg-white/8 blur-xl" />
+
+        {/* Metric callout */}
+        {study.metrics && study.metrics.length > 0 && (
+          <div className="absolute top-4 right-4 text-right z-10">
+            <div className="text-2xl font-extrabold text-text-primary leading-none">{study.metrics[0].value}</div>
+            <div className="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mt-0.5">{study.metrics[0].label}</div>
+          </div>
+        )}
+
         <div className="relative z-10 flex items-center gap-3">
           <div className={`w-9 h-9 rounded-xl ${colors.bg} ${colors.border} border flex items-center justify-center`}>
             <Icon className={`h-4 w-4 ${colors.text}`} />
@@ -64,15 +110,32 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
       </div>
 
       {/* Card body */}
-      <div className="p-8 flex flex-col grow">
-        <h4 className="text-xl font-bold text-tg-navy mb-3 leading-tight group-hover:text-tg-blue transition-colors">
+      <div className="p-8 flex flex-col flex-grow">
+        <h4 className="text-xl font-bold text-text-primary mb-2 leading-tight group-hover:text-eo-blue transition-colors">
           {study.title}
         </h4>
-        <p className="text-gray-600 mb-8 grow leading-relaxed text-sm">
+
+        {/* Sector & client badges */}
+        {(study.sector || study.clientLabel) && (
+          <div className="flex flex-wrap gap-2 mb-3">
+            {study.sector && (
+              <span className="inline-block px-2 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-600 dark:text-slate-300 rounded-full uppercase tracking-wider">
+                {study.sector}
+              </span>
+            )}
+            {study.clientLabel && (
+              <span className="inline-block px-2 py-0.5 bg-slate-50 dark:bg-slate-800 border border-slate-150 dark:border-slate-700 text-[11px] font-medium text-slate-500 dark:text-slate-400 rounded-full truncate max-w-[200px]" title={study.clientLabel}>
+                {study.clientLabel}
+              </span>
+            )}
+          </div>
+        )}
+
+        <p className="text-text-tertiary mb-8 flex-grow leading-relaxed text-sm">
           {study.shortDescription}
         </p>
         <Link href={`/case-studies/${study.slug}`}>
-          <span className="inline-flex items-center text-sm font-bold text-tg-blue hover:text-tg-navy transition-colors cursor-pointer group/link">
+          <span className="inline-flex items-center text-sm font-bold text-eo-blue hover:text-eo-navy transition-colors cursor-pointer group/link">
             Read Case Study
             <ArrowRight className="ml-2 h-4 w-4 transform group-hover/link:translate-x-1 transition-transform" />
           </span>

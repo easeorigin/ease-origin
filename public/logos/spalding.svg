@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <rect x="28" y="14" width="3" height="32" rx="1.5" fill="white" opacity="0.5"/>
+  <text x="106" y="36" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="700" font-size="22" fill="white" letter-spacing="2">SPALDING</text>
+  <line x1="40" y1="46" x2="172" y2="46" stroke="white" stroke-width="0.8" opacity="0.35"/>
+</svg>

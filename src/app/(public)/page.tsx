@@ -8,12 +8,12 @@ import { CTA } from "@/components/sections/cta";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <main>
         <Hero />
         <Credibility />
-        <Solutions />
         <Agencies />
+        <Solutions />
         <CaseStudies />
         <Recruitment />
         <CTA />
