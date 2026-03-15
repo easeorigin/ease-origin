@@ -5,10 +5,13 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +36,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out",
         isScrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 py-3"
+          ? "bg-surface/90 backdrop-blur-md shadow-sm border-b border-border-subtle py-3"
           : "bg-transparent py-5",
       )}
     >
@@ -45,11 +48,11 @@ export function Navbar() {
               href="/"
               className={cn(
                 "font-bold font-mont text-2xl tracking-tight transition-colors flex items-center",
-                isScrolled ? "text-[#202433]" : "text-white",
+                isScrolled ? "text-text-primary" : "text-white",
               )}
             >
             <Image
-            src={isScrolled ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
+            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
             alt="EaseOrigin Logo"
             width={60}
             height={50}
@@ -68,7 +71,7 @@ export function Navbar() {
                     <span
                       className={cn(
                         "text-sm font-medium transition-colors hover:text-eo-gold cursor-pointer",
-                        isScrolled ? "text-gray-600" : "text-gray-200",
+                        isScrolled ? "text-text-secondary" : "text-gray-200",
                       )}
                     >
                       {link.name}
@@ -80,7 +83,7 @@ export function Navbar() {
                     href={link.href}
                     className={cn(
                       "text-sm font-medium transition-colors hover:text-eo-gold",
-                      isScrolled ? "text-gray-600" : "text-gray-200",
+                      isScrolled ? "text-text-secondary" : "text-gray-200",
                     )}
                   >
                     {link.name}
@@ -88,6 +91,7 @@ export function Navbar() {
                 ),
               )}
             </div>
+            <ThemeToggle />
             <Link
               href="/contact"
               className={cn(
@@ -109,7 +113,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "focus:outline-none",
-                isScrolled ? "text-eo-navy" : "text-white",
+                isScrolled ? "text-text-primary" : "text-white",
               )}
             >
               {isMobileMenuOpen ? (
@@ -125,7 +129,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute w-full bg-white border-b border-gray-100 shadow-xl transition-all duration-300 ease-in-out origin-top",
+          "md:hidden absolute w-full bg-surface border-b border-border-subtle shadow-xl transition-all duration-300 ease-in-out origin-top",
           isMobileMenuOpen
             ? "opacity-100 scale-y-100"
             : "opacity-0 scale-y-0 pointer-events-none",
@@ -137,7 +141,7 @@ export function Navbar() {
               <Link key={link.name} href={link.href}>
                 <span
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-eo-navy hover:bg-gray-50 rounded-md cursor-pointer"
+                  className="block px-3 py-3 text-base font-medium text-text-secondary hover:text-text-primary hover:bg-surface-muted rounded-md cursor-pointer"
                 >
                   {link.name}
                 </span>
@@ -147,7 +151,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-eo-navy hover:bg-gray-50 rounded-md"
+                className="block px-3 py-3 text-base font-medium text-text-secondary hover:text-text-primary hover:bg-surface-muted rounded-md"
               >
                 {link.name}
               </a>
@@ -161,6 +165,10 @@ export function Navbar() {
             >
               Partner With Us
             </Link>
+          </div>
+          <div className="pt-2 flex items-center gap-2 px-3">
+            <ThemeToggle />
+            <span className="text-sm text-text-muted">Toggle theme</span>
           </div>
         </div>
       </div>
