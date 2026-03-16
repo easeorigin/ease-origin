@@ -49,8 +49,8 @@ export function PageHero({
       />
 
       {/* Glow orbs */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-eo-gold rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-175 h-175 bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-125 h-125 bg-eo-gold rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
 
       {/* Abstract circuit lines */}
       <svg

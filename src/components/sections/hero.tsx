@@ -79,7 +79,7 @@ export function Hero() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-eo-navy border border-eo-gold/50 rounded-full flex items-center justify-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
                   <div className="w-24 h-24 bg-linear-to-br from-eo-blue to-eo-navy rounded-full border border-white/10 flex items-center justify-center">
                     <Image 
-                      src={"/logo/main-logo-2.png"}
+                      src={"/logo/main-logo.png"}
                       alt="EaseOrigin Logo"
                       width={80}
                       height={80}

@@ -247,7 +247,7 @@ export default function CapabilityStatementPage() {
           {/* Company Overview */}
           <div className="py-6 border-b border-border-default">
             <h2 className="text-lg font-bold text-text-primary mb-3 flex items-center gap-2">
-              <Building2 className="h-5 w-5 text-eo-blue flex-shrink-0" />
+              <Building2 className="h-5 w-5 text-eo-blue shrink-0" />
               Company Overview
             </h2>
             <p className="text-text-tertiary leading-relaxed text-sm">
@@ -263,7 +263,7 @@ export default function CapabilityStatementPage() {
           {/* Core Competencies */}
           <div className="py-6 border-b border-border-default">
             <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-              <Star className="h-5 w-5 text-eo-blue flex-shrink-0" />
+              <Star className="h-5 w-5 text-eo-blue shrink-0" />
               Core Competencies
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 print:grid-cols-3 print:gap-3">
@@ -275,7 +275,7 @@ export default function CapabilityStatementPage() {
                     className="border border-border-default rounded-lg p-4 print:p-3 hover:border-eo-blue/30 transition-colors"
                   >
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 rounded-md bg-eo-navy/5 flex items-center justify-center flex-shrink-0 print:w-6 print:h-6">
+                      <div className="w-8 h-8 rounded-md bg-eo-navy/5 flex items-center justify-center shrink-0 print:w-6 print:h-6">
                         <Icon className="h-4 w-4 text-eo-blue print:h-3 print:w-3" />
                       </div>
                       <h3 className="text-sm font-bold text-text-primary">{comp.title}</h3>
@@ -302,16 +302,16 @@ export default function CapabilityStatementPage() {
           {/* Contract Vehicles */}
           <div className="py-6 border-b border-border-default">
             <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-              <Award className="h-5 w-5 text-eo-blue flex-shrink-0" />
+              <Award className="h-5 w-5 text-eo-blue shrink-0" />
               Contract Vehicles
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 print:grid-cols-2 print:gap-2">
               {contractVehicles.map((cv) => (
                 <div
                   key={cv.name}
-                  className="flex items-center gap-3 bg-eo-navy/[0.03] border border-border-default rounded-lg px-4 py-3 print:px-3 print:py-2"
+                  className="flex items-center gap-3 bg-eo-navy/3 border border-border-default rounded-lg px-4 py-3 print:px-3 print:py-2"
                 >
-                  <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0" />
                   <div>
                     <p className="text-sm font-bold text-text-primary">{cv.name}</p>
                     <p className="text-xs text-text-tertiary">{cv.scope}</p>
@@ -324,7 +324,7 @@ export default function CapabilityStatementPage() {
           {/* Company Details */}
           <div className="py-6">
             <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-              <Building2 className="h-5 w-5 text-eo-blue flex-shrink-0" />
+              <Building2 className="h-5 w-5 text-eo-blue shrink-0" />
               Company Details
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 print:grid-cols-4 print:gap-3">
@@ -336,7 +336,7 @@ export default function CapabilityStatementPage() {
               ].map((detail) => (
                 <div
                   key={detail.label}
-                  className="bg-eo-navy/[0.03] border border-border-default rounded-lg p-4 print:p-3 text-center"
+                  className="bg-eo-navy/3 border border-border-default rounded-lg p-4 print:p-3 text-center"
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                     {detail.label}
@@ -373,7 +373,7 @@ export default function CapabilityStatementPage() {
             {/* Past Performance */}
             <div className="py-6 border-b border-border-default">
               <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-                <Award className="h-5 w-5 text-eo-blue flex-shrink-0" />
+                <Award className="h-5 w-5 text-eo-blue shrink-0" />
                 Past Performance
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-2 print:gap-3">
@@ -409,13 +409,13 @@ export default function CapabilityStatementPage() {
             {/* Differentiators */}
             <div className="py-6 border-b border-border-default">
               <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-                <Star className="h-5 w-5 text-eo-blue flex-shrink-0" />
+                <Star className="h-5 w-5 text-eo-blue shrink-0" />
                 Differentiators
               </h2>
               <div className="space-y-2.5">
                 {differentiators.map((diff, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
                     <p className="text-sm text-text-tertiary leading-relaxed">
                       {diff}
                     </p>
@@ -430,22 +430,22 @@ export default function CapabilityStatementPage() {
                 <h2 className="text-lg font-bold text-white mb-4">Contact</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 print:grid-cols-4 print:gap-3">
                   <div className="flex items-start gap-3">
-                    <MapPin className="h-4 w-4 text-eo-gold flex-shrink-0 mt-0.5" />
+                    <MapPin className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
                     <div className="text-sm text-gray-300">
                       <p>211 E Avenue G, 306</p>
                       <p>Midlothian, TX 76065</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-eo-gold flex-shrink-0" />
+                    <Phone className="h-4 w-4 text-eo-gold shrink-0" />
                     <span className="text-sm text-gray-300">(470) 464-5199</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-eo-gold flex-shrink-0" />
+                    <Mail className="h-4 w-4 text-eo-gold shrink-0" />
                     <span className="text-sm text-gray-300">info@easeorigin.com</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Globe className="h-4 w-4 text-eo-gold flex-shrink-0" />
+                    <Globe className="h-4 w-4 text-eo-gold shrink-0" />
                     <span className="text-sm text-gray-300">easeorigin.com</span>
                   </div>
                 </div>
