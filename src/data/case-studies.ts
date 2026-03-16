@@ -276,18 +276,18 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "dod-oracle-cloud",
-    title: "DoD Cloud Infrastructure on Oracle Cloud",
+    title: "DoW Cloud Infrastructure on Oracle Cloud",
     category: "Cloud Infrastructure",
     shortDescription:
-      "Deployed and managed secure Oracle Cloud Infrastructure for Department of Defense workloads with IL5 compliance and automated provisioning.",
+      "Deployed and managed secure Oracle Cloud Infrastructure for Department of War workloads with IL5 compliance and automated provisioning.",
     heroDescription:
-      "Delivering secure, mission-critical cloud infrastructure for DoD programs on Oracle Cloud with Impact Level 5 compliance.",
+      "Delivering secure, mission-critical cloud infrastructure for DoW programs on Oracle Cloud with Impact Level 5 compliance.",
     overview:
-      "EaseOrigin supported the deployment and ongoing management of Oracle Cloud Infrastructure (OCI) environments for U.S. Air Force and Department of Defense programs. Working under the SAIC Cloud One contract vehicle, the engagement required standing up secure cloud landing zones, implementing DoD-compliant identity and access controls, and automating infrastructure provisioning for mission-critical workloads operating at Impact Level 5.",
+      "EaseOrigin supported the deployment and ongoing management of Oracle Cloud Infrastructure (OCI) environments for U.S. Air Force and Department of War programs. Working under the SAIC Cloud One contract vehicle, the engagement required standing up secure cloud landing zones, implementing DoW-compliant identity and access controls, and automating infrastructure provisioning for mission-critical workloads operating at Impact Level 5.",
     challenge:
-      "DoD programs required cloud environments that met stringent Impact Level 5 security requirements while enabling rapid provisioning for development and operational teams. Existing manual provisioning processes introduced delays and configuration drift, and the multi-tenant environment demanded strict network segmentation and audit controls to meet DISA STIG compliance.",
+      "DoW programs required cloud environments that met stringent Impact Level 5 security requirements while enabling rapid provisioning for development and operational teams. Existing manual provisioning processes introduced delays and configuration drift, and the multi-tenant environment demanded strict network segmentation and audit controls to meet DISA STIG compliance.",
     solution:
-      "EaseOrigin designed and implemented automated OCI landing zones with compartment-based isolation, identity federation, and network segmentation aligned with DoD reference architectures. We built Terraform-based provisioning pipelines with built-in compliance checks, established centralized logging and monitoring for security event correlation, and implemented automated STIG compliance scanning across all deployed resources.",
+      "EaseOrigin designed and implemented automated OCI landing zones with compartment-based isolation, identity federation, and network segmentation aligned with DoW reference architectures. We built Terraform-based provisioning pipelines with built-in compliance checks, established centralized logging and monitoring for security event correlation, and implemented automated STIG compliance scanning across all deployed resources.",
     results: [
       "Secure OCI landing zones deployed at Impact Level 5",
       "Automated infrastructure provisioning reducing deployment time",
@@ -299,7 +299,7 @@ export const caseStudies: CaseStudy[] = [
     technologies: ["Oracle Cloud (OCI)", "Terraform", "Ansible", "DISA STIGs", "Splunk", "Docker", "Linux"],
     accentColor: "#1E3A5F",
     sector: "Defense",
-    clientLabel: "U.S. Air Force / DoD (via Ikeda Innovations)",
+    clientLabel: "U.S. Air Force / DoW (via Ikeda Innovations)",
     contractVehicle: "SAIC Cloud One",
     metrics: [
       { value: "IL5", label: "Security Compliance" },
@@ -491,7 +491,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     duration: "12 months",
     easeOriginRole: "Release Train Engineering & Agile Delivery",
-    complianceFrameworks: ["DoD Software Acquisition Pathway", "TechFAR"],
+    complianceFrameworks: ["DoW Software Acquisition Pathway", "TechFAR"],
     featured: true,
   },
 ];

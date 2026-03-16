@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
-  <text x="100" y="36" text-anchor="middle" font-family="system-ui, -apple-system, Arial, sans-serif" font-weight="700" font-size="22" fill="white" letter-spacing="2">STELLANTIS</text>
-  <line x1="30" y1="45" x2="72" y2="45" stroke="white" stroke-width="1" opacity="0.4"/>
-  <line x1="128" y1="45" x2="170" y2="45" stroke="white" stroke-width="1" opacity="0.4"/>
-  <polygon points="100,48 97,54 103,54" fill="white" opacity="0.45"/>
-</svg>

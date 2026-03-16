@@ -330,7 +330,7 @@ export const solutions: Solution[] = [
       "Power BI",
     ],
     complianceFrameworks: [
-      "DoD Software Acquisition Pathway",
+      "DoW Software Acquisition Pathway",
       "TechFAR",
       "cATO",
     ],

@@ -13,10 +13,10 @@ export interface IndustryPartner {
 
 export const governmentAgencies: GovernmentAgency[] = [
   {
-    id: "dod",
-    name: "Department of Defense",
-    abbr: "DoD",
-    logo: "/logos/dod.svg",
+    id: "dow",
+    name: "Department of War",
+    abbr: "DoW",
+    logo: "/logos/dow.svg",
   },
   {
     id: "dhs",
@@ -28,13 +28,13 @@ export const governmentAgencies: GovernmentAgency[] = [
     id: "nih",
     name: "National Institutes of Health",
     abbr: "NIH",
-    logo: "/logos/nih.svg",
+    logo: "/logos/nih.png",
   },
   {
     id: "gsa",
     name: "General Services Administration",
     abbr: "GSA",
-    logo: "/logos/gsa.svg",
+    logo: "/logos/gsa.png",
   },
   {
     id: "navy",
@@ -57,21 +57,21 @@ export const governmentAgencies: GovernmentAgency[] = [
 ];
 
 export const industryPartners: IndustryPartner[] = [
-  { id: "capital-one", name: "Capital One", logo: "/logos/capital-one.svg" },
-  { id: "stellantis", name: "Stellantis", logo: "/logos/stellantis.svg" },
+  { id: "66-degrees", name: "66 Degrees", logo: "/logos/66-degrees.jpeg" },
   { id: "aws", name: "Amazon Web Services", logo: "/logos/aws.svg" },
   { id: "att", name: "AT&T", logo: "/logos/att.svg" },
-  { id: "booz-allen", name: "Booz Allen Hamilton", logo: "/logos/booz-allen.svg" },
-  { id: "spalding", name: "Spalding Consulting", logo: "/logos/spalding.svg" },
-  { id: "saalex", name: "Saalex", logo: "/logos/saalex.svg" },
-  { id: "steampunk", name: "SteamPunk", logo: "/logos/steampunk.svg" },
-  { id: "tg-federal", name: "TG Federal", logo: "/logos/tg-federal.svg" },
-  { id: "ikeda", name: "Ikeda Innovations", logo: "/logos/ikeda.svg" },
-  { id: "saic", name: "SAIC", logo: "/logos/saic.svg" },
-  { id: "leidos", name: "Leidos", logo: "/logos/leidos.svg" },
-  { id: "black-canyon", name: "Black Canyon Consulting", logo: "/logos/black-canyon.svg" },
-  { id: "datassential", name: "Datassential", logo: "/logos/datassential.svg" },
+  { id: "black-canyon", name: "Black Canyon Consulting", logo: "/logos/black-canyon.jpeg" },
+  { id: "booz-allen", name: "Booz Allen Hamilton", logo: "/logos/booz-allen.png" },
+  { id: "capital-one", name: "Capital One", logo: "/logos/capital-one.png" },
+  { id: "datassential", name: "Datassential", logo: "/logos/datassential.png" },
   { id: "google", name: "Google", logo: "/logos/google.svg" },
-  { id: "66-degrees", name: "66 Degrees", logo: "/logos/66-degrees.svg" },
-  { id: "northeastern", name: "Northeastern University", logo: "/logos/northeastern.svg" },
+  { id: "ikeda", name: "Ikeda Innovations", logo: "/logos/ikeda.png" },
+  { id: "leidos", name: "Leidos", logo: "/logos/leidos.png" },
+  { id: "northeastern", name: "Northeastern University", logo: "/logos/northeastern.jpg" },
+  { id: "saalex", name: "Saalex", logo: "/logos/saalex.png" },
+  { id: "saic", name: "SAIC", logo: "/logos/saic.jpeg" },
+  { id: "spalding", name: "Spalding Consulting", logo: "/logos/spalding.jpg" },
+  { id: "steampunk", name: "SteamPunk", logo: "/logos/steampunk.png" },
+  { id: "stellantis", name: "Stellantis", logo: "/logos/stellantis.jpg" },
+  { id: "tg-federal", name: "TG Federal", logo: "/logos/tg-federal.svg" },
 ];
