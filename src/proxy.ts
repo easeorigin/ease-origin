@@ -12,7 +12,7 @@ export default function proxy(request: NextRequest) {
     "img-src 'self' data: blob: https://logo.wine https://upload.wikimedia.org https://logo.clearbit.com https://*.vercel-insights.com https:",
     "font-src 'self' https://fonts.gstatic.com",
     "connect-src 'self' https://vercel.live https://va.vercel-scripts.com https://vitals.vercel-insights.com",
-    "media-src 'none'",
+    "media-src 'self'",
     "frame-src https://www.google.com https://vercel.live",
     "frame-ancestors 'none'",
     "object-src 'none'",
