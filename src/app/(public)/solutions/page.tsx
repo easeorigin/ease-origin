@@ -2,14 +2,13 @@
 
 import { motion } from "framer-motion";
 import {
-  Cloud, Server, Shield, Database, ArrowRight, CheckCircle2,
+  Cloud, Server, Shield, Database, ArrowRight,
   ChevronRight, Cpu, Bot, ClipboardList, Workflow, FileCheck
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { CTASection } from "@/components/shared/cta-section";
 import { PageHero } from "@/components/shared/page-hero";
 import { fadeInUpWhileVisible } from "@/lib/animations";
-import Image from "next/image";
 import Link from "next/link";
 import { GridPattern } from "@/components/ui/grid-pattern";
 
@@ -175,8 +174,6 @@ const advisorySolutions = [
   },
 ];
 
-const allCapabilities = [...technologySolutions, ...advisorySolutions];
-
 // Agency data imported from centralized source
 import { governmentAgencies } from "@/data/agencies";
 
@@ -269,116 +266,6 @@ function OverviewGrid() {
         </div>
       </div>
     </Section>
-  );
-}
-
-function CapabilityDetails() {
-  return (
-    <div className="bg-surface">
-      {allCapabilities.map((cap, i) => {
-        const Icon = cap.icon;
-        const isEven = i % 2 === 0;
-
-        return (
-          <section
-            key={cap.id}
-            id={cap.id}
-            className={`relative overflow-hidden py-20 md:py-28 border-b border-border-subtle ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white dark:from-gray-900/50 dark:via-gray-900/40 dark:to-gray-900"}`}
-          >
-            {/* Glow orb per section */}
-            {isEven ? (
-              <div className="absolute -top-20 -left-20 w-80 h-80 bg-eo-gold/[0.06] rounded-full blur-[100px] pointer-events-none" />
-            ) : (
-              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-200/20 rounded-full blur-[100px] pointer-events-none" />
-            )}
-            {/* Subtle grid accent on first capability */}
-            {i === 0 && (
-              <>
-                <GridPattern
-                  cellSize={52}
-                  lineColor="rgba(30, 58, 95, 0.04)"
-                  glowColor="rgba(212, 175, 55, 0.03)"
-                />
-                <div className="absolute inset-0 bg-white/96 dark:bg-gray-900/96 pointer-events-none" />
-              </>
-            )}
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? "lg:[&>*:first-child]:order-2" : ""}`}>
-
-                {/* Text */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-eo-blue" />
-                    </div>
-                    <span className="text-sm font-semibold uppercase tracking-widest text-eo-gold">Capability</span>
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-5">{cap.title}</h3>
-                  <p className="text-lg text-text-tertiary leading-relaxed mb-8">{cap.shortDesc}</p>
-
-                  <div className="space-y-3">
-                    {cap.services.map((service, j) => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: j * 0.06 }}
-                        className="flex items-start gap-3"
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-eo-blue flex-shrink-0 mt-0.5" />
-                        <span className="text-text-secondary">{service}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  <Link
-                    href={`/solutions/${cap.slug}`}
-                    className="inline-flex items-center gap-2 mt-10 px-7 py-3.5 rounded-md bg-eo-navy text-white font-semibold hover:bg-eo-blue transition-colors shadow-md"
-                  >
-                    Explore {cap.title} <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </motion.div>
-
-                {/* Image */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-                    <Image
-                      src={`/${cap.image}`}
-                      alt={cap.imageAlt}
-                      fill
-                      className="object-cover"
-                    />
-                    {/* Subtle overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-eo-navy/30 to-transparent" />
-                    {/* Floating label badge */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
-                      <Icon className="h-4 w-4 text-eo-blue" />
-                      <span className="text-sm font-bold text-eo-navy">{cap.title}</span>
-                    </div>
-                  </div>
-                  {/* Decorative offset frame */}
-                  <div className={`absolute -z-10 w-full h-full rounded-2xl border-2 border-eo-gold/20 ${isEven ? "-bottom-4 -right-4" : "-bottom-4 -left-4"}`} />
-                </motion.div>
-
-              </div>
-            </div>
-          </section>
-        );
-      })}
-    </div>
   );
 }
 
@@ -475,7 +362,6 @@ export default function SolutionsPage() {
       <main>
         <SolutionsHero />
         <OverviewGrid />
-        <CapabilityDetails />
         <ContractVehiclesCallout />
         <AgenciesGrid />
         <SolutionsCTA />
