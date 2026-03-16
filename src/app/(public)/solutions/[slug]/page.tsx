@@ -262,7 +262,8 @@ export default async function SolutionDetailPage({
           <div className="absolute inset-0 z-0">
             <Image
               src={`/${solution.image}`}
-              alt=""
+              alt={`${solution.title} background`}
+              aria-hidden="true"
               fill
               className="object-cover opacity-[0.12]"
               priority

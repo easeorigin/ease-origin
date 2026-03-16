@@ -23,7 +23,8 @@ export function CaseStudies() {
       <div className="absolute inset-0 opacity-[1] pointer-events-none">
         <Image
           src={"/images/capitol-building.png"}
-          alt=""
+          alt="U.S. Capitol building"
+          aria-hidden="true"
           fill
           className="w-full h-full object-cover"
         />

@@ -74,7 +74,8 @@ export function Solutions() {
       <div className="absolute inset-0 opacity-[0.9] pointer-events-none">
         <Image
           src={"/images/federal-building-columns.png"}
-          alt=""
+          alt="Federal building columns"
+          aria-hidden="true"
           fill
           className="w-full h-full object-cover"
         />

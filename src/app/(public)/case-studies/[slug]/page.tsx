@@ -103,7 +103,8 @@ export default async function CaseStudyDetail({
               <>
                 <Image
                   src={categoryHeroImages[study.category]}
-                  alt=""
+                  alt={`${study.category} background`}
+                  aria-hidden="true"
                   fill
                   className="object-cover opacity-[0.12]"
                   priority

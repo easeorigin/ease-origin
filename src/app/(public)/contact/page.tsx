@@ -276,7 +276,7 @@ function ContactFormSection() {
                         aria-describedby={errors.name && touched.name ? "name-error" : undefined}
                       />
                       {errors.name && touched.name && (
-                        <p id="name-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <p id="name-error" role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" /> {errors.name}
                         </p>
                       )}
@@ -296,7 +296,7 @@ function ContactFormSection() {
                         aria-describedby={errors.email && touched.email ? "email-error" : undefined}
                       />
                       {errors.email && touched.email && (
-                        <p id="email-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <p id="email-error" role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" /> {errors.email}
                         </p>
                       )}
@@ -318,7 +318,7 @@ function ContactFormSection() {
                       className={fieldClass("company")}
                     />
                     {errors.company && touched.company && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.company}
                       </p>
                     )}
@@ -339,7 +339,7 @@ function ContactFormSection() {
                       className={fieldClass("subject")}
                     />
                     {errors.subject && touched.subject && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.subject}
                       </p>
                     )}
@@ -360,14 +360,14 @@ function ContactFormSection() {
                       className={cn(fieldClass("message"), "resize-none")}
                     />
                     {errors.message && touched.message && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.message}
                       </p>
                     )}
                   </div>
 
                   {serverError && (
-                    <div className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 border border-red-200">
+                    <div role="alert" className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 border border-red-200">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                       <p className="text-sm text-red-700">{serverError}</p>
                     </div>
