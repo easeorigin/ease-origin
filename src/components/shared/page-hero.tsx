@@ -53,7 +53,7 @@ export function PageHero({
             className="object-cover opacity-[0.12]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
+          <div className="absolute inset-0 bg-linear-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
         </div>
       )}
 
@@ -92,14 +92,14 @@ export function PageHero({
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl"
+          className="max-w-3xl flex flex-col"
         >
           {/* Optional children rendered above the badge (e.g. back links) */}
           {children}
 
           {/* Badge pill */}
           {badge && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
+            <div className="self-start items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
               {badgeIcon}
               {badge}
             </div>

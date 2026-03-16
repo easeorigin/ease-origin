@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
@@ -104,7 +105,7 @@ function NewsletterCTA() {
           </div>
 
           {/* Email signup form (UI only) */}
-          <div className="w-full lg:w-auto flex-shrink-0">
+          <div className="w-full lg:w-auto shrink-0">
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
               <input
                 type="email"
@@ -170,7 +171,7 @@ function BlogCard({
             className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-[1.05]"
           />
           {/* Gradient overlay that intensifies on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-eo-navy/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-linear-to-t from-eo-navy/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute top-3 left-3">
             <span
               className="px-3 py-1 text-xs font-semibold rounded-full text-white backdrop-blur-sm"
@@ -353,7 +354,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
       aria-roledescription="carousel"
     >
       <div
-        className="relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px]"
+        className="relative rounded-2xl overflow-hidden min-h-100 sm:min-h-115"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleFocus}
@@ -386,7 +387,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
                   priority
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-eo-navy via-eo-navy/70 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-eo-navy via-eo-navy/70 to-transparent" />
 
                 {/* Content positioned over image */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12 z-10">
@@ -619,7 +620,7 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
               key={tab}
               onClick={() => handleFilterChange(tab)}
               className={cn(
-                "flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200",
+                "shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200",
                 activeFilter === tab
                   ? "bg-eo-gold text-white border-eo-gold shadow-sm shadow-eo-gold/20"
                   : "bg-surface text-text-secondary border-border-subtle hover:border-eo-blue hover:text-eo-blue"
@@ -628,7 +629,7 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
               {tab}
               <span
                 className={cn(
-                  "text-xs px-1.5 py-0.5 rounded-full min-w-[1.25rem] text-center",
+                  "text-xs px-1.5 py-0.5 rounded-full min-w-5 text-center",
                   activeFilter === tab
                     ? "bg-white/20 text-white"
                     : "bg-surface-muted text-text-muted"

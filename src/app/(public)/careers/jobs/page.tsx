@@ -40,7 +40,7 @@ function NoJobsFallback() {
       </div>
       <h3 className="text-2xl font-bold text-text-primary mb-3">No Open Positions Right Now</h3>
       <p className="text-text-tertiary max-w-md leading-relaxed mb-7">
-        We are always looking for talented consultants. Submit your resume and we'll contact you when opportunities arise.
+        We are always looking for talented consultants. Submit your resume and we&apos;ll contact you when opportunities arise.
       </p>
       <Link href="/careers/submit-resume">
         <span className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-colors cursor-pointer">
@@ -108,13 +108,13 @@ export default function JobsListingPage() {
         </PageHero>
 
         {/* ── Search + Filters + Cards ── */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-linear-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Search + filter bar */}
           <div className="flex flex-col sm:flex-row gap-3 mb-4">
             {/* Search input */}
-            <div className="relative flex-grow">
+            <div className="relative grow">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
@@ -284,15 +284,15 @@ export default function JobsListingPage() {
         </Section>
 
         {/* ── Submit CV CTA ── */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50/30 dark:to-gray-900/30">
+        <Section className="relative overflow-hidden bg-linear-to-br from-white dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50/30 dark:to-gray-900/30">
           <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <motion.div
             {...fadeInUpWhileVisible}
             className="relative z-10 max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-2xl font-bold text-text-primary mb-3">Don't See the Right Fit?</h2>
+            <h2 className="text-2xl font-bold text-text-primary mb-3">Don&apos;t See the Right Fit?</h2>
             <p className="text-text-tertiary mb-6 leading-relaxed">
-              Submit your resume and we'll reach out when a matching opportunity becomes available.
+              Submit your resume and we&apos;ll reach out when a matching opportunity becomes available.
             </p>
             <Link href="/careers/submit-resume">
               <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-all shadow-md cursor-pointer">

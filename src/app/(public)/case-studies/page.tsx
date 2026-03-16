@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { caseStudies, type Sector } from "@/data/case-studies";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { CTASection } from "@/components/shared/cta-section";
 import { PageHero } from "@/components/shared/page-hero";
 import { fadeInUpWhileVisible } from "@/lib/animations";
@@ -28,7 +26,7 @@ function CaseStudiesGrid() {
   }, [activeSector]);
 
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-border-subtle">
       {/* Decorative glow orbs */}
       <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />

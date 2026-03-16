@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
@@ -11,11 +10,11 @@ import { WordReveal } from "@/components/word-reveal";
 import { NetworkParticles } from "@/components/ui/network-particles";
 
 export function CaseStudies() {
-  const featured = useMemo(() => {
-    const pool = caseStudies.filter((cs) => cs.featured);
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 3);
-  }, []);
+  const [featured] = useState(() => {
+  const pool = caseStudies.filter((cs) => cs.featured);
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 3);
+});
 
   return (
     <Section id="case-studies" className="relative overflow-hidden">

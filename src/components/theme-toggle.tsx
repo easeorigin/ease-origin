@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+
 "use client";
 
 import { useTheme } from "next-themes";
@@ -27,9 +29,9 @@ export function ThemeToggle() {
       className="relative w-9 h-9 rounded-lg flex items-center justify-center transition-colors hover:bg-white/10"
     >
       {theme === "dark" ? (
-        <Sun className="h-[18px] w-[18px] text-eo-gold" />
+        <Sun className="h-4.5 w-4.5 text-eo-gold" />
       ) : (
-        <Moon className="h-[18px] w-[18px] text-current" />
+        <Moon className="h-4.5 w-4.5 text-current" />
       )}
     </button>
   );

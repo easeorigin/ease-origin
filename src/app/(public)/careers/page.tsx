@@ -62,7 +62,7 @@ function WhyWorkWithUs() {
         <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Why EaseOrigin</p>
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Why Work With Us</h2>
         <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
-          We believe great technology starts with great people. Here's what makes EaseOrigin different.
+          We believe great technology starts with great people. Here&apos;s what makes EaseOrigin different.
         </p>
       </motion.div>
 

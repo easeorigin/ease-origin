@@ -29,7 +29,7 @@ function WhoWeAre() {
   ];
 
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 border-b border-border-subtle">
       {/* Subtle glow */}
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow orb */}
@@ -133,7 +133,7 @@ const timelineItems = [
 
 function Timeline() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
       {/* Blue glow orb */}
       <div className="absolute -top-10 -right-20 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <motion.div
@@ -147,7 +147,7 @@ function Timeline() {
       {/* Vertical timeline */}
       <div className="relative max-w-3xl mx-auto">
         {/* Vertical line */}
-        <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-eo-blue/30 via-eo-blue/60 to-eo-blue/10 -translate-x-1/2" />
+        <div className="absolute left-7 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-eo-blue/30 via-eo-blue/60 to-eo-blue/10 -translate-x-1/2" />
 
         <div className="flex flex-col gap-0">
           {timelineItems.map((item, i) => {
@@ -173,7 +173,7 @@ function Timeline() {
                 </div>
 
                 {/* Center dot */}
-                <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eo-navy border-4 border-white shadow-md flex items-center justify-center flex-shrink-0 z-10 top-6 md:top-auto">
+                <div className="absolute left-7 md:left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eo-navy border-4 border-white shadow-md flex items-center justify-center shrink-0 z-10 top-6 md:top-auto">
                   <div className="w-2 h-2 rounded-full bg-eo-gold" />
                 </div>
 
@@ -226,7 +226,7 @@ function LeadershipPhoto({ member }: { member: TeamMember }) {
 
   if (!member.photo || imgError) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-eo-navy to-eo-blue">
+      <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-eo-navy to-eo-blue">
         <span className="text-4xl sm:text-5xl font-extrabold text-eo-gold select-none">
           {member.initials}
         </span>
@@ -247,7 +247,7 @@ function LeadershipPhoto({ member }: { member: TeamMember }) {
 
 function Leadership() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-slate-50/40 dark:via-gray-900/40 to-blue-50/20 dark:to-gray-800/20 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-white dark:from-gray-900 via-slate-50/40 dark:via-gray-900/40 to-blue-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Subtle background accent */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-blue-50/40 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow bottom-left */}
@@ -275,7 +275,7 @@ function Leadership() {
           >
             <div className="flex flex-col md:flex-row">
               {/* Photo / Avatar */}
-              <div className="relative w-full md:w-72 lg:w-80 h-72 md:h-auto flex-shrink-0">
+              <div className="relative w-full md:w-72 lg:w-80 h-72 md:h-auto shrink-0">
                 <LeadershipPhoto member={member} />
               </div>
 
@@ -305,7 +305,7 @@ function Leadership() {
                         key={cert}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy dark:text-blue-200"
                       >
-                        <Award className="h-3 w-3 text-eo-gold flex-shrink-0" />
+                        <Award className="h-3 w-3 text-eo-gold shrink-0" />
                         {cert}
                       </span>
                     ))}
@@ -339,6 +339,8 @@ function Leadership() {
     </Section>
   );
 }
+
+console.log("Leadership", Leadership);
 
 // ─── Our Expertise ───────────────────────────────────────────────────────────
 
@@ -379,7 +381,7 @@ const expertiseCards = [
 
 function OurExpertise() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Decorative corner glow */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-100/20 rounded-full blur-[80px] pointer-events-none" />
       {/* Dot pattern */}
@@ -462,7 +464,7 @@ const values = [
 
 function OurValues() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-amber-50/15 dark:to-gray-800/15 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-amber-50/15 dark:to-gray-800/15 border-b border-border-subtle">
       {/* Accent glow */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-amber-100/15 rounded-full blur-[80px] pointer-events-none" />
       {/* Blue glow bottom-right */}
@@ -519,7 +521,7 @@ const impactPoints = [
 
 function Impact() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/25 dark:via-gray-900/25 to-white dark:to-gray-900 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/25 dark:via-gray-900/25 to-white dark:to-gray-900 border-b border-border-subtle">
       {/* Subtle glow */}
       <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -570,7 +572,7 @@ function Impact() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="flex items-center gap-3 bg-surface-muted rounded-xl border border-border-subtle px-5 py-4"
             >
-              <CheckCircle2 className="h-5 w-5 text-eo-gold flex-shrink-0" />
+              <CheckCircle2 className="h-5 w-5 text-eo-gold shrink-0" />
               <span className="text-sm font-medium text-text-primary">{point}</span>
             </motion.div>
           ))}

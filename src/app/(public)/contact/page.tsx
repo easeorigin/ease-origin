@@ -136,7 +136,7 @@ function ContactFormSection() {
 
   return (
     <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900 pointer-events-none" />
       <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
 
@@ -153,14 +153,14 @@ function ContactFormSection() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-3">Contact Information</h2>
             <p className="text-text-tertiary leading-relaxed">
-              Reach out directly or complete the form and we'll connect you with the right team.
+              Reach out directly or complete the form and we&apos;ll connect you with the right team.
             </p>
           </div>
 
           <div className="flex flex-col gap-6">
             {contactItems.map(({ icon: Icon, label, lines }, i) => (
               <div key={i} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
+                <div className="shrink-0 w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-eo-blue" />
                 </div>
                 <div>
@@ -183,7 +183,7 @@ function ContactFormSection() {
               "Technology Consultants",
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2.5 mb-2.5">
-                <CheckCircle2 className="h-4 w-4 text-eo-gold flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0" />
                 <span className="text-sm text-gray-300">{item}</span>
               </div>
             ))}
@@ -331,7 +331,7 @@ function ContactFormSection() {
 
                   {serverError && (
                     <div role="alert" className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800">
-                      <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
                       <p className="text-sm text-red-700 dark:text-red-300">{serverError}</p>
                     </div>
                   )}
@@ -368,7 +368,7 @@ function ContactFormSection() {
 
 function MapSection() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white/60 to-slate-50/80 dark:from-gray-900 dark:via-gray-900/60 dark:to-gray-900/80 border-b border-border-subtle" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
+    <Section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white/60 to-slate-50/80 dark:from-gray-900 dark:via-gray-900/60 dark:to-gray-900/80 border-b border-border-subtle" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -402,8 +402,8 @@ function MapSection() {
 
 function ConsultantCTA() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 border-b border-border-subtle">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 pointer-events-none" />
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 border-b border-border-subtle">
+      <div className="absolute inset-0 bg-linear-to-br from-slate-50 via-blue-50/20 to-white dark:from-gray-900 dark:via-gray-900/20 dark:to-gray-900 pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -413,15 +413,15 @@ function ConsultantCTA() {
         className="relative z-10 max-w-4xl mx-auto"
       >
         <div className="bg-eo-navy rounded-3xl p-10 md:p-14 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-          <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-eo-blue/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-linear(rgba(255,255,255,.5) 1px, transparent 1px), linear-linear(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+          <div className="absolute top-0 right-0 w-87.5 h-87.5 bg-eo-blue/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-start md:items-center">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-eo-gold/10 border border-eo-gold/20 flex items-center justify-center">
+            <div className="shrink-0 w-16 h-16 rounded-2xl bg-eo-gold/10 border border-eo-gold/20 flex items-center justify-center">
               <Briefcase className="h-8 w-8 text-eo-gold" />
             </div>
 
-            <div className="flex-grow">
+            <div className="grow">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Interested in Working With EaseOrigin?
               </h3>
