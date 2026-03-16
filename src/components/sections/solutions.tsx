@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Cloud, Server, Shield, Database, ArrowRight, GitBranch, BrainCircuit, ClipboardList, Workflow } from "lucide-react";
+import Link from "next/link";
 import { Section } from "@/components/ui/section";
-import Image from "next/image";
+import { staggeredScaleIn } from "@/lib/animations";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 export function Solutions() {
   const technologySolutions = [
@@ -70,16 +72,12 @@ export function Solutions() {
 
   return (
     <Section id="solutions" className="relative overflow-hidden">
-      {/* Government building photo — very subtle */}
-      <div className="absolute inset-0 opacity-[0.9] pointer-events-none">
-        <Image
-          src={"/images/federal-building-columns.png"}
-          alt="Federal building columns"
-          aria-hidden="true"
-          fill
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Animated grid background */}
+      <GridPattern
+        cellSize={44}
+        lineColor="rgba(30, 58, 95, 0.06)"
+        glowColor="rgba(212, 175, 55, 0.04)"
+      />
       {/* Gradient wash for readability */}
       <div className="absolute inset-0 bg-linear-to-b from-white/90 via-slate-50/88 to-blue-50/82 dark:from-gray-900/90 dark:via-gray-900/88 dark:to-gray-800/82 pointer-events-none" />
       {/* Soft corner glows */}
@@ -106,10 +104,9 @@ export function Solutions() {
         {technologySolutions.map((solution, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.95 }}
+            {...staggeredScaleIn(index)}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
             className="group relative p-8 md:p-10 bg-surface border border-border-default rounded-2xl overflow-hidden hover:border-transparent transition-all duration-300"
           >
             {/* Hover Background Gradient */}
@@ -128,13 +125,13 @@ export function Solutions() {
                 {solution.description}
               </p>
 
-              <a
+              <Link
                 href={`/solutions/${solution.slug}`}
                 className="inline-flex items-center text-sm font-semibold text-eo-blue group-hover:text-eo-gold transition-colors duration-300"
               >
                 Learn more{" "}
                 <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         ))}
@@ -173,13 +170,13 @@ export function Solutions() {
                   {solution.description}
                 </p>
 
-                <a
+                <Link
                   href={`/solutions/${solution.slug}`}
                   className="inline-flex items-center text-sm font-semibold text-eo-blue group-hover:text-eo-gold transition-colors duration-300"
                 >
                   Learn more{" "}
                   <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}

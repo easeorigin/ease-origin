@@ -23,7 +23,7 @@ export const solutions: Solution[] = [
     heroDescription:
       "Scalable, secure cloud infrastructure designed for mission-critical government and enterprise workloads.",
     icon: "Server",
-    image: "images/cloud-infrastructure.png",
+    image: "images/cloud-infrastructure.jpg",
     imageAlt: "Cloud infrastructure data center",
     overview:
       "EaseOrigin delivers enterprise cloud architecture and infrastructure services spanning migration strategy, multi-account governance, containerization, and full-scale automation. We help organizations move from legacy environments to modern, well-governed cloud platforms across AWS, Azure, GCP, and Oracle Cloud.",
@@ -66,7 +66,7 @@ export const solutions: Solution[] = [
     heroDescription:
       "Comprehensive cybersecurity services that protect mission-critical systems while maintaining regulatory compliance.",
     icon: "Shield",
-    image: "images/cybersecurity.png",
+    image: "images/cybersecurity.jpg",
     imageAlt: "Cybersecurity operations center",
     overview:
       "EaseOrigin provides end-to-end cybersecurity services including compliance framework implementation, zero-trust architecture design, security automation, and continuous monitoring. We specialize in federal compliance requirements including NIST RMF, FISMA, FedRAMP, and HIPAA.",

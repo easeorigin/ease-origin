@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
 
       {/* Glow orbs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-blue-600 rounded-full blur-[140px] opacity-10 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-100 h-100 bg-tg-gold rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-100 h-100 bg-eo-gold rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -97,7 +97,7 @@ export default function AdminLoginPage() {
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center gap-2 justify-center mb-4 shadow-lg">
             <Image
-              src={"/logo/main-logo.png"}
+              src={"/logo/main-logo.webp"}
               alt="EaseOrigin Logo"
               width={30}
               height={30}
@@ -144,11 +144,11 @@ export default function AdminLoginPage() {
                     <input
                       type="email"
                       autoComplete="email"
-                      placeholder="admin@tgfederal.com"
+                      placeholder="admin@easeorigin.com"
                       {...form.register("email")}
                       className={cn(
                         inputBase,
-                        "border-white/10 focus:border-tg-blue/60 focus:ring-tg-blue/20",
+                        "border-white/10 focus:border-eo-blue/60 focus:ring-eo-blue/20",
                       )}
                     />
                   </div>
@@ -162,7 +162,7 @@ export default function AdminLoginPage() {
                     </label>
                     <button
                       type="button"
-                      className="text-xs text-tg-gold hover:text-white transition-colors font-medium"
+                      className="text-xs text-eo-gold hover:text-white transition-colors font-medium"
                     >
                       Forgot password?
                     </button>
@@ -177,7 +177,7 @@ export default function AdminLoginPage() {
                       className={cn(
                         inputBase,
                         "pr-11",
-                        "border-white/10 focus:border-tg-blue/60 focus:ring-tg-blue/20",
+                        "border-white/10 focus:border-eo-blue/60 focus:ring-eo-blue/20",
                       )}
                     />
                     <button
@@ -198,7 +198,7 @@ export default function AdminLoginPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-lg bg-tg-navy border border-tg-blue/30 text-white font-bold text-sm hover:bg-tg-blue transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-lg bg-eo-navy border border-eo-blue/30 text-white font-bold text-sm hover:bg-eo-blue transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed mt-1"
                 >
                   {isLoading ? (
                     <>
@@ -207,7 +207,7 @@ export default function AdminLoginPage() {
                     </>
                   ) : (
                     <>
-                      <Shield className="h-4 w-4 text-tg-gold" /> Sign In
+                      <Shield className="h-4 w-4 text-eo-gold" /> Sign In
                       Securely
                     </>
                   )}

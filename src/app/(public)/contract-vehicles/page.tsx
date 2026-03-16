@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight,
   Briefcase,
   CheckCircle2,
   ChevronRight,
@@ -11,6 +10,8 @@ import {
   Hash,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { PageHero } from "@/components/shared/page-hero";
+import { CTASection } from "@/components/shared/cta-section";
 import {
   contractVehicles,
   naicsCodes,
@@ -35,40 +36,12 @@ export default function ContractVehiclesPage() {
   return (
     <div className="min-h-screen bg-surface">
       <main>
-        {/* Hero */}
-        <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-eo-navy text-white">
-          <div className="absolute inset-0 z-0">
-            <div
-              className="absolute inset-0 opacity-[0.035]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-                backgroundSize: "50px 50px",
-              }}
-            />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-eo-blue rounded-full blur-[160px] opacity-20 translate-x-1/3 -translate-y-1/4" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-eo-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
-          </div>
-
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-4">
-                <FileCheck className="h-4 w-4" />
-                Procurement
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6">
-                Contract Vehicles & Procurement Pathways
-              </h1>
-              <p className="text-lg text-gray-300 leading-relaxed max-w-3xl">
-                EaseOrigin delivers through established government contract
-                vehicles, making it easy for agencies and prime contractors to
-                access our technology consulting expertise quickly and
-                compliantly.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          badge="Procurement"
+          badgeIcon={<FileCheck className="h-4 w-4" />}
+          title="Contract Vehicles & Procurement Pathways"
+          description="EaseOrigin delivers through established government contract vehicles, making it easy for agencies and prime contractors to access our technology consulting expertise quickly and compliantly."
+        />
 
         {/* Vehicle Cards */}
         <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 dark:from-gray-900/60 via-white dark:via-gray-900 to-slate-50/40 dark:to-gray-900/40 border-b border-border-subtle">
@@ -370,43 +343,13 @@ export default function ContractVehiclesPage() {
           </div>
         </Section>
 
-        {/* CTA */}
-        <Section className="relative overflow-hidden bg-eo-navy">
-          <div
-            className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-              backgroundSize: "50px 50px",
-            }}
-          />
-          <div className="absolute -top-20 -right-20 w-72 h-72 bg-eo-blue/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
-
-          <div className="relative z-10 max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
-              Interested in Working Together?
-            </h2>
-            <p className="text-gray-300 leading-relaxed mb-8">
-              Whether you are a government agency looking for specialized IT
-              support, a prime contractor seeking a proven teaming partner,
-              or a private sector organization scaling your technology
-              capabilities, we would like to hear from you.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-eo-gold text-eo-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md cursor-pointer">
-                  Contact Us <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
-              <Link href="/solutions">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border-2 border-white/25 text-white font-bold text-sm hover:bg-white/10 transition-all cursor-pointer">
-                  View Solutions
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Section>
+        <CTASection
+          variant="navy"
+          title="Interested in Working Together?"
+          description="Whether you are a government agency looking for specialized IT support, a prime contractor seeking a proven teaming partner, or a private sector organization scaling your technology capabilities, we would like to hear from you."
+          primaryCta={{ href: "/contact", label: "Contact Us" }}
+          secondaryCta={{ href: "/solutions", label: "View Solutions" }}
+        />
       </main>
     </div>
   );

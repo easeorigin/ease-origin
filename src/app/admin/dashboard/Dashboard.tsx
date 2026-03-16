@@ -18,7 +18,7 @@ export default function Dashboard() {
         <PageHeader title="Dashboard" description="Overview of your platform activity" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map(i => (
-            <div key={i} className="h-32 rounded-xl bg-tg-navy z-20 animate-pulse" />
+            <div key={i} className="h-32 rounded-xl bg-eo-navy z-20 animate-pulse" />
           ))}
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function Dashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((stat, index) => (
-          <Card key={index} className="border-[#080f1c] bg-tg-navy z-20 shadow-sm hover:shadow-md transition-shadow">
+          <Card key={index} className="border-[#080f1c] bg-eo-navy z-20 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-white mb-1">{stat.title}</p>
@@ -55,10 +55,10 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Applications */}
-        <Card className="border-[#080f1c] bg-tg-navy z-20 shadow-sm flex flex-col">
+        <Card className="border-[#080f1c] bg-eo-navy z-20 shadow-sm flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50">
             <CardTitle className="text-lg font-sans text-muted-foreground">Recent Applications</CardTitle>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-tg-blue" asChild>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-eo-blue" asChild>
               <Link href="/admin/applications" className="flex items-center gap-1">
                 View all <ArrowRight className="w-4 h-4" />
               </Link>
@@ -93,10 +93,10 @@ export default function Dashboard() {
         </Card>
 
         {/* Recent Contacts */}
-        <Card className="border-[#080f1c] bg-tg-navy z-20 shadow-sm flex flex-col">
+        <Card className="border-[#080f1c] bg-eo-navy z-20 shadow-sm flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50">
             <CardTitle className="text-lg font-sans text-muted-foreground">Recent Messages</CardTitle>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-tg-blue" asChild>
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-eo-blue" asChild>
               <Link href="/admin/contacts" className="flex items-center gap-1">
                 View all <ArrowRight className="w-4 h-4" />
               </Link>

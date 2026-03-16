@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { NetworkParticles } from "@/components/ui/network-particles";
 
 function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayedText, setDisplayedText] = useState("");
@@ -36,27 +38,16 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-eo-navy text-white min-h-[90vh] flex items-center">
-      {/* Video / Image Background */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/capitol-building.png"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.4]"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
-        <Image
-          src="/images/capitol-building.png"
-          alt="U.S. Capitol building"
-          aria-hidden="true"
-          fill
-          className="w-full h-full object-cover opacity-[0.4] [video~&]:hidden"
-          priority
+      {/* Animated network background */}
+      <div className="absolute inset-0 z-0">
+        <NetworkParticles
+          particleCount={90}
+          speed={0.3}
+          connectionDistance={160}
+          particleColor="rgba(212, 175, 55, 0.4)"
+          lineColor="rgba(30, 58, 95, 0.25)"
         />
-        <div className="absolute inset-0 bg-grid-pattern" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
         <div className="absolute top-0 right-0 w-200 h-200 bg-eo-blue rounded-full blur-[120px] opacity-40 translate-x-1/3 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-150 h-150 bg-eo-gold rounded-full blur-[150px] opacity-10 -translate-x-1/3 translate-y-1/4" />
       </div>
@@ -117,20 +108,20 @@ export function Hero() {
               }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a
+              <Link
                 href="/contact"
                 className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-eo-gold text-eo-navy hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-0.5"
               >
                 Partner With Us
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/careers"
                 className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-transparent border border-white/30 text-white hover:bg-white/10 transition-all"
               >
                 View Careers
                 <ChevronRight className="ml-1 h-5 w-5" />
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -148,7 +139,7 @@ export function Hero() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-eo-navy border border-eo-gold/50 rounded-full flex items-center justify-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
                   <div className="w-24 h-24 bg-linear-to-br from-eo-blue to-eo-navy rounded-full border border-white/10 flex items-center justify-center">
                     <Image
-                      src={"/logo/main-logo-2.png"}
+                      src={"/logo/main-logo-2.webp"}
                       alt="EaseOrigin Logo"
                       width={80}
                       height={80}

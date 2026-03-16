@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 import { Section } from "@/components/ui/section";
+import { fadeInUpWhileVisible } from "@/lib/animations";
 
 export function Recruitment() {
   const benefits = [
@@ -27,9 +29,7 @@ export function Recruitment() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...fadeInUpWhileVisible}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-eo-gold font-semibold tracking-wider uppercase text-sm mb-4">Careers</h2>
@@ -48,18 +48,18 @@ export function Recruitment() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
+            <Link
               href="/careers/jobs"
               className="px-8 py-4 text-base font-semibold rounded-md bg-eo-gold text-eo-navy hover:bg-white transition-colors shadow-lg"
             >
               View Open Positions
-            </a>
-            <a
+            </Link>
+            <Link
               href="/careers/submit-resume"
               className="px-8 py-4 text-base font-semibold rounded-md bg-transparent border-2 border-white text-white hover:bg-white/10 transition-colors"
             >
               Submit Resume
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

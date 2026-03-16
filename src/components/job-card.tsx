@@ -5,6 +5,7 @@ import { MapPin, Wifi, Building2, Layers, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { type Job } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { fadeInUpWhileVisible } from "@/lib/animations";
 
 const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
   "Software Engineering": { bg: "bg-violet-50 dark:bg-violet-950", text: "text-violet-700 dark:text-violet-300", border: "border-violet-100 dark:border-violet-900" },
@@ -32,9 +33,7 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      {...fadeInUpWhileVisible}
       transition={{ duration: 0.4, delay: index * 0.07 }}
       className="flex flex-col bg-surface border border-border-subtle rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden"
     >

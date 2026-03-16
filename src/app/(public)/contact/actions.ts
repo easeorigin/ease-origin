@@ -149,10 +149,12 @@ export async function submitContactForm(
       };
     }
 
-    // TODO: Uncomment to enable Slack notifications (requires SLACK_WEBHOOK_URL)
-    // notifySlack(data).catch((slackErr) =>
-    //   console.error("Slack notification failed:", slackErr)
-    // );
+    // Send Slack notification if webhook URL is configured (non-blocking)
+    if (process.env.SLACK_WEBHOOK_URL) {
+      notifySlack(data).catch((slackErr) =>
+        console.error("Slack notification failed:", slackErr)
+      );
+    }
 
     return { success: true };
   } catch (err) {

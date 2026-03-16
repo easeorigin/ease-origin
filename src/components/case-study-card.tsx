@@ -4,6 +4,7 @@ import Link from "next/link";
 import { type CaseStudy } from "@/data/case-studies";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { TiltCard } from "@/components/tilt-card";
+import { fadeInUpWhileVisibleLarge } from "@/lib/animations";
 
 const categoryIcons: Record<string, React.ElementType> = {
   "Cloud Infrastructure": Cloud,
@@ -83,9 +84,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
   return (
     <TiltCard className="h-full">
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      {...fadeInUpWhileVisibleLarge}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
     >
