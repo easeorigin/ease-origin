@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Handshake, Award } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { WordReveal } from "@/components/word-reveal";
+import { fadeInUpWhileVisible } from "@/lib/animations";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 export function Credibility() {
   const features = [
@@ -26,15 +28,11 @@ export function Credibility() {
 
   return (
     <Section className="relative overflow-hidden border-b border-border-default">
-      {/* Government building photo — very subtle background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('/images/capitol-building.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          opacity: 0.12,
-        }}
+      {/* Animated tech grid background */}
+      <GridPattern
+        cellSize={48}
+        lineColor="rgba(30, 58, 95, 0.06)"
+        glowColor="rgba(212, 175, 55, 0.04)"
       />
       {/* Gradient wash over photo to keep text readable */}
       <div className="absolute inset-0 bg-linear-to-br from-slate-50/90 via-blue-50/85 to-indigo-50/80 dark:from-gray-900/90 dark:via-gray-900/85 dark:to-gray-800/80 pointer-events-none" />
@@ -43,9 +41,7 @@ export function Credibility() {
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...fadeInUpWhileVisible}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="bg-surface/80 backdrop-blur-sm rounded-xl p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.07)] border border-border-subtle hover:shadow-[0_8px_30px_-4px_rgba(30,58,95,0.15)] transition-shadow duration-300"
           >

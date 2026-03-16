@@ -54,7 +54,7 @@ export function Navbar() {
               )}
             >
             <Image
-            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
+            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.webp" : "/logo/main-logo.webp"}
             alt="EaseOrigin Logo"
             width={60}
             height={50}

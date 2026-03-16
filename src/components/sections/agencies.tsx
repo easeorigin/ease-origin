@@ -1,8 +1,57 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { governmentAgencies, industryPartners } from "@/data/agencies";
+import { fadeInUpWhileVisible } from "@/lib/animations";
+
+function AgencyLogo({ src, alt, abbr, className }: { src: string; alt: string; abbr: string; className: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <span className="text-2xl font-black text-white/40 group-hover:text-eo-gold transition-colors duration-300">
+        {abbr}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={56}
+      height={56}
+      className={className}
+      onError={() => setHasError(true)}
+    />
+  );
+}
+
+function PartnerLogo({ src, alt, name, className }: { src: string; alt: string; name: string; className: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <span className="text-sm font-bold text-white/40 group-hover:text-blue-300 transition-colors duration-300 text-center">
+        {name}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={80}
+      height={32}
+      className={className}
+      onError={() => setHasError(true)}
+    />
+  );
+}
 
 export function Agencies() {
   return (
@@ -23,25 +72,16 @@ export function Agencies() {
           {governmentAgencies.map((agency, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...fadeInUpWhileVisible}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               className="group relative flex flex-col items-center justify-center p-4 h-28 bg-white/5 border border-white/10 rounded-xl cursor-default hover:bg-white/10 hover:border-eo-gold/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.1)] transition-all duration-300"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <AgencyLogo
                 src={agency.logo}
                 alt={agency.name}
-                loading="lazy" className="h-14 w-auto object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  e.currentTarget.nextElementSibling?.classList.remove("hidden");
-                }}
+                abbr={agency.abbr}
+                className="h-14 w-auto object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
               />
-              <span className="hidden text-2xl font-black text-white/40 group-hover:text-eo-gold transition-colors duration-300">
-                {agency.abbr}
-              </span>
               <span className="text-xs text-white/30 mt-2 group-hover:text-white/60 transition-colors duration-300">
                 {agency.abbr}
               </span>
@@ -69,20 +109,12 @@ export function Agencies() {
                 key={`${partner.id}-${index}`}
                 className="group relative flex flex-col items-center justify-center p-4 h-24 w-40 shrink-0 bg-white/5 border border-white/10 rounded-xl cursor-default hover:bg-white/10 hover:border-blue-400/30 hover:shadow-[0_0_20px_rgba(96,165,250,0.1)] transition-all duration-300"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <PartnerLogo
                   src={partner.logo}
                   alt={partner.name}
-                  loading="lazy"
+                  name={partner.name}
                   className="h-8 w-auto object-contain brightness-0 invert opacity-50 group-hover:opacity-90 transition-opacity duration-300"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    e.currentTarget.nextElementSibling?.classList.remove("hidden");
-                  }}
                 />
-                <span className="hidden text-sm font-bold text-white/40 group-hover:text-blue-300 transition-colors duration-300 text-center">
-                  {partner.name}
-                </span>
                 <span className="text-[10px] text-white/25 mt-1.5 group-hover:text-white/50 transition-colors duration-300">
                   {partner.name}
                 </span>

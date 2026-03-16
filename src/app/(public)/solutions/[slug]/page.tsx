@@ -15,6 +15,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { CTASection } from "@/components/shared/cta-section";
 import { getSolutionBySlug, solutions } from "@/data/solutions";
 import { getCaseStudyBySlug, type CaseStudy } from "@/data/case-studies";
 
@@ -420,41 +421,13 @@ export default async function SolutionDetailPage({
           </Section>
         )}
 
-        {/* CTA */}
-        <Section className="relative overflow-hidden bg-eo-navy">
-          <div
-            className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-              backgroundSize: "50px 50px",
-            }}
-          />
-          <div className="absolute -top-20 -right-20 w-72 h-72 bg-eo-blue/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
-
-          <div className="relative z-10 animate-fade-in-up max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-gray-300 leading-relaxed mb-8">
-              Let&apos;s discuss how EaseOrigin can help your organization with{" "}
-              {solution.title.toLowerCase()} solutions tailored to your mission.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-eo-gold text-eo-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md cursor-pointer">
-                  Contact Us <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
-              <Link href="/solutions">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border-2 border-white/25 text-white font-bold text-sm hover:bg-white/10 transition-all cursor-pointer">
-                  All Solutions
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Section>
+        <CTASection
+          variant="navy"
+          title="Ready to Get Started?"
+          description={`Let's discuss how EaseOrigin can help your organization with ${solution.title.toLowerCase()} solutions tailored to your mission.`}
+          primaryCta={{ href: "/contact", label: "Contact Us" }}
+          secondaryCta={{ href: "/solutions", label: "All Solutions" }}
+        />
       </main>
     </div>
   );

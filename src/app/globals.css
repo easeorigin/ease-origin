@@ -243,3 +243,25 @@
   border-top: 1px solid transparent;
   border-image: linear-gradient(to right, transparent, rgba(212, 168, 67, 0.3), transparent) 1;
 }
+
+/* Grid pattern scan animations */
+@keyframes gridScanV {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+}
+@keyframes gridScanH {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
+.animate-grid-scan-v {
+  animation: gridScanV 8s ease-in-out infinite;
+}
+.animate-grid-scan-h {
+  animation: gridScanH 12s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-grid-scan-v,
+  .animate-grid-scan-h {
+    animation: none !important;
+  }
+}

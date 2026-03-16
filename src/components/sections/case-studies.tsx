@@ -7,8 +7,8 @@ import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { caseStudies } from "@/data/case-studies";
-import Image from "next/image";
 import { WordReveal } from "@/components/word-reveal";
+import { NetworkParticles } from "@/components/ui/network-particles";
 
 export function CaseStudies() {
   const featured = useMemo(() => {
@@ -19,14 +19,14 @@ export function CaseStudies() {
 
   return (
     <Section id="case-studies" className="relative overflow-hidden">
-      {/* DC skyline / monument photo — very subtle */}
-      <div className="absolute inset-0 opacity-[1] pointer-events-none">
-        <Image
-          src={"/images/capitol-building.png"}
-          alt="U.S. Capitol building"
-          aria-hidden="true"
-          fill
-          className="w-full h-full object-cover"
+      {/* Animated network background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <NetworkParticles
+          particleCount={40}
+          speed={0.2}
+          connectionDistance={130}
+          particleColor="rgba(212, 175, 55, 0.25)"
+          lineColor="rgba(30, 58, 95, 0.12)"
         />
       </div>
       {/* Warm gradient wash */}

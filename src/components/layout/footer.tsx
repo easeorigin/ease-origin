@@ -15,7 +15,7 @@ export function Footer() {
               className="font-bold text-2xl tracking-tight text-white mb-6 flex items-center gap-2"
             >
               <Image
-                src={"/logo/main-logo.png"}
+                src={"/logo/main-logo.webp"}
                 alt="EaseOrigin Logo"
                 width={40}
                 height={40}
