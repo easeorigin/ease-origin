@@ -19,7 +19,7 @@ const CYBER_COLORS = {
   bg: "bg-amber-50 dark:bg-amber-950",
   border: "border-amber-100 dark:border-amber-900",
   text: "text-amber-700 dark:text-amber-300",
-  headerBg: "from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950",
+  headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
 };
 
 const categoryColors: Record<string, { bg: string; border: string; text: string; headerBg: string }> = {
@@ -27,7 +27,7 @@ const categoryColors: Record<string, { bg: string; border: string; text: string;
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     text: "text-eo-blue",
-    headerBg: "from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950",
+    headerBg: "from-blue-50 to-indigo-50 dark:from-blue-800/60 dark:to-indigo-800/60",
   },
   "Cybersecurity": CYBER_COLORS,
   "Cybersecurity & Compliance": CYBER_COLORS,
@@ -35,37 +35,37 @@ const categoryColors: Record<string, { bg: string; border: string; text: string;
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
     text: "text-emerald-700 dark:text-emerald-300",
-    headerBg: "from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950",
+    headerBg: "from-emerald-50 to-teal-50 dark:from-emerald-800/60 dark:to-teal-800/60",
   },
   "AI/ML Infrastructure": {
     bg: "bg-violet-50 dark:bg-violet-950",
     border: "border-violet-100 dark:border-violet-900",
     text: "text-violet-700 dark:text-violet-300",
-    headerBg: "from-violet-50 to-purple-50 dark:from-violet-950 dark:to-purple-950",
+    headerBg: "from-violet-50 to-purple-50 dark:from-violet-800/60 dark:to-purple-800/60",
   },
   "DevOps & Platform Engineering": {
     bg: "bg-indigo-50 dark:bg-indigo-950",
     border: "border-indigo-100 dark:border-indigo-900",
     text: "text-indigo-700 dark:text-indigo-300",
-    headerBg: "from-indigo-50 to-blue-50 dark:from-indigo-950 dark:to-blue-950",
+    headerBg: "from-indigo-50 to-blue-50 dark:from-indigo-800/60 dark:to-blue-800/60",
   },
   "SaaS Solutions": {
     bg: "bg-sky-50 dark:bg-sky-950",
     border: "border-sky-100 dark:border-sky-900",
     text: "text-sky-700 dark:text-sky-300",
-    headerBg: "from-sky-50 to-cyan-50 dark:from-sky-950 dark:to-cyan-950",
+    headerBg: "from-sky-50 to-cyan-50 dark:from-sky-800/60 dark:to-cyan-800/60",
   },
   "Program Management": {
     bg: "bg-purple-50 dark:bg-purple-950",
     border: "border-purple-100 dark:border-purple-900",
     text: "text-purple-700 dark:text-purple-300",
-    headerBg: "from-purple-50 to-violet-50 dark:from-purple-950 dark:to-violet-950",
+    headerBg: "from-purple-50 to-violet-50 dark:from-purple-800/60 dark:to-violet-800/60",
   },
   "Agile Delivery": {
     bg: "bg-red-50 dark:bg-red-950",
     border: "border-red-100 dark:border-red-900",
     text: "text-red-700 dark:text-red-300",
-    headerBg: "from-red-50 to-rose-50 dark:from-red-950 dark:to-rose-950",
+    headerBg: "from-red-50 to-rose-50 dark:from-red-800/60 dark:to-rose-800/60",
   },
 };
 

@@ -33,7 +33,7 @@ export function Agencies() {
               <img
                 src={agency.logo}
                 alt={agency.name}
-                loading="lazy" className="h-14 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                loading="lazy" className="h-14 w-auto object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextElementSibling?.classList.remove("hidden");
