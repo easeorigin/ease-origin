@@ -1,4 +1,4 @@
-import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone, Rss } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { companyInfo } from "@/data/company-info";
@@ -39,6 +39,14 @@ export function Footer() {
               >
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="h-5 w-5 text-eo-gold" />
+              </a>
+              <a
+                href="/blog/feed.xml"
+                className="text-gray-400 hover:text-white transition-colors"
+                title="RSS Feed"
+              >
+                <span className="sr-only">RSS Feed</span>
+                <Rss className="h-5 w-5 text-eo-gold" />
               </a>
             </div>
           </div>

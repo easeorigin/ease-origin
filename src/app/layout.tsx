@@ -66,6 +66,11 @@ export const metadata: Metadata = {
     description:
       "EaseOrigin delivers specialized IT consulting for government agencies and prime contractors, including cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery.",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "https://easeorigin.com/blog/feed.xml",
+    },
+  },
 };
 
 const localBusinessJsonLd = {

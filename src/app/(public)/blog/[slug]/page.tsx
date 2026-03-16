@@ -78,6 +78,35 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Pick the best "read next" suggestion: first related, then first recommended
   const readNextPost = relatedPosts[0] ?? recommendedPosts[0] ?? null;
 
+  // BlogPosting JSON-LD structured data
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `https://easeorigin.com${post.coverImage}`,
+    datePublished: post.publishedAt,
+    ...(post.updatedAt && { dateModified: post.updatedAt }),
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EaseOrigin LLC",
+      url: "https://easeorigin.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://easeorigin.com/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://easeorigin.com/blog/${slug}`,
+    },
+    keywords: post.tags.join(", "),
+  };
+
   // Resolve full author data (with bio/linkedin) from blogAuthors
   const authorKey = Object.keys(blogAuthors).find(
     (k) => blogAuthors[k].name === post.author.name
@@ -86,6 +115,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
       <ReadingProgressBar />
       <ReadingRemaining totalMinutes={post.readTimeMinutes} />
       <BackToTop />
