@@ -2,6 +2,7 @@ import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { companyInfo } from "@/data/company-info";
+import { solutions } from "@/data/solutions";
 
 export function Footer() {
   return (
@@ -48,46 +49,16 @@ export function Footer() {
               Solutions
             </h4>
             <ul className="space-y-4 text-sm">
-              <li>
-                <Link href="/solutions/cloud-infrastructure" className="hover:text-eo-gold transition-colors">
-                  Cloud & Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/devops-platform" className="hover:text-eo-gold transition-colors">
-                  DevOps & Platform Engineering
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/cybersecurity" className="hover:text-eo-gold transition-colors">
-                  Cybersecurity
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/ai-ml" className="hover:text-eo-gold transition-colors">
-                  AI/ML Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/data-analytics" className="hover:text-eo-gold transition-colors">
-                  Data & Analytics
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/saas-solutions" className="hover:text-eo-gold transition-colors">
-                  SaaS Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/program-management" className="hover:text-eo-gold transition-colors">
-                  Program Management
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/agile-delivery" className="hover:text-eo-gold transition-colors">
-                  Agile Delivery & RTM
-                </Link>
-              </li>
+              {solutions.map((solution) => (
+                <li key={solution.slug}>
+                  <Link
+                    href={`/solutions/${solution.slug}`}
+                    className="hover:text-eo-gold transition-colors"
+                  >
+                    {solution.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -120,6 +91,11 @@ export function Footer() {
               <li>
                 <Link href="/capability-statement" className="hover:text-eo-gold transition-colors">
                   Capability Statement
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-eo-gold transition-colors">
+                  Blog
                 </Link>
               </li>
             </ul>
