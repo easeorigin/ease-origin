@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Inter, Montserrat } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { companyInfo } from "@/data/company-info";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,29 +66,65 @@ export const metadata: Metadata = {
     description:
       "EaseOrigin delivers specialized IT consulting for government agencies and prime contractors, including cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery.",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "https://easeorigin.com/blog/feed.xml",
+    },
+  },
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: companyInfo.name,
+  url: companyInfo.url,
+  description:
+    "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, program management, and agile delivery for government agencies and prime contractors.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: companyInfo.address.street,
+    addressLocality: companyInfo.address.city,
+    addressRegion: companyInfo.address.state,
+    postalCode: companyInfo.address.zip,
+    addressCountry: "US",
+  },
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  priceRange: "$$$$",
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "EaseOrigin",
+  url: companyInfo.url,
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "EaseOrigin LLC",
-  url: "https://easeorigin.com",
+  name: companyInfo.name,
+  url: companyInfo.url,
   description:
     "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery for government agencies and prime contractors.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "211 E Avenue G, 306",
-    addressLocality: "Midlothian",
-    addressRegion: "TX",
-    postalCode: "76065",
+    streetAddress: companyInfo.address.street,
+    addressLocality: companyInfo.address.city,
+    addressRegion: companyInfo.address.state,
+    postalCode: companyInfo.address.zip,
     addressCountry: "US",
   },
-  telephone: "(470) 464-5199",
-  email: "info@easeorigin.com",
-  naics: "541511",
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  naics: companyInfo.identifiers.naics,
   identifier: [
-    { "@type": "PropertyValue", name: "UEI", value: "GTWUARASDLN5" },
-    { "@type": "PropertyValue", name: "CAGE", value: "8DUE2" },
+    { "@type": "PropertyValue", name: "UEI", value: companyInfo.identifiers.uei },
+    { "@type": "PropertyValue", name: "CAGE", value: companyInfo.identifiers.cage },
   ],
 };
 
@@ -101,6 +138,12 @@ export default function RootLayout({
       <body suppressHydrationWarning
         className={`${inter.variable} ${montserrat.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-medium"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider>
           {children}
         </ThemeProvider>
@@ -110,6 +153,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteJsonLd),
           }}
         />
       </body>

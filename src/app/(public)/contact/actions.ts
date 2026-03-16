@@ -1,5 +1,7 @@
 "use server";
 
+import { companyInfo } from "@/data/company-info";
+
 // Requires RESEND_API_KEY environment variable to be set.
 // Optional: SLACK_WEBHOOK_URL for instant Slack notifications.
 // See .env.example for the expected format.
@@ -95,7 +97,7 @@ export async function submitContactForm(
   try {
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "EaseOrigin Contact Form <onboarding@resend.dev>",
-      to: "info@easeorigin.com",
+      to: companyInfo.email,
       replyTo: data.email,
       subject: `[Contact Form] ${data.subject}`,
       text: [
@@ -147,10 +149,12 @@ export async function submitContactForm(
       };
     }
 
-    // TODO: Uncomment to enable Slack notifications (requires SLACK_WEBHOOK_URL)
-    // notifySlack(data).catch((slackErr) =>
-    //   console.error("Slack notification failed:", slackErr)
-    // );
+    // Send Slack notification if webhook URL is configured (non-blocking)
+    if (process.env.SLACK_WEBHOOK_URL) {
+      notifySlack(data).catch((slackErr) =>
+        console.error("Slack notification failed:", slackErr)
+      );
+    }
 
     return { success: true };
   } catch (err) {

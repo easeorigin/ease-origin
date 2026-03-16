@@ -7,7 +7,8 @@ import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { caseStudies } from "@/data/case-studies";
-import Image from "next/image";
+import { WordReveal } from "@/components/word-reveal";
+import { NetworkParticles } from "@/components/ui/network-particles";
 
 export function CaseStudies() {
   const featured = useMemo(() => {
@@ -18,13 +19,14 @@ export function CaseStudies() {
 
   return (
     <Section id="case-studies" className="relative overflow-hidden">
-      {/* DC skyline / monument photo — very subtle */}
-      <div className="absolute inset-0 opacity-[1] pointer-events-none">
-        <Image
-          src={"/images/capitol-building.png"}
-          alt=""
-          fill
-          className="w-full h-full object-cover"
+      {/* Animated network background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <NetworkParticles
+          particleCount={40}
+          speed={0.2}
+          connectionDistance={130}
+          particleColor="rgba(212, 175, 55, 0.25)"
+          lineColor="rgba(30, 58, 95, 0.12)"
         />
       </div>
       {/* Warm gradient wash */}
@@ -38,9 +40,7 @@ export function CaseStudies() {
           <h2 className="text-eo-gold font-semibold tracking-wider uppercase text-sm mb-3">
             Proven Success
           </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-text-primary">
-            Delivering Results for Our Clients
-          </h3>
+          <WordReveal text="Delivering Results for Our Clients" as="h3" className="text-3xl md:text-4xl font-bold text-text-primary" />
         </div>
         <Link href="/case-studies">
           <span className="hidden md:inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer group">

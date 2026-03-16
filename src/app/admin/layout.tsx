@@ -83,7 +83,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 >
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0">
                     <Image 
-                    src={"/logo/main-logo.png"}
+                    src={"/logo/main-logo.webp"}
                     alt="EaseOrigin Logo"
                     width={50}
                     height={30}

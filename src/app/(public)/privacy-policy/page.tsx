@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/section";
+import { companyInfo } from "@/data/company-info";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -49,7 +50,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-bold text-text-primary mt-8">Contact Us</h2>
             <p className="text-text-tertiary leading-relaxed mb-6">
               If you have questions about this Privacy Policy, please contact us at{" "}
-              <a href="mailto:info@easeorigin.com" className="text-eo-blue hover:underline">info@easeorigin.com</a> or write to us at 211 E Avenue G, 306, Midlothian, TX 76065.
+              <a href={`mailto:${companyInfo.email}`} className="text-eo-blue hover:underline">{companyInfo.email}</a> or write to us at {companyInfo.address.full}.
             </p>
           </div>
         </Section>

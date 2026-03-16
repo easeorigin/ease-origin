@@ -6,9 +6,12 @@ import {
   MapPin, Phone, Mail, Send, CheckCircle2, AlertCircle,
   Clock, ArrowRight, Briefcase, ChevronRight
 } from "lucide-react";
+import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
 import { submitContactForm, type ContactFormResponse } from "./actions";
+import { companyInfo } from "@/data/company-info";
+import { PageHero } from "@/components/shared/page-hero";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -29,45 +32,6 @@ interface FormErrors {
 }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
-
-function ContactHero() {
-  return (
-    <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden bg-eo-navy text-white">
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-eo-blue rounded-full blur-[140px] opacity-25 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-eo-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
-          className="max-w-2xl"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
-            <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
-            Get In Touch
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-5">
-            Contact Us
-          </h1>
-          <p className="text-xl text-gray-300 leading-relaxed">
-            We welcome inquiries from government agencies, prime contractors, and technology consultants. Our team typically responds within one business day.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Contact Info + Form ─────────────────────────────────────────────────────
 
@@ -151,22 +115,22 @@ function ContactFormSection() {
     {
       icon: MapPin,
       label: "Address",
-      lines: ["211 E Avenue G, 306", "Midlothian, TX 76065"],
+      lines: [companyInfo.address.street, `${companyInfo.address.city}, ${companyInfo.address.state} ${companyInfo.address.zip}`],
     },
     {
       icon: Phone,
       label: "Phone",
-      lines: ["(470) 464-5199"],
+      lines: [companyInfo.phone],
     },
     {
       icon: Mail,
       label: "Email",
-      lines: ["info@easeorigin.com"],
+      lines: [companyInfo.email],
     },
     {
       icon: Clock,
       label: "Business Hours",
-      lines: ["Monday – Friday", "8:00 AM – 6:00 PM ET"],
+      lines: [companyInfo.hours.days, companyInfo.hours.time],
     },
   ];
 
@@ -237,7 +201,7 @@ function ContactFormSection() {
           <div className="bg-surface rounded-2xl border border-border-subtle shadow-lg p-8 md:p-10">
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-16 gap-5">
-                <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950 border border-green-100 dark:border-green-900 flex items-center justify-center">
                   <CheckCircle2 className="h-8 w-8 text-green-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary">Message Sent!</h3>
@@ -275,7 +239,7 @@ function ContactFormSection() {
                         aria-describedby={errors.name && touched.name ? "name-error" : undefined}
                       />
                       {errors.name && touched.name && (
-                        <p id="name-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <p id="name-error" role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" /> {errors.name}
                         </p>
                       )}
@@ -295,7 +259,7 @@ function ContactFormSection() {
                         aria-describedby={errors.email && touched.email ? "email-error" : undefined}
                       />
                       {errors.email && touched.email && (
-                        <p id="email-error" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                        <p id="email-error" role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" /> {errors.email}
                         </p>
                       )}
@@ -317,7 +281,7 @@ function ContactFormSection() {
                       className={fieldClass("company")}
                     />
                     {errors.company && touched.company && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.company}
                       </p>
                     )}
@@ -338,7 +302,7 @@ function ContactFormSection() {
                       className={fieldClass("subject")}
                     />
                     {errors.subject && touched.subject && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.subject}
                       </p>
                     )}
@@ -359,16 +323,16 @@ function ContactFormSection() {
                       className={cn(fieldClass("message"), "resize-none")}
                     />
                     {errors.message && touched.message && (
-                      <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                      <p role="alert" className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" /> {errors.message}
                       </p>
                     )}
                   </div>
 
                   {serverError && (
-                    <div className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 border border-red-200">
+                    <div role="alert" className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800">
                       <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-red-700">{serverError}</p>
+                      <p className="text-sm text-red-700 dark:text-red-300">{serverError}</p>
                     </div>
                   )}
 
@@ -407,14 +371,14 @@ function MapSection() {
     <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white/60 to-slate-50/80 dark:from-gray-900 dark:via-gray-900/60 dark:to-gray-900/80 border-b border-border-subtle" containerClassName="px-0 sm:px-0 lg:px-0 max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Location</h2>
           <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Our Office</h3>
-          <p className="text-text-tertiary mt-2">211 E Avenue G, 306, Midlothian, TX 76065</p>
+          <p className="text-text-tertiary mt-2">{companyInfo.address.full}</p>
         </motion.div>
       </div>
 
@@ -449,7 +413,6 @@ function ConsultantCTA() {
         className="relative z-10 max-w-4xl mx-auto"
       >
         <div className="bg-eo-navy rounded-3xl p-10 md:p-14 relative overflow-hidden">
-          {/* Background grid */}
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
           <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-eo-blue/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -466,18 +429,18 @@ function ConsultantCTA() {
                 We partner with highly skilled consultants supporting federal technology initiatives. Explore open positions or submit your resume for future consideration.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
+                <Link
                   href="/careers"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-eo-gold text-eo-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md"
                 >
                   View Careers <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/careers/submit-resume"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-white/20 text-white font-semibold text-sm hover:bg-white/10 transition-all"
                 >
                   Submit Resume <ChevronRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -493,7 +456,12 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-surface">
       <main>
-        <ContactHero />
+        <PageHero
+          badge="Get In Touch"
+          title="Contact Us"
+          description="We welcome inquiries from government agencies, prime contractors, and technology consultants. Our team typically responds within one business day."
+          backgroundImage={{ src: "/images/contact-hero.jpg", alt: "Professional business meeting" }}
+        />
         <ContactFormSection />
         <MapSection />
         <ConsultantCTA />

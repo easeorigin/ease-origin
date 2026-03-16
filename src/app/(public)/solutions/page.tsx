@@ -2,12 +2,15 @@
 
 import { motion } from "framer-motion";
 import {
-  Cloud, Server, Shield, Database, ArrowRight, CheckCircle2,
+  Cloud, Server, Shield, Database, ArrowRight,
   ChevronRight, Cpu, Bot, ClipboardList, Workflow, FileCheck
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import Image from "next/image";
+import { CTASection } from "@/components/shared/cta-section";
+import { PageHero } from "@/components/shared/page-hero";
+import { fadeInUpWhileVisible } from "@/lib/animations";
 import Link from "next/link";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -28,7 +31,7 @@ const technologySolutions = [
       "Infrastructure automation & IaC",
       "DevSecOps pipeline implementation",
     ],
-    image: `images/cloud-infrastructure.png`,
+    image: `images/cloud-infrastructure.jpg`,
     imageAlt: "Cloud infrastructure data center",
   },
   {
@@ -69,7 +72,7 @@ const technologySolutions = [
       "Risk management framework (RMF) support",
       "Security assessment & authorization (SA&A)",
     ],
-    image: `images/cybersecurity.png`,
+    image: `images/cybersecurity.jpg`,
     imageAlt: "Cybersecurity operations center",
   },
   {
@@ -171,8 +174,6 @@ const advisorySolutions = [
   },
 ];
 
-const allCapabilities = [...technologySolutions, ...advisorySolutions];
-
 // Agency data imported from centralized source
 import { governmentAgencies } from "@/data/agencies";
 
@@ -180,39 +181,14 @@ import { governmentAgencies } from "@/data/agencies";
 
 function SolutionsHero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-eo-navy text-white min-h-[60vh] flex items-center">
-      {/* Background texture */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-eo-blue rounded-full blur-[130px] opacity-30 translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-eo-gold rounded-full blur-[160px] opacity-[0.06] -translate-x-1/3 translate-y-1/4" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
-            <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
-            Technology Consulting
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
-            Our Solutions
-          </h1>
-          <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
-            We build the technology and manage the programs that deliver it. EaseOrigin provides specialized consulting services that help government agencies, prime contractors, and private sector organizations modernize systems, strengthen security, and accelerate delivery.
-          </p>
-          <Link href="/solutions#contact">
-            <span className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-eo-gold text-eo-navy font-bold hover:bg-yellow-400 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 cursor-pointer">
-              Partner With Us <ArrowRight className="h-5 w-5" />
-            </span>
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+    <PageHero
+      badge="Technology Consulting"
+      title="Our Solutions"
+      description="We build the technology and manage the programs that deliver it. EaseOrigin provides specialized consulting services that help government agencies, prime contractors, and private sector organizations modernize systems, strengthen security, and accelerate delivery."
+      primaryCta={{ href: "/contact", label: "Partner With Us" }}
+      tall
+      backgroundImage={{ src: "/images/solutions-hero.jpg", alt: "Technology solutions and infrastructure" }}
+    />
   );
 }
 
@@ -237,9 +213,7 @@ function OverviewGrid() {
             return (
               <motion.div
                 key={cap.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                {...fadeInUpWhileVisible}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="group relative bg-surface border border-border-subtle rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
@@ -271,16 +245,14 @@ function OverviewGrid() {
             return (
               <motion.div
                 key={cap.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                {...fadeInUpWhileVisible}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="group relative bg-surface border border-border-subtle rounded-2xl p-8 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-eo-navy to-eo-blue opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="w-14 h-14 rounded-xl bg-purple-50 dark:bg-purple-950 border border-purple-100 dark:border-purple-900 flex items-center justify-center mb-5 group-hover:bg-white/15 group-hover:border-white/20 transition-colors duration-300">
-                    <Icon className="h-7 w-7 text-purple-600 group-hover:text-eo-gold transition-colors duration-300" />
+                    <Icon className="h-7 w-7 text-purple-600 dark:text-purple-400 group-hover:text-eo-gold transition-colors duration-300" />
                   </div>
                   <h4 className="text-lg font-bold text-text-primary mb-3 group-hover:text-white transition-colors duration-300">{cap.title}</h4>
                   <p className="text-sm text-text-tertiary leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">{cap.shortDesc}</p>
@@ -297,112 +269,6 @@ function OverviewGrid() {
   );
 }
 
-function CapabilityDetails() {
-  return (
-    <div className="bg-surface">
-      {allCapabilities.map((cap, i) => {
-        const Icon = cap.icon;
-        const isEven = i % 2 === 0;
-
-        return (
-          <section
-            key={cap.id}
-            id={cap.id}
-            className={`relative overflow-hidden py-20 md:py-28 border-b border-border-subtle ${isEven ? "bg-gradient-to-br from-slate-50 via-blue-50/30 to-white dark:from-gray-900 dark:via-gray-900/30 dark:to-gray-900" : "bg-gradient-to-bl from-blue-50/50 via-slate-50/40 to-white dark:from-gray-900/50 dark:via-gray-900/40 dark:to-gray-900"}`}
-          >
-            {/* Glow orb per section */}
-            {isEven ? (
-              <div className="absolute -top-20 -left-20 w-80 h-80 bg-eo-gold/[0.06] rounded-full blur-[100px] pointer-events-none" />
-            ) : (
-              <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-200/20 rounded-full blur-[100px] pointer-events-none" />
-            )}
-            {/* Background government building photo (subtle) */}
-            {i === 0 && (
-              <>
-                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/federal-building-columns.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.04 }} />
-                <div className="absolute inset-0 bg-white/96 dark:bg-gray-900/96 pointer-events-none" />
-              </>
-            )}
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? "lg:[&>*:first-child]:order-2" : ""}`}>
-
-                {/* Text */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-eo-blue" />
-                    </div>
-                    <span className="text-sm font-semibold uppercase tracking-widest text-eo-gold">Capability</span>
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-5">{cap.title}</h3>
-                  <p className="text-lg text-text-tertiary leading-relaxed mb-8">{cap.shortDesc}</p>
-
-                  <div className="space-y-3">
-                    {cap.services.map((service, j) => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: j * 0.06 }}
-                        className="flex items-start gap-3"
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-eo-blue flex-shrink-0 mt-0.5" />
-                        <span className="text-text-secondary">{service}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  <Link
-                    href={`/solutions/${cap.slug}`}
-                    className="inline-flex items-center gap-2 mt-10 px-7 py-3.5 rounded-md bg-eo-navy text-white font-semibold hover:bg-eo-blue transition-colors shadow-md"
-                  >
-                    Explore {cap.title} <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </motion.div>
-
-                {/* Image */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-                    <Image
-                      src={`/${cap.image}`}
-                      alt={cap.imageAlt}
-                      fill
-                      className="object-cover"
-                    />
-                    {/* Subtle overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-eo-navy/30 to-transparent" />
-                    {/* Floating label badge */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
-                      <Icon className="h-4 w-4 text-eo-blue" />
-                      <span className="text-sm font-bold text-eo-navy">{cap.title}</span>
-                    </div>
-                  </div>
-                  {/* Decorative offset frame */}
-                  <div className={`absolute -z-10 w-full h-full rounded-2xl border-2 border-eo-gold/20 ${isEven ? "-bottom-4 -right-4" : "-bottom-4 -left-4"}`} />
-                </motion.div>
-
-              </div>
-            </div>
-          </section>
-        );
-      })}
-    </div>
-  );
-}
-
 function ContractVehiclesCallout() {
   return (
     <Section className="relative overflow-hidden bg-eo-navy text-white">
@@ -411,9 +277,7 @@ function ContractVehiclesCallout() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...fadeInUpWhileVisible}
           transition={{ duration: 0.6 }}
         >
           <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-6">
@@ -439,7 +303,11 @@ function AgenciesGrid() {
   return (
     <Section className="relative overflow-hidden bg-surface border-b border-border-subtle">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-800/30 pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(images/capitol-building.png)`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
+      <GridPattern
+        cellSize={44}
+        lineColor="rgba(30, 58, 95, 0.05)"
+        glowColor="rgba(212, 175, 55, 0.03)"
+      />
       <div className="absolute -bottom-16 -right-16 w-96 h-96 bg-indigo-100/20 rounded-full blur-[100px] pointer-events-none" />
       {/* Gold glow top-left */}
       <div className="absolute -top-16 -left-16 w-72 h-72 bg-eo-gold/[0.06] rounded-full blur-[90px] pointer-events-none" />
@@ -455,9 +323,7 @@ function AgenciesGrid() {
           {governmentAgencies.map((agency, i) => (
             <motion.div
               key={agency.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...fadeInUpWhileVisible}
               transition={{ duration: 0.3, delay: i * 0.05 }}
               className="group relative flex flex-col items-center justify-center p-6 h-32 bg-surface border border-border-subtle rounded-2xl shadow-sm hover:shadow-lg hover:border-eo-blue/30 hover:-translate-y-1 transition-all duration-300 cursor-default"
             >
@@ -477,39 +343,14 @@ function AgenciesGrid() {
 
 function SolutionsCTA() {
   return (
-    <Section id="contact" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-eo-blue via-eo-navy to-[#050B14] pointer-events-none" />
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
-
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-4">Get Started</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Partner With EaseOrigin
-          </h3>
-          <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Our team works alongside government agencies and prime contractors to deliver high-impact technology solutions tailored to your mission.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact">
-              <span className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md bg-eo-gold text-eo-navy font-bold hover:bg-yellow-400 transition-all shadow-lg hover:-translate-y-0.5 cursor-pointer">
-                Partner With Us <ArrowRight className="h-5 w-5" />
-              </span>
-            </Link>
-            <Link href="/contact">
-              <span className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-all cursor-pointer">
-                Contact Us <ChevronRight className="h-5 w-5" />
-              </span>
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    </Section>
+    <CTASection
+      variant="gradient"
+      eyebrow="Get Started"
+      title="Partner With EaseOrigin"
+      description="Our team works alongside government agencies and prime contractors to deliver high-impact technology solutions tailored to your mission."
+      primaryCta={{ href: "/contact", label: "Partner With Us" }}
+      secondaryCta={{ href: "/contact", label: "Contact Us" }}
+    />
   );
 }
 
@@ -521,7 +362,6 @@ export default function SolutionsPage() {
       <main>
         <SolutionsHero />
         <OverviewGrid />
-        <CapabilityDetails />
         <ContractVehiclesCallout />
         <AgenciesGrid />
         <SolutionsCTA />

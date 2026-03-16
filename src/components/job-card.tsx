@@ -5,14 +5,15 @@ import { MapPin, Wifi, Building2, Layers, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { type Job } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { fadeInUpWhileVisible } from "@/lib/animations";
 
 const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
-  "Software Engineering": { bg: "bg-violet-50", text: "text-violet-700", border: "border-violet-100" },
-  "Cloud Engineering":    { bg: "bg-blue-50",   text: "text-eo-blue",    border: "border-blue-100"   },
-  "Cybersecurity":        { bg: "bg-amber-50",  text: "text-amber-700",  border: "border-amber-100"  },
-  "Data & Analytics":     { bg: "bg-emerald-50",text: "text-emerald-700",border: "border-emerald-100"},
-  "Project Management":   { bg: "bg-pink-50",   text: "text-pink-700",   border: "border-pink-100"   },
-  "DevOps":               { bg: "bg-cyan-50",   text: "text-cyan-700",   border: "border-cyan-100"   },
+  "Software Engineering": { bg: "bg-violet-50 dark:bg-violet-950", text: "text-violet-700 dark:text-violet-300", border: "border-violet-100 dark:border-violet-900" },
+  "Cloud Engineering":    { bg: "bg-blue-50 dark:bg-blue-950",     text: "text-eo-blue",                         border: "border-blue-100 dark:border-blue-900"     },
+  "Cybersecurity":        { bg: "bg-amber-50 dark:bg-amber-950",   text: "text-amber-700 dark:text-amber-300",   border: "border-amber-100 dark:border-amber-900"   },
+  "Data & Analytics":     { bg: "bg-emerald-50 dark:bg-emerald-950", text: "text-emerald-700 dark:text-emerald-300", border: "border-emerald-100 dark:border-emerald-900" },
+  "Project Management":   { bg: "bg-pink-50 dark:bg-pink-950",     text: "text-pink-700 dark:text-pink-300",     border: "border-pink-100 dark:border-pink-900"     },
+  "DevOps":               { bg: "bg-cyan-50 dark:bg-cyan-950",     text: "text-cyan-700 dark:text-cyan-300",     border: "border-cyan-100 dark:border-cyan-900"     },
 };
 
 const workTypeIcon: Record<string, React.ElementType> = {
@@ -27,14 +28,12 @@ interface JobCardProps {
 }
 
 export function JobCard({ job, index = 0 }: JobCardProps) {
-  const colors = categoryColors[job.category] ?? { bg: "bg-gray-50", text: "text-gray-600", border: "border-gray-200" };
+  const colors = categoryColors[job.category] ?? { bg: "bg-gray-50 dark:bg-gray-800", text: "text-gray-600 dark:text-gray-300", border: "border-gray-200 dark:border-gray-700" };
   const WorkIcon = workTypeIcon[job.workType] ?? Wifi;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      {...fadeInUpWhileVisible}
       transition={{ duration: 0.4, delay: index * 0.07 }}
       className="flex flex-col bg-surface border border-border-subtle rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden"
     >

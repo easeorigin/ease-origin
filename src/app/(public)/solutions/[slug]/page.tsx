@@ -15,6 +15,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { CTASection } from "@/components/shared/cta-section";
 import { getSolutionBySlug, solutions } from "@/data/solutions";
 import { getCaseStudyBySlug, type CaseStudy } from "@/data/case-studies";
 
@@ -41,55 +42,55 @@ const categoryColors: Record<
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     text: "text-eo-blue",
-    headerBg: "from-blue-50 to-indigo-50",
+    headerBg: "from-blue-50 to-indigo-50 dark:from-blue-800/60 dark:to-indigo-800/60",
   },
   Cybersecurity: {
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
-    text: "text-amber-700",
-    headerBg: "from-amber-50 to-orange-50",
+    text: "text-amber-700 dark:text-amber-300",
+    headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
   },
   "Cybersecurity & Compliance": {
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
-    text: "text-amber-700",
-    headerBg: "from-amber-50 to-orange-50",
+    text: "text-amber-700 dark:text-amber-300",
+    headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
   },
   "Data & Analytics": {
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
-    text: "text-emerald-700",
-    headerBg: "from-emerald-50 to-teal-50",
+    text: "text-emerald-700 dark:text-emerald-300",
+    headerBg: "from-emerald-50 to-teal-50 dark:from-emerald-800/60 dark:to-teal-800/60",
   },
   "AI/ML Infrastructure": {
     bg: "bg-violet-50 dark:bg-violet-950",
     border: "border-violet-100 dark:border-violet-900",
-    text: "text-violet-700",
-    headerBg: "from-violet-50 to-purple-50",
+    text: "text-violet-700 dark:text-violet-300",
+    headerBg: "from-violet-50 to-purple-50 dark:from-violet-800/60 dark:to-purple-800/60",
   },
   "DevOps & Platform Engineering": {
     bg: "bg-indigo-50 dark:bg-indigo-950",
     border: "border-indigo-100 dark:border-indigo-900",
-    text: "text-indigo-700",
-    headerBg: "from-indigo-50 to-blue-50",
+    text: "text-indigo-700 dark:text-indigo-300",
+    headerBg: "from-indigo-50 to-blue-50 dark:from-indigo-800/60 dark:to-blue-800/60",
   },
   "SaaS Solutions": {
     bg: "bg-sky-50 dark:bg-sky-950",
     border: "border-sky-100 dark:border-sky-900",
-    text: "text-sky-700",
-    headerBg: "from-sky-50 to-cyan-50",
+    text: "text-sky-700 dark:text-sky-300",
+    headerBg: "from-sky-50 to-cyan-50 dark:from-sky-800/60 dark:to-cyan-800/60",
   },
   "Program Management": {
     bg: "bg-purple-50 dark:bg-purple-950",
     border: "border-purple-100 dark:border-purple-900",
-    text: "text-purple-700",
-    headerBg: "from-purple-50 to-violet-50",
+    text: "text-purple-700 dark:text-purple-300",
+    headerBg: "from-purple-50 to-violet-50 dark:from-purple-800/60 dark:to-violet-800/60",
   },
   "Agile Delivery & Release Train Management": {
     bg: "bg-red-50 dark:bg-red-950",
     border: "border-red-100 dark:border-red-900",
-    text: "text-red-700",
-    headerBg: "from-red-50 to-rose-50",
+    text: "text-red-700 dark:text-red-300",
+    headerBg: "from-red-50 to-rose-50 dark:from-red-800/60 dark:to-rose-800/60",
   },
 };
 
@@ -262,7 +263,8 @@ export default async function SolutionDetailPage({
           <div className="absolute inset-0 z-0">
             <Image
               src={`/${solution.image}`}
-              alt=""
+              alt={`${solution.title} background`}
+              aria-hidden="true"
               fill
               className="object-cover opacity-[0.12]"
               priority
@@ -376,7 +378,7 @@ export default async function SolutionDetailPage({
                     {solution.complianceFrameworks.map((fw, i) => (
                       <span
                         key={i}
-                        className="px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-sm font-semibold text-amber-700"
+                        className="px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 text-sm font-semibold text-amber-700 dark:text-amber-300"
                       >
                         {fw}
                       </span>
@@ -419,41 +421,13 @@ export default async function SolutionDetailPage({
           </Section>
         )}
 
-        {/* CTA */}
-        <Section className="relative overflow-hidden bg-eo-navy">
-          <div
-            className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-              backgroundSize: "50px 50px",
-            }}
-          />
-          <div className="absolute -top-20 -right-20 w-72 h-72 bg-eo-blue/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
-
-          <div className="relative z-10 animate-fade-in-up max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-gray-300 leading-relaxed mb-8">
-              Let&apos;s discuss how EaseOrigin can help your organization with{" "}
-              {solution.title.toLowerCase()} solutions tailored to your mission.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-eo-gold text-eo-navy font-bold text-sm hover:bg-yellow-400 transition-all shadow-md cursor-pointer">
-                  Contact Us <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
-              <Link href="/solutions">
-                <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border-2 border-white/25 text-white font-bold text-sm hover:bg-white/10 transition-all cursor-pointer">
-                  All Solutions
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Section>
+        <CTASection
+          variant="navy"
+          title="Ready to Get Started?"
+          description={`Let's discuss how EaseOrigin can help your organization with ${solution.title.toLowerCase()} solutions tailored to your mission.`}
+          primaryCta={{ href: "/contact", label: "Contact Us" }}
+          secondaryCta={{ href: "/solutions", label: "All Solutions" }}
+        />
       </main>
     </div>
   );

@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Cloud, ShieldCheck, BarChart3, BrainCircuit, GitBranch, Layers, ClipboardList, Workflow } from "lucide-react";
 import Link from "next/link";
 import { type CaseStudy } from "@/data/case-studies";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { TiltCard } from "@/components/tilt-card";
+import { fadeInUpWhileVisibleLarge } from "@/lib/animations";
 
 const categoryIcons: Record<string, React.ElementType> = {
   "Cloud Infrastructure": Cloud,
@@ -16,56 +19,56 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 const CYBER_COLORS = {
-  bg: "bg-amber-50",
-  border: "border-amber-100",
-  text: "text-amber-700",
-  headerBg: "from-amber-50 to-orange-50",
+  bg: "bg-amber-50 dark:bg-amber-950",
+  border: "border-amber-100 dark:border-amber-900",
+  text: "text-amber-700 dark:text-amber-300",
+  headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
 };
 
 const categoryColors: Record<string, { bg: string; border: string; text: string; headerBg: string }> = {
   "Cloud Infrastructure": {
-    bg: "bg-blue-50",
-    border: "border-blue-100",
+    bg: "bg-blue-50 dark:bg-blue-950",
+    border: "border-blue-100 dark:border-blue-900",
     text: "text-eo-blue",
-    headerBg: "from-blue-50 to-indigo-50",
+    headerBg: "from-blue-50 to-indigo-50 dark:from-blue-800/60 dark:to-indigo-800/60",
   },
   "Cybersecurity": CYBER_COLORS,
   "Cybersecurity & Compliance": CYBER_COLORS,
   "Data & Analytics": {
-    bg: "bg-emerald-50",
-    border: "border-emerald-100",
-    text: "text-emerald-700",
-    headerBg: "from-emerald-50 to-teal-50",
+    bg: "bg-emerald-50 dark:bg-emerald-950",
+    border: "border-emerald-100 dark:border-emerald-900",
+    text: "text-emerald-700 dark:text-emerald-300",
+    headerBg: "from-emerald-50 to-teal-50 dark:from-emerald-800/60 dark:to-teal-800/60",
   },
   "AI/ML Infrastructure": {
-    bg: "bg-violet-50",
-    border: "border-violet-100",
-    text: "text-violet-700",
-    headerBg: "from-violet-50 to-purple-50",
+    bg: "bg-violet-50 dark:bg-violet-950",
+    border: "border-violet-100 dark:border-violet-900",
+    text: "text-violet-700 dark:text-violet-300",
+    headerBg: "from-violet-50 to-purple-50 dark:from-violet-800/60 dark:to-purple-800/60",
   },
   "DevOps & Platform Engineering": {
-    bg: "bg-indigo-50",
-    border: "border-indigo-100",
-    text: "text-indigo-700",
-    headerBg: "from-indigo-50 to-blue-50",
+    bg: "bg-indigo-50 dark:bg-indigo-950",
+    border: "border-indigo-100 dark:border-indigo-900",
+    text: "text-indigo-700 dark:text-indigo-300",
+    headerBg: "from-indigo-50 to-blue-50 dark:from-indigo-800/60 dark:to-blue-800/60",
   },
   "SaaS Solutions": {
-    bg: "bg-sky-50",
-    border: "border-sky-100",
-    text: "text-sky-700",
-    headerBg: "from-sky-50 to-cyan-50",
+    bg: "bg-sky-50 dark:bg-sky-950",
+    border: "border-sky-100 dark:border-sky-900",
+    text: "text-sky-700 dark:text-sky-300",
+    headerBg: "from-sky-50 to-cyan-50 dark:from-sky-800/60 dark:to-cyan-800/60",
   },
   "Program Management": {
-    bg: "bg-purple-50",
-    border: "border-purple-100",
-    text: "text-purple-700",
-    headerBg: "from-purple-50 to-violet-50",
+    bg: "bg-purple-50 dark:bg-purple-950",
+    border: "border-purple-100 dark:border-purple-900",
+    text: "text-purple-700 dark:text-purple-300",
+    headerBg: "from-purple-50 to-violet-50 dark:from-purple-800/60 dark:to-violet-800/60",
   },
   "Agile Delivery": {
-    bg: "bg-red-50",
-    border: "border-red-100",
-    text: "text-red-700",
-    headerBg: "from-red-50 to-rose-50",
+    bg: "bg-red-50 dark:bg-red-950",
+    border: "border-red-100 dark:border-red-900",
+    text: "text-red-700 dark:text-red-300",
+    headerBg: "from-red-50 to-rose-50 dark:from-red-800/60 dark:to-rose-800/60",
   },
 };
 
@@ -79,12 +82,11 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
   const colors = categoryColors[study.category] ?? categoryColors["Data & Analytics"];
 
   return (
+    <TiltCard className="h-full">
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      {...fadeInUpWhileVisibleLarge}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
     >
       {/* Card header */}
       <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
@@ -94,7 +96,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
           <div className="absolute top-4 right-4 text-right z-10">
-            <div className="text-2xl font-extrabold text-text-primary leading-none">{study.metrics[0].value}</div>
+            <AnimatedCounter value={study.metrics[0].value} className="text-2xl font-extrabold text-text-primary leading-none" />
             <div className="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mt-0.5">{study.metrics[0].label}</div>
           </div>
         )}
@@ -142,5 +144,6 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
         </Link>
       </div>
     </motion.div>
+    </TiltCard>
   );
 }

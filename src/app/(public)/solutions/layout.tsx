@@ -3,7 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Explore EaseOrigin's federal IT capabilities, including cloud infrastructure, cybersecurity, DevOps, AI/ML, and data analytics solutions for government agencies.",
+    "EaseOrigin technology solutions: cloud infrastructure, cybersecurity, DevOps, AI/ML, data analytics, SaaS, program management, and agile delivery for government and enterprise.",
+  openGraph: {
+    title: "Solutions | EaseOrigin",
+    description:
+      "EaseOrigin technology solutions: cloud infrastructure, cybersecurity, DevOps, AI/ML, data analytics, SaaS, program management, and agile delivery for government and enterprise.",
+  },
 };
 
 export default function SolutionsLayout({ children }: { children: React.ReactNode }) {

@@ -2,72 +2,19 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 import {
   ShieldCheck, Users, Lightbulb, Star,
-  ArrowRight, Cloud, Lock, BarChart3, Layers,
-  CheckCircle2, Building2, Award, Code,
-  Linkedin, Mail, ClipboardList, Workflow
+  Cloud, Lock, BarChart3, Layers,
+  CheckCircle2, Award, Code,
+  Linkedin, Mail, ClipboardList, Workflow, Building2
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
-
-// ─── Hero ─────────────────────────────────────────────────────────────────────
-
-function AboutHero() {
-  return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-28 overflow-hidden bg-eo-navy text-white">
-      {/* Grid texture */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-        }}
-      />
-      {/* Glow orbs */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-eo-gold rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
-
-      {/* Abstract circuit lines */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <line x1="0" y1="30%" x2="100%" y2="30%" stroke="white" strokeWidth="0.5" />
-        <line x1="0" y1="60%" x2="100%" y2="60%" stroke="white" strokeWidth="0.5" />
-        <line x1="20%" y1="0" x2="20%" y2="100%" stroke="white" strokeWidth="0.5" />
-        <line x1="60%" y1="0" x2="60%" y2="100%" stroke="white" strokeWidth="0.5" />
-        <line x1="85%" y1="0" x2="85%" y2="100%" stroke="white" strokeWidth="0.5" />
-        <circle cx="20%" cy="30%" r="4" fill="none" stroke="white" strokeWidth="1" />
-        <circle cx="60%" cy="60%" r="4" fill="none" stroke="white" strokeWidth="1" />
-        <circle cx="85%" cy="30%" r="4" fill="none" stroke="white" strokeWidth="1" />
-      </svg>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
-            <Building2 className="h-3.5 w-3.5" />
-            Est. 2019 · Midlothian, TX
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.06] mb-6">
-            About EaseOrigin
-          </h1>
-          <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-            Delivering trusted technology consulting services that help government agencies and private sector organizations modernize systems, strengthen security, and drive mission success.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+import { PageHero } from "@/components/shared/page-hero";
+import { CTASection } from "@/components/shared/cta-section";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { companyInfo } from "@/data/company-info";
+import { fadeInUpWhileVisible, fadeInUpWhileVisibleLarge, staggeredFadeInUp } from "@/lib/animations";
 
 // ─── Who We Are ───────────────────────────────────────────────────────────────
 
@@ -124,10 +71,9 @@ function WhoWeAre() {
           {capabilities.map(({ icon: Icon, label }, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              {...staggeredFadeInUp(i)}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
               className="flex flex-col items-start gap-4 bg-surface-muted rounded-2xl border border-border-subtle p-7 hover:shadow-md hover:border-blue-100 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 flex items-center justify-center">
@@ -141,10 +87,10 @@ function WhoWeAre() {
             {[
               { num: "14+", label: "Years of IT experience" },
               { num: "14", label: "Organizations served" },
-              { num: "6", label: "Certifications" },
+              { num: "30+", label: "Team certifications" },
             ].map(({ num, label }, i) => (
               <div key={i} className="text-center flex-1">
-                <p className="text-2xl font-extrabold text-eo-gold">{num}</p>
+                <AnimatedCounter value={num} className="text-2xl font-extrabold text-eo-gold" />
                 <p className="text-xs text-gray-400 mt-1 leading-snug">{label}</p>
               </div>
             ))}
@@ -191,10 +137,7 @@ function Timeline() {
       {/* Blue glow orb */}
       <div className="absolute -top-10 -right-20 w-80 h-80 bg-blue-100/20 rounded-full blur-[90px] pointer-events-none" />
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        {...fadeInUpWhileVisible}
         className="text-center mb-14"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Company History</p>
@@ -263,8 +206,8 @@ const teamMembers: TeamMember[] = [
     name: "Jimi Umar",
     initials: "JU",
     title: "Founder & CEO",
-    photo: "/images/team/jimi-umar.jpg",
-    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for federal clients including DOD, DHS, NIH, and GSA.",
+    photo: "",
+    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for clients spanning federal agencies (DoW, DHS, NIH, GSA) and commercial enterprises in financial services, healthcare, retail, and logistics.",
     certifications: [
       "AWS Solutions Architect",
       "AWS SysOps Administrator",
@@ -274,14 +217,14 @@ const teamMembers: TeamMember[] = [
       "Certified Python Developer",
     ],
     linkedIn: "https://linkedin.com/in/jimiuumar",
-    email: "info@easeorigin.com",
+    email: companyInfo.email,
   },
 ];
 
 function LeadershipPhoto({ member }: { member: TeamMember }) {
   const [imgError, setImgError] = useState(false);
 
-  if (imgError) {
+  if (!member.photo || imgError) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-eo-navy to-eo-blue">
         <span className="text-4xl sm:text-5xl font-extrabold text-eo-gold select-none">
@@ -311,10 +254,7 @@ function Leadership() {
       <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-amber-100/15 rounded-full blur-[80px] pointer-events-none" />
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        {...fadeInUpWhileVisible}
         className="text-center mb-12"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">
@@ -329,9 +269,7 @@ function Leadership() {
         {teamMembers.map((member, i) => (
           <motion.div
             key={member.name}
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...fadeInUpWhileVisibleLarge}
             transition={{ duration: 0.6, delay: i * 0.15 }}
             className="bg-surface-muted rounded-2xl border border-border-subtle shadow-sm overflow-hidden hover:shadow-md transition-shadow"
           >
@@ -365,7 +303,7 @@ function Leadership() {
                     {member.certifications.map((cert) => (
                       <span
                         key={cert}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy dark:text-blue-200"
                       >
                         <Award className="h-3 w-3 text-eo-gold flex-shrink-0" />
                         {cert}
@@ -453,10 +391,7 @@ function OurExpertise() {
         }}
       />
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        {...fadeInUpWhileVisible}
         className="text-center mb-12"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Credentials</p>
@@ -533,10 +468,7 @@ function OurValues() {
       {/* Blue glow bottom-right */}
       <div className="absolute -bottom-16 -right-16 w-72 h-72 bg-blue-100/20 rounded-full blur-[80px] pointer-events-none" />
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        {...fadeInUpWhileVisible}
         className="text-center mb-12"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">What Drives Us</p>
@@ -572,17 +504,17 @@ function OurValues() {
 
 const impactStats = [
   { num: "14+", label: "Years of IT Experience" },
-  { num: "7", label: "Federal Agencies Supported" },
-  { num: "6", label: "Professional Certifications" },
+  { num: "22+", label: "Projects Delivered" },
+  { num: "30+", label: "Team Certifications" },
   { num: "14", label: "Organizations Served" },
 ];
 
 const impactPoints = [
-  "Strengthening cybersecurity across government and enterprise",
-  "Modernizing mission-critical systems and infrastructure",
+  "Strengthening cybersecurity across government and commercial organizations",
+  "Modernizing mission-critical systems and enterprise infrastructure",
   "Enabling cloud adoption and platform engineering at scale",
-  "Delivering AI-powered solutions and data-driven insights",
-  "Providing structured program management and agile delivery for federal initiatives",
+  "Delivering AI-powered solutions and data-driven insights for federal and private sector clients",
+  "Providing structured program management and agile delivery across industries",
 ];
 
 function Impact() {
@@ -611,7 +543,7 @@ function Impact() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-eo-navy rounded-2xl p-6 text-center"
               >
-                <p className="text-3xl font-extrabold text-eo-gold mb-1">{num}</p>
+                <AnimatedCounter value={num} className="text-3xl font-extrabold text-eo-gold mb-1" />
                 <p className="text-xs text-gray-400 leading-snug">{label}</p>
               </motion.div>
             ))}
@@ -648,70 +580,33 @@ function Impact() {
   );
 }
 
-// ─── CTA ──────────────────────────────────────────────────────────────────────
-
-function AboutCTA() {
-  return (
-    <Section className="relative overflow-hidden bg-eo-navy">
-      {/* Grid texture */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-        }}
-      />
-      {/* Blue glow orb top-right */}
-      <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-eo-blue/20 rounded-full blur-3xl pointer-events-none" />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.55 }}
-        className="relative z-10 max-w-2xl mx-auto text-center text-white"
-      >
-        <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-3">Partner With Us</p>
-        <h2 className="text-3xl md:text-4xl font-bold mb-5">Work With EaseOrigin</h2>
-        <p className="text-gray-300 leading-relaxed mb-8">
-          Whether you're a government agency, prime contractor, or private sector organization, we would love to partner with you on your next technology initiative.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link href="/solutions">
-            <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-white text-eo-navy font-bold text-sm hover:bg-gray-100 transition-all shadow-md cursor-pointer">
-              View Solutions <ArrowRight className="h-4 w-4" />
-            </span>
-          </Link>
-          <Link href="/contact">
-            <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border-2 border-white/25 text-white font-bold text-sm hover:bg-white/10 transition-all cursor-pointer">
-              Contact Us
-            </span>
-          </Link>
-          <Link href="/capability-statement">
-            <span className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border-2 border-eo-gold/40 text-eo-gold font-bold text-sm hover:bg-eo-gold/10 hover:border-eo-gold/60 transition-all cursor-pointer">
-              View Capability Statement
-            </span>
-          </Link>
-        </div>
-      </motion.div>
-    </Section>
-  );
-}
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-surface">
       <main>
-        <AboutHero />
+        <PageHero
+          badge="Est. 2019 | Midlothian, TX"
+          badgeIcon={<Building2 className="h-3.5 w-3.5" />}
+          title="About EaseOrigin"
+          description="Delivering trusted technology consulting services that help government agencies and private sector organizations modernize systems, strengthen security, and drive mission success."
+          backgroundImage={{ src: "/images/about-team.jpg", alt: "EaseOrigin team collaboration" }}
+        />
         <WhoWeAre />
         <Timeline />
-        <Leadership />
+        {/* <Leadership /> — Ready to enable when team data is finalized */}
         <OurExpertise />
         <OurValues />
         <Impact />
-        <AboutCTA />
+        <CTASection
+          variant="navy"
+          eyebrow="Partner With Us"
+          title="Work With EaseOrigin"
+          description="Whether you're a government agency, prime contractor, or private sector organization, we would love to partner with you on your next technology initiative."
+          primaryCta={{ href: "/solutions", label: "View Solutions" }}
+          secondaryCta={{ href: "/contact", label: "Contact Us" }}
+        />
       </main>
     </div>
   );

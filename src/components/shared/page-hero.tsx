@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
@@ -18,6 +19,8 @@ interface PageHeroProps {
   className?: string;
   /** When true the hero uses min-h-[60vh] and vertically centers content */
   tall?: boolean;
+  /** Optional background image displayed behind the hero content */
+  backgroundImage?: { src: string; alt: string };
 }
 
 export function PageHero({
@@ -31,6 +34,7 @@ export function PageHero({
   children,
   className,
   tall = false,
+  backgroundImage,
 }: PageHeroProps) {
   return (
     <section
@@ -38,6 +42,21 @@ export function PageHero({
         tall ? "min-h-[60vh] flex items-center" : ""
       } ${className ?? ""}`}
     >
+      {/* Optional background image */}
+      {backgroundImage && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={backgroundImage.src}
+            alt={backgroundImage.alt}
+            aria-hidden="true"
+            fill
+            className="object-cover opacity-[0.12]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
+        </div>
+      )}
+
       {/* Grid texture */}
       <div
         className="absolute inset-0 z-0 opacity-[0.035]"

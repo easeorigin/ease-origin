@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/section";
+import { companyInfo } from "@/data/company-info";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -46,7 +47,7 @@ export default function TermsOfService() {
             <h2 className="text-xl font-bold text-text-primary mt-8">Contact</h2>
             <p className="text-text-tertiary leading-relaxed mb-6">
               For questions about these Terms of Service, contact us at{" "}
-              <a href="mailto:info@easeorigin.com" className="text-eo-blue hover:underline">info@easeorigin.com</a>.
+              <a href={`mailto:${companyInfo.email}`} className="text-eo-blue hover:underline">{companyInfo.email}</a>.
             </p>
           </div>
         </Section>

@@ -139,6 +139,7 @@ const STEPS = [
 const inputBase =
   "w-full px-3.5 py-3 rounded-lg border text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all";
 const inputOk = "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
+const inputOk = "border-gray-200 focus:border-eo-blue focus:ring-eo-blue/20";
 const inputErr = "border-red-400 focus:border-red-400 focus:ring-red-100";
 const labelCls =
   "block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5";
@@ -239,6 +240,7 @@ function Step1({
         <input
           type="checkbox"
           className="w-4 h-4 rounded border-gray-300 accent-eo-blue"
+          className="w-4 h-4 rounded border-gray-300 accent-eo-blue"
           checked={data.willingToRelocate}
           onChange={(e) => set("willingToRelocate", e.target.checked)}
         />
@@ -291,6 +293,7 @@ function SkillInput({
           <span
             key={sk}
             className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-semibold rounded-full"
+            className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-semibold rounded-full"
           >
             {sk}
             <button
@@ -319,6 +322,7 @@ function SkillInput({
         <button
           type="button"
           onClick={addSkill}
+          className="px-4 py-2 rounded-lg bg-eo-navy text-white text-sm font-bold hover:bg-eo-blue transition-colors shrink-0"
           className="px-4 py-2 rounded-lg bg-eo-navy text-white text-sm font-bold hover:bg-eo-blue transition-colors shrink-0"
         >
           <Tag className="h-4 w-4" />
@@ -373,6 +377,7 @@ function ExperienceEntry({
   return (
     <div className="bg-slate-50 rounded-xl border border-gray-200 p-5">
       <div className="flex items-center justify-between mb-4">
+        <h4 className="text-sm font-bold text-eo-navy">
         <h4 className="text-sm font-bold text-eo-navy">
           Experience #{index + 1}
         </h4>
@@ -448,6 +453,7 @@ function ExperienceEntry({
           <input
             type="checkbox"
             className="w-4 h-4 rounded border-gray-300 accent-eo-blue"
+            className="w-4 h-4 rounded border-gray-300 accent-eo-blue"
             checked={exp.currentRole}
             onChange={(e) => set("currentRole", e.target.checked)}
           />
@@ -519,6 +525,7 @@ function Step3({
         type="button"
         onClick={add}
         className="flex items-center gap-2 px-4 py-3 rounded-lg border-2 border-dashed border-gray-300 text-sm font-semibold text-gray-500 hover:border-eo-blue hover:text-eo-blue transition-colors"
+        className="flex items-center gap-2 px-4 py-3 rounded-lg border-2 border-dashed border-gray-300 text-sm font-semibold text-gray-500 hover:border-eo-blue hover:text-eo-blue transition-colors"
       >
         <Plus className="h-4 w-4" /> Add Another Experience
       </button>
@@ -544,6 +551,7 @@ function EducationEntry({
   return (
     <div className="bg-slate-50 rounded-xl border border-gray-200 p-5">
       <div className="flex items-center justify-between mb-4">
+        <h4 className="text-sm font-bold text-eo-navy">
         <h4 className="text-sm font-bold text-eo-navy">
           Education #{index + 1}
         </h4>
@@ -683,6 +691,7 @@ function Step4({
         type="button"
         onClick={add}
         className="flex items-center gap-2 px-4 py-3 rounded-lg border-2 border-dashed border-gray-300 text-sm font-semibold text-gray-500 hover:border-eo-blue hover:text-eo-blue transition-colors"
+        className="flex items-center gap-2 px-4 py-3 rounded-lg border-2 border-dashed border-gray-300 text-sm font-semibold text-gray-500 hover:border-eo-blue hover:text-eo-blue transition-colors"
       >
         <Plus className="h-4 w-4" /> Add Another Education
       </button>
@@ -805,6 +814,8 @@ function FileDropZone({
           drag
             ? "border-eo-blue bg-blue-50"
             : "border-gray-200 bg-slate-50 hover:border-eo-blue hover:bg-blue-50/20",
+            ? "border-eo-blue bg-blue-50"
+            : "border-gray-200 bg-slate-50 hover:border-eo-blue hover:bg-blue-50/20",
         )}
       >
         <input
@@ -816,9 +827,11 @@ function FileDropZone({
         />
         <Upload
           className={cn("h-6 w-6", drag ? "text-eo-blue" : "text-gray-300")}
+          className={cn("h-6 w-6", drag ? "text-eo-blue" : "text-gray-300")}
         />
         {file ? (
           <div>
+            <p className="text-sm font-semibold text-eo-navy">{file.name}</p>
             <p className="text-sm font-semibold text-eo-navy">{file.name}</p>
             <p className="text-xs text-gray-400">Click to replace · max 5 MB</p>
           </div>
@@ -827,9 +840,10 @@ function FileDropZone({
             <p className="text-sm font-medium text-gray-500">
               Drag & drop or{" "}
               <span className="text-eo-blue font-semibold">browse</span>
+              <span className="text-eo-blue font-semibold">browse</span>
             </p>
             <p className="text-xs text-gray-400 mt-0.5">
-              PDF, DOC, DOCX — max 5 MB
+              PDF, DOC, DOCX, max 5 MB
             </p>
           </div>
         )}
@@ -938,6 +952,7 @@ function Step7({
       <div className="bg-slate-50 rounded-2xl border border-gray-100 p-6 flex flex-col gap-6">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
             Personal
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -955,12 +970,14 @@ function Step7({
         {data.skills.length > 0 && (
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
               Skills
             </p>
             <div className="flex flex-wrap gap-2">
               {(data.skills as string[]).map((s, i) => (
                 <span
                   key={i}
+                  className="px-2.5 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-semibold rounded-full"
                   className="px-2.5 py-1 bg-blue-50 border border-blue-100 text-eo-blue text-xs font-semibold rounded-full"
                 >
                   {s}
@@ -971,11 +988,13 @@ function Step7({
         )}
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
             Work Experience
           </p>
           {exps
             .filter((e) => e.roleTitle)
             .map((e, i) => (
+              <div key={i} className="text-sm text-eo-navy mb-1">
               <div key={i} className="text-sm text-eo-navy mb-1">
                 <strong>{e.roleTitle}</strong> at {e.employer}
                 {e.currentRole ? " · Current" : ""}
@@ -984,17 +1003,20 @@ function Step7({
         </div>
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
             Education
           </p>
           {edus
             .filter((e) => e.school)
             .map((e, i) => (
               <div key={i} className="text-sm text-eo-navy mb-1">
+              <div key={i} className="text-sm text-eo-navy mb-1">
                 <strong>{e.degree}</strong> in {e.courseOfStudy} · {e.school}
               </div>
             ))}
         </div>
         <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
           <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-3">
             Eligibility
           </p>
@@ -1010,8 +1032,10 @@ function Step7({
         {data.resumeFile && (
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-eo-gold mb-2">
               Resume
             </p>
+            <p className="text-sm text-eo-navy">
             <p className="text-sm text-eo-navy">
               {(data.resumeFile as File).name}
             </p>
@@ -1039,6 +1063,7 @@ function Step7({
           <label key={key} className="flex items-start gap-3 cursor-pointer">
             <input
               type="checkbox"
+              className="w-4 h-4 mt-0.5 rounded border-gray-300 accent-eo-blue shrink-0"
               className="w-4 h-4 mt-0.5 rounded border-gray-300 accent-eo-blue shrink-0"
               checked={data[key] as boolean}
               onChange={(e) => set(key, e.target.checked)}
@@ -1097,12 +1122,14 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
     <div className="flex flex-col gap-2 mb-6">
       <div className="flex items-center justify-between text-xs text-gray-500">
         <span className="font-semibold text-eo-navy">
+        <span className="font-semibold text-eo-navy">
           Step {step} of {total}
         </span>
         <span>{STEPS[step - 1]}</span>
       </div>
       <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
         <motion.div
+          className="h-full bg-eo-gold rounded-full"
           className="h-full bg-eo-gold rounded-full"
           animate={{ width: `${(step / total) * 100}%` }}
           transition={{ duration: 0.3 }}
@@ -1117,7 +1144,9 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
               "w-5 h-5 rounded-full text-[9px] font-bold flex items-center justify-center transition-all",
               i + 1 < step
                 ? "bg-eo-gold text-eo-navy"
+                ? "bg-eo-gold text-eo-navy"
                 : i + 1 === step
+                  ? "bg-eo-navy text-white ring-2 ring-eo-navy ring-offset-2"
                   ? "bg-eo-navy text-white ring-2 ring-eo-navy ring-offset-2"
                   : "bg-gray-100 text-gray-400",
             )}
@@ -1155,10 +1184,12 @@ function SuccessScreen({
         transition={{ delay: 0.2, duration: 0.5 }}
       >
         <h2 className="text-2xl font-extrabold text-eo-navy mb-3">
+        <h2 className="text-2xl font-extrabold text-eo-navy mb-3">
           Application Submitted Successfully!
         </h2>
         <p className="text-gray-500 leading-relaxed max-w-sm mx-auto">
           Thank you for applying for{" "}
+          <strong className="text-eo-navy">{jobTitle}</strong>. Our team will
           <strong className="text-eo-navy">{jobTitle}</strong>. Our team will
           review your application and contact you if your qualifications match
           our needs.
@@ -1174,6 +1205,7 @@ function SuccessScreen({
           <span
             onClick={onClose}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-eo-navy text-white font-bold text-sm hover:bg-eo-blue transition-colors cursor-pointer"
           >
             Return to Careers
           </span>
@@ -1181,6 +1213,7 @@ function SuccessScreen({
         <Link href="/careers/jobs">
           <span
             onClick={onClose}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-eo-navy text-eo-navy font-bold text-sm hover:bg-eo-navy hover:text-white transition-colors cursor-pointer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-eo-navy text-eo-navy font-bold text-sm hover:bg-eo-navy hover:text-white transition-colors cursor-pointer"
           >
             View Other Jobs <ArrowRight className="h-4 w-4" />
@@ -1302,9 +1335,12 @@ export function ApplicationDrawer({
                 <div className="flex items-center gap-2 mb-0.5">
                   <Briefcase className="h-4 w-4 text-eo-gold" />
                   <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold">
+                  <Briefcase className="h-4 w-4 text-eo-gold" />
+                  <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold">
                     Job Application
                   </p>
                 </div>
+                <h2 className="text-lg font-extrabold text-eo-navy leading-tight line-clamp-1">
                 <h2 className="text-lg font-extrabold text-eo-navy leading-tight line-clamp-1">
                   {jobTitle}
                 </h2>
@@ -1334,6 +1370,7 @@ export function ApplicationDrawer({
                         exit={{ opacity: 0, x: -30 }}
                         transition={{ duration: 0.2 }}
                       >
+                        <h3 className="text-lg font-bold text-eo-navy mb-5">
                         <h3 className="text-lg font-bold text-eo-navy mb-5">
                           {STEPS[step - 1]}
                         </h3>
@@ -1366,6 +1403,7 @@ export function ApplicationDrawer({
                   <button
                     onClick={next}
                     className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-navy text-white text-sm font-bold hover:bg-eo-blue transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-navy text-white text-sm font-bold hover:bg-eo-blue transition-colors shadow-sm"
                   >
                     Continue <ChevronRight className="h-4 w-4" />
                   </button>
@@ -1374,9 +1412,11 @@ export function ApplicationDrawer({
                     onClick={submit}
                     disabled={submitting}
                     className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-gold text-eo-navy text-sm font-bold hover:bg-yellow-400 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-gold text-eo-navy text-sm font-bold hover:bg-yellow-400 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {submitting ? (
                       <>
+                        <span className="h-4 w-4 border-2 border-eo-navy/30 border-t-eo-navy rounded-full animate-spin" />{" "}
                         <span className="h-4 w-4 border-2 border-eo-navy/30 border-t-eo-navy rounded-full animate-spin" />{" "}
                         Submitting…
                       </>

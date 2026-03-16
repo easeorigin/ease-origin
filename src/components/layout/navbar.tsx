@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -12,6 +13,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,9 +27,9 @@ export function Navbar() {
     { name: "Solutions", href: "/solutions", internal: true },
     { name: "Contract Vehicles", href: "/contract-vehicles", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
-    { name: "Careers", href: "/careers", internal: true },
     { name: "About", href: "/about", internal: true },
-    { name: "Contact", href: "/contact", internal: true },
+    { name: "Careers", href: "/careers", internal: true },
+    { name: "Blog", href: "/blog", internal: true },
   ];
 
   return (
@@ -52,7 +54,7 @@ export function Navbar() {
               )}
             >
             <Image
-            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
+            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.webp" : "/logo/main-logo.webp"}
             alt="EaseOrigin Logo"
             width={60}
             height={50}
@@ -98,7 +100,7 @@ export function Navbar() {
                 "px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200",
                 isScrolled
                   ? "bg-eo-navy text-white hover:bg-eo-blue shadow-md hover:shadow-lg"
-                  : "bg-white text-eo-navy hover:bg-gray-100 shadow-lg",
+                  : "bg-white text-eo-navy hover:bg-gray-100 shadow-lg dark:bg-surface dark:text-text-primary dark:hover:bg-surface-muted",
               )}
             >
               Partner With Us
@@ -125,6 +127,12 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-0.5 bg-eo-gold origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
 
       {/* Mobile Menu */}
       <div

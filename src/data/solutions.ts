@@ -23,7 +23,7 @@ export const solutions: Solution[] = [
     heroDescription:
       "Scalable, secure cloud infrastructure designed for mission-critical government and enterprise workloads.",
     icon: "Server",
-    image: "images/cloud-infrastructure.png",
+    image: "images/cloud-infrastructure.jpg",
     imageAlt: "Cloud infrastructure data center",
     overview:
       "EaseOrigin delivers enterprise cloud architecture and infrastructure services spanning migration strategy, multi-account governance, containerization, and full-scale automation. We help organizations move from legacy environments to modern, well-governed cloud platforms across AWS, Azure, GCP, and Oracle Cloud.",
@@ -54,6 +54,7 @@ export const solutions: Solution[] = [
       "cloud-modernization",
       "dod-oracle-cloud",
       "multi-cloud-infrastructure",
+      "cloud-cost-optimization",
     ],
     accentColor: "#1E3A5F",
   },
@@ -65,7 +66,7 @@ export const solutions: Solution[] = [
     heroDescription:
       "Comprehensive cybersecurity services that protect mission-critical systems while maintaining regulatory compliance.",
     icon: "Shield",
-    image: "images/cybersecurity.png",
+    image: "images/cybersecurity.jpg",
     imageAlt: "Cybersecurity operations center",
     overview:
       "EaseOrigin provides end-to-end cybersecurity services including compliance framework implementation, zero-trust architecture design, security automation, and continuous monitoring. We specialize in federal compliance requirements including NIST RMF, FISMA, FedRAMP, and HIPAA.",
@@ -100,8 +101,10 @@ export const solutions: Solution[] = [
     ],
     relatedCaseStudySlugs: [
       "hipaa-compliant-infrastructure",
+      "zero-trust-security-architecture",
+      "enterprise-security-operations-center",
       "dod-oracle-cloud",
-      "space-force-c2",
+      "enterprise-iam-modernization",
     ],
     accentColor: "#B45309",
   },
@@ -179,7 +182,7 @@ export const solutions: Solution[] = [
       "MongoDB",
       "Vector Databases",
     ],
-    relatedCaseStudySlugs: ["enterprise-ai-platform"],
+    relatedCaseStudySlugs: ["enterprise-ai-platform", "ai-document-processing-platform", "intelligent-automation-platform"],
     accentColor: "#065F46",
   },
   {
@@ -215,7 +218,7 @@ export const solutions: Solution[] = [
       "AWS",
       "Snowflake",
     ],
-    relatedCaseStudySlugs: ["data-platform-consolidation"],
+    relatedCaseStudySlugs: ["data-platform-consolidation", "realtime-operational-analytics", "retail-analytics-platform"],
     accentColor: "#059669",
   },
   {
@@ -253,6 +256,7 @@ export const solutions: Solution[] = [
     complianceFrameworks: ["FISMA", "FedRAMP"],
     relatedCaseStudySlugs: [
       "government-saas-modernization",
+      "healthcare-system-integration",
       "gsa-federal-modernization",
     ],
     accentColor: "#B45309",
@@ -330,7 +334,7 @@ export const solutions: Solution[] = [
       "Power BI",
     ],
     complianceFrameworks: [
-      "DoD Software Acquisition Pathway",
+      "DoW Software Acquisition Pathway",
       "TechFAR",
       "cATO",
     ],

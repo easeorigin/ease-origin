@@ -97,7 +97,7 @@ export default function AdminLoginPage() {
         <div className="flex flex-col items-center mb-8">
           <div className="flex items-center gap-2 justify-center mb-4 shadow-lg">
             <Image
-              src={"/logo/main-logo.png"}
+              src={"/logo/main-logo.webp"}
               alt="EaseOrigin Logo"
               width={30}
               height={30}
@@ -144,7 +144,7 @@ export default function AdminLoginPage() {
                     <input
                       type="email"
                       autoComplete="email"
-                      placeholder="admin@eofederal.com"
+                      placeholder="admin@easeorigin.com"
                       {...form.register("email")}
                       className={cn(
                         inputBase,

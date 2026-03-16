@@ -1,75 +1,157 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { NetworkParticles } from "@/components/ui/network-particles";
+
+function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (displayedText.length >= text.length) return;
+
+    const timer = setTimeout(() => {
+      setDisplayedText(text.slice(0, displayedText.length + 1));
+    }, 45);
+
+    return () => clearTimeout(timer);
+  }, [started, displayedText, text]);
+
+  return (
+    <>
+      {displayedText}
+      <span className="inline-block w-0.75 h-[0.85em] bg-eo-gold ml-1 align-middle animate-[blink_1s_steps(2)_infinite]" />
+    </>
+  );
+}
 
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-eo-navy text-white min-h-[90vh] flex items-center">
-      {/* Abstract Background Elements */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <Image
-          src={"/images/capitol-building.png"}
-          alt=""
-          fill
-          className="w-full h-full object-cover opacity-[0.4]"
+      {/* Animated network background */}
+      <div className="absolute inset-0 z-0">
+        <NetworkParticles
+          particleCount={90}
+          speed={0.3}
+          connectionDistance={160}
+          particleColor="rgba(212, 175, 55, 0.4)"
+          lineColor="rgba(30, 58, 95, 0.25)"
         />
-        <div className="absolute inset-0 bg-grid-pattern" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
         <div className="absolute top-0 right-0 w-200 h-200 bg-eo-blue rounded-full blur-[120px] opacity-40 translate-x-1/3 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-150 h-150 bg-eo-gold rounded-full blur-[150px] opacity-10 -translate-x-1/3 translate-y-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left Content */}
+          {/* Left Content - Staggered Entrance */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } },
+            }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
-              <span>Trusted Technology Partner</span>
-            </div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+            >
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
+                <span>Trusted Technology Partner</span>
+              </div>
+            </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
-              Enterprise IT Expertise That{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
-                Delivers Results.
-              </span>
-            </h1>
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
+            >
+              <TypewriterText
+                text="Technology Consulting That Delivers Mission Success."
+                delay={450}
+              />
+            </motion.h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
-              EaseOrigin provides specialized technology consultants and
-              enterprise IT solutions to U.S. government agencies and prime
-              contractors nationwide.
-            </p>
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+              className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
+            >
+              EaseOrigin delivers specialized technology consulting and
+              enterprise IT solutions to government agencies, prime
+              contractors, and private sector organizations nationwide.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              {[
+                "14+ Years Experience",
+                "30+ Certifications",
+                "Active Clearance",
+                "Small Business",
+              ].map((signal) => (
+                <span
+                  key={signal}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-eo-gold/15 text-eo-gold border border-eo-gold/30"
+                >
+                  {signal}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link
                 href="/contact"
                 className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-eo-gold text-eo-navy hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-0.5"
               >
                 Partner With Us
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/careers"
                 className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-transparent border border-white/30 text-white hover:bg-white/10 transition-all"
               >
                 View Careers
                 <ChevronRight className="ml-1 h-5 w-5" />
-              </a>
-            </div>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Right Abstract Graphic */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" as const }}
             className="hidden lg:block relative h-125"
           >
             {/* CSS-based Tech Visualization */}
@@ -83,7 +165,6 @@ export function Hero() {
                       alt="EaseOrigin Logo"
                       width={80}
                       height={80}
-                      
                       />
                   </div>
                 </div>
@@ -93,22 +174,8 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full animate-[spin_60s_linear_infinite]"
                   viewBox="0 0 400 400"
                 >
-                  <circle
-                    cx="200"
-                    cy="200"
-                    r="160"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.1)"
-                    strokeWidth="1"
-                    strokeDasharray="4 8"
-                  />
-                  <circle
-                    cx="200"
-                    cy="40"
-                    r="6"
-                    fill="#f05123"
-                    className="animate-pulse"
-                  />
+                  <circle cx="200" cy="200" r="160" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 8" />
+                  <circle cx="200" cy="40" r="6" fill="#f05123" className="animate-pulse" />
                   <circle cx="61" cy="280" r="4" fill="#ffffff" />
                   <circle cx="339" cy="280" r="8" fill="#1E3A5F" />
                 </svg>
@@ -117,14 +184,7 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite_reverse]"
                   viewBox="0 0 400 400"
                 >
-                  <circle
-                    cx="200"
-                    cy="200"
-                    r="110"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.15)"
-                    strokeWidth="1"
-                  />
+                  <circle cx="200" cy="200" r="110" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
                   <circle cx="90" cy="200" r="5" fill="#f05123" />
                   <circle cx="280" cy="120" r="4" fill="#ffffff" />
                 </svg>
@@ -132,30 +192,10 @@ export function Hero() {
                 {/* Connection lines */}
                 <div className="absolute inset-0 z-10 opacity-30">
                   <svg className="w-full h-full">
-                    <path
-                      d="M 200 200 L 350 50"
-                      stroke="#1E3A5F"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M 200 200 L 50 150"
-                      stroke="#1E3A5F"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M 200 200 L 150 350"
-                      stroke="#1E3A5F"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M 200 200 L 320 300"
-                      stroke="#1E3A5F"
-                      strokeWidth="2"
-                      fill="none"
-                    />
+                    <path d="M 200 200 L 350 50" stroke="#1E3A5F" strokeWidth="2" fill="none" />
+                    <path d="M 200 200 L 50 150" stroke="#1E3A5F" strokeWidth="2" fill="none" />
+                    <path d="M 200 200 L 150 350" stroke="#1E3A5F" strokeWidth="2" fill="none" />
+                    <path d="M 200 200 L 320 300" stroke="#1E3A5F" strokeWidth="2" fill="none" />
                   </svg>
                 </div>
 
