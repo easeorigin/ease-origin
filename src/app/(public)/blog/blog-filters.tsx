@@ -15,13 +15,29 @@ import {
 /* ─── Constants ─── */
 const POSTS_PER_PAGE = 9;
 
+/* ─── Category Color Map ─── */
+export const categoryColors: Record<BlogCategory, string> = {
+  "Cloud & Infrastructure": "#3B82F6",
+  Cybersecurity: "#EF4444",
+  DevOps: "#10B981",
+  "Program Management": "#8B5CF6",
+  "Company News": "var(--color-eo-gold)",
+  "Federal IT": "var(--color-eo-navy)",
+  "AI & Data": "#7C3AED",
+  "Enterprise Platforms": "#14B8A6",
+  "Agile & Delivery": "#F97316",
+  "GovCon Insights": "#6366F1",
+  "Industry Insights": "#64748B",
+  Perspectives: "#F43F5E",
+};
+
 /* ─── Animation Variants ─── */
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.06, duration: 0.45, ease: "easeOut" },
+    transition: { delay: i * 0.06, duration: 0.45, ease: "easeOut" as const },
   }),
 };
 
@@ -30,7 +46,7 @@ const heroVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
@@ -44,6 +60,8 @@ function BlogCard({
   index: number;
   large?: boolean;
 }) {
+  const accentColor = categoryColors[post.category] ?? "#64748B";
+
   return (
     <motion.article
       custom={index}
@@ -56,6 +74,7 @@ function BlogCard({
         "hover:shadow-xl hover:shadow-eo-navy/5 hover:-translate-y-1",
         large && "sm:col-span-1"
       )}
+      style={{ borderLeft: `3px solid ${accentColor}` }}
     >
       <Link href={`/blog/${post.slug}`} className="block h-full">
         <div
@@ -73,7 +92,10 @@ function BlogCard({
           {/* Gradient overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-eo-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute top-3 left-3">
-            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-navy/90 text-white backdrop-blur-sm">
+            <span
+              className="px-3 py-1 text-xs font-semibold rounded-full text-white backdrop-blur-sm"
+              style={{ backgroundColor: accentColor }}
+            >
               {post.category}
             </span>
           </div>
@@ -186,6 +208,11 @@ function FeaturedHeroCard({ post }: { post: BlogPost }) {
 /* ─── Filter Tab Types ─── */
 type FilterTab = "All" | "Featured" | BlogCategory;
 
+/* ─── Sort Helper ─── */
+function sortByNewest(a: BlogPost, b: BlogPost): number {
+  return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+}
+
 /* ─── Main Blog Filters Component ─── */
 export function BlogFilters({ posts }: { posts: BlogPost[] }) {
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
@@ -193,29 +220,32 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
   const filterBarRef = useRef<HTMLDivElement>(null);
 
+  // Pre-sort all posts by date, newest first
+  const sortedPosts = useMemo(() => [...posts].sort(sortByNewest), [posts]);
+
   const categories = getAllCategories();
   const tabs: FilterTab[] = ["All", "Featured", ...categories];
 
   // Count posts per tab
   const tabCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      All: posts.length,
-      Featured: posts.filter((p) => p.featured).length,
+      All: sortedPosts.length,
+      Featured: sortedPosts.filter((p) => p.featured).length,
     };
     categories.forEach((cat) => {
-      counts[cat] = posts.filter((p) => p.category === cat).length;
+      counts[cat] = sortedPosts.filter((p) => p.category === cat).length;
     });
     return counts;
-  }, [posts, categories]);
+  }, [sortedPosts, categories]);
 
-  // Filter posts by category, then by search
+  // Filter posts by category, then by search (already sorted by date)
   const filteredPosts = useMemo(() => {
     let result =
       activeFilter === "All"
-        ? posts
+        ? sortedPosts
         : activeFilter === "Featured"
-          ? posts.filter((p) => p.featured)
-          : posts.filter((p) => p.category === activeFilter);
+          ? sortedPosts.filter((p) => p.featured)
+          : sortedPosts.filter((p) => p.category === activeFilter);
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -228,16 +258,18 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
     }
 
     return result;
-  }, [posts, activeFilter, searchQuery]);
+  }, [sortedPosts, activeFilter, searchQuery]);
 
   // Featured hero: only show when on "All" tab with no search
+  // Pick the newest featured post for the hero
   const featuredPost =
     activeFilter === "All" && !searchQuery.trim()
-      ? posts.find((p) => p.featured)
+      ? sortedPosts.find((p) => p.featured)
       : undefined;
 
+  // Grid shows all filtered posts except the hero featured post
   const gridPosts = featuredPost
-    ? filteredPosts.filter((p) => p !== featuredPost)
+    ? filteredPosts.filter((p) => p.slug !== featuredPost.slug)
     : filteredPosts;
 
   const visiblePosts = gridPosts.slice(0, visibleCount);
