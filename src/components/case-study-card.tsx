@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Cloud, ShieldCheck, BarChart3, BrainCircuit, GitBranch, Layers, ClipboardList, Workflow } from "lucide-react";
 import Link from "next/link";
 import { type CaseStudy } from "@/data/case-studies";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { TiltCard } from "@/components/tilt-card";
 
 const categoryIcons: Record<string, React.ElementType> = {
   "Cloud Infrastructure": Cloud,
@@ -79,12 +81,13 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
   const colors = categoryColors[study.category] ?? categoryColors["Data & Analytics"];
 
   return (
+    <TiltCard className="h-full">
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+      className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
     >
       {/* Card header */}
       <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
@@ -94,7 +97,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
         {/* Metric callout */}
         {study.metrics && study.metrics.length > 0 && (
           <div className="absolute top-4 right-4 text-right z-10">
-            <div className="text-2xl font-extrabold text-text-primary leading-none">{study.metrics[0].value}</div>
+            <AnimatedCounter value={study.metrics[0].value} className="text-2xl font-extrabold text-text-primary leading-none" />
             <div className="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mt-0.5">{study.metrics[0].label}</div>
           </div>
         )}
@@ -142,5 +145,6 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
         </Link>
       </div>
     </motion.div>
+    </TiltCard>
   );
 }
