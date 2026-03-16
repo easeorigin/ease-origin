@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { blogPosts, getBlogPostBySlug } from "@/data/blog";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -116,7 +117,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Content Placeholder */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
           {post.content ? (
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <MarkdownRenderer content={post.content} />
           ) : (
             <div className="text-center py-16 border border-dashed border-border-subtle rounded-xl">
               <p className="text-text-muted text-lg">
