@@ -22,32 +22,60 @@ export function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left Content */}
+          {/* Left Content - Staggered Entrance */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } },
+            }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
-              <span>Trusted Technology Partner</span>
-            </div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+            >
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
+                <span>Trusted Technology Partner</span>
+              </div>
+            </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
+            >
               Enterprise IT Expertise That{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
                 Delivers Results.
               </span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+              className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
+            >
               EaseOrigin provides specialized technology consultants and
               enterprise IT solutions to U.S. government agencies and prime
               contractors nationwide.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <a
                 href="/contact"
                 className="inline-flex justify-center items-center px-8 py-4 text-base font-semibold rounded-md bg-eo-gold text-eo-navy hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-0.5"
@@ -62,7 +90,7 @@ export function Hero() {
                 View Careers
                 <ChevronRight className="ml-1 h-5 w-5" />
               </a>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Abstract Graphic */}
