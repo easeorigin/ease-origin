@@ -1,30 +1,72 @@
 "use client";
 
 /**
- * Simple markdown-to-HTML renderer for blog content.
- * Handles: headings, bold, italic, links, lists, code blocks, blockquotes, paragraphs.
+ * Markdown-to-HTML renderer for blog content.
+ * Handles: headings (with ID anchors), bold, italic, links, lists,
+ * code blocks, blockquotes, horizontal rules, and paragraphs.
  * No external dependencies.
  */
+
+export interface TocHeading {
+  id: string;
+  text: string;
+}
+
+/** Extract all H2 headings from markdown content for table of contents. */
+export function extractHeadings(content: string): TocHeading[] {
+  const headings: TocHeading[] = [];
+  const regex = /^## (.+)$/gm;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(content)) !== null) {
+    const text = match[1].replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+    const id = slugify(text);
+    headings.push({ id, text });
+  }
+  return headings;
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 export function MarkdownRenderer({ content }: { content: string }) {
   const html = markdownToHtml(content);
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div
+      className="markdown-content"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 }
 
 function markdownToHtml(md: string): string {
   let html = md;
 
   // Code blocks (``` ... ```)
-  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_match, _lang, code) => {
-    return `<pre><code>${escapeHtml(code.trim())}</code></pre>`;
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_match, lang, code) => {
+    const langClass = lang ? ` class="language-${lang}"` : "";
+    return `<pre class="code-block"><code${langClass}>${escapeHtml(code.trim())}</code></pre>`;
   });
 
   // Inline code
-  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+  html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
-  // Headings
-  html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
-  html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
-  html = html.replace(/^# (.+)$/gm, "<h1>$1</h1>");
+  // Headings with auto-generated IDs for anchor linking
+  html = html.replace(/^### (.+)$/gm, (_match, text) => {
+    const id = slugify(text.replace(/\*\*([^*]+)\*\*/g, "$1"));
+    return `<h3 id="${id}">${text}</h3>`;
+  });
+  html = html.replace(/^## (.+)$/gm, (_match, text) => {
+    const id = slugify(text.replace(/\*\*([^*]+)\*\*/g, "$1"));
+    return `<h2 id="${id}">${text}</h2>`;
+  });
+  html = html.replace(/^# (.+)$/gm, (_match, text) => {
+    const id = slugify(text.replace(/\*\*([^*]+)\*\*/g, "$1"));
+    return `<h1 id="${id}">${text}</h1>`;
+  });
 
   // Bold
   html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
@@ -33,20 +75,23 @@ function markdownToHtml(md: string): string {
   html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
 
   // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  html = html.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" class="content-link">$1</a>'
+  );
 
   // Unordered lists
   html = html.replace(/^- (.+)$/gm, "<li>$1</li>");
-  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, "<ul>$1</ul>");
+  html = html.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul class="content-list">$1</ul>');
 
   // Ordered lists
   html = html.replace(/^\d+\. (.+)$/gm, "<li>$1</li>");
 
   // Blockquotes
-  html = html.replace(/^> (.+)$/gm, "<blockquote>$1</blockquote>");
+  html = html.replace(/^> (.+)$/gm, '<blockquote class="content-blockquote">$1</blockquote>');
 
   // Horizontal rules
-  html = html.replace(/^---$/gm, "<hr />");
+  html = html.replace(/^---$/gm, '<hr class="content-divider" />');
 
   // Paragraphs: wrap remaining lines that aren't already in HTML tags
   html = html

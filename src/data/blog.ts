@@ -2,6 +2,8 @@ export interface BlogAuthor {
   name: string;
   role: string;
   avatar?: string;
+  bio?: string;
+  linkedin?: string;
 }
 
 export interface BlogPost {
@@ -38,10 +40,13 @@ export const blogAuthors: Record<string, BlogAuthor> = {
   jimi: {
     name: "Jimi Umar",
     role: "Founder & Principal Consultant",
+    bio: "Jimi Umar is the founder of EaseOrigin, bringing over a decade of experience in federal IT modernization, cloud infrastructure, and cybersecurity compliance to help agencies navigate complex technology transformations.",
+    linkedin: "https://www.linkedin.com/in/jimiumar/",
   },
   editorial: {
     name: "EaseOrigin Editorial",
     role: "EaseOrigin Team",
+    bio: "The EaseOrigin editorial team shares insights on federal IT modernization, cloud strategy, cybersecurity, and program delivery drawn from real-world project experience.",
   },
 };
 

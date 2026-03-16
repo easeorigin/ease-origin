@@ -50,10 +50,10 @@ export function LatestInsights() {
   return (
     <Section id="latest-insights" className="relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-linear-to-b from-gray-50/80 via-white to-gray-50/80 dark:from-gray-900/80 dark:via-gray-950 dark:to-gray-900/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-surface-muted/80 via-surface to-surface-muted/80 pointer-events-none" />
       {/* Decorative glows */}
-      <div className="absolute -top-20 -left-20 w-100 h-100 bg-linear-to-br from-blue-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -right-20 w-125 h-125 bg-linear-to-tl from-amber-100/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 -left-20 w-100 h-100 bg-linear-to-br from-blue-100/20 dark:from-blue-900/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -right-20 w-125 h-125 bg-linear-to-tl from-amber-100/15 dark:from-amber-900/15 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         {/* Header */}
@@ -88,7 +88,7 @@ export function LatestInsights() {
               viewport={{ once: true }}
             >
               <Link href={`/blog/${post.slug}`} className="group block h-full">
-                <div className="bg-white dark:bg-gray-900 border border-border-subtle rounded-2xl overflow-hidden h-full flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="bg-surface border border-border-subtle rounded-2xl overflow-hidden h-full flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
                   {/* Cover Image */}
                   <div className="relative h-48 overflow-hidden">
                     <Image

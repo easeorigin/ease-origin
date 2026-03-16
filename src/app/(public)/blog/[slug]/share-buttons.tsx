@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Linkedin, Link2, Check } from "lucide-react";
+import { Linkedin, Link2, Check, Mail } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -16,13 +17,17 @@ function XIcon({ className }: { className?: string }) {
   );
 }
 
+interface ShareButtonsProps {
+  title: string;
+  slug: string;
+  layout?: "inline" | "floating";
+}
+
 export function ShareButtons({
   title,
   slug,
-}: {
-  title: string;
-  slug: string;
-}) {
+  layout = "inline",
+}: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
 
   const articleUrl =
@@ -43,14 +48,20 @@ export function ShareButtons({
     }
   };
 
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-sm font-medium text-text-muted">Share:</span>
+  const buttonStyle = cn(
+    "inline-flex items-center justify-center rounded-full border transition-all duration-200",
+    layout === "floating"
+      ? "w-10 h-10 bg-surface border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue hover:shadow-md"
+      : "w-9 h-9 bg-surface-muted border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue"
+  );
+
+  const buttons = (
+    <>
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-muted border border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue transition-colors"
+        className={buttonStyle}
         aria-label="Share on LinkedIn"
       >
         <Linkedin className="h-4 w-4" />
@@ -59,14 +70,21 @@ export function ShareButtons({
         href={`https://x.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-muted border border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue transition-colors"
+        className={buttonStyle}
         aria-label="Share on X"
       >
         <XIcon className="h-4 w-4" />
       </a>
+      <a
+        href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
+        className={buttonStyle}
+        aria-label="Share via email"
+      >
+        <Mail className="h-4 w-4" />
+      </a>
       <button
         onClick={handleCopyLink}
-        className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-muted border border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue transition-colors"
+        className={buttonStyle}
         aria-label="Copy link to clipboard"
       >
         {copied ? (
@@ -75,6 +93,24 @@ export function ShareButtons({
           <Link2 className="h-4 w-4" />
         )}
       </button>
+    </>
+  );
+
+  if (layout === "floating") {
+    return (
+      <div className="hidden xl:flex flex-col gap-3 sticky top-28">
+        <span className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-1 text-center">
+          Share
+        </span>
+        {buttons}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3 xl:hidden">
+      <span className="text-sm font-medium text-text-muted">Share:</span>
+      {buttons}
     </div>
   );
 }
