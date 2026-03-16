@@ -8,6 +8,8 @@ import {
   getRelatedPosts,
   blogAuthors,
 } from "@/data/blog";
+import { getRecommendedPosts } from "@/data/blog-utils";
+import { categoryColors } from "../blog-filters";
 import {
   ArrowLeft,
   Clock,
@@ -19,8 +21,10 @@ import {
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { extractHeadings } from "@/lib/blog-utils";
 import { ReadingProgressBar } from "./reading-progress";
+import { ReadingRemaining } from "./reading-remaining";
 import { TableOfContents } from "./table-of-contents";
 import { ShareButtons } from "./share-buttons";
+import { BackToTop } from "./back-to-top";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -66,6 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const headings = post.content ? extractHeadings(post.content) : [];
   const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
+  const recommendedPosts = getRecommendedPosts(post.slug, post.category, 3);
 
   // Resolve full author data (with bio/linkedin) from blogAuthors
   const authorKey = Object.keys(blogAuthors).find(
@@ -76,6 +81,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <ReadingProgressBar />
+      <ReadingRemaining totalMinutes={post.readTimeMinutes} />
+      <BackToTop />
 
       <main className="pt-32 pb-20 bg-background min-h-screen">
         {/* Breadcrumbs */}
@@ -334,6 +341,69 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </article>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* Recommended Reading (cross-category) */}
+        {recommendedPosts.length > 0 && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+            {/* Subtle divider */}
+            <div className="flex items-center gap-4 mb-10">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                More to explore
+              </span>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+            </div>
+
+            <h2 className="text-2xl font-bold text-text-primary mb-8">
+              Recommended Reading
+            </h2>
+
+            <div className="space-y-4">
+              {recommendedPosts.map((rec) => {
+                const accentColor = categoryColors[rec.category] ?? "#64748B";
+                return (
+                  <Link
+                    key={rec.slug}
+                    href={`/blog/${rec.slug}`}
+                    className="group flex items-stretch gap-4 sm:gap-5 bg-surface border border-border-subtle rounded-xl overflow-hidden hover:shadow-lg hover:shadow-eo-navy/5 hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    {/* Small thumbnail */}
+                    <div className="relative w-24 sm:w-32 flex-shrink-0">
+                      <Image
+                        src={rec.coverImage}
+                        alt={rec.coverImageAlt}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col justify-center py-4 pr-4 flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span
+                          className="px-2 py-0.5 text-[11px] font-semibold rounded-full text-white"
+                          style={{ backgroundColor: accentColor }}
+                        >
+                          {rec.category}
+                        </span>
+                        <span className="text-xs text-text-muted flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {rec.readTimeMinutes} min
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-text-primary group-hover:text-eo-blue transition-colors line-clamp-1 text-sm sm:text-base">
+                        {rec.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-text-secondary line-clamp-1 mt-1 hidden sm:block">
+                        {rec.excerpt}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

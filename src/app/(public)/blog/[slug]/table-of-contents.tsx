@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { List, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { TocHeading } from "@/components/markdown-renderer";
+import type { TocHeading } from "@/lib/blog-utils";
 
 interface TableOfContentsProps {
   headings: TocHeading[];
@@ -46,11 +46,14 @@ export function TableOfContents({ headings, variant }: TableOfContentsProps) {
 
   if (headings.length === 0) return null;
 
+  const NAVBAR_OFFSET = 80;
+
   const handleClick = (id: string) => {
     setMobileOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
@@ -70,7 +73,7 @@ export function TableOfContents({ headings, variant }: TableOfContentsProps) {
               <button
                 onClick={() => handleClick(h.id)}
                 className={cn(
-                  "toc-link block w-full text-left text-sm py-1.5 pl-3 border-l-2 transition-all",
+                  "toc-link block w-full text-left text-sm py-1.5 pl-3 border-l-2 transition-all duration-200 ease-in-out",
                   activeId === h.id
                     ? "active text-eo-gold border-l-eo-gold font-semibold"
                     : "text-text-muted border-l-border-subtle hover:text-text-secondary hover:border-l-text-muted"
@@ -111,7 +114,7 @@ export function TableOfContents({ headings, variant }: TableOfContentsProps) {
               <li key={h.id}>
                 <button
                   onClick={() => handleClick(h.id)}
-                  className="block w-full text-left text-sm py-1.5 pl-3 border-l-2 border-l-border-subtle text-text-muted hover:text-eo-blue hover:border-l-eo-blue transition-all"
+                  className="block w-full text-left text-sm py-1.5 pl-3 border-l-2 border-l-border-subtle text-text-muted hover:text-eo-blue hover:border-l-eo-blue transition-all duration-200 ease-in-out"
                 >
                   {h.text}
                 </button>

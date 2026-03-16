@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ArrowRight, Search, X, BookOpen } from "lucide-react";
+import { Clock, ArrowRight, Search, X, BookOpen, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -14,6 +14,7 @@ import {
 
 /* ─── Constants ─── */
 const POSTS_PER_PAGE = 9;
+const NEWSLETTER_INSERT_INDEX = 6;
 
 /* ─── Category Color Map ─── */
 export const categoryColors: Record<BlogCategory, string> = {
@@ -33,12 +34,24 @@ export const categoryColors: Record<BlogCategory, string> = {
 
 /* ─── Animation Variants ─── */
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.06, duration: 0.45, ease: "easeOut" as const },
+    transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" as const },
   }),
+};
+
+const gridContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.4, staggerChildren: 0.1 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.2 },
+  },
 };
 
 const heroVariants = {
@@ -49,6 +62,73 @@ const heroVariants = {
     transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
+
+/* ─── Newsletter CTA Banner ─── */
+function NewsletterCTA() {
+  return (
+    <motion.div
+      custom={NEWSLETTER_INSERT_INDEX}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-40px" }}
+      className="sm:col-span-2 lg:col-span-3"
+    >
+      <div className="relative overflow-hidden rounded-2xl bg-eo-navy p-8 sm:p-10 lg:p-12">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-eo-blue rounded-full blur-[120px] opacity-20 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-60 h-60 bg-eo-gold rounded-full blur-[100px] opacity-10 -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+          {/* Text content */}
+          <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-eo-gold/20 text-eo-gold text-xs font-semibold mb-4">
+              <Mail className="h-3.5 w-3.5" />
+              Newsletter
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+              Get Federal IT Insights Delivered
+            </h3>
+            <p className="text-gray-400 text-sm sm:text-base max-w-lg leading-relaxed">
+              Stay ahead with expert perspectives on cloud modernization,
+              cybersecurity compliance, and federal program delivery.
+            </p>
+          </div>
+
+          {/* Email signup form (UI only) */}
+          <div className="w-full lg:w-auto flex-shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+              <input
+                type="email"
+                placeholder="you@agency.gov"
+                className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-eo-gold/40 focus:border-eo-gold/60 transition-all backdrop-blur-sm"
+                aria-label="Email address"
+              />
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-7 py-3.5 bg-eo-gold text-white font-semibold rounded-xl text-sm hover:bg-eo-gold/90 transition-colors shadow-lg shadow-eo-gold/20 whitespace-nowrap"
+              >
+                Subscribe
+              </motion.button>
+            </div>
+            <p className="text-xs text-gray-500 mt-3 text-center lg:text-left">
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 /* ─── Blog Card ─── */
 function BlogCard({
@@ -87,10 +167,10 @@ function BlogCard({
             src={post.coverImage}
             alt={post.coverImageAlt}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-[1.05]"
           />
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-eo-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Gradient overlay that intensifies on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-eo-navy/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute top-3 left-3">
             <span
               className="px-3 py-1 text-xs font-semibold rounded-full text-white backdrop-blur-sm"
@@ -155,7 +235,7 @@ function FeaturedHeroCard({ post }: { post: BlogPost }) {
             src={post.coverImage}
             alt={post.coverImageAlt}
             fill
-            className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+            className="object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:brightness-[1.05]"
             priority
           />
           {/* Gradient overlay */}
@@ -275,6 +355,9 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
   const visiblePosts = gridPosts.slice(0, visibleCount);
   const hasMore = visibleCount < gridPosts.length;
 
+  // Determine whether to show the newsletter banner inline
+  const showNewsletter = visiblePosts.length > NEWSLETTER_INSERT_INDEX;
+
   const handleFilterChange = (tab: FilterTab) => {
     setActiveFilter(tab);
     setVisibleCount(POSTS_PER_PAGE);
@@ -371,18 +454,32 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
         {visiblePosts.length > 0 ? (
           <motion.div
             key={`${activeFilter}-${searchQuery}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            variants={gridContainerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {visiblePosts.map((post, i) => (
+              {/* First batch of cards (before newsletter) */}
+              {visiblePosts.slice(0, NEWSLETTER_INSERT_INDEX).map((post, i) => (
                 <BlogCard
                   key={post.slug}
                   post={post}
                   index={i}
                   large={i < 2 && activeFilter === "All" && !searchQuery.trim()}
+                />
+              ))}
+
+              {/* Newsletter CTA inserted after the first 6 cards */}
+              {showNewsletter && <NewsletterCTA />}
+
+              {/* Remaining cards after newsletter */}
+              {visiblePosts.slice(NEWSLETTER_INSERT_INDEX).map((post, i) => (
+                <BlogCard
+                  key={post.slug}
+                  post={post}
+                  index={i + NEWSLETTER_INSERT_INDEX + 1}
+                  large={false}
                 />
               ))}
             </div>

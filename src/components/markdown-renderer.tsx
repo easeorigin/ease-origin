@@ -6,7 +6,6 @@
  */
 
 import { slugify } from "@/lib/blog-utils";
-export { extractHeadings, type TocHeading } from "@/lib/blog-utils";
 
 export function MarkdownRenderer({ content }: { content: string }) {
   const html = markdownToHtml(content);
