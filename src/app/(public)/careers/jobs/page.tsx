@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { Search, SlidersHorizontal, X, ArrowRight, FileText } from "lucide-react";
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
+import { PageHero } from "@/components/shared/page-hero";
 import { JobCard } from "@/components/job-card";
 import { jobs, CATEGORIES, WORK_TYPES, LOCATIONS, type Category, type WorkType } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { fadeInUp, fadeInUpWhileVisible } from "@/lib/animations";
 
 // ─── Filters State ────────────────────────────────────────────────────────────
 
@@ -30,12 +32,10 @@ const defaultFilters: Filters = {
 function NoJobsFallback() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
+      {...fadeInUp}
       className="flex flex-col items-center justify-center text-center py-20 px-4"
     >
-      <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-5">
+      <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-5">
         <FileText className="h-7 w-7 text-slate-400" />
       </div>
       <h3 className="text-2xl font-bold text-text-primary mb-3">No Open Positions Right Now</h3>
@@ -95,44 +95,17 @@ export default function JobsListingPage() {
     <div className="min-h-screen bg-surface">
       <main>
 
-        {/* ── Hero ── */}
-        <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 overflow-hidden bg-eo-navy text-white">
-          <div className="absolute inset-0 z-0">
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-                backgroundSize: "50px 50px",
-              }}
-            />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-eo-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
-          </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col"
-            >
-              <Link href="/careers">
-                <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors mb-6 cursor-pointer">
-                  ← Back to Careers
-                </span>
-              </Link>
-              <div className="flex w-full md:w-1/2 lg:w-1/4 items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-4">
-                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
-                {jobs.length} Open Position{jobs.length !== 1 ? "s" : ""}
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
-                Open Positions
-              </h1>
-              <p className="text-gray-300 max-w-xl leading-relaxed">
-                Browse available opportunities and find your next federal IT engagement with EaseOrigin.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <PageHero
+          badge={`${jobs.length} Open Position${jobs.length !== 1 ? "s" : ""}`}
+          title="Open Positions"
+          description="Browse available opportunities and find your next federal IT engagement with EaseOrigin."
+        >
+          <Link href="/careers">
+            <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors mb-6 cursor-pointer">
+              ← Back to Careers
+            </span>
+          </Link>
+        </PageHero>
 
         {/* ── Search + Filters + Cards ── */}
         <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-white dark:via-gray-900 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
@@ -154,6 +127,7 @@ export default function JobsListingPage() {
 
             {/* Toggle filters button (mobile) */}
             <button
+              aria-pressed={filtersOpen}
               onClick={() => setFiltersOpen(!filtersOpen)}
               className={cn(
                 "sm:hidden inline-flex items-center gap-2 px-4 py-3 rounded-lg border text-sm font-medium transition-colors",
@@ -313,10 +287,7 @@ export default function JobsListingPage() {
         <Section className="relative overflow-hidden bg-gradient-to-br from-white dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50/30 dark:to-gray-900/30">
           <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            {...fadeInUpWhileVisible}
             className="relative z-10 max-w-2xl mx-auto text-center"
           >
             <h2 className="text-2xl font-bold text-text-primary mb-3">Don't See the Right Fit?</h2>

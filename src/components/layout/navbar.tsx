@@ -27,9 +27,9 @@ export function Navbar() {
     { name: "Solutions", href: "/solutions", internal: true },
     { name: "Contract Vehicles", href: "/contract-vehicles", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
-    { name: "Careers", href: "/careers", internal: true },
     { name: "About", href: "/about", internal: true },
-    { name: "Contact", href: "/contact", internal: true },
+    { name: "Careers", href: "/careers", internal: true },
+    { name: "Blog", href: "/blog", internal: true },
   ];
 
   return (
@@ -54,7 +54,7 @@ export function Navbar() {
               )}
             >
             <Image
-            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.png" : "/logo/main-logo.png"}
+            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.webp" : "/logo/main-logo.webp"}
             alt="EaseOrigin Logo"
             width={60}
             height={50}

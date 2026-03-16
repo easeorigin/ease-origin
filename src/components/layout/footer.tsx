@@ -1,7 +1,8 @@
-import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, MapPin, Phone, Rss } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { companyInfo } from "@/data/company-info";
+import { solutions } from "@/data/solutions";
 
 export function Footer() {
   return (
@@ -15,7 +16,7 @@ export function Footer() {
               className="font-bold text-2xl tracking-tight text-white mb-6 flex items-center gap-2"
             >
               <Image
-                src={"/logo/main-logo.png"}
+                src={"/logo/main-logo.webp"}
                 alt="EaseOrigin Logo"
                 width={40}
                 height={40}
@@ -39,6 +40,14 @@ export function Footer() {
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="h-5 w-5 text-eo-gold" />
               </a>
+              <a
+                href="/blog/feed.xml"
+                className="text-gray-400 hover:text-white transition-colors"
+                title="RSS Feed"
+              >
+                <span className="sr-only">RSS Feed</span>
+                <Rss className="h-5 w-5 text-eo-gold" />
+              </a>
             </div>
           </div>
 
@@ -48,46 +57,16 @@ export function Footer() {
               Solutions
             </h4>
             <ul className="space-y-4 text-sm">
-              <li>
-                <Link href="/solutions/cloud-infrastructure" className="hover:text-eo-gold transition-colors">
-                  Cloud & Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/devops-platform" className="hover:text-eo-gold transition-colors">
-                  DevOps & Platform Engineering
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/cybersecurity" className="hover:text-eo-gold transition-colors">
-                  Cybersecurity
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/ai-ml" className="hover:text-eo-gold transition-colors">
-                  AI/ML Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/data-analytics" className="hover:text-eo-gold transition-colors">
-                  Data & Analytics
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/saas-solutions" className="hover:text-eo-gold transition-colors">
-                  SaaS Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/program-management" className="hover:text-eo-gold transition-colors">
-                  Program Management
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/agile-delivery" className="hover:text-eo-gold transition-colors">
-                  Agile Delivery & RTM
-                </Link>
-              </li>
+              {solutions.map((solution) => (
+                <li key={solution.slug}>
+                  <Link
+                    href={`/solutions/${solution.slug}`}
+                    className="hover:text-eo-gold transition-colors"
+                  >
+                    {solution.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -120,6 +99,11 @@ export function Footer() {
               <li>
                 <Link href="/capability-statement" className="hover:text-eo-gold transition-colors">
                   Capability Statement
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-eo-gold transition-colors">
+                  Blog
                 </Link>
               </li>
             </ul>

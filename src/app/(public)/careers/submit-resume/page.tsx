@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
+import { PageHero } from "@/components/shared/page-hero";
 import { CATEGORIES, LOCATIONS } from "@/data/jobs";
 import { cn } from "@/lib/utils";
+import { fadeInUp } from "@/lib/animations";
 import { submitResumeForm, type ResumeFormResponse } from "./actions";
 
 interface FormValues {
@@ -121,47 +123,18 @@ export default function SubmitResumePage() {
   return (
     <div className="min-h-screen bg-surface">
       <main>
-        {/* Hero */}
-        <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-16 overflow-hidden bg-eo-navy text-white">
-          <div className="absolute inset-0 z-0">
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-                backgroundSize: "50px 50px",
-              }}
-            />
-            <div className="absolute top-0 right-0 w-150 h-150 bg-eo-blue rounded-full blur-[140px] opacity-20 translate-x-1/3 -translate-y-1/4" />
-          </div>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col"
-            >
-              <Link href="/careers">
-                <span className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-8 cursor-pointer group">
-                  <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                  Back to Careers
-                </span>
-              </Link>
-              <div className="flex w-auto items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-5">
-                <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse" />
-                Join Our Talent Network
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-                Submit Your Resume
-              </h1>
-              <p className="text-gray-300 leading-relaxed max-w-xl">
-                We partner with highly skilled consultants supporting federal
-                technology initiatives. Submit your information and we&apos;ll reach out
-                when a matching opportunity arises.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <PageHero
+          badge="Join Our Talent Network"
+          title="Submit Your Resume"
+          description="We partner with highly skilled consultants supporting federal technology initiatives. Submit your information and we'll reach out when a matching opportunity arises."
+        >
+          <Link href="/careers">
+            <span className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-8 cursor-pointer group">
+              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Careers
+            </span>
+          </Link>
+        </PageHero>
 
         {/* Form */}
         <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50 dark:from-gray-900 via-blue-50/15 dark:via-gray-900/15 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
@@ -170,11 +143,10 @@ export default function SubmitResumePage() {
             <div className="bg-surface rounded-2xl border border-border-subtle shadow-lg p-8 md:p-10">
               {submitted ? (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  {...fadeInUp}
                   className="flex flex-col items-center justify-center text-center py-14 gap-4"
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950 border border-green-100 dark:border-green-900 flex items-center justify-center">
                     <CheckCircle2 className="h-8 w-8 text-green-500" />
                   </div>
                   <h3 className="text-2xl font-bold text-text-primary">
@@ -200,9 +172,9 @@ export default function SubmitResumePage() {
                   </p>
 
                   {serverError && (
-                    <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 flex items-start gap-3">
+                    <div className="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 flex items-start gap-3">
                       <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-sm text-red-700">{serverError}</p>
+                      <p className="text-sm text-red-700 dark:text-red-300">{serverError}</p>
                     </div>
                   )}
 
@@ -340,6 +312,19 @@ export default function SubmitResumePage() {
                           </div>
                         </div>
                         <ErrorMsg field="expertise" />
+                      </div>
+                    </div>
+
+                    {/* Resume upload placeholder */}
+                    <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50/50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900">
+                      <svg className="h-5 w-5 text-eo-blue flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-8m0 0l-3 3m3-3l3 3M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                      </svg>
+                      <div>
+                        <p className="text-sm font-medium text-text-primary">Resume upload coming soon</p>
+                        <p className="text-xs text-text-muted mt-0.5">
+                          For now, please include relevant experience details in the notes below.
+                        </p>
                       </div>
                     </div>
 
