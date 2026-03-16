@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Handshake, Award } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { WordReveal } from "@/components/word-reveal";
 
 export function Credibility() {
   const features = [
@@ -51,7 +52,7 @@ export function Credibility() {
             <div className="w-14 h-14 rounded-lg bg-blue-50 dark:bg-blue-950 flex items-center justify-center mb-6">
               <feature.icon className="h-7 w-7 text-eo-blue" />
             </div>
-            <h3 className="text-xl font-bold text-text-primary mb-3">{feature.title}</h3>
+            <WordReveal text={feature.title} as="h3" className="text-xl font-bold text-text-primary mb-3" />
             <p className="text-text-tertiary leading-relaxed">
               {feature.description}
             </p>

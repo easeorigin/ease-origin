@@ -59,37 +59,36 @@ export function Agencies() {
         Agency names are used for identification purposes only and do not imply endorsement.
       </p>
 
-      {/* Industry Partners */}
+      {/* Industry Partners - Infinite Marquee */}
       <div className="relative z-10 mt-10">
         <p className="text-sm font-semibold uppercase tracking-widest text-blue-300/60 mb-4 text-center">Industry Partners</p>
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
-          {industryPartners.map((partner, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group relative flex flex-col items-center justify-center p-4 h-24 bg-white/5 border border-white/10 rounded-xl cursor-default hover:bg-white/10 hover:border-blue-400/30 hover:shadow-[0_0_20px_rgba(96,165,250,0.1)] transition-all duration-300"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                loading="lazy" className="h-8 w-auto object-contain brightness-0 invert opacity-50 group-hover:opacity-90 transition-opacity duration-300"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  e.currentTarget.nextElementSibling?.classList.remove("hidden");
-                }}
-              />
-              <span className="hidden text-sm font-bold text-white/40 group-hover:text-blue-300 transition-colors duration-300 text-center">
-                {partner.name}
-              </span>
-              <span className="text-[10px] text-white/25 mt-1.5 group-hover:text-white/50 transition-colors duration-300">
-                {partner.name}
-              </span>
-            </motion.div>
-          ))}
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+            {[...industryPartners, ...industryPartners].map((partner, index) => (
+              <div
+                key={`${partner.id}-${index}`}
+                className="group relative flex flex-col items-center justify-center p-4 h-24 w-40 shrink-0 bg-white/5 border border-white/10 rounded-xl cursor-default hover:bg-white/10 hover:border-blue-400/30 hover:shadow-[0_0_20px_rgba(96,165,250,0.1)] transition-all duration-300"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  loading="lazy"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-50 group-hover:opacity-90 transition-opacity duration-300"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.nextElementSibling?.classList.remove("hidden");
+                  }}
+                />
+                <span className="hidden text-sm font-bold text-white/40 group-hover:text-blue-300 transition-colors duration-300 text-center">
+                  {partner.name}
+                </span>
+                <span className="text-[10px] text-white/25 mt-1.5 group-hover:text-white/50 transition-colors duration-300">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Section>
