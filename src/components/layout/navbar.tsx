@@ -27,9 +27,9 @@ export function Navbar() {
     { name: "Solutions", href: "/solutions", internal: true },
     { name: "Contract Vehicles", href: "/contract-vehicles", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
-    { name: "Careers", href: "/careers", internal: true },
     { name: "About", href: "/about", internal: true },
-    { name: "Contact", href: "/contact", internal: true },
+    { name: "Careers", href: "/careers", internal: true },
+    { name: "Blog", href: "/blog", internal: true },
   ];
 
   return (

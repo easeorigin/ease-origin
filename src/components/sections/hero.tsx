@@ -84,7 +84,7 @@ export function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
             >
               <TypewriterText
-                text="Enterprise IT Expertise That Delivers Results."
+                text="Technology Consulting That Delivers Mission Success."
                 delay={450}
               />
             </motion.h1>
@@ -96,10 +96,32 @@ export function Hero() {
               }}
               className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
             >
-              EaseOrigin provides specialized technology consultants and
-              enterprise IT solutions to U.S. government agencies and prime
-              contractors nationwide.
+              EaseOrigin delivers specialized technology consulting and
+              enterprise IT solutions to government agencies, prime
+              contractors, and private sector organizations nationwide.
             </motion.p>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+              }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              {[
+                "14+ Years Experience",
+                "30+ Certifications",
+                "Active Clearance",
+                "Small Business",
+              ].map((signal) => (
+                <span
+                  key={signal}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-eo-gold/15 text-eo-gold border border-eo-gold/30"
+                >
+                  {signal}
+                </span>
+              ))}
+            </motion.div>
 
             <motion.div
               variants={{
