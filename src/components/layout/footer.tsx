@@ -95,7 +95,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/blog" className="hover:text-eo-gold transition-colors">
-                  Blog
+                  Insights
                 </Link>
               </li>
             </ul>

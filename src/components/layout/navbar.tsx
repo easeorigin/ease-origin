@@ -29,7 +29,7 @@ export function Navbar() {
     { name: "Case Studies", href: "/case-studies", internal: true },
     { name: "About", href: "/about", internal: true },
     { name: "Careers", href: "/careers", internal: true },
-    { name: "Blog", href: "/blog", internal: true },
+    { name: "Insights", href: "/blog", internal: true },
   ];
 
   return (
