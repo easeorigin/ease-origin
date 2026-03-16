@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, ArrowRight, Search, X, BookOpen, Mail } from "lucide-react";
@@ -219,8 +219,69 @@ function BlogCard({
   );
 }
 
-/* ─── Featured Hero Card ─── */
-function FeaturedHeroCard({ post }: { post: BlogPost }) {
+/* ─── Rotation interval (ms) ─── */
+const HERO_ROTATION_INTERVAL = 8000;
+
+/* ─── Featured Hero Slide (single slide content) ─── */
+const heroSlideVariants = {
+  enter: { opacity: 0, scale: 1.02 },
+  center: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
+/* ─── Featured Hero Carousel ─── */
+function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startTimers = useCallback(() => {
+    // Clear any existing timers
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (progressRef.current) clearInterval(progressRef.current);
+
+    setProgress(0);
+
+    // Progress bar updates every 50ms for smooth animation
+    const progressStep = 50 / HERO_ROTATION_INTERVAL;
+    progressRef.current = setInterval(() => {
+      setProgress((prev) => Math.min(prev + progressStep, 1));
+    }, 50);
+
+    // Slide rotation
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % posts.length);
+      setProgress(0);
+    }, HERO_ROTATION_INTERVAL);
+  }, [posts.length]);
+
+  useEffect(() => {
+    startTimers();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, [startTimers]);
+
+  const goToSlide = useCallback(
+    (index: number) => {
+      setActiveIndex(index);
+      startTimers();
+    },
+    [startTimers]
+  );
+
+  const activePost = posts[activeIndex];
+
   return (
     <motion.section
       variants={heroVariants}
@@ -228,59 +289,104 @@ function FeaturedHeroCard({ post }: { post: BlogPost }) {
       animate="visible"
       className="mb-14"
     >
-      <Link href={`/blog/${post.slug}`}>
-        <article className="group relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px]">
-          {/* Full-width cover image */}
-          <Image
-            src={post.coverImage}
-            alt={post.coverImageAlt}
-            fill
-            className="object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:brightness-[1.05]"
-            priority
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-eo-navy via-eo-navy/70 to-transparent" />
+      <div className="relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activePost.slug}
+            variants={heroSlideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="absolute inset-0"
+          >
+            <Link href={`/blog/${activePost.slug}`} className="block h-full">
+              <article className="group relative h-full">
+                {/* Full-width cover image */}
+                <Image
+                  src={activePost.coverImage}
+                  alt={activePost.coverImageAlt}
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:brightness-[1.05]"
+                  priority
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-eo-navy via-eo-navy/70 to-transparent" />
 
-          {/* Content positioned over image */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12 z-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-gold text-white">
-                Featured
-              </span>
-              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/20 text-white backdrop-blur-sm">
-                {post.category}
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 max-w-3xl leading-tight group-hover:text-eo-gold/90 transition-colors">
-              {post.title}
-            </h2>
-            <p className="text-gray-300 mb-6 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-3">
-              {post.excerpt}
-            </p>
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-4 text-sm text-gray-400">
-                <span className="font-medium text-gray-300">
-                  {post.author.name}
-                </span>
-                <time dateTime={post.publishedAt}>
-                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-                <span className="inline-flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" />
-                  {post.readTimeMinutes} min
-                </span>
-              </div>
-              <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-eo-gold text-white font-semibold text-sm group-hover:bg-eo-gold/90 transition-colors">
-                Read Article <ArrowRight className="h-4 w-4" />
-              </span>
-            </div>
-          </div>
-        </article>
-      </Link>
+                {/* Content positioned over image */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12 z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-gold text-white">
+                      Featured
+                    </span>
+                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/20 text-white backdrop-blur-sm">
+                      {activePost.category}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 max-w-3xl leading-tight group-hover:text-eo-gold/90 transition-colors">
+                    {activePost.title}
+                  </h2>
+                  <p className="text-gray-300 mb-6 leading-relaxed max-w-2xl line-clamp-2 sm:line-clamp-3">
+                    {activePost.excerpt}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <span className="font-medium text-gray-300">
+                        {activePost.author.name}
+                      </span>
+                      <time dateTime={activePost.publishedAt}>
+                        {new Date(activePost.publishedAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </time>
+                      <span className="inline-flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        {activePost.readTimeMinutes} min
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-eo-gold text-white font-semibold text-sm group-hover:bg-eo-gold/90 transition-colors">
+                      Read Article <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+          {posts.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.preventDefault();
+                goToSlide(index);
+              }}
+              className={cn(
+                "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                index === activeIndex
+                  ? "bg-eo-gold scale-110"
+                  : "bg-white/40 hover:bg-white/70"
+              )}
+              aria-label={`Go to featured post ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-1 bg-white/10">
+          <motion.div
+            className="h-full bg-eo-gold/80"
+            style={{ width: `${progress * 100}%` }}
+            transition={{ duration: 0.05, ease: "linear" as const }}
+          />
+        </div>
+      </div>
     </motion.section>
   );
 }
@@ -341,16 +447,24 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
   }, [sortedPosts, activeFilter, searchQuery]);
 
   // Featured hero: only show when on "All" tab with no search
-  // Pick the newest featured post for the hero
-  const featuredPost =
-    activeFilter === "All" && !searchQuery.trim()
-      ? sortedPosts.find((p) => p.featured)
-      : undefined;
+  // Collect all featured posts sorted by date for the rotating carousel
+  const featuredPosts = useMemo(
+    () =>
+      activeFilter === "All" && !searchQuery.trim()
+        ? sortedPosts.filter((p) => p.featured)
+        : [],
+    [activeFilter, searchQuery, sortedPosts]
+  );
 
-  // Grid shows all filtered posts except the hero featured post
-  const gridPosts = featuredPost
-    ? filteredPosts.filter((p) => p.slug !== featuredPost.slug)
-    : filteredPosts;
+  // Grid shows all filtered posts except the featured posts shown in the hero
+  const featuredSlugs = useMemo(
+    () => new Set(featuredPosts.map((p) => p.slug)),
+    [featuredPosts]
+  );
+  const gridPosts =
+    featuredPosts.length > 0
+      ? filteredPosts.filter((p) => !featuredSlugs.has(p.slug))
+      : filteredPosts;
 
   const visiblePosts = gridPosts.slice(0, visibleCount);
   const hasMore = visibleCount < gridPosts.length;
@@ -430,8 +544,10 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
         </nav>
       </div>
 
-      {/* Featured Post Hero */}
-      {featuredPost && <FeaturedHeroCard post={featuredPost} />}
+      {/* Featured Post Hero (rotating carousel) */}
+      {featuredPosts.length > 0 && (
+        <FeaturedHeroCarousel posts={featuredPosts} />
+      )}
 
       {/* Section Heading */}
       <div className="flex items-center justify-between mb-8">
