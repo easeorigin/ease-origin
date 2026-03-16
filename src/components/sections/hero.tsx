@@ -1,60 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
-function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const startTimer = setTimeout(() => setStarted(true), delay);
-    return () => clearTimeout(startTimer);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!started) return;
-    if (displayedText.length >= text.length) return;
-
-    const timer = setTimeout(() => {
-      setDisplayedText(text.slice(0, displayedText.length + 1));
-    }, 45);
-
-    return () => clearTimeout(timer);
-  }, [started, displayedText, text]);
-
-  return (
-    <>
-      {displayedText}
-      <span className="inline-block w-[3px] h-[0.85em] bg-eo-gold ml-1 align-middle animate-[blink_1s_steps(2)_infinite]" />
-    </>
-  );
-}
-
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-eo-navy text-white min-h-[90vh] flex items-center">
-      {/* Video / Image Background */}
+      {/* Abstract Background Elements */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/capitol-building.png"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.4]"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
         <Image
-          src="/images/capitol-building.png"
-          alt="U.S. Capitol building"
-          aria-hidden="true"
+          src={"/images/capitol-building.png"}
+          alt=""
           fill
-          className="w-full h-full object-cover opacity-[0.4] [video~&]:hidden"
-          priority
+          className="w-full h-full object-cover opacity-[0.4]"
         />
         <div className="absolute inset-0 bg-grid-pattern" />
         <div className="absolute top-0 right-0 w-200 h-200 bg-eo-blue rounded-full blur-[120px] opacity-40 translate-x-1/3 -translate-y-1/4" />
@@ -76,7 +35,7 @@ export function Hero() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 25 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
               }}
             >
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
@@ -88,20 +47,20 @@ export function Hero() {
             <motion.h1
               variants={{
                 hidden: { opacity: 0, y: 25 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
               }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
             >
-              <TypewriterText
-                text="Enterprise IT Expertise That Delivers Results."
-                delay={450}
-              />
+              Enterprise IT Expertise That{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
+                Delivers Results.
+              </span>
             </motion.h1>
 
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 25 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
               }}
               className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
             >
@@ -113,7 +72,7 @@ export function Hero() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 25 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
               }}
               className="flex flex-col sm:flex-row gap-4"
             >
@@ -138,7 +97,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" as const }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="hidden lg:block relative h-125"
           >
             {/* CSS-based Tech Visualization */}
@@ -147,11 +106,12 @@ export function Hero() {
                 {/* Central Node */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-eo-navy border border-eo-gold/50 rounded-full flex items-center justify-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
                   <div className="w-24 h-24 bg-linear-to-br from-eo-blue to-eo-navy rounded-full border border-white/10 flex items-center justify-center">
-                    <Image
+                    <Image 
                       src={"/logo/main-logo-2.png"}
                       alt="EaseOrigin Logo"
                       width={80}
                       height={80}
+                      
                       />
                   </div>
                 </div>
@@ -161,8 +121,22 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full animate-[spin_60s_linear_infinite]"
                   viewBox="0 0 400 400"
                 >
-                  <circle cx="200" cy="200" r="160" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 8" />
-                  <circle cx="200" cy="40" r="6" fill="#f05123" className="animate-pulse" />
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="160"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.1)"
+                    strokeWidth="1"
+                    strokeDasharray="4 8"
+                  />
+                  <circle
+                    cx="200"
+                    cy="40"
+                    r="6"
+                    fill="#f05123"
+                    className="animate-pulse"
+                  />
                   <circle cx="61" cy="280" r="4" fill="#ffffff" />
                   <circle cx="339" cy="280" r="8" fill="#1E3A5F" />
                 </svg>
@@ -171,7 +145,14 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full animate-[spin_40s_linear_infinite_reverse]"
                   viewBox="0 0 400 400"
                 >
-                  <circle cx="200" cy="200" r="110" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="110"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="1"
+                  />
                   <circle cx="90" cy="200" r="5" fill="#f05123" />
                   <circle cx="280" cy="120" r="4" fill="#ffffff" />
                 </svg>
@@ -179,10 +160,30 @@ export function Hero() {
                 {/* Connection lines */}
                 <div className="absolute inset-0 z-10 opacity-30">
                   <svg className="w-full h-full">
-                    <path d="M 200 200 L 350 50" stroke="#1E3A5F" strokeWidth="2" fill="none" />
-                    <path d="M 200 200 L 50 150" stroke="#1E3A5F" strokeWidth="2" fill="none" />
-                    <path d="M 200 200 L 150 350" stroke="#1E3A5F" strokeWidth="2" fill="none" />
-                    <path d="M 200 200 L 320 300" stroke="#1E3A5F" strokeWidth="2" fill="none" />
+                    <path
+                      d="M 200 200 L 350 50"
+                      stroke="#1E3A5F"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M 200 200 L 50 150"
+                      stroke="#1E3A5F"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M 200 200 L 150 350"
+                      stroke="#1E3A5F"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M 200 200 L 320 300"
+                      stroke="#1E3A5F"
+                      strokeWidth="2"
+                      fill="none"
+                    />
                   </svg>
                 </div>
 
