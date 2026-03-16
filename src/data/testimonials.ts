@@ -10,12 +10,12 @@ export interface Testimonial {
 
 export const testimonials: Testimonial[] = [
   {
-    id: "dhs-cloud-migration",
+    id: "healthcare-cloud-migration",
     quote:
-      "EaseOrigin's team brought deep expertise in AWS GovCloud and helped us navigate a complex migration with minimal disruption to operations. Their engineers understood the compliance requirements from day one.",
+      "We were running critical patient data systems on aging on-prem infrastructure, and the risk of downtime was becoming unacceptable. EaseOrigin's engineers migrated our entire platform to AWS with zero unplanned outages. They also helped us redesign our data pipeline so our analytics team could access real-time insights for the first time.",
     author: "Michael Torres",
-    title: "Chief Technology Officer",
-    organization: "Federal Civilian Agency",
+    title: "VP of Technology",
+    organization: "National Healthcare Provider",
     rating: 5,
   },
   {
@@ -37,12 +37,12 @@ export const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
-    id: "prime-staffing",
+    id: "finserv-platform-engineering",
     quote:
-      "Finding cleared, qualified engineers is one of the hardest challenges in GovCon. EaseOrigin consistently provides top-tier talent who are productive from week one. They have become our go-to staffing partner.",
+      "Our deployment process was manual, error-prone, and slowing down every release cycle. EaseOrigin built us a fully automated CI/CD platform on Kubernetes that cut our release time from two weeks to under a day. Their team also embedded with our engineers to make sure we could maintain and evolve the platform on our own.",
     author: "Rachel Gutierrez",
-    title: "Vice President of Delivery",
-    organization: "Mid-Tier Systems Integrator",
+    title: "Director of Platform Engineering",
+    organization: "Financial Services Firm",
     rating: 5,
   },
   {
