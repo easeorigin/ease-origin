@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/login", "/api"],
+      disallow: ["/admin", "/api", "/login"],
     },
     sitemap: "https://easeorigin.com/sitemap.xml",
   };

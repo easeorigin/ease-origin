@@ -68,6 +68,37 @@ export const metadata: Metadata = {
   },
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: companyInfo.name,
+  url: companyInfo.url,
+  description:
+    "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, program management, and agile delivery for government agencies and prime contractors.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: companyInfo.address.street,
+    addressLocality: companyInfo.address.city,
+    addressRegion: companyInfo.address.state,
+    postalCode: companyInfo.address.zip,
+    addressCountry: "US",
+  },
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  priceRange: "$$$$",
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "EaseOrigin",
+  url: companyInfo.url,
+};
+
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -111,6 +142,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteJsonLd),
           }}
         />
       </body>
