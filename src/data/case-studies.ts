@@ -276,18 +276,18 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "dod-oracle-cloud",
-    title: "DoD Cloud Infrastructure on Oracle Cloud",
+    title: "DoW Cloud Infrastructure on Oracle Cloud",
     category: "Cloud Infrastructure",
     shortDescription:
-      "Deployed and managed secure Oracle Cloud Infrastructure for Department of Defense workloads with IL5 compliance and automated provisioning.",
+      "Deployed and managed secure Oracle Cloud Infrastructure for Department of War workloads with IL5 compliance and automated provisioning.",
     heroDescription:
-      "Delivering secure, mission-critical cloud infrastructure for DoD programs on Oracle Cloud with Impact Level 5 compliance.",
+      "Delivering secure, mission-critical cloud infrastructure for DoW programs on Oracle Cloud with Impact Level 5 compliance.",
     overview:
-      "EaseOrigin supported the deployment and ongoing management of Oracle Cloud Infrastructure (OCI) environments for U.S. Air Force and Department of Defense programs. Working under the SAIC Cloud One contract vehicle, the engagement required standing up secure cloud landing zones, implementing DoD-compliant identity and access controls, and automating infrastructure provisioning for mission-critical workloads operating at Impact Level 5.",
+      "EaseOrigin supported the deployment and ongoing management of Oracle Cloud Infrastructure (OCI) environments for U.S. Air Force and Department of War programs. Working under the SAIC Cloud One contract vehicle, the engagement required standing up secure cloud landing zones, implementing DoW-compliant identity and access controls, and automating infrastructure provisioning for mission-critical workloads operating at Impact Level 5.",
     challenge:
-      "DoD programs required cloud environments that met stringent Impact Level 5 security requirements while enabling rapid provisioning for development and operational teams. Existing manual provisioning processes introduced delays and configuration drift, and the multi-tenant environment demanded strict network segmentation and audit controls to meet DISA STIG compliance.",
+      "DoW programs required cloud environments that met stringent Impact Level 5 security requirements while enabling rapid provisioning for development and operational teams. Existing manual provisioning processes introduced delays and configuration drift, and the multi-tenant environment demanded strict network segmentation and audit controls to meet DISA STIG compliance.",
     solution:
-      "EaseOrigin designed and implemented automated OCI landing zones with compartment-based isolation, identity federation, and network segmentation aligned with DoD reference architectures. We built Terraform-based provisioning pipelines with built-in compliance checks, established centralized logging and monitoring for security event correlation, and implemented automated STIG compliance scanning across all deployed resources.",
+      "EaseOrigin designed and implemented automated OCI landing zones with compartment-based isolation, identity federation, and network segmentation aligned with DoW reference architectures. We built Terraform-based provisioning pipelines with built-in compliance checks, established centralized logging and monitoring for security event correlation, and implemented automated STIG compliance scanning across all deployed resources.",
     results: [
       "Secure OCI landing zones deployed at Impact Level 5",
       "Automated infrastructure provisioning reducing deployment time",
@@ -299,7 +299,7 @@ export const caseStudies: CaseStudy[] = [
     technologies: ["Oracle Cloud (OCI)", "Terraform", "Ansible", "DISA STIGs", "Splunk", "Docker", "Linux"],
     accentColor: "#1E3A5F",
     sector: "Defense",
-    clientLabel: "U.S. Air Force / DoD (via Ikeda Innovations)",
+    clientLabel: "U.S. Air Force / DoW (via Ikeda Innovations)",
     contractVehicle: "SAIC Cloud One",
     metrics: [
       { value: "IL5", label: "Security Compliance" },
@@ -491,8 +491,319 @@ export const caseStudies: CaseStudy[] = [
     ],
     duration: "12 months",
     easeOriginRole: "Release Train Engineering & Agile Delivery",
-    complianceFrameworks: ["DoD Software Acquisition Pathway", "TechFAR"],
+    complianceFrameworks: ["DoW Software Acquisition Pathway", "TechFAR"],
     featured: true,
+  },
+  {
+    slug: "zero-trust-security-architecture",
+    title: "Zero-Trust Security Architecture for Federal Agency",
+    category: "Cybersecurity & Compliance",
+    shortDescription:
+      "Designed and implemented a zero-trust security architecture aligned with NIST 800-207, replacing legacy perimeter-based defenses with identity-centric access controls across a federal civilian agency.",
+    heroDescription:
+      "Transforming federal cybersecurity posture through zero-trust architecture, identity-centric controls, and continuous verification.",
+    overview:
+      "EaseOrigin led the design and implementation of a zero-trust security architecture for a federal civilian agency transitioning away from legacy perimeter-based security. The engagement encompassed identity provider consolidation, micro-segmentation, continuous authentication, and real-time threat monitoring aligned with NIST 800-207 and OMB M-22-09 zero-trust mandates.",
+    challenge:
+      "The agency relied on traditional perimeter-based security that assumed trust within the network boundary. Remote work expansion, cloud adoption, and increasing insider threat concerns exposed critical gaps. Multiple identity providers created inconsistent access policies, and lateral movement within the network was largely unmonitored. The agency faced OMB deadlines to adopt zero-trust principles.",
+    solution:
+      "EaseOrigin architected a phased zero-trust implementation starting with identity consolidation and multi-factor authentication enforcement. We deployed micro-segmentation across critical network zones, implemented continuous device posture assessment, and established real-time behavioral analytics for anomaly detection. Policy engines were configured to enforce least-privilege access decisions based on user identity, device health, location, and resource sensitivity.",
+    results: [
+      "Zero-trust architecture deployed across all critical systems",
+      "Multi-factor authentication enforced for 100% of user accounts",
+      "Micro-segmentation reducing lateral movement risk by 95%",
+      "Continuous device posture assessment for all endpoints",
+      "Real-time behavioral analytics detecting anomalous access patterns",
+      "Full compliance with OMB M-22-09 zero-trust requirements",
+    ],
+    technologies: ["Azure AD", "CrowdStrike", "Palo Alto Prisma", "Splunk", "Okta", "Zscaler", "Terraform"],
+    accentColor: "#B45309",
+    sector: "Federal Civilian",
+    clientLabel: "Federal Civilian Agency",
+    metrics: [
+      { value: "95%", label: "Less Lateral Movement Risk" },
+      { value: "100%", label: "MFA Adoption" },
+      { value: "60%", label: "Fewer Security Incidents" },
+    ],
+    duration: "10 months",
+    easeOriginRole: "Zero-Trust Architecture & Security Engineering",
+    complianceFrameworks: ["NIST 800-207", "OMB M-22-09", "NIST 800-53", "FISMA"],
+    featured: true,
+  },
+  {
+    slug: "ai-document-processing-platform",
+    title: "AI-Powered Document Processing Platform",
+    category: "AI/ML Infrastructure",
+    shortDescription:
+      "Built an intelligent document processing platform using LLM orchestration and OCR to automate intake, extraction, and classification of federal forms and correspondence at scale.",
+    heroDescription:
+      "Automating federal document processing with AI-powered extraction, classification, and intelligent routing at enterprise scale.",
+    overview:
+      "EaseOrigin designed and deployed an AI-powered document processing platform for a federal agency handling thousands of forms, applications, and correspondence monthly. The platform combines optical character recognition, large language model orchestration, and custom extraction pipelines to automate document intake, data extraction, classification, and routing, reducing manual processing time and improving accuracy.",
+    challenge:
+      "The agency processed over 10,000 documents monthly through manual review, with staff spending significant time on data entry, classification, and routing. Error rates from manual processing caused downstream delays, and peak submission periods created backlogs. The agency needed to maintain accuracy while dramatically reducing processing time and manual labor.",
+    solution:
+      "EaseOrigin built a multi-stage processing pipeline using AWS Textract for OCR, AWS Bedrock for LLM-powered extraction and classification, and custom LangChain agents for intelligent routing and validation. The platform includes a human-in-the-loop review interface for low-confidence extractions, automated quality scoring, and comprehensive audit trails for compliance. A React-based dashboard provides real-time processing metrics and queue management.",
+    results: [
+      "Automated processing of 10,000+ documents per month",
+      "Extraction accuracy exceeding 95% across all document types",
+      "Processing time reduced by 80% compared to manual review",
+      "Human-in-the-loop interface for quality assurance on edge cases",
+      "Complete audit trail for all processed documents",
+      "Real-time dashboard for processing metrics and queue management",
+    ],
+    technologies: ["AWS Bedrock", "AWS Textract", "LangChain", "Python", "FastAPI", "PostgreSQL", "React", "S3"],
+    accentColor: "#065F46",
+    sector: "Federal Civilian",
+    clientLabel: "Federal Civilian Agency",
+    metrics: [
+      { value: "80%", label: "Faster Processing" },
+      { value: "95%", label: "Extraction Accuracy" },
+      { value: "10,000+", label: "Documents / Month" },
+    ],
+    duration: "7 months",
+    easeOriginRole: "AI/ML Platform Architecture & Delivery",
+  },
+  {
+    slug: "realtime-operational-analytics",
+    title: "Real-Time Operational Analytics Dashboard",
+    category: "Data & Analytics",
+    shortDescription:
+      "Designed and delivered a unified real-time analytics platform consolidating 15 data sources into a single operational dashboard with sub-5-second data latency for defense program decision-making.",
+    heroDescription:
+      "Enabling real-time operational awareness through unified data streaming, advanced analytics, and executive dashboards for defense programs.",
+    overview:
+      "EaseOrigin architected and deployed a real-time operational analytics platform for a defense program requiring unified situational awareness across multiple data sources. The platform ingests streaming data from 15 operational systems, applies real-time transformations and anomaly detection, and presents actionable insights through role-based dashboards tailored for operators, analysts, and executive leadership.",
+    challenge:
+      "Program leadership lacked unified visibility into operational status, with data scattered across 15 disconnected systems each with different formats, update frequencies, and access methods. Analysts spent hours manually compiling reports from multiple sources, and decision-makers often worked with stale data. There was no capability for real-time alerting on critical operational thresholds.",
+    solution:
+      "EaseOrigin implemented a streaming data architecture using Apache Kafka for real-time ingestion, Elasticsearch for indexing and search, and Grafana for visualization. We built custom data transformation pipelines with dbt for analytical models, implemented anomaly detection algorithms for automated alerting, and designed role-based dashboards providing appropriate detail for each stakeholder level. The platform includes automated report generation and historical trend analysis.",
+    results: [
+      "15 data sources unified into a single operational platform",
+      "Sub-5-second data latency from source to dashboard",
+      "Role-based dashboards for operators, analysts, and executives",
+      "Automated anomaly detection and threshold alerting",
+      "70% faster decision-making through real-time data access",
+      "Automated report generation replacing manual compilation",
+    ],
+    technologies: ["Apache Kafka", "Elasticsearch", "Grafana", "dbt", "Python", "AWS", "PostgreSQL", "Docker"],
+    accentColor: "#059669",
+    sector: "Defense",
+    clientLabel: "Defense Program Office",
+    metrics: [
+      { value: "<5s", label: "Data Latency" },
+      { value: "15", label: "Sources Unified" },
+      { value: "70%", label: "Faster Decisions" },
+    ],
+    duration: "8 months",
+    easeOriginRole: "Data Engineering & Analytics Platform",
+    complianceFrameworks: ["NIST 800-53", "RMF"],
+  },
+  {
+    slug: "healthcare-system-integration",
+    title: "Healthcare System Integration & Interoperability",
+    category: "SaaS Solutions",
+    shortDescription:
+      "Integrated 12 disparate healthcare systems using HL7 FHIR standards, enabling seamless patient data exchange and reducing data reconciliation time by 40% while maintaining full HIPAA compliance.",
+    heroDescription:
+      "Connecting healthcare systems through FHIR-based interoperability, enabling seamless patient data exchange across providers and platforms.",
+    overview:
+      "EaseOrigin delivered a healthcare system integration initiative connecting 12 disparate clinical, administrative, and billing systems for a regional healthcare network. Using HL7 FHIR interoperability standards, the engagement established bi-directional data exchange pipelines, patient identity resolution, and a unified API gateway that enables authorized applications to access consolidated patient records while maintaining strict HIPAA compliance.",
+    challenge:
+      "The healthcare network operated 12 disconnected systems including EHR platforms, lab information systems, billing engines, and patient portals. Patient data was duplicated and inconsistent across systems, requiring manual reconciliation that delayed care coordination. No standardized API existed for new application integrations, and each system connection required custom point-to-point interfaces that were costly to maintain.",
+    solution:
+      "EaseOrigin designed and deployed a FHIR-based integration platform with a centralized API gateway serving as the hub for all system interconnections. We implemented patient identity resolution using probabilistic matching algorithms, built bi-directional data synchronization pipelines with conflict resolution logic, and established comprehensive audit logging for HIPAA compliance. A ServiceNow-based service catalog enables clinical teams to request new integrations through a governed workflow.",
+    results: [
+      "12 healthcare systems integrated through FHIR-based API gateway",
+      "Patient data reconciliation time reduced by 40%",
+      "Bi-directional data exchange with automated conflict resolution",
+      "Patient identity resolution with 99.2% match accuracy",
+      "ServiceNow-based integration request workflow",
+      "Full HIPAA compliance maintained across all data exchanges",
+    ],
+    technologies: ["HL7 FHIR", "Azure", "ServiceNow", "REST APIs", "Python", "PostgreSQL", "Docker", "Mirth Connect"],
+    accentColor: "#B45309",
+    sector: "Healthcare",
+    clientLabel: "Regional Healthcare Network",
+    metrics: [
+      { value: "12", label: "Systems Integrated" },
+      { value: "40%", label: "Faster Data Exchange" },
+      { value: "100%", label: "HIPAA Compliance" },
+    ],
+    duration: "11 months",
+    easeOriginRole: "System Integration & Interoperability",
+    complianceFrameworks: ["HIPAA", "HITECH", "HL7 FHIR R4"],
+  },
+  {
+    slug: "enterprise-security-operations-center",
+    title: "Enterprise Cybersecurity Operations Center",
+    category: "Cybersecurity & Compliance",
+    shortDescription:
+      "Stood up a 24/7 Security Operations Center with SIEM deployment, threat hunting playbooks, and automated incident response, achieving 85% faster mean time to response across the enterprise.",
+    heroDescription:
+      "Building enterprise-grade security operations with continuous monitoring, automated threat detection, and rapid incident response capabilities.",
+    overview:
+      "EaseOrigin designed and operationalized a Security Operations Center (SOC) for a defense contractor requiring 24/7 threat monitoring and incident response capabilities. The engagement encompassed SIEM platform deployment, security orchestration and automated response (SOAR), threat intelligence integration, and development of detection rules and incident response playbooks aligned with MITRE ATT&CK framework.",
+    challenge:
+      "The organization had no centralized security monitoring capability, relying on individual tool alerts that were often missed or delayed. Security events from firewalls, endpoints, cloud environments, and applications were siloed, making correlated threat detection impossible. When incidents were detected, response was ad-hoc with no standardized playbooks, leading to inconsistent containment and lengthy resolution times.",
+    solution:
+      "EaseOrigin deployed Splunk Enterprise Security as the central SIEM platform, integrating log sources across network, endpoint, cloud, and application layers. We implemented CrowdStrike for endpoint detection and response, built automated response playbooks using SOAR capabilities, and established a threat hunting program with weekly campaigns aligned to MITRE ATT&CK techniques. A tiered analyst model was established with clear escalation paths and SLAs for incident classification and response.",
+    results: [
+      "24/7 security monitoring across all enterprise environments",
+      "Mean time to detection reduced to under 15 minutes",
+      "Mean time to response improved by 85%",
+      "Automated response playbooks for top 20 incident types",
+      "Threat hunting program with weekly campaigns",
+      "99.9% detection rate for known attack patterns",
+    ],
+    technologies: ["Splunk Enterprise Security", "CrowdStrike", "Palo Alto", "Ansible", "Python", "Jira", "MITRE ATT&CK"],
+    accentColor: "#B45309",
+    sector: "Defense",
+    clientLabel: "Defense Contractor",
+    metrics: [
+      { value: "85%", label: "Faster Response" },
+      { value: "24/7", label: "Monitoring Coverage" },
+      { value: "99.9%", label: "Detection Rate" },
+    ],
+    duration: "9 months",
+    easeOriginRole: "SOC Architecture & Security Operations",
+    complianceFrameworks: ["NIST 800-53", "CMMC", "MITRE ATT&CK", "NIST 800-171"],
+  },
+  {
+    slug: "cloud-cost-optimization",
+    title: "Enterprise Cloud Cost Optimization Platform",
+    category: "Cloud Infrastructure",
+    shortDescription:
+      "Delivered a comprehensive FinOps platform for a financial services firm, providing full cloud cost visibility, automated rightsizing recommendations, and policy-driven governance that reduced annual cloud spend by 35%.",
+    heroDescription:
+      "Bringing financial accountability to cloud operations through real-time cost visibility, automated optimization, and FinOps best practices.",
+    overview:
+      "EaseOrigin partnered with a mid-market financial services firm to design and implement an enterprise cloud cost optimization platform. The engagement established a FinOps operating model with real-time cost visibility dashboards, automated rightsizing recommendations, reserved instance management, and policy-driven guardrails to prevent cost overruns across 500+ cloud resources spanning development, staging, and production environments.",
+    challenge:
+      "The firm's cloud spend had grown 60% year over year with no clear accountability or cost attribution. Engineering teams provisioned resources without visibility into spending impact, reserved instances were underutilized, and idle resources accumulated across environments. Finance and engineering operated in silos, with monthly billing surprises eroding trust and making budget forecasting unreliable.",
+    solution:
+      "EaseOrigin implemented a FinOps platform anchored by CloudHealth for cost management and Grafana for real-time visualization. We built automated rightsizing pipelines using Python and Lambda that continuously analyzed resource utilization and surfaced optimization recommendations. Terraform modules enforced tagging policies and cost allocation standards, while scheduled Lambda functions identified and flagged idle resources for review. A weekly FinOps review cadence was established between engineering leads and finance stakeholders.",
+    results: [
+      "35% reduction in overall cloud spend within the first quarter",
+      "$2M+ in annualized cost savings identified and implemented",
+      "500+ cloud resources profiled, tagged, and optimized",
+      "Real-time cost dashboards with team-level spend attribution",
+      "Automated rightsizing recommendations delivered weekly",
+      "Reserved instance utilization improved from 45% to 92%",
+    ],
+    technologies: ["AWS", "CloudHealth", "Terraform", "Python", "Grafana", "Lambda", "S3", "CloudWatch"],
+    accentColor: "#1E3A5F",
+    sector: "Commercial",
+    clientLabel: "Financial Services Firm",
+    metrics: [
+      { value: "35%", label: "Cost Reduction" },
+      { value: "$2M+", label: "Annual Savings" },
+      { value: "500+", label: "Resources Optimized" },
+    ],
+    duration: "6 months",
+    easeOriginRole: "FinOps Strategy & Cloud Optimization",
+  },
+  {
+    slug: "retail-analytics-platform",
+    title: "Retail Analytics & Customer Intelligence Platform",
+    category: "Data & Analytics",
+    shortDescription:
+      "Built a customer intelligence platform for a national retailer that unified behavioral analytics, product recommendations, and real-time inventory optimization, driving a 25% increase in targeted campaign revenue.",
+    heroDescription:
+      "Transforming retail operations through unified customer analytics, intelligent product recommendations, and real-time inventory visibility.",
+    overview:
+      "EaseOrigin designed and delivered a customer intelligence platform for a national retail chain seeking to unify fragmented customer data, improve product recommendation accuracy, and optimize inventory allocation across 200+ store locations. The platform consolidated data from point-of-sale systems, e-commerce, loyalty programs, and supply chain feeds into a governed analytics layer powering real-time operational decisions.",
+    challenge:
+      "The retailer's customer data was fragmented across six disconnected systems with no unified customer profile. Marketing campaigns relied on broad segmentation rather than behavioral insights, resulting in low conversion rates. Inventory allocation was driven by historical averages rather than demand signals, leading to frequent stockouts on high-demand items and excess inventory on slow movers. No infrastructure existed for real-time data processing or recommendation delivery.",
+    solution:
+      "EaseOrigin implemented a modern data stack anchored by Snowflake as the central warehouse, with dbt for transformation logic and Apache Airflow orchestrating 40+ data pipelines. Kafka streams provided real-time event ingestion from POS and e-commerce platforms. We built a customer identity resolution layer that unified 2M+ customer profiles, a recommendation engine powered by collaborative filtering, and Tableau dashboards providing store-level inventory optimization insights updated every 15 minutes.",
+    results: [
+      "25% revenue increase from targeted marketing campaigns",
+      "40% improvement in inventory turnover across 200+ locations",
+      "2M+ customer profiles unified from six disparate data sources",
+      "Real-time inventory visibility with 15-minute refresh cycles",
+      "Recommendation engine serving personalized product suggestions",
+      "40+ automated data pipelines with built-in quality validation",
+    ],
+    technologies: ["Snowflake", "dbt", "Apache Airflow", "Python", "Tableau", "AWS", "Kafka", "Redis"],
+    accentColor: "#059669",
+    sector: "Commercial",
+    clientLabel: "National Retail Chain",
+    metrics: [
+      { value: "25%", label: "Revenue Increase" },
+      { value: "40%", label: "Better Inventory Turnover" },
+      { value: "2M+", label: "Customer Profiles" },
+    ],
+    duration: "8 months",
+    easeOriginRole: "Data Platform Architecture & Analytics",
+  },
+  {
+    slug: "enterprise-iam-modernization",
+    title: "Enterprise Identity & Access Management Modernization",
+    category: "Cybersecurity & Compliance",
+    shortDescription:
+      "Consolidated fragmented identity systems into a unified IAM platform with SSO, role-based access control, and automated compliance reporting, achieving 90% SSO adoption across a 5,000-user enterprise.",
+    heroDescription:
+      "Modernizing enterprise identity management through unified SSO, automated access governance, and role-based security controls.",
+    overview:
+      "EaseOrigin led an IAM modernization initiative for a large professional services organization managing 5,000+ employees across 12 office locations. The engagement consolidated five legacy identity providers into a unified platform with single sign-on, automated provisioning and deprovisioning, role-based access control aligned to job functions, and privileged access management for sensitive systems.",
+    challenge:
+      "The organization operated five disconnected identity systems accumulated through acquisitions, with no consistent authentication standard. Employees maintained separate credentials for different applications, leading to password fatigue and security risk. Access reviews were manual and audit-unfriendly, with no clear mapping between job roles and application entitlements. Privileged accounts lacked proper vaulting or session monitoring, creating compliance gaps during annual audits.",
+    solution:
+      "EaseOrigin designed a unified IAM architecture with Okta as the primary identity provider and Azure AD for directory services. We implemented SSO integration across 85+ enterprise applications, built an automated provisioning and deprovisioning workflow tied to HR system events, and deployed CyberArk for privileged access management with session recording. Terraform automated the IAM infrastructure provisioning, while ServiceNow provided the front-end for access request workflows and quarterly access certification campaigns.",
+    results: [
+      "90% SSO adoption across 85+ enterprise applications",
+      "70% reduction in access-related service desk tickets",
+      "100% role-based access control coverage for all job functions",
+      "Automated provisioning and deprovisioning tied to HR events",
+      "Privileged access fully vaulted with session recording",
+      "Quarterly access certification campaigns automated end-to-end",
+    ],
+    technologies: ["Okta", "Azure AD", "CyberArk", "Terraform", "Python", "ServiceNow", "SCIM", "SAML"],
+    accentColor: "#B45309",
+    sector: "Enterprise",
+    clientLabel: "Professional Services Organization",
+    metrics: [
+      { value: "90%", label: "SSO Adoption" },
+      { value: "70%", label: "Fewer Access Tickets" },
+      { value: "100%", label: "RBAC Coverage" },
+    ],
+    duration: "7 months",
+    easeOriginRole: "IAM Architecture & Security Engineering",
+  },
+  {
+    slug: "intelligent-automation-platform",
+    title: "Intelligent Automation & Process Mining",
+    category: "AI/ML Infrastructure",
+    shortDescription:
+      "Deployed an intelligent automation platform combining process mining, RPA, and workflow orchestration that automated 15 core business processes and reduced manual operations effort by 60%.",
+    heroDescription:
+      "Accelerating enterprise operations through process mining, robotic process automation, and intelligent workflow orchestration.",
+    overview:
+      "EaseOrigin designed and implemented an intelligent automation platform for a large logistics and supply chain company seeking to reduce manual operational overhead and improve process consistency. The engagement combined process mining to identify automation candidates, RPA development and deployment for high-volume repetitive tasks, and intelligent workflow orchestration for complex multi-step processes spanning multiple business systems.",
+    challenge:
+      "The company's operations teams spent over 60% of their time on manual, repetitive tasks across order processing, vendor onboarding, invoice reconciliation, and compliance reporting. Processes were poorly documented, with significant variation between teams and locations. Previous automation attempts had failed due to lack of process understanding, resulting in bots that broke frequently and required constant maintenance.",
+    solution:
+      "EaseOrigin deployed Celonis for process mining, analyzing 18 months of event log data to map actual process flows and identify the highest-impact automation candidates. We then built and deployed UiPath bots for 15 core processes, implementing attended and unattended automation based on process complexity. Power Automate handled simpler workflow orchestration, while a React-based operations dashboard provided real-time visibility into bot performance, exception handling, and process throughput. MongoDB stored process execution logs for ongoing optimization analysis.",
+    results: [
+      "60% reduction in manual operations effort across targeted processes",
+      "45% faster end-to-end process cycle times",
+      "15 core business processes fully automated",
+      "Process mining analysis covering 18 months of operational data",
+      "Real-time operations dashboard for bot monitoring and exception management",
+      "Estimated $1.5M annual labor cost avoidance",
+    ],
+    technologies: ["UiPath", "Celonis", "Python", "AWS", "Power Automate", "MongoDB", "React", "Docker"],
+    accentColor: "#065F46",
+    sector: "Enterprise",
+    clientLabel: "Logistics & Supply Chain Company",
+    metrics: [
+      { value: "60%", label: "Process Automation" },
+      { value: "45%", label: "Faster Operations" },
+      { value: "15", label: "Processes Automated" },
+    ],
+    duration: "9 months",
+    easeOriginRole: "Intelligent Automation & Process Engineering",
   },
 ];
 

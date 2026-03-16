@@ -21,6 +21,7 @@ import {
   ClipboardList,
   Workflow,
 } from "lucide-react";
+import { companyInfo } from "@/data/company-info";
 
 /* ─── Core Competency Data ─────────────────────────────────────────────────── */
 
@@ -76,7 +77,7 @@ const coreCompetencies = [
 ];
 
 const contractVehicles = [
-  { name: "SAIC Cloud One", scope: "DoD / U.S. Air Force" },
+  { name: "SAIC Cloud One", scope: "DoW / U.S. Air Force" },
   { name: "Leidos Kobayashi Maru", scope: "U.S. Space Force (SSC)" },
   { name: "NAWCAD N0042118D0006", scope: "U.S. Navy" },
   { name: "GSA Schedule", scope: "Federal Civilian Agencies" },
@@ -84,11 +85,11 @@ const contractVehicles = [
 
 const pastPerformance = [
   {
-    client: "U.S. Air Force / DoD",
-    title: "DoD Cloud Infrastructure on Oracle Cloud",
+    client: "U.S. Air Force / DoW",
+    title: "DoW Cloud Infrastructure on Oracle Cloud",
     metrics: ["IL5 Security Compliance", "100% STIG Compliance"],
     summary:
-      "Deployed and managed secure Oracle Cloud Infrastructure environments for DoD programs with automated provisioning, compartment-based isolation, and 24/7 security monitoring.",
+      "Deployed and managed secure Oracle Cloud Infrastructure environments for DoW programs with automated provisioning, compartment-based isolation, and 24/7 security monitoring.",
   },
   {
     client: "U.S. Space Force (SSC)",
@@ -122,7 +123,7 @@ const pastPerformance = [
 
 const differentiators = [
   "Small business with active security clearance, qualified for classified government environments",
-  "Deep expertise across all three major cloud providers (AWS, Azure, GCP) plus Oracle Cloud for DoD workloads",
+  "Deep expertise across all three major cloud providers (AWS, Azure, GCP) plus Oracle Cloud for DoW workloads",
   "Proven track record delivering through prime contractor partnerships with SAIC, Leidos, Booz Allen Hamilton, and TG Federal",
   "Full-spectrum capability spanning cloud infrastructure, cybersecurity, DevSecOps, AI/ML, enterprise platforms, program management, and agile delivery",
   "Founder-led firm with 14+ years of hands-on enterprise technology and federal consulting experience",
@@ -255,7 +256,7 @@ export default function CapabilityStatementPage() {
               services to federal agencies, prime contractors, and private sector organizations. With deep expertise
               in cloud infrastructure, cybersecurity, DevSecOps, enterprise platforms, program management, and agile delivery, we help organizations
               modernize mission-critical systems, achieve regulatory compliance, and accelerate digital
-              transformation. Our team holds active security clearances and has supported programs across DoD, DHS,
+              transformation. Our team holds active security clearances and has supported programs across DoW, DHS,
               NIH, GSA, and the U.S. Space Force.
             </p>
           </div>
@@ -432,21 +433,21 @@ export default function CapabilityStatementPage() {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-eo-gold flex-shrink-0 mt-0.5" />
                     <div className="text-sm text-gray-300">
-                      <p>211 E Avenue G, 306</p>
-                      <p>Midlothian, TX 76065</p>
+                      <p>{companyInfo.address.street}</p>
+                      <p>{companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">(470) 464-5199</span>
+                    <span className="text-sm text-gray-300">{companyInfo.phone}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">info@easeorigin.com</span>
+                    <span className="text-sm text-gray-300">{companyInfo.email}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Globe className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">easeorigin.com</span>
+                    <span className="text-sm text-gray-300">{companyInfo.domain}</span>
                   </div>
                 </div>
               </div>

@@ -41,55 +41,55 @@ const categoryColors: Record<
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     text: "text-eo-blue",
-    headerBg: "from-blue-50 to-indigo-50",
+    headerBg: "from-blue-50 to-indigo-50 dark:from-blue-800/60 dark:to-indigo-800/60",
   },
   Cybersecurity: {
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
-    text: "text-amber-700",
-    headerBg: "from-amber-50 to-orange-50",
+    text: "text-amber-700 dark:text-amber-300",
+    headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
   },
   "Cybersecurity & Compliance": {
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
-    text: "text-amber-700",
-    headerBg: "from-amber-50 to-orange-50",
+    text: "text-amber-700 dark:text-amber-300",
+    headerBg: "from-amber-50 to-orange-50 dark:from-amber-800/60 dark:to-orange-800/60",
   },
   "Data & Analytics": {
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
-    text: "text-emerald-700",
-    headerBg: "from-emerald-50 to-teal-50",
+    text: "text-emerald-700 dark:text-emerald-300",
+    headerBg: "from-emerald-50 to-teal-50 dark:from-emerald-800/60 dark:to-teal-800/60",
   },
   "AI/ML Infrastructure": {
     bg: "bg-violet-50 dark:bg-violet-950",
     border: "border-violet-100 dark:border-violet-900",
-    text: "text-violet-700",
-    headerBg: "from-violet-50 to-purple-50",
+    text: "text-violet-700 dark:text-violet-300",
+    headerBg: "from-violet-50 to-purple-50 dark:from-violet-800/60 dark:to-purple-800/60",
   },
   "DevOps & Platform Engineering": {
     bg: "bg-indigo-50 dark:bg-indigo-950",
     border: "border-indigo-100 dark:border-indigo-900",
-    text: "text-indigo-700",
-    headerBg: "from-indigo-50 to-blue-50",
+    text: "text-indigo-700 dark:text-indigo-300",
+    headerBg: "from-indigo-50 to-blue-50 dark:from-indigo-800/60 dark:to-blue-800/60",
   },
   "SaaS Solutions": {
     bg: "bg-sky-50 dark:bg-sky-950",
     border: "border-sky-100 dark:border-sky-900",
-    text: "text-sky-700",
-    headerBg: "from-sky-50 to-cyan-50",
+    text: "text-sky-700 dark:text-sky-300",
+    headerBg: "from-sky-50 to-cyan-50 dark:from-sky-800/60 dark:to-cyan-800/60",
   },
   "Program Management": {
     bg: "bg-purple-50 dark:bg-purple-950",
     border: "border-purple-100 dark:border-purple-900",
-    text: "text-purple-700",
-    headerBg: "from-purple-50 to-violet-50",
+    text: "text-purple-700 dark:text-purple-300",
+    headerBg: "from-purple-50 to-violet-50 dark:from-purple-800/60 dark:to-violet-800/60",
   },
   "Agile Delivery & Release Train Management": {
     bg: "bg-red-50 dark:bg-red-950",
     border: "border-red-100 dark:border-red-900",
-    text: "text-red-700",
-    headerBg: "from-red-50 to-rose-50",
+    text: "text-red-700 dark:text-red-300",
+    headerBg: "from-red-50 to-rose-50 dark:from-red-800/60 dark:to-rose-800/60",
   },
 };
 
@@ -262,7 +262,8 @@ export default async function SolutionDetailPage({
           <div className="absolute inset-0 z-0">
             <Image
               src={`/${solution.image}`}
-              alt=""
+              alt={`${solution.title} background`}
+              aria-hidden="true"
               fill
               className="object-cover opacity-[0.12]"
               priority
@@ -376,7 +377,7 @@ export default async function SolutionDetailPage({
                     {solution.complianceFrameworks.map((fw, i) => (
                       <span
                         key={i}
-                        className="px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-sm font-semibold text-amber-700"
+                        className="px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 text-sm font-semibold text-amber-700 dark:text-amber-300"
                       >
                         {fw}
                       </span>

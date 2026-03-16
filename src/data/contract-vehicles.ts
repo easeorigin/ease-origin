@@ -15,12 +15,12 @@ export const contractVehicles: ContractVehicle[] = [
   {
     slug: "saic-cloud-one",
     vehicleName: "SAIC Cloud One",
-    contractNumber: "U.S. Air Force / DoD-wide",
-    agency: "U.S. Air Force / DoD",
+    contractNumber: "U.S. Air Force / DoW-wide",
+    agency: "U.S. Air Force / DoW",
     prime: "Ikeda Innovations (under SAIC)",
     role: "Subcontractor",
     description:
-      "Oracle Cloud Infrastructure engineering for the DoD Common Computing Environment through Ikeda Innovations under the SAIC Cloud One program.",
+      "Oracle Cloud Infrastructure engineering for the DoW Common Computing Environment through Ikeda Innovations under the SAIC Cloud One program.",
     scope: [
       "Oracle Cloud Infrastructure architecture and management",
       "IL5 security compliance and STIG automation",

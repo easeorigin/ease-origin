@@ -11,6 +11,8 @@ import {
   Linkedin, Mail, ClipboardList, Workflow
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { companyInfo } from "@/data/company-info";
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
@@ -141,10 +143,10 @@ function WhoWeAre() {
             {[
               { num: "14+", label: "Years of IT experience" },
               { num: "14", label: "Organizations served" },
-              { num: "6", label: "Certifications" },
+              { num: "30+", label: "Team certifications" },
             ].map(({ num, label }, i) => (
               <div key={i} className="text-center flex-1">
-                <p className="text-2xl font-extrabold text-eo-gold">{num}</p>
+                <AnimatedCounter value={num} className="text-2xl font-extrabold text-eo-gold" />
                 <p className="text-xs text-gray-400 mt-1 leading-snug">{label}</p>
               </div>
             ))}
@@ -264,7 +266,7 @@ const teamMembers: TeamMember[] = [
     initials: "JU",
     title: "Founder & CEO",
     photo: "/images/team/jimi-umar.jpg",
-    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for federal clients including DOD, DHS, NIH, and GSA.",
+    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for clients spanning federal agencies (DoW, DHS, NIH, GSA) and commercial enterprises in financial services, healthcare, retail, and logistics.",
     certifications: [
       "AWS Solutions Architect",
       "AWS SysOps Administrator",
@@ -274,7 +276,7 @@ const teamMembers: TeamMember[] = [
       "Certified Python Developer",
     ],
     linkedIn: "https://linkedin.com/in/jimiuumar",
-    email: "info@easeorigin.com",
+    email: companyInfo.email,
   },
 ];
 
@@ -365,7 +367,7 @@ function Leadership() {
                     {member.certifications.map((cert) => (
                       <span
                         key={cert}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy dark:text-blue-200"
                       >
                         <Award className="h-3 w-3 text-eo-gold flex-shrink-0" />
                         {cert}
@@ -572,17 +574,17 @@ function OurValues() {
 
 const impactStats = [
   { num: "14+", label: "Years of IT Experience" },
-  { num: "7", label: "Federal Agencies Supported" },
-  { num: "6", label: "Professional Certifications" },
+  { num: "22+", label: "Projects Delivered" },
+  { num: "30+", label: "Team Certifications" },
   { num: "14", label: "Organizations Served" },
 ];
 
 const impactPoints = [
-  "Strengthening cybersecurity across government and enterprise",
-  "Modernizing mission-critical systems and infrastructure",
+  "Strengthening cybersecurity across government and commercial organizations",
+  "Modernizing mission-critical systems and enterprise infrastructure",
   "Enabling cloud adoption and platform engineering at scale",
-  "Delivering AI-powered solutions and data-driven insights",
-  "Providing structured program management and agile delivery for federal initiatives",
+  "Delivering AI-powered solutions and data-driven insights for federal and private sector clients",
+  "Providing structured program management and agile delivery across industries",
 ];
 
 function Impact() {
@@ -611,7 +613,7 @@ function Impact() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-eo-navy rounded-2xl p-6 text-center"
               >
-                <p className="text-3xl font-extrabold text-eo-gold mb-1">{num}</p>
+                <AnimatedCounter value={num} className="text-3xl font-extrabold text-eo-gold mb-1" />
                 <p className="text-xs text-gray-400 leading-snug">{label}</p>
               </motion.div>
             ))}
@@ -707,7 +709,7 @@ export default function AboutPage() {
         <AboutHero />
         <WhoWeAre />
         <Timeline />
-        <Leadership />
+        {/* <Leadership /> */}
         <OurExpertise />
         <OurValues />
         <Impact />

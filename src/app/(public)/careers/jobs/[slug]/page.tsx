@@ -146,7 +146,7 @@ export default async function JobDetailPage({
                   {job.technologies.map((tech, i) => (
                     <span
                       key={i}
-                      className="inline-block px-3 py-1.5 bg-slate-50 border border-border-default text-sm font-medium text-text-primary rounded-full"
+                      className="inline-block px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-border-default text-sm font-medium text-text-primary rounded-full"
                     >
                       {tech}
                     </span>

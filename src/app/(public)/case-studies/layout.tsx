@@ -3,7 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "See how EaseOrigin delivers results for government agencies and enterprises through cloud modernization, cybersecurity, DevOps, and data platform engagements.",
+    "Real-world results from EaseOrigin engagements across cloud migration, cybersecurity, DevOps, AI/ML, and program management for federal agencies and commercial clients.",
+  openGraph: {
+    title: "Case Studies | EaseOrigin",
+    description:
+      "Real-world results from EaseOrigin engagements across cloud migration, cybersecurity, DevOps, AI/ML, and program management for federal agencies and commercial clients.",
+  },
 };
 
 export default function CaseStudiesLayout({ children }: { children: React.ReactNode }) {

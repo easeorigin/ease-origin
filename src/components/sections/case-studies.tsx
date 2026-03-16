@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/section";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { caseStudies } from "@/data/case-studies";
 import Image from "next/image";
+import { WordReveal } from "@/components/word-reveal";
 
 export function CaseStudies() {
   const featured = useMemo(() => {
@@ -22,7 +23,8 @@ export function CaseStudies() {
       <div className="absolute inset-0 opacity-[1] pointer-events-none">
         <Image
           src={"/images/capitol-building.png"}
-          alt=""
+          alt="U.S. Capitol building"
+          aria-hidden="true"
           fill
           className="w-full h-full object-cover"
         />
@@ -38,9 +40,7 @@ export function CaseStudies() {
           <h2 className="text-eo-gold font-semibold tracking-wider uppercase text-sm mb-3">
             Proven Success
           </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-text-primary">
-            Delivering Results for Our Clients
-          </h3>
+          <WordReveal text="Delivering Results for Our Clients" as="h3" className="text-3xl md:text-4xl font-bold text-text-primary" />
         </div>
         <Link href="/case-studies">
           <span className="hidden md:inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer group">
