@@ -367,7 +367,7 @@ function Leadership() {
                     {member.certifications.map((cert) => (
                       <span
                         key={cert}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy dark:text-blue-200"
                       >
                         <Award className="h-3 w-3 text-eo-gold flex-shrink-0" />
                         {cert}
