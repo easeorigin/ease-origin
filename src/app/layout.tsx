@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Inter, Montserrat } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { companyInfo } from "@/data/company-info";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -70,24 +71,24 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "EaseOrigin LLC",
-  url: "https://easeorigin.com",
+  name: companyInfo.name,
+  url: companyInfo.url,
   description:
     "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery for government agencies and prime contractors.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "211 E Avenue G, 306",
-    addressLocality: "Midlothian",
-    addressRegion: "TX",
-    postalCode: "76065",
+    streetAddress: companyInfo.address.street,
+    addressLocality: companyInfo.address.city,
+    addressRegion: companyInfo.address.state,
+    postalCode: companyInfo.address.zip,
     addressCountry: "US",
   },
-  telephone: "(470) 464-5199",
-  email: "info@easeorigin.com",
-  naics: "541511",
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  naics: companyInfo.identifiers.naics,
   identifier: [
-    { "@type": "PropertyValue", name: "UEI", value: "GTWUARASDLN5" },
-    { "@type": "PropertyValue", name: "CAGE", value: "8DUE2" },
+    { "@type": "PropertyValue", name: "UEI", value: companyInfo.identifiers.uei },
+    { "@type": "PropertyValue", name: "CAGE", value: companyInfo.identifiers.cage },
   ],
 };
 

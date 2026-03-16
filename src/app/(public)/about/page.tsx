@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { companyInfo } from "@/data/company-info";
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
@@ -275,7 +276,7 @@ const teamMembers: TeamMember[] = [
       "Certified Python Developer",
     ],
     linkedIn: "https://linkedin.com/in/jimiuumar",
-    email: "info@easeorigin.com",
+    email: companyInfo.email,
   },
 ];
 

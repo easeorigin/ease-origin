@@ -1,6 +1,7 @@
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { companyInfo } from "@/data/company-info";
 
 export function Footer() {
   return (
@@ -30,7 +31,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://linkedin.com/company/easeorigin"
+                href={companyInfo.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -133,22 +134,22 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-eo-gold mr-3 shrink-0 mt-0.5" />
                 <span>
-                  211 E Avenue G, 306
+                  {companyInfo.address.street}
                   <br />
-                  Midlothian, TX 76065
+                  {companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
-                <span>(470) 464-5199</span>
+                <span>{companyInfo.phone}</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-eo-gold mr-3 shrink-0" />
                 <a
-                  href="mailto:info@easeorigin.com"
+                  href={`mailto:${companyInfo.email}`}
                   className="hover:text-white transition-colors"
                 >
-                  info@easeorigin.com
+                  {companyInfo.email}
                 </a>
               </li>
             </ul>

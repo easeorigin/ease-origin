@@ -9,6 +9,7 @@ import {
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
 import { submitContactForm, type ContactFormResponse } from "./actions";
+import { companyInfo } from "@/data/company-info";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -151,22 +152,22 @@ function ContactFormSection() {
     {
       icon: MapPin,
       label: "Address",
-      lines: ["211 E Avenue G, 306", "Midlothian, TX 76065"],
+      lines: [companyInfo.address.street, `${companyInfo.address.city}, ${companyInfo.address.state} ${companyInfo.address.zip}`],
     },
     {
       icon: Phone,
       label: "Phone",
-      lines: ["(470) 464-5199"],
+      lines: [companyInfo.phone],
     },
     {
       icon: Mail,
       label: "Email",
-      lines: ["info@easeorigin.com"],
+      lines: [companyInfo.email],
     },
     {
       icon: Clock,
       label: "Business Hours",
-      lines: ["Monday – Friday", "8:00 AM – 6:00 PM ET"],
+      lines: [companyInfo.hours.days, companyInfo.hours.time],
     },
   ];
 
@@ -414,7 +415,7 @@ function MapSection() {
         >
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Location</h2>
           <h3 className="text-2xl md:text-3xl font-bold text-text-primary">Our Office</h3>
-          <p className="text-text-tertiary mt-2">211 E Avenue G, 306, Midlothian, TX 76065</p>
+          <p className="text-text-tertiary mt-2">{companyInfo.address.full}</p>
         </motion.div>
       </div>
 

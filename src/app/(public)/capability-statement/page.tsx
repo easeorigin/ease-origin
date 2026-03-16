@@ -21,6 +21,7 @@ import {
   ClipboardList,
   Workflow,
 } from "lucide-react";
+import { companyInfo } from "@/data/company-info";
 
 /* ─── Core Competency Data ─────────────────────────────────────────────────── */
 
@@ -432,21 +433,21 @@ export default function CapabilityStatementPage() {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-eo-gold flex-shrink-0 mt-0.5" />
                     <div className="text-sm text-gray-300">
-                      <p>211 E Avenue G, 306</p>
-                      <p>Midlothian, TX 76065</p>
+                      <p>{companyInfo.address.street}</p>
+                      <p>{companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">(470) 464-5199</span>
+                    <span className="text-sm text-gray-300">{companyInfo.phone}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">info@easeorigin.com</span>
+                    <span className="text-sm text-gray-300">{companyInfo.email}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Globe className="h-4 w-4 text-eo-gold flex-shrink-0" />
-                    <span className="text-sm text-gray-300">easeorigin.com</span>
+                    <span className="text-sm text-gray-300">{companyInfo.domain}</span>
                   </div>
                 </div>
               </div>
