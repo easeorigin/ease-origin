@@ -653,6 +653,21 @@ export function getPostsByCategory(category: BlogCategory): BlogPost[] {
   return blogPosts.filter((post) => post.category === category);
 }
 
+export function getAllCategories(): BlogCategory[] {
+  const categories = new Set(blogPosts.map((post) => post.category));
+  return Array.from(categories);
+}
+
+export function getRelatedPosts(
+  currentSlug: string,
+  category: BlogCategory,
+  limit = 3
+): BlogPost[] {
+  return blogPosts
+    .filter((post) => post.slug !== currentSlug && post.category === category)
+    .slice(0, limit);
+}
+
 export const categoryCTALabels: Record<BlogCategory, string> = {
   "Cloud & Infrastructure": "Explore Cloud Solutions",
   "Cybersecurity": "Strengthen Your Security",
