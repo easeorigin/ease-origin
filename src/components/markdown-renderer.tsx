@@ -2,35 +2,11 @@
 
 /**
  * Markdown-to-HTML renderer for blog content.
- * Handles: headings (with ID anchors), bold, italic, links, lists,
- * code blocks, blockquotes, horizontal rules, and paragraphs.
  * No external dependencies.
  */
 
-export interface TocHeading {
-  id: string;
-  text: string;
-}
-
-/** Extract all H2 headings from markdown content for table of contents. */
-export function extractHeadings(content: string): TocHeading[] {
-  const headings: TocHeading[] = [];
-  const regex = /^## (.+)$/gm;
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(content)) !== null) {
-    const text = match[1].replace(/\*\*([^*]+)\*\*/g, "$1").trim();
-    const id = slugify(text);
-    headings.push({ id, text });
-  }
-  return headings;
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import { slugify } from "@/lib/blog-utils";
+export { extractHeadings, type TocHeading } from "@/lib/blog-utils";
 
 export function MarkdownRenderer({ content }: { content: string }) {
   const html = markdownToHtml(content);

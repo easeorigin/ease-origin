@@ -16,10 +16,8 @@ import {
   ArrowRight,
   Linkedin,
 } from "lucide-react";
-import {
-  MarkdownRenderer,
-  extractHeadings,
-} from "@/components/markdown-renderer";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { extractHeadings } from "@/lib/blog-utils";
 import { ReadingProgressBar } from "./reading-progress";
 import { TableOfContents } from "./table-of-contents";
 import { ShareButtons } from "./share-buttons";
