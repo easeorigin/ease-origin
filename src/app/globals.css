@@ -429,3 +429,205 @@
   border-left-color: var(--color-eo-gold);
   font-weight: 600;
 }
+
+/* ─── Blog Content Reading Width ─── */
+.markdown-content {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── Code Block Copy Button ─── */
+.code-block {
+  position: relative;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  border: 1px solid hsl(220 15% 25%);
+  background: hsl(220 20% 16%);
+  color: hsl(210 14% 70%);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+  z-index: 1;
+}
+
+.code-block:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  background: hsl(220 20% 22%);
+  color: hsl(210 14% 90%);
+}
+
+.code-copy-btn.copied {
+  opacity: 1;
+  background: hsl(145 60% 20%);
+  border-color: hsl(145 50% 30%);
+  color: hsl(145 60% 75%);
+}
+
+/* ─── Print Styles ─── */
+@media print {
+  /* Hide non-essential UI elements */
+  nav,
+  footer,
+  .code-copy-btn,
+  [aria-label="Breadcrumb"],
+  [aria-label="Table of contents"],
+  [aria-label="Back to top"],
+  [aria-label="Share on LinkedIn"],
+  [aria-label="Share on X"],
+  [aria-label="Share via email"],
+  [aria-label="Copy link to clipboard"] {
+    display: none !important;
+  }
+
+  /* Hide reading progress bar (fixed bar at top) */
+  .reading-progress-bar,
+  .reading-progress-bar:parent,
+  body > div > div:has(.reading-progress-bar) {
+    display: none !important;
+  }
+
+  /* Hide fixed/floating UI: reading remaining pill, back-to-top, share column */
+  .fixed {
+    display: none !important;
+  }
+
+  /* Hide mobile TOC toggle */
+  .xl\:hidden:has([aria-expanded]) {
+    display: none !important;
+  }
+
+  /* Hide share buttons wrapper text */
+  .flex:has([aria-label="Share on LinkedIn"]) {
+    display: none !important;
+  }
+
+  /* Hide related/recommended sections and back-to-blog link */
+  main > section,
+  main > div:last-child {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and colors */
+  body,
+  main,
+  article,
+  .bg-background,
+  .bg-surface,
+  .bg-surface-muted {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Full-width article */
+  main {
+    padding: 0 !important;
+  }
+
+  article {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .markdown-content {
+    max-width: 100% !important;
+  }
+
+  /* Force the grid to single column */
+  .grid {
+    display: block !important;
+  }
+
+  /* Clean typography */
+  .markdown-content,
+  .markdown-content p,
+  .markdown-content li {
+    color: #111 !important;
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+  }
+
+  .markdown-content h1 {
+    font-size: 20pt !important;
+    color: #000 !important;
+  }
+
+  .markdown-content h2 {
+    font-size: 16pt !important;
+    color: #000 !important;
+    border-bottom-color: #999 !important;
+  }
+
+  .markdown-content h3 {
+    font-size: 14pt !important;
+    color: #000 !important;
+  }
+
+  .markdown-content strong {
+    color: #000 !important;
+  }
+
+  /* Show URLs after links */
+  .markdown-content a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+    font-style: italic;
+  }
+
+  /* Page break handling */
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  pre, .code-block, img, figure, blockquote, .content-blockquote {
+    break-inside: avoid !important;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Code blocks for print */
+  .code-block {
+    border: 1px solid #ccc !important;
+    background: #f5f5f5 !important;
+    color: #111 !important;
+  }
+
+  .code-block code {
+    color: #111 !important;
+  }
+
+  /* Hide decorative elements */
+  .bg-grid-pattern,
+  .bg-subtle-grid,
+  .bg-subtle-dots,
+  .section-separator-gold {
+    background-image: none !important;
+    border-image: none !important;
+  }
+
+  /* Clean up shadows and transforms */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

@@ -49,7 +49,7 @@ export function ShareButtons({
   };
 
   const buttonStyle = cn(
-    "inline-flex items-center justify-center rounded-full border transition-all duration-200",
+    "inline-flex items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2",
     layout === "floating"
       ? "w-10 h-10 bg-surface border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue hover:shadow-md"
       : "w-9 h-9 bg-surface-muted border-border-subtle text-text-secondary hover:text-eo-blue hover:border-eo-blue"
@@ -63,6 +63,7 @@ export function ShareButtons({
         rel="noopener noreferrer"
         className={buttonStyle}
         aria-label="Share on LinkedIn"
+        title="Share on LinkedIn"
       >
         <Linkedin className="h-4 w-4" />
       </a>
@@ -72,6 +73,7 @@ export function ShareButtons({
         rel="noopener noreferrer"
         className={buttonStyle}
         aria-label="Share on X"
+        title="Share on X"
       >
         <XIcon className="h-4 w-4" />
       </a>
@@ -79,6 +81,7 @@ export function ShareButtons({
         href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
         className={buttonStyle}
         aria-label="Share via email"
+        title="Share via email"
       >
         <Mail className="h-4 w-4" />
       </a>
@@ -86,6 +89,7 @@ export function ShareButtons({
         onClick={handleCopyLink}
         className={buttonStyle}
         aria-label="Copy link to clipboard"
+        title="Copy link to clipboard"
       >
         {copied ? (
           <Check className="h-4 w-4 text-green-500" />

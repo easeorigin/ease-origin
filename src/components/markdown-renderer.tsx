@@ -5,12 +5,71 @@
  * No external dependencies.
  */
 
+import { useEffect, useRef } from "react";
 import { slugify } from "@/lib/blog-utils";
 
 export function MarkdownRenderer({ content }: { content: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const html = markdownToHtml(content);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const codeBlocks = container.querySelectorAll("pre.code-block");
+
+    codeBlocks.forEach((block) => {
+      // Skip if a copy button already exists
+      if (block.querySelector(".code-copy-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.className = "code-copy-btn";
+      btn.textContent = "Copy";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Copy code to clipboard");
+
+      btn.addEventListener("click", async () => {
+        const codeEl = block.querySelector("code");
+        const text = codeEl ? codeEl.textContent ?? "" : block.textContent ?? "";
+
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 2000);
+        } catch {
+          // Fallback for older browsers
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 2000);
+        }
+      });
+
+      // The code-block already has position: relative from CSS
+      block.appendChild(btn);
+    });
+  }, [html]);
+
   return (
     <div
+      ref={containerRef}
       className="markdown-content"
       dangerouslySetInnerHTML={{ __html: html }}
     />

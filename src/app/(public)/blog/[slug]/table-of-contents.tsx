@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { List, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TocHeading } from "@/lib/blog-utils";
@@ -13,6 +13,20 @@ interface TableOfContentsProps {
 export function TableOfContents({ headings, variant }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const hasAppliedTabindex = useRef(false);
+
+  // Add tabindex="-1" to all heading elements in the content so they can receive focus
+  useEffect(() => {
+    if (headings.length === 0 || hasAppliedTabindex.current) return;
+
+    headings.forEach((h) => {
+      const el = document.getElementById(h.id);
+      if (el && !el.hasAttribute("tabindex")) {
+        el.setAttribute("tabindex", "-1");
+      }
+    });
+    hasAppliedTabindex.current = true;
+  }, [headings]);
 
   useEffect(() => {
     if (headings.length === 0) return;
@@ -54,6 +68,10 @@ export function TableOfContents({ headings, variant }: TableOfContentsProps) {
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
       window.scrollTo({ top, behavior: "smooth" });
+      // Focus the heading after scroll completes for screen reader users
+      setTimeout(() => {
+        el.focus({ preventScroll: true });
+      }, 500);
     }
   };
 

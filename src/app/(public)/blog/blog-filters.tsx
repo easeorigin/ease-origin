@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ArrowRight, Search, X, BookOpen, Mail } from "lucide-react";
+import { Clock, ArrowRight, Search, X, BookOpen, Mail, Pause, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -241,14 +241,18 @@ const heroSlideVariants = {
 function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isPausedRef = useRef(false);
 
-  const startTimers = useCallback(() => {
-    // Clear any existing timers
+  const clearTimers = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (progressRef.current) clearInterval(progressRef.current);
+  }, []);
 
+  const startTimers = useCallback(() => {
+    clearTimers();
     setProgress(0);
 
     // Progress bar updates every 50ms for smooth animation
@@ -262,23 +266,80 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
       setActiveIndex((prev) => (prev + 1) % posts.length);
       setProgress(0);
     }, HERO_ROTATION_INTERVAL);
-  }, [posts.length]);
+  }, [posts.length, clearTimers]);
+
+  const pauseTimers = useCallback(() => {
+    clearTimers();
+  }, [clearTimers]);
+
+  const resumeTimers = useCallback(() => {
+    if (!isPausedRef.current) {
+      startTimers();
+    }
+  }, [startTimers]);
 
   useEffect(() => {
-    startTimers();
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (progressRef.current) clearInterval(progressRef.current);
-    };
-  }, [startTimers]);
+    if (!isPaused) {
+      startTimers();
+    } else {
+      pauseTimers();
+    }
+    isPausedRef.current = isPaused;
+    return () => clearTimers();
+  }, [isPaused, startTimers, pauseTimers, clearTimers]);
 
   const goToSlide = useCallback(
     (index: number) => {
       setActiveIndex(index);
-      startTimers();
+      if (!isPausedRef.current) {
+        startTimers();
+      }
     },
     [startTimers]
   );
+
+  const goToPrevSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + posts.length) % posts.length);
+    if (!isPausedRef.current) {
+      startTimers();
+    }
+  }, [posts.length, startTimers]);
+
+  const goToNextSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % posts.length);
+    if (!isPausedRef.current) {
+      startTimers();
+    }
+  }, [posts.length, startTimers]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrevSlide();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNextSlide();
+      }
+    },
+    [goToPrevSlide, goToNextSlide]
+  );
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isPausedRef.current) pauseTimers();
+  }, [pauseTimers]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (!isPausedRef.current) resumeTimers();
+  }, [resumeTimers]);
+
+  const handleFocus = useCallback(() => {
+    if (!isPausedRef.current) pauseTimers();
+  }, [pauseTimers]);
+
+  const handleBlur = useCallback(() => {
+    if (!isPausedRef.current) resumeTimers();
+  }, [resumeTimers]);
 
   const activePost = posts[activeIndex];
 
@@ -288,8 +349,17 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
       initial="hidden"
       animate="visible"
       className="mb-14"
+      aria-label="Featured articles carousel"
+      aria-roledescription="carousel"
     >
-      <div className="relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px]">
+      <div
+        className="relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px]"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={activePost.slug}
@@ -298,7 +368,13 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
             animate="center"
             exit="exit"
             className="absolute inset-0"
+            aria-roledescription="slide"
+            role="group"
+            aria-label={`Slide ${activeIndex + 1} of ${posts.length}: ${activePost.title}`}
           >
+            <div aria-live="polite" className="sr-only">
+              Slide {activeIndex + 1} of {posts.length}: {activePost.title}
+            </div>
             <Link href={`/blog/${activePost.slug}`} className="block h-full">
               <article className="group relative h-full">
                 {/* Full-width cover image */}
@@ -358,8 +434,8 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Dot indicators */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        {/* Dot indicators and pause/play button */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1">
           {posts.map((_, index) => (
             <button
               key={index}
@@ -368,14 +444,35 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
                 goToSlide(index);
               }}
               className={cn(
-                "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                index === activeIndex
-                  ? "bg-eo-gold scale-110"
-                  : "bg-white/40 hover:bg-white/70"
+                "p-2 rounded-full transition-all duration-300 flex items-center justify-center",
               )}
               aria-label={`Go to featured post ${index + 1}`}
-            />
+              aria-current={index === activeIndex ? "true" : undefined}
+            >
+              <span
+                className={cn(
+                  "block w-2.5 h-2.5 rounded-full transition-all duration-300",
+                  index === activeIndex
+                    ? "bg-eo-gold scale-110"
+                    : "bg-white/40 hover:bg-white/70"
+                )}
+              />
+            </button>
           ))}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setIsPaused((prev) => !prev);
+            }}
+            className="p-2 ml-1 rounded-full text-white/70 hover:text-white transition-colors flex items-center justify-center"
+            aria-label={isPaused ? "Play carousel" : "Pause carousel"}
+          >
+            {isPaused ? (
+              <Play className="h-4 w-4" />
+            ) : (
+              <Pause className="h-4 w-4" />
+            )}
+          </button>
         </div>
 
         {/* Progress bar */}

@@ -25,6 +25,9 @@ import { ReadingRemaining } from "./reading-remaining";
 import { TableOfContents } from "./table-of-contents";
 import { ShareButtons } from "./share-buttons";
 import { BackToTop } from "./back-to-top";
+import { ArticleFeedback } from "./article-feedback";
+import { FontSizeControl } from "./font-size-control";
+import { ReadNextBar } from "./read-next-bar";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -71,6 +74,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const headings = post.content ? extractHeadings(post.content) : [];
   const relatedPosts = getRelatedPosts(post.slug, post.category, 3);
   const recommendedPosts = getRecommendedPosts(post.slug, post.category, 3);
+
+  // Pick the best "read next" suggestion: first related, then first recommended
+  const readNextPost = relatedPosts[0] ?? recommendedPosts[0] ?? null;
 
   // Resolve full author data (with bio/linkedin) from blogAuthors
   const authorKey = Object.keys(blogAuthors).find(
@@ -148,16 +154,35 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             <span className="flex items-center gap-1.5">
               <Calendar className="h-4 w-4" />
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {post.updatedAt ? (
+                <>
+                  Originally published{" "}
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}{" "}
+                  | Updated{" "}
+                  {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </>
+              ) : (
+                new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              )}
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-eo-blue/10 text-eo-blue text-xs font-medium">
               <Clock className="h-3.5 w-3.5" />
               {post.readTimeMinutes} min read
             </span>
+
+            <FontSizeControl />
 
             {/* Inline share for mobile */}
             <div className="ml-auto">
@@ -232,6 +257,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </div>
                 </div>
               )}
+
+              {/* Article Feedback */}
+              <ArticleFeedback slug={post.slug} />
 
               {/* Author Card */}
               <div className="mt-12 p-6 sm:p-8 bg-surface-muted border border-border-subtle rounded-2xl">
@@ -419,6 +447,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
         </div>
       </main>
+
+      {readNextPost && (
+        <ReadNextBar
+          post={{
+            slug: readNextPost.slug,
+            title: readNextPost.title,
+            category: readNextPost.category,
+            readTimeMinutes: readNextPost.readTimeMinutes,
+          }}
+        />
+      )}
     </>
   );
 }
