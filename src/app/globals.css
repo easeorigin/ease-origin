@@ -495,7 +495,6 @@
 
   /* Hide reading progress bar (fixed bar at top) */
   .reading-progress-bar,
-  .reading-progress-bar:parent,
   body > div > div:has(.reading-progress-bar) {
     display: none !important;
   }
