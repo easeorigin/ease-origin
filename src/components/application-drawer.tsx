@@ -1,4 +1,4 @@
-import { useState, useRef, useId } from "react";
+import { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   X,
@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   Plus,
   Trash2,
-  Upload,
   CheckCircle2,
   ArrowRight,
   Briefcase,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ResumeUploadZone } from "./uploadZone";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -63,6 +63,8 @@ interface AppData {
   // Step 6
   resumeFile: File | null;
   coverLetterFile: File | null;
+  resumeUrl: string;
+  coverLetterUrl: string;
   linkedin: string;
   portfolio: string;
   github: string;
@@ -117,6 +119,8 @@ const initialData: AppData = {
   clearance: "",
   resumeFile: null,
   coverLetterFile: null,
+  resumeUrl: "",
+  coverLetterUrl: "",
   linkedin: "",
   portfolio: "",
   github: "",
@@ -767,77 +771,6 @@ function Step5({
 
 // ─── Step 6: Resume & Links ───────────────────────────────────────────────────
 
-function FileDropZone({
-  label,
-  required,
-  file,
-  onFile,
-  accept,
-}: {
-  label: string;
-  required?: boolean;
-  file: File | null;
-  onFile: (f: File | null) => void;
-  accept: string;
-}) {
-  const [drag, setDrag] = useState(false);
-  const uid = useId();
-  return (
-    <div>
-      <label className={labelCls} htmlFor={uid}>
-        {label}
-        {required && " *"}
-      </label>
-      <div
-        onDragOver={(e) => {
-          e.preventDefault();
-          setDrag(true);
-        }}
-        onDragLeave={() => setDrag(false)}
-        onDrop={(e) => {
-          e.preventDefault();
-          setDrag(false);
-          const f = e.dataTransfer.files[0];
-          if (f) onFile(f);
-        }}
-        className={cn(
-          "relative flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-7 text-center cursor-pointer transition-all",
-          drag
-            ? "border-tg-blue bg-blue-50"
-            : "border-gray-200 bg-slate-50 hover:border-tg-blue hover:bg-blue-50/20",
-        )}
-      >
-        <input
-          id={uid}
-          type="file"
-          accept={accept}
-          className="absolute inset-0 opacity-0 cursor-pointer"
-          onChange={(e) => onFile(e.target.files?.[0] ?? null)}
-        />
-        <Upload
-          className={cn("h-6 w-6", drag ? "text-tg-blue" : "text-gray-300")}
-        />
-        {file ? (
-          <div>
-            <p className="text-sm font-semibold text-tg-navy">{file.name}</p>
-            <p className="text-xs text-gray-400">Click to replace · max 5 MB</p>
-          </div>
-        ) : (
-          <div>
-            <p className="text-sm font-medium text-gray-500">
-              Drag & drop or{" "}
-              <span className="text-tg-blue font-semibold">browse</span>
-            </p>
-            <p className="text-xs text-gray-400 mt-0.5">
-              PDF, DOC, DOCX — max 5 MB
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function Step6({
   data,
   set,
@@ -847,22 +780,92 @@ function Step6({
   set: (k: keyof AppData, v: AppData[keyof AppData]) => void;
   errors: Partial<Record<keyof AppData, string>>;
 }) {
+  type UploadState = "idle" | "uploading" | "success" | "error";
+  const [uploadState, setUploadState] = useState<UploadState>("idle");
+  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const handleFileChange = async (
+    type: "resume" | "coverLetter",
+    file: File | null,
+  ) => {
+    if (!file) return;
+
+    // store file for UI
+    set(type === "resume" ? "resumeFile" : "coverLetterFile", file);
+
+    const formData = new FormData();
+    formData.append("file", file);
+    setUploadState("uploading");
+    setUploadError(null);
+    setUploadedFileName(file.name);
+    setUploadProgress(10); //
+
+    try {
+      const res = await fetch(`/api/upload?type=${type}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await res.json();
+
+      // store URL for submission
+      set(
+        type === "resume" ? "resumeUrl" : "coverLetterUrl",
+        result.secure_url,
+      );
+    } catch (err) {
+      console.error(`${type} upload failed`, err);
+    }
+  };
+
+  const handleClearFile = useCallback(
+    (key: "resumeFile" | "coverLetterFile") => {
+      setUploadState("idle");
+      setUploadedFileName("");
+      setUploadError(null);
+      set(key, null); // Clear the File object
+    },
+    [set],
+  );
+
   return (
     <div className="flex flex-col gap-5">
-      <FileDropZone
-        label="Resume / CV"
-        required
-        file={data.resumeFile}
-        accept=".pdf,.doc,.docx"
-        onFile={(f) => set("resumeFile", f)}
-      />
-      <Err msg={errors.resumeFile} />
-      <FileDropZone
-        label="Cover Letter (optional)"
-        file={data.coverLetterFile}
-        accept=".pdf,.doc,.docx"
-        onFile={(f) => set("coverLetterFile", f)}
-      />
+      <div>
+        <ResumeUploadZone
+          label="Resume/CV"
+          uploadState={uploadState}
+          uploadProgress={uploadProgress}
+          uploadError={uploadError}
+          uploadedFileName={uploadedFileName}
+          hasError={!!(errors.resumeUrl || uploadError)}
+          onFile={(file) => handleFileChange("resume", file)}
+          onClear={() => handleClearFile("resumeFile")}
+        />
+        {errors.resumeUrl && (
+          <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+            <AlertCircle className="h-3 w-3 shrink-0" /> {errors.resumeUrl}
+          </p>
+        )}
+      </div>
+      <div>
+        <ResumeUploadZone
+          label="Cover Letter"
+          uploadState={uploadState}
+          uploadProgress={uploadProgress}
+          uploadError={uploadError}
+          uploadedFileName={uploadedFileName}
+          hasError={!!(errors.coverLetterUrl || uploadError)}
+          onFile={(file) => handleFileChange("coverLetter", file)}
+          onClear={() => handleClearFile("coverLetterFile")}
+        />
+        {errors.coverLetterUrl && (
+          <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+            <AlertCircle className="h-3 w-3 shrink-0" /> {errors.coverLetterUrl}
+          </p>
+        )}
+      </div>
       <div className="pt-2">
         <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
           Professional Links

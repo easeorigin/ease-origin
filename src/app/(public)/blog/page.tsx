@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import { blogPosts } from "@/data/blog";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  
   return (
     <main className="bg-background min-h-screen">
       {/* Hero */}
@@ -23,7 +25,7 @@ export default function BlogPage() {
             className="object-cover opacity-[0.12]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
+          <div className="absolute inset-0 bg-linear-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
         </div>
         <div
           className="absolute inset-0 z-0 opacity-[0.035]"
@@ -33,7 +35,7 @@ export default function BlogPage() {
             backgroundSize: "50px 50px",
           }}
         />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-175 h-175 bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.06] mb-6">

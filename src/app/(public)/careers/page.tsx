@@ -51,7 +51,7 @@ const benefits = [
 
 function WhyWorkWithUs() {
   return (
-    <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
+    <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Subtle glows */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-blue-100/15 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-eo-gold/10 rounded-full blur-[80px] pointer-events-none" />

@@ -44,7 +44,7 @@ export default function ContractVehiclesPage() {
         />
 
         {/* Vehicle Cards */}
-        <Section className="relative overflow-hidden bg-gradient-to-b from-slate-50/60 dark:from-gray-900/60 via-white dark:via-gray-900 to-slate-50/40 dark:to-gray-900/40 border-b border-border-subtle">
+        <Section className="relative overflow-hidden bg-linear-to-b from-slate-50/60 dark:from-gray-900/60 via-white dark:via-gray-900 to-slate-50/40 dark:to-gray-900/40 border-b border-border-subtle">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-100/20 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="relative z-10">
@@ -102,7 +102,7 @@ export default function ContractVehiclesPage() {
                       <div className="space-y-2 mb-6">
                         {vehicle.scope.map((item, i) => (
                           <div key={i} className="flex items-start gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                            <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                             <span className="text-sm text-text-tertiary">
                               {item}
                             </span>
@@ -156,7 +156,7 @@ export default function ContractVehiclesPage() {
             </h3>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+              <div className="bg-eo-navy/3 border border-border-default rounded-xl p-5 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   UEI
                 </p>
@@ -164,7 +164,7 @@ export default function ContractVehiclesPage() {
                   {registrationInfo.uei}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+              <div className="bg-eo-navy/3 border border-border-default rounded-xl p-5 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   CAGE Code
                 </p>
@@ -172,7 +172,7 @@ export default function ContractVehiclesPage() {
                   {registrationInfo.cage}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+              <div className="bg-eo-navy/3 border border-border-default rounded-xl p-5 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   Business Type
                 </p>
@@ -180,7 +180,7 @@ export default function ContractVehiclesPage() {
                   {registrationInfo.businessType}
                 </p>
               </div>
-              <div className="bg-eo-navy/[0.03] border border-border-default rounded-xl p-5 text-center">
+              <div className="bg-eo-navy/3 border border-border-default rounded-xl p-5 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-1">
                   SAM.gov
                 </p>
@@ -196,8 +196,8 @@ export default function ContractVehiclesPage() {
         </Section>
 
         {/* NAICS Codes */}
-        <Section className="relative overflow-hidden bg-gradient-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
-          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/[0.06] rounded-full blur-[80px] pointer-events-none" />
+        <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/20 dark:via-gray-900/20 to-slate-50 dark:to-gray-900 border-b border-border-subtle">
+          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-eo-gold/6 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="flex items-center gap-3 mb-8">
@@ -220,7 +220,7 @@ export default function ContractVehiclesPage() {
                   key={naics.code}
                   className="flex items-start gap-4 bg-surface rounded-xl border border-border-subtle px-5 py-4 shadow-sm"
                 >
-                  <span className="inline-block px-3 py-1 rounded-lg bg-eo-navy text-white text-sm font-bold font-mono flex-shrink-0">
+                  <span className="inline-block px-3 py-1 rounded-lg bg-eo-navy text-white text-sm font-bold font-mono shrink-0">
                     {naics.code}
                   </span>
                   <div>
@@ -257,7 +257,7 @@ export default function ContractVehiclesPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-linear-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Shield className="h-5 w-5 text-eo-gold" />
                 </div>
@@ -271,21 +271,21 @@ export default function ContractVehiclesPage() {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Task order through existing vehicles
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Direct small business engagement
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Active security clearance holders
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-linear-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <FileCheck className="h-5 w-5 text-eo-gold" />
                 </div>
@@ -299,21 +299,21 @@ export default function ContractVehiclesPage() {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Proven teaming with SAIC, Leidos, Booz Allen
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Small business subcontracting credit
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Rapid onboarding and clearance-ready staff
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
+              <div className="bg-linear-to-br from-slate-50 dark:from-gray-900 to-blue-50/30 dark:to-gray-800/30 border border-border-subtle rounded-2xl p-8">
                 <div className="w-10 h-10 rounded-lg bg-eo-navy flex items-center justify-center mb-4">
                   <Briefcase className="h-5 w-5 text-eo-gold" />
                 </div>
@@ -326,15 +326,15 @@ export default function ContractVehiclesPage() {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Direct consulting engagement
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Enterprise cloud and platform expertise
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-tertiary">
-                    <CheckCircle2 className="h-4 w-4 text-eo-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-eo-blue shrink-0 mt-0.5" />
                     Flexible SOW-based delivery
                   </li>
                 </ul>

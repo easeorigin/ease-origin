@@ -1,10 +1,19 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ArrowRight, Search, X, BookOpen, Mail, Pause, Play } from "lucide-react";
+import {
+  Clock,
+  ArrowRight,
+  Search,
+  X,
+  BookOpen,
+  Mail,
+  Pause,
+  Play,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -12,6 +21,8 @@ import {
   type BlogCategory,
   getAllCategories,
 } from "@/data/blog";
+import { apiRequest } from "@/utils/apiRequest";
+import { useToast } from "@/components/ui/use-toast";
 
 /* ─── Constants ─── */
 const POSTS_PER_PAGE = 9;
@@ -66,6 +77,33 @@ const heroVariants = {
 
 /* ─── Newsletter CTA Banner ─── */
 function NewsletterCTA() {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || isSubscribing) return;
+
+    setIsSubscribing(true);
+    try {
+      await apiRequest("POST", "/api/subscribe", { email });
+      toast({
+        title: "Subscribed Successfully",
+        description: "Thank you for joining our newsletter!",
+      });
+      setEmail("");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Subscription Failed",
+        description: "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
   return (
     <motion.div
       custom={NEWSLETTER_INSERT_INDEX}
@@ -106,21 +144,25 @@ function NewsletterCTA() {
 
           {/* Email signup form (UI only) */}
           <div className="w-full lg:w-auto shrink-0">
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
               <input
                 type="email"
                 placeholder="you@agency.gov"
                 className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-eo-gold/40 focus:border-eo-gold/60 transition-all backdrop-blur-sm"
                 aria-label="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="px-7 py-3.5 bg-eo-gold text-white font-semibold rounded-xl text-sm hover:bg-eo-gold/90 transition-colors shadow-lg shadow-eo-gold/20 whitespace-nowrap"
+                disabled={isSubscribing}
               >
-                Subscribe
+               {isSubscribing ? "Subscribing..." : "Subscribe"}
               </motion.button>
-            </div>
+            </form>
             <p className="text-xs text-gray-500 mt-3 text-center lg:text-left">
               No spam. Unsubscribe anytime.
             </p>
@@ -153,7 +195,7 @@ function BlogCard({
       className={cn(
         "group relative bg-surface border border-border-subtle rounded-2xl overflow-hidden transition-all duration-300",
         "hover:shadow-xl hover:shadow-eo-navy/5 hover:-translate-y-1",
-        large && "sm:col-span-1"
+        large && "sm:col-span-1",
       )}
       style={{ borderLeft: `3px solid ${accentColor}` }}
     >
@@ -161,7 +203,7 @@ function BlogCard({
         <div
           className={cn(
             "relative overflow-hidden",
-            large ? "h-56 sm:h-64" : "h-48"
+            large ? "h-56 sm:h-64" : "h-48",
           )}
         >
           <Image
@@ -198,7 +240,7 @@ function BlogCard({
           <h2
             className={cn(
               "font-bold text-text-primary mb-2 group-hover:text-eo-blue transition-colors line-clamp-2",
-              large ? "text-xl" : "text-lg"
+              large ? "text-xl" : "text-lg",
             )}
           >
             {post.title}
@@ -296,7 +338,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
         startTimers();
       }
     },
-    [startTimers]
+    [startTimers],
   );
 
   const goToPrevSlide = useCallback(() => {
@@ -323,7 +365,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
         goToNextSlide();
       }
     },
-    [goToPrevSlide, goToNextSlide]
+    [goToPrevSlide, goToNextSlide],
   );
 
   const handleMouseEnter = useCallback(() => {
@@ -417,7 +459,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
-                          }
+                          },
                         )}
                       </time>
                       <span className="inline-flex items-center gap-1">
@@ -455,7 +497,7 @@ function FeaturedHeroCarousel({ posts }: { posts: BlogPost[] }) {
                   "block w-2.5 h-2.5 rounded-full transition-all duration-300",
                   index === activeIndex
                     ? "bg-eo-gold scale-110"
-                    : "bg-white/40 hover:bg-white/70"
+                    : "bg-white/40 hover:bg-white/70",
                 )}
               />
             </button>
@@ -537,7 +579,7 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
         (p) =>
           p.title.toLowerCase().includes(q) ||
           p.tags.some((t) => t.toLowerCase().includes(q)) ||
-          p.excerpt.toLowerCase().includes(q)
+          p.excerpt.toLowerCase().includes(q),
       );
     }
 
@@ -551,13 +593,13 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
       activeFilter === "All" && !searchQuery.trim()
         ? sortedPosts.filter((p) => p.featured)
         : [],
-    [activeFilter, searchQuery, sortedPosts]
+    [activeFilter, searchQuery, sortedPosts],
   );
 
   // Grid shows all filtered posts except the featured posts shown in the hero
   const featuredSlugs = useMemo(
     () => new Set(featuredPosts.map((p) => p.slug)),
-    [featuredPosts]
+    [featuredPosts],
   );
   const gridPosts =
     featuredPosts.length > 0
@@ -623,7 +665,7 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
                 "shrink-0 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200",
                 activeFilter === tab
                   ? "bg-eo-gold text-white border-eo-gold shadow-sm shadow-eo-gold/20"
-                  : "bg-surface text-text-secondary border-border-subtle hover:border-eo-blue hover:text-eo-blue"
+                  : "bg-surface text-text-secondary border-border-subtle hover:border-eo-blue hover:text-eo-blue",
               )}
             >
               {tab}
@@ -632,7 +674,7 @@ export function BlogFilters({ posts }: { posts: BlogPost[] }) {
                   "text-xs px-1.5 py-0.5 rounded-full min-w-5 text-center",
                   activeFilter === tab
                     ? "bg-white/20 text-white"
-                    : "bg-surface-muted text-text-muted"
+                    : "bg-surface-muted text-text-muted",
                 )}
               >
                 {tabCounts[tab] ?? 0}

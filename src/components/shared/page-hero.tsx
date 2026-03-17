@@ -99,7 +99,7 @@ export function PageHero({
 
           {/* Badge pill */}
           {badge && (
-            <div className="self-start items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
+            <div className="flex self-start items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
               {badgeIcon}
               {badge}
             </div>

@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   // Resolve full author data (with bio/linkedin) from blogAuthors
   const authorKey = Object.keys(blogAuthors).find(
-    (k) => blogAuthors[k].name === post.author.name
+    (k) => blogAuthors[k].name === post.author.name,
   );
   const fullAuthor = authorKey ? blogAuthors[authorKey] : post.author;
 
@@ -123,110 +123,135 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <ReadingRemaining totalMinutes={post.readTimeMinutes} />
       <BackToTop />
 
-      <main className="pt-32 pb-20 bg-background min-h-screen">
-        {/* Breadcrumbs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center gap-1.5 text-sm text-text-muted"
-          >
-            <Link
-              href="/"
-              className="hover:text-eo-blue transition-colors"
-            >
-              Home
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <Link
-              href="/blog"
-              className="hover:text-eo-blue transition-colors"
-            >
-              Blog
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-text-secondary font-medium truncate max-w-[200px] sm:max-w-xs">
-              {post.title}
-            </span>
-          </nav>
-        </div>
-
-        {/* Header */}
-        <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-navy/10 text-eo-navy dark:bg-eo-blue/10 dark:text-eo-blue">
-              {post.category}
-            </span>
-            {post.featured && (
-              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-gold/10 text-eo-gold border border-eo-gold/20">
-                Featured
-              </span>
-            )}
+      <main className="pb-20 bg-background min-h-screen">
+        <section className="relative pt-32 pb-20 lg:pt-32 lg:pb-16 overflow-hidden bg-eo-navy text-white">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/blog-hero.jpg"
+              alt="Technology insights and articles"
+              aria-hidden="true"
+              fill
+              className="object-cover opacity-[0.12]"
+              priority
+            />
+            <div className="absolute inset-0 bg-linear-to-r from-eo-navy via-eo-navy/95 to-eo-navy/80" />
           </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight mb-6 leading-tight">
-            {post.title}
-          </h1>
-
-          <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-3xl">
-            {post.excerpt}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted border-y border-border-subtle py-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-eo-navy/10 flex items-center justify-center text-eo-navy dark:text-eo-blue font-bold text-sm">
-                {post.author.name.charAt(0)}
-              </div>
-              <div>
-                <div className="font-semibold text-text-primary text-sm">
-                  {post.author.name}
-                </div>
-                <div className="text-xs text-text-muted">
-                  {post.author.role}
-                </div>
-              </div>
+          <div
+            className="absolute inset-0 z-0 opacity-[0.035]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
+              backgroundSize: "50px 50px",
+            }}
+          />
+          <div className="absolute top-0 right-0 w-175 h-175 bg-eo-blue rounded-full blur-[180px] opacity-20 translate-x-1/3 -translate-y-1/4 pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Breadcrumbs */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+              <nav
+                aria-label="Breadcrumb"
+                className="flex items-center gap-1.5 text-sm text-text-muted"
+              >
+                <Link href="/" className="hover:text-eo-blue transition-colors">
+                  Home
+                </Link>
+                <ChevronRight className="h-3.5 w-3.5" />
+                <Link
+                  href="/blog"
+                  className="hover:text-eo-blue transition-colors"
+                >
+                  Blog
+                </Link>
+                <ChevronRight className="h-3.5 w-3.5" />
+                <span className="text-text-secondary font-medium truncate max-w-50 sm:max-w-xs">
+                  {post.title}
+                </span>
+              </nav>
             </div>
-            <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" />
-              {post.updatedAt ? (
-                <>
-                  Originally published{" "}
-                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}{" "}
-                  | Updated{" "}
-                  {new Date(post.updatedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </>
-              ) : (
-                new Date(post.publishedAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })
-              )}
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-eo-blue/10 text-eo-blue text-xs font-medium">
-              <Clock className="h-3.5 w-3.5" />
-              {post.readTimeMinutes} min read
-            </span>
 
-            <FontSizeControl />
+            {/* Header */}
+            <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-navy/10 text-eo-navy dark:bg-eo-blue/10 dark:text-eo-blue">
+                  {post.category}
+                </span>
+                {post.featured && (
+                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-eo-gold/10 text-eo-gold border border-eo-gold/20">
+                    Featured
+                  </span>
+                )}
+              </div>
 
-            {/* Inline share for mobile */}
-            <div className="ml-auto">
-              <ShareButtons title={post.title} slug={post.slug} layout="inline" />
-            </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-eo-blue tracking-tight mb-6 leading-tight">
+                {post.title}
+              </h1>
+
+              <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-3xl">
+                {post.excerpt}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted border-y border-border-subtle py-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-eo-navy/10 flex items-center justify-center text-eo-navy dark:text-eo-blue font-bold text-sm">
+                    {post.author.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-text-primary text-sm">
+                      {post.author.name}
+                    </div>
+                    <div className="text-xs text-text-muted">
+                      {post.author.role}
+                    </div>
+                  </div>
+                </div>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4" />
+                  {post.updatedAt ? (
+                    <>
+                      Originally published{" "}
+                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}{" "}
+                      | Updated{" "}
+                      {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </>
+                  ) : (
+                    new Date(post.publishedAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  )}
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-eo-blue/10 text-eo-blue text-xs font-medium">
+                  <Clock className="h-3.5 w-3.5" />
+                  {post.readTimeMinutes} min read
+                </span>
+
+                <FontSizeControl />
+
+                {/* Inline share for mobile */}
+                <div className="ml-auto">
+                  <ShareButtons
+                    title={post.title}
+                    slug={post.slug}
+                    layout="inline"
+                  />
+                </div>
+              </div>
+            </header>
           </div>
-        </header>
+        </section>
 
         {/* Cover Image */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <div className="relative h-64 sm:h-80 lg:h-[420px] rounded-2xl overflow-hidden shadow-xl shadow-eo-navy/5">
+        <div className="max-w-5xl mt-10 mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="relative h-64 sm:h-80 lg:h-105 rounded-2xl overflow-hidden shadow-xl shadow-eo-navy/5">
             <Image
               src={post.coverImage}
               alt={post.coverImageAlt}
@@ -297,7 +322,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {/* Author Card */}
               <div className="mt-12 p-6 sm:p-8 bg-surface-muted border border-border-subtle rounded-2xl">
                 <div className="flex flex-col sm:flex-row gap-5">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div className="w-16 h-16 rounded-full bg-eo-navy/10 flex items-center justify-center text-eo-navy dark:text-eo-blue font-bold text-2xl">
                       {fullAuthor.name.charAt(0)}
                     </div>
@@ -368,7 +393,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-eo-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-linear-to-t from-eo-navy/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute top-3 left-3">
                           <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-eo-navy/90 text-white backdrop-blur-sm">
                             {related.category}
@@ -378,13 +403,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       <div className="p-5">
                         <div className="flex items-center gap-2 text-xs text-text-muted mb-2">
                           <time dateTime={related.publishedAt}>
-                            {new Date(
-                              related.publishedAt
-                            ).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
+                            {new Date(related.publishedAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
                           </time>
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-eo-blue/10 text-eo-blue font-medium">
                             <Clock className="h-3 w-3" />
@@ -411,11 +437,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
             {/* Subtle divider */}
             <div className="flex items-center gap-4 mb-10">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+              <div className="flex-1 h-px bg-linear-to-r from-transparent via-border-subtle to-transparent" />
               <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
                 More to explore
               </span>
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+              <div className="flex-1 h-px bg-linear-to-r from-transparent via-border-subtle to-transparent" />
             </div>
 
             <h2 className="text-2xl font-bold text-text-primary mb-8">
@@ -432,7 +458,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     className="group flex items-stretch gap-4 sm:gap-5 bg-surface border border-border-subtle rounded-xl overflow-hidden hover:shadow-lg hover:shadow-eo-navy/5 hover:-translate-y-0.5 transition-all duration-300"
                   >
                     {/* Small thumbnail */}
-                    <div className="relative w-24 sm:w-32 flex-shrink-0">
+                    <div className="relative w-24 sm:w-32 shrink-0">
                       <Image
                         src={rec.coverImage}
                         alt={rec.coverImageAlt}

@@ -6,7 +6,11 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  isScrolled?: boolean; // Optional prop to adjust styling based on scroll state
+}
+
+export function ThemeToggle({ isScrolled }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -31,7 +35,7 @@ export function ThemeToggle() {
       {theme === "dark" ? (
         <Sun className="h-4.5 w-4.5 text-eo-gold" />
       ) : (
-        <Moon className="h-4.5 w-4.5 text-current" />
+        <Moon className={`h-4.5 w-4.5 transition-colors ${isScrolled ? "text-eo-navy" : "text-white"}`} />
       )}
     </button>
   );

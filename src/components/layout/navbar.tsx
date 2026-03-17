@@ -93,7 +93,7 @@ export function Navbar() {
                 ),
               )}
             </div>
-            <ThemeToggle />
+            <ThemeToggle isScrolled={isScrolled} />
             <Link
               href="/contact"
               className={cn(

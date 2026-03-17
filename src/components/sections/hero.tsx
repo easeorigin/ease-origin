@@ -62,7 +62,7 @@ export function Hero() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.15 } },
             }}
-            className="max-w-2xl"
+            className="max-w-4xl"
           >
             <motion.div
               variants={{
@@ -81,7 +81,7 @@ export function Hero() {
                 hidden: { opacity: 0, y: 25 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
               }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
+              className="w-full text-4xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6"
             >
               <TypewriterText
                 text="Technology Consulting That Delivers Mission Success."
