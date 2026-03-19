@@ -80,7 +80,7 @@ export function Agencies() {
                 src={agency.logo}
                 alt={agency.name}
                 abbr={agency.abbr}
-                className="h-14 w-auto object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-14 w-auto object-contain group-hover:opacity-100 transition-opacity duration-300"
               />
               <span className="text-xs text-white/30 mt-2 group-hover:text-white/60 transition-colors duration-300">
                 {agency.abbr}
@@ -102,8 +102,8 @@ export function Agencies() {
       {/* Industry Partners - Infinite Marquee */}
       <div className="relative z-10 mt-10">
         <p className="text-sm font-semibold uppercase tracking-widest text-blue-300/60 mb-4 text-center">Industry Partners</p>
-        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+        <div className="overflow-hidden [mask:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex gap-6 w-max animate-marquee hover:paused">
             {[...industryPartners, ...industryPartners].map((partner, index) => (
               <div
                 key={`${partner.id}-${index}`}
@@ -113,7 +113,7 @@ export function Agencies() {
                   src={partner.logo}
                   alt={partner.name}
                   name={partner.name}
-                  className="h-8 w-auto object-contain brightness-0 invert opacity-50 group-hover:opacity-90 transition-opacity duration-300"
+                  className="h-8 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300"
                 />
                 <span className="text-[10px] text-white/25 mt-1.5 group-hover:text-white/50 transition-colors duration-300">
                   {partner.name}

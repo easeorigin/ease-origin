@@ -42,20 +42,20 @@ export function CaseStudies() {
           <WordReveal text="Delivering Results for Our Clients" as="h3" className="text-3xl md:text-4xl font-bold text-text-primary" />
         </div>
         <Link href="/case-studies">
-          <span className="hidden md:inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer group">
+          <span className="hidden lg:inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer group">
             View all case studies
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </span>
         </Link>
       </div>
 
-      <div className="relative z-10 grid md:grid-cols-3 gap-8">
+      <div className="relative z-10 grid lg:grid-cols-3 gap-8">
         {featured.map((study, index) => (
           <CaseStudyCard key={study.slug} study={study} index={index} />
         ))}
       </div>
 
-      <div className="mt-8 md:hidden relative z-10">
+      <div className="mt-8 lg:hidden relative z-10">
         <Link href="/case-studies">
           <span className="inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer">
             View all case studies <ArrowRight className="ml-2 h-4 w-4" />

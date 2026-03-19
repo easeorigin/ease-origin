@@ -1,7 +1,13 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -21,8 +27,7 @@ import {
   type BlogCategory,
   getAllCategories,
 } from "@/data/blog";
-import { apiRequest } from "@/utils/apiRequest";
-import { useToast } from "@/components/ui/use-toast";
+import { useSubscribe } from "@/hooks/use-subscribers";
 
 /* ─── Constants ─── */
 const POSTS_PER_PAGE = 9;
@@ -77,32 +82,23 @@ const heroVariants = {
 
 /* ─── Newsletter CTA Banner ─── */
 function NewsletterCTA() {
-  const { toast } = useToast();
   const [email, setEmail] = useState("");
-  const [isSubscribing, setIsSubscribing] = useState(false);
 
-  const handleSubscribe = async (e: React.FormEvent) => {
+  // use the custom hook
+  const { mutate: subscribe, isPending: isSubscribing } = useSubscribe();
+
+  const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || isSubscribing) return;
 
-    setIsSubscribing(true);
-    try {
-      await apiRequest("POST", "/api/subscribe", { email });
-      toast({
-        title: "Subscribed Successfully",
-        description: "Thank you for joining our newsletter!",
-      });
-      setEmail("");
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: "Subscription Failed",
-        description: "An error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubscribing(false);
-    }
+    subscribe(
+      { email, subscribedAt: new Date().toISOString() },
+      {
+        onSuccess: () => {
+          setEmail(""); // clear input after success
+        },
+      },
+    );
   };
   return (
     <motion.div
@@ -144,7 +140,10 @@ function NewsletterCTA() {
 
           {/* Email signup form (UI only) */}
           <div className="w-full lg:w-auto shrink-0">
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+            <form
+              onSubmit={handleSubscribe}
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0"
+            >
               <input
                 type="email"
                 placeholder="you@agency.gov"
@@ -160,7 +159,7 @@ function NewsletterCTA() {
                 className="px-7 py-3.5 bg-eo-gold text-white font-semibold rounded-xl text-sm hover:bg-eo-gold/90 transition-colors shadow-lg shadow-eo-gold/20 whitespace-nowrap"
                 disabled={isSubscribing}
               >
-               {isSubscribing ? "Subscribing..." : "Subscribe"}
+                {isSubscribing ? "Subscribing..." : "Subscribe"}
               </motion.button>
             </form>
             <p className="text-xs text-gray-500 mt-3 text-center lg:text-left">

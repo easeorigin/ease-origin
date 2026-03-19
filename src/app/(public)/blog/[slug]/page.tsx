@@ -192,11 +192,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted border-y border-border-subtle py-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-eo-navy/10 flex items-center justify-center text-eo-navy dark:text-eo-blue font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-eo-blue flex items-center justify-center text-eo-navy dark:text-eo-blue font-bold text-sm">
                     {post.author.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-semibold text-text-primary text-sm">
+                    <div className="font-semibold text-white text-sm">
                       {post.author.name}
                     </div>
                     <div className="text-xs text-text-muted">
@@ -229,7 +229,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     })
                   )}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-eo-blue/10 text-eo-blue text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-eo-blue text-white text-xs font-medium">
                   <Clock className="h-3.5 w-3.5" />
                   {post.readTimeMinutes} min read
                 </span>

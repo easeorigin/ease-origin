@@ -24,8 +24,8 @@ const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
   { icon: Briefcase, label: "Jobs", href: "/admin/jobs" },
   { icon: FileText, label: "Applications", href: "/admin/applications" },
-  { icon: Newspaper, label: "Case Studies", href: "/admin/case-studies" },
-  { icon: Mail, label: "Contacts", href: "/admin/contacts" },
+  { icon: Newspaper, label: "Blogs", href: "/admin/blogs" },
+  { icon: Mail, label: "Subscribers", href: "/admin/subscribers" },
   { icon: Settings, label: "Settings", href: "/admin/settings" },
 ];
 
@@ -83,7 +83,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 >
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0">
                     <Image 
-                    src={"/logo/main-logo.webp"}
+                    src={"/logo/main-logo-2.webp"}
                     alt="EaseOrigin Logo"
                     width={50}
                     height={30}
@@ -91,7 +91,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                   </div>
                   {isSidebarOpen && (
                     <h1 className="font-mont font-bold text-lg text-white">
-                      Ease<span className={"text-eo-gold"}>Origin</span>
+                      Ease<span className={"text-eo-blue"}>Origin</span>
                     </h1>
                   )}
                 </motion.div>
@@ -104,7 +104,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 onClick={() => setIsSidebarOpen(false)}
                 className="h-8 w-8 shrink-0"
               >
-                <ChevronLeft className="h-4 w-4 text-eo-gold" />
+                <ChevronLeft className="h-4 w-4 text-eo-blue" />
               </Button>
             )}
           </div>
@@ -116,7 +116,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <Link key={item.href} href={item.href} className="block">
                   <Button
                     variant={"ghost"}
-                    className={`w-full cursor-pointer justify-start ${isActive ? "bg-eo-gold text-white font-medium" : "text-eo-gold hover:text-muted-foreground"} ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
+                    className={`w-full cursor-pointer justify-start ${isActive ? "bg-eo-blue text-white font-medium" : "text-eo-blue hover:text-muted-foreground"} ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
                     onClick={() => isMobile && setIsSidebarOpen(false)}
                   >
                     <item.icon

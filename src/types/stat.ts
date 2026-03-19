@@ -7,20 +7,17 @@ export type RecentApplicant = {
     status: "pending" | "reviewing" | "accepted" | "rejected";
 };
 
-export type RecentContact = {
+export type RecentSubscriber = {
     id: string
-    name: string;
     email: string;
-    subject: string;
-    createdAt: string;
-    status: "unread" | "read" | "responded";
+    subscribedAt: string;
 };
 
 export type AdminStats = {
     totalApplications: number;
     totalJobs: number;
-    totalCaseStudies: number;
-    totalContacts: number;
+    totalSubscribers: number;
+    totalResumeSubmissions: number;
+    recentSubscribers: RecentSubscriber[];
     recentApplications: RecentApplicant[];
-    recentContacts: RecentContact[];
 };

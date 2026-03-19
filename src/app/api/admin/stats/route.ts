@@ -5,6 +5,8 @@ import { ApplicationModel } from "@/models/Application";
 import { JobModel } from "@/models/Job";
 import { CaseStudyModel } from "@/models/CaseStudy";
 import { ContactModel } from "@/models/Contact";
+import Newsletter from "@/models/Newsletter";
+import { SubmitResumeModel } from "@/models/SubmitResume";
 import { connectDB } from "@/lib/mongodb";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
@@ -24,13 +26,18 @@ export async function GET(req: NextRequest) {
       totalJobs,
       totalCaseStudies,
       totalContacts,
+      totalSubscribers,
+      totalResumeSubmissions,
       recentApplications,
       recentContacts,
+      recentSubscribers,
     ] = await Promise.all([
       ApplicationModel.countDocuments(),
       JobModel.countDocuments(),
       CaseStudyModel.countDocuments(),
       ContactModel.countDocuments(),
+      Newsletter.countDocuments(),
+      SubmitResumeModel.countDocuments(),
 
       ApplicationModel.find()
         .sort({ createdAt: -1 })
@@ -41,6 +48,11 @@ export async function GET(req: NextRequest) {
         .sort({ createdAt: -1 })
         .limit(5)
         .select("name email subject createdAt status"),
+
+      Newsletter.find()
+        .sort({ createdAt: -1 })
+        .limit(5)
+        .select("email createdAt"),
     ]);
 
     return NextResponse.json({
@@ -48,8 +60,11 @@ export async function GET(req: NextRequest) {
       totalJobs,
       totalCaseStudies,
       totalContacts,
+      totalSubscribers,
+      totalResumeSubmissions,
       recentApplications,
       recentContacts,
+      recentSubscribers,
     });
 
   } catch (error) {

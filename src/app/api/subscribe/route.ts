@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Newsletter from "@/models/Newsletter";
+import { sendSubscriptionEmail } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,6 +30,9 @@ export async function POST(req: NextRequest) {
     // Save email to DB
     const newSubscriber = new Newsletter({ email });
     await newSubscriber.save();
+
+    //Send mail to user
+    await sendSubscriptionEmail(email);
 
     return NextResponse.json(
       { message: "Subscribed successfully" },

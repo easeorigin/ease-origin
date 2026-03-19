@@ -28,8 +28,8 @@ const CYBER_COLORS = {
 const categoryColors: Record<string, { bg: string; border: string; text: string; headerBg: string }> = {
   "Cloud Infrastructure": {
     bg: "bg-blue-50 dark:bg-blue-950",
-    border: "border-blue-100 dark:border-blue-900",
-    text: "text-eo-blue",
+    border: "border-blue-100 dark:border-white",
+    text: "text-eo-blue dark:text-white",
     headerBg: "from-blue-50 to-indigo-50 dark:from-blue-800/60 dark:to-indigo-800/60",
   },
   "Cybersecurity": CYBER_COLORS,
@@ -89,7 +89,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
       className="flex flex-col h-full bg-surface border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
     >
       {/* Card header */}
-      <div className={`h-36 bg-gradient-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
+      <div className={`h-36 bg-linear-to-br ${colors.headerBg} relative overflow-hidden flex items-end p-6 border-b border-border-subtle`}>
         <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/50 dark:bg-white/10 blur-2xl" />
         <div className="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/40 dark:bg-white/8 blur-xl" />
 
@@ -112,7 +112,7 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
       </div>
 
       {/* Card body */}
-      <div className="p-8 flex flex-col flex-grow">
+      <div className="p-8 flex flex-col grow">
         <h4 className="text-xl font-bold text-text-primary mb-2 leading-tight group-hover:text-eo-blue transition-colors">
           {study.title}
         </h4>
@@ -126,14 +126,14 @@ export function CaseStudyCard({ study, index = 0 }: CaseStudyCardProps) {
               </span>
             )}
             {study.clientLabel && (
-              <span className="inline-block px-2 py-0.5 bg-slate-50 dark:bg-slate-800 border border-slate-150 dark:border-slate-700 text-[11px] font-medium text-slate-500 dark:text-slate-400 rounded-full truncate max-w-[200px]" title={study.clientLabel}>
+              <span className="inline-block px-2 py-0.5 bg-slate-50 dark:bg-slate-800 border border-slate-150 dark:border-slate-700 text-[11px] font-medium text-slate-500 dark:text-slate-400 rounded-full truncate max-w-50" title={study.clientLabel}>
                 {study.clientLabel}
               </span>
             )}
           </div>
         )}
 
-        <p className="text-text-tertiary mb-8 flex-grow leading-relaxed text-sm">
+        <p className="text-text-tertiary mb-8 grow leading-relaxed text-sm">
           {study.shortDescription}
         </p>
         <Link href={`/case-studies/${study.slug}`}>

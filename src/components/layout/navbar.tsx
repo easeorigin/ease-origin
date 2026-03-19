@@ -53,19 +53,23 @@ export function Navbar() {
                 isScrolled ? "text-text-primary" : "text-white",
               )}
             >
-            <Image
-            src={isScrolled && theme !== "dark" ? "/logo/main-logo-2.webp" : "/logo/main-logo.webp"}
-            alt="EaseOrigin Logo"
-            width={60}
-            height={50}
-            className="object-contain"
-            />
+              <Image
+                src={
+                  isScrolled && theme !== "dark"
+                    ? "/logo/main-logo-2.webp"
+                    : "/logo/main-logo.webp"
+                }
+                alt="EaseOrigin Logo"
+                width={50}
+                height={40}
+                className="object-contain"
+              />
               <h2 className="">EaseOrigin</h2>
             </Link>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <div className="flex space-x-6 items-center">
               {navLinks.map((link) =>
                 link.internal ? (
@@ -108,7 +112,8 @@ export function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex gap-6 items-center">
+            <ThemeToggle isScrolled={isScrolled} />
             <button
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
@@ -137,7 +142,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "md:hidden absolute w-full bg-surface border-b border-border-subtle shadow-xl transition-all duration-300 ease-in-out origin-top",
+          "lg:hidden absolute w-full bg-surface border-b border-border-subtle shadow-xl transition-all duration-300 ease-in-out origin-top mt-3.5",
           isMobileMenuOpen
             ? "opacity-100 scale-y-100"
             : "opacity-0 scale-y-0 pointer-events-none",
@@ -174,10 +179,10 @@ export function Navbar() {
               Partner With Us
             </Link>
           </div>
-          <div className="pt-2 flex items-center gap-2 px-3">
+          {/* <div className="pt-2 flex items-center gap-2 px-3">
             <ThemeToggle />
             <span className="text-sm text-text-muted">Toggle theme</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

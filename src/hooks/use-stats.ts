@@ -9,8 +9,8 @@ export function useStats() {
   return useQuery<AdminStats>({
     queryKey: ["admin-stats"],
     queryFn: async () => {
-      const { data } = await api.get<AdminStats>("/stats");
-      return data;
+      const res = await api.get<AdminStats>("/stats");
+      return res.data;
     },
     staleTime: 1000 * 60 * 5,
   });
