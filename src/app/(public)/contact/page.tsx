@@ -9,9 +9,9 @@ import {
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
-import { submitContactForm, type ContactFormResponse } from "./actions";
 import { companyInfo } from "@/data/company-info";
 import { PageHero } from "@/components/shared/page-hero";
+import { useToast } from "@/components/ui/use-toast";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -62,6 +62,8 @@ function ContactFormSection() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const { toast } = useToast();
+
 
   const handleChange = (field: keyof FormValues, value: string) => {
     setValues((v) => ({ ...v, [field]: value }));
@@ -79,29 +81,68 @@ function ContactFormSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setServerError(null);
-    const allTouched = Object.fromEntries(
-      (Object.keys(values) as (keyof FormValues)[]).map((k) => [k, true])
-    );
-    setTouched(allTouched);
-    const e2 = validateForm(values);
-    setErrors(e2);
-    if (Object.keys(e2).length > 0) return;
-    setSubmitting(true);
-    try {
-      const result: ContactFormResponse = await submitContactForm(values);
-      if (result.success) {
-        setSubmitted(true);
-      } else {
-        setServerError(result.error ?? "Something went wrong. Please try again.");
-      }
-    } catch {
-      setServerError("An unexpected error occurred. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  e.preventDefault();
+  if (submitting) return;
+
+  setServerError(null);
+
+  const allTouched = Object.fromEntries(
+    (Object.keys(values) as (keyof FormValues)[]).map((k) => [k, true])
+  );
+  setTouched(allTouched);
+
+  const validationErrors = validateForm(values);
+  setErrors(validationErrors);
+
+  if (Object.keys(validationErrors).length > 0) return;
+
+  setSubmitting(true);
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (!res.ok) throw new Error("Failed to send message");
+
+    // ✅ Toast success
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for reaching out. We'll get back to you shortly.",
+    });
+
+    // ✅ Keep your existing success UI
+    setSubmitted(true);
+
+    // reset form
+    setValues({
+      name: "",
+      email: "",
+      company: "",
+      subject: "",
+      message: "",
+    });
+    setTouched({});
+    setErrors({});
+  } catch (err: unknown) {
+    // ❌ Toast error
+    const errorMessage = err instanceof Error ? err.message : "Failed to send message";
+    toast({
+      title: "Error",
+      description: errorMessage,
+      variant: "destructive",
+    });
+
+    // optional: still keep inline error UI
+    setServerError(errorMessage);
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   const inputBase =
     "w-full px-4 py-3 rounded-lg border text-sm text-text-primary bg-surface placeholder-text-muted focus:outline-none focus:ring-2 transition-all duration-200";

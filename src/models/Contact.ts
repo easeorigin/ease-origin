@@ -1,26 +1,20 @@
 import { Schema, models, model } from "mongoose";
 
 export interface Contact {
-  fullName: string;
+  name: string;
   email: string;
   subject: string;
   message: string;
-  organisation: string;
-  status?: "unread" | "read" | "responded";
+  company: string;
 }
 
 const ContactSchema = new Schema<Contact>(
   {
-    fullName: { type: String, required: true },
+    name: { type: String, required: true },
     email: { type: String, required: true },
     message: { type: String, required: true },
     subject: { type: String, required: true },
-    organisation: { type: String, required: true },
-    status: {
-      type: String,
-      enum: ["unread", "read", "responded"],
-      default: "unread",
-    },
+    company: { type: String, required: true },
   },
   { timestamps: true },
 );
