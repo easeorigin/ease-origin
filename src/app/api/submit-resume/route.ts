@@ -1,6 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { SubmitResumeModel } from "@/models/SubmitResume";
+import { NotificationService } from "@/services/notification.service";
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,6 +28,11 @@ export async function POST(req: NextRequest) {
     });
 
     await newSubmission.save();
+
+    await NotificationService.sendResumeUploadEmail({
+      name,
+      resumeUrl,
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

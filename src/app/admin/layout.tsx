@@ -12,6 +12,7 @@ import {
   Settings,
   Menu,
   ChevronLeft,
+  FolderOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AdminLogoutButton } from "@/components/LogoutButton";
@@ -25,6 +26,7 @@ const navItems = [
   { icon: Briefcase, label: "Jobs", href: "/admin/jobs" },
   { icon: FileText, label: "Applications", href: "/admin/applications" },
   { icon: Newspaper, label: "Blogs", href: "/admin/blogs" },
+  { icon: FolderOpen, label: "Submitted Resumes", href: "/admin/resumes" },
   { icon: Mail, label: "Subscribers", href: "/admin/subscribers" },
   { icon: Settings, label: "Settings", href: "/admin/settings" },
 ];

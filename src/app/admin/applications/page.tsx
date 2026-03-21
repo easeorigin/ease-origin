@@ -116,21 +116,21 @@ export default function Applications() {
         description="Review and manage candidate applications"
       />
 
-      <div className="flex items-center space-x-4 mb-4 bg-card p-4 rounded-xl border border-border">
+      <div className="flex items-center space-x-4 mb-4 bg-eo-blue p-4 rounded-xl border border-eo-blue/75">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search applicants..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-background"
+            className="pl-9 bg-eo-navy text-white focus:ring-2 focus:ring-eo-blue"
           />
         </div>
       </div>
 
-      <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-eo-blue border border-eo-blue/75 rounded-xl shadow-sm overflow-hidden">
         <Table>
-          <TableHeader className="bg-muted/50">
+          <TableHeader className="bg-eo-navy/50 border-b border-eo-blue/75">
             <TableRow>
               <TableHead>Applicant</TableHead>
               <TableHead>Applied For</TableHead>
@@ -200,10 +200,10 @@ export default function Applications() {
                         <DropdownMenuItem onClick={() => setResumeApp(app)}>
                           <FileText className="w-4 h-4 mr-2" /> View Resume
                         </DropdownMenuItem>
-                        {app.resumeFile && (
+                        {app.resumeUrl && (
                           <DropdownMenuItem asChild>
                             <a
-                              href={app.resumeFile}
+                              href={app.resumeUrl}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -303,7 +303,7 @@ export default function Applications() {
               )}
 
               <div className="flex gap-3 pt-4 border-t border-border">
-                {selectedApp.resumeFile && (
+                {selectedApp.resumeUrl && (
                   <Button
                     variant="outline"
                     onClick={() => {
@@ -314,10 +314,10 @@ export default function Applications() {
                     <FileText className="w-4 h-4 mr-2" /> View Resume
                   </Button>
                 )}
-                {selectedApp.resumeFile && (
+                {selectedApp.resumeUrl && (
                   <Button asChild>
                     <a
-                      href={selectedApp.resumeFile}
+                      href={selectedApp.resumeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -335,7 +335,7 @@ export default function Applications() {
       <ResumeDrawer
         open={!!resumeApp}
         onClose={() => setResumeApp(null)}
-        resumeUrl={resumeApp?.resumeFile}
+        resumeUrl={resumeApp?.resumeUrl}
         applicantName={resumeApp?.fullName ?? ""}
         jobTitle={resumeApp?.jobTitle ?? ""}
       />

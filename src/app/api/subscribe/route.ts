@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Newsletter from "@/models/Newsletter";
 import { sendSubscriptionEmail } from "@/lib/mailer";
+import { NotificationService } from "@/services/notification.service";
 
 export async function POST(req: NextRequest) {
   try {
@@ -33,6 +34,9 @@ export async function POST(req: NextRequest) {
 
     //Send mail to user
     await sendSubscriptionEmail(email);
+
+    // Send notification to admin
+    await NotificationService.sendNewSubscriberEmail(email);
 
     return NextResponse.json(
       { message: "Subscribed successfully" },

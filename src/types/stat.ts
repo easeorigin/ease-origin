@@ -8,7 +8,7 @@ export type RecentApplicant = {
 };
 
 export type RecentSubscriber = {
-    id: string
+    _id: string
     email: string;
     subscribedAt: string;
 };

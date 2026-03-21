@@ -1,18 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { ApplicationModel } from "@/models/Application";
+import { NotificationService } from "@/services/notification.service";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     await connectDB();
 
     const body = await req.json();
     const {
+      jobTitle,
       fullName,
       email,
       phone,
-      resumeFile,
-      coverLetterFile,
+      resumeUrl,
+      coverLetterUrl,
       country,
       currentLocation,
       willingToRelocate,
@@ -32,8 +34,8 @@ export async function POST(req: Request) {
       !fullName ||
       !email ||
       !phone ||
-      !resumeFile ||
-      !coverLetterFile ||
+      !resumeUrl ||
+      !coverLetterUrl ||
       !country ||
       !currentLocation ||
       !willingToRelocate ||
@@ -51,10 +53,15 @@ export async function POST(req: Request) {
       );
     }
 
+    console.log("Checking for pending application:", { email, status: "pending" });
+
     const pendingApplication = await ApplicationModel.findOne({
       email,
       status: "pending",
     });
+
+    const allApps = await ApplicationModel.find({});
+console.log("All applications in DB:", allApps);
 
     if (pendingApplication) {
       return NextResponse.json(
@@ -64,11 +71,12 @@ export async function POST(req: Request) {
     }
 
     const applicant = await ApplicationModel.create({
+      jobTitle,
       fullName,
       email,
       phone,
-      resumeFile,
-      coverLetterFile,
+      resumeUrl,
+      coverLetterUrl,
       country,
       currentLocation,
       willingToRelocate,
@@ -84,6 +92,14 @@ export async function POST(req: Request) {
       portfolio,
       status: "pending",
     });
+
+    await applicant.save();
+
+    await NotificationService.sendJobApplicationEmail({
+      name: applicant.fullName,
+      jobTitle: applicant.jobTitle || "Unknown Position",
+    });
+
     return NextResponse.json(
       {
         success: true,
@@ -100,3 +116,9 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function GET() {
+  return NextResponse.json({ message: "GET works" });
+}
+
+

@@ -3,6 +3,7 @@
 import { api, publicApi } from "@/lib/axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
+import { AxiosError } from "axios";
 
 export type ApplicationStatus =
   | "pending"
@@ -15,9 +16,8 @@ export type Experience = {
   roleTitle: string;
   employer: string;
   employmentType: string;
-  company: string;
   startDate: string;
-  endDAte: string;
+  endDate: string;
   currentRole: boolean;
   description: string;
   technologies: string[];
@@ -47,8 +47,8 @@ export type Application = {
   linkedin?: string;
   github?: string;
   portfolio?: string;
-  coverLetterFile?: string;
-  resumeFile: string;
+  coverLetterUrl?: string;
+  resumeUrl: string;
   experiences: Experience[];
   education: Education[];
   workAuthorization?: string;
@@ -59,6 +59,8 @@ export type Application = {
   updatedAt: string;
 };
 
+export type Applicant = Omit<Application, "id" | "createdAt" | "updatedAt">;
+
 export type UpdateApplicantStatus = {
   id: string;
   status: ApplicationStatus;
@@ -68,22 +70,26 @@ export const useCreateApplication = () => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
-  return useMutation<Application, Error, Omit<Application, "id" | "createdAt" | "updatedAt">>({
-    mutationFn: async (applicationData) => {
-      const response = await publicApi.post("/applications", applicationData);
-      return response.data.data;
+  return useMutation<Application, AxiosError<{ message?: string }>, Applicant>({
+    mutationFn: async (data) => {
+      const { data: response } = await publicApi.post("/applications", data);
+      if (!response) {
+        throw new Error("Invalid server response");
+      }
+      return response;
     },
     onSuccess: () => {
       toast({
         title: "Application submitted",
         description: "The application has been submitted successfully.",
       });
-      queryClient.invalidateQueries({ queryKey: ["applications"] });
+      queryClient.invalidateQueries({ queryKey: ["applications"], exact: true  });
     },
-    onError: () => {
+    onError: (error) => {
       toast({
         title: "Error",
-        description: "Failed to submit the application.",
+        description:
+          error?.message || "Failed to submit the application.",
         variant: "destructive",
       });
     },
@@ -129,28 +135,27 @@ export const useUpdateApplicationStatus = () => {
   });
 };
 
-
 export const useDeleteApplication = () => {
-    const queryClient = useQueryClient();
-    const { toast } = useToast();
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
 
-    return useMutation<void, Error, string>({
-        mutationFn: async (id) => {
-            await api.delete(`/applications/${id}`);
-        },
-        onSuccess: () => {
-            toast({
-                title: "Application deleted",
-                description: "The application has been deleted successfully.",
-            });
-            queryClient.invalidateQueries({ queryKey: ["applications"] });
-        },
-        onError: () => {
-            toast({
-                title: "Error",
-                description: "Failed to delete the application.",
-                variant: "destructive",
-            });
-        },
-    });
+  return useMutation<void, Error, string>({
+    mutationFn: async (id) => {
+      await api.delete(`/applications/${id}`);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Application deleted",
+        description: "The application has been deleted successfully.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete the application.",
+        variant: "destructive",
+      });
+    },
+  });
 };

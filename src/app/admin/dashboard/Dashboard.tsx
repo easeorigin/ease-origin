@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, FileText, Newspaper, Mail, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { format } from "date-fns";
+import { format, isValid } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -167,7 +167,10 @@ export default function Dashboard() {
               className="text-muted-foreground hover:text-eo-blue"
               asChild
             >
-              <Link href="/admin/subscribers" className="flex items-center gap-1">
+              <Link
+                href="/admin/subscribers"
+                className="flex items-center gap-1"
+              >
                 View all <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
@@ -177,7 +180,7 @@ export default function Dashboard() {
               <div className="divide-y divide-border/50">
                 {stats.recentSubscribers.map((msg) => (
                   <div
-                    key={msg.id}
+                    key={msg._id}
                     className="p-4 hover:bg-muted/30 transition-colors flex items-center justify-between"
                   >
                     <div className="truncate pr-4">
@@ -187,7 +190,9 @@ export default function Dashboard() {
                     </div>
                     <div className="text-right shrink-0">
                       <p className="text-[10px] text-muted-foreground">
-                        {format(new Date(msg.subscribedAt), "MMM d, yyyy")}
+                        {msg.subscribedAt && isValid(new Date(msg.subscribedAt))
+                          ? format(new Date(msg.subscribedAt), "MMM d, yyyy")
+                          : "—"}
                       </p>
                     </div>
                   </div>

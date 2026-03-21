@@ -4,8 +4,9 @@ import { api, publicApi } from "@/lib/axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 
+
 export type Submission = {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   country: string;
@@ -56,10 +57,10 @@ export const useSubmitResume = () => {
 
 export const useSubmittedResumes = () => {
     return useQuery<Submission[]>({
-        queryKey: ["submitted-resumes"],
+        queryKey: ["resumes"],
         queryFn: async () => {
             const { data } = await api.get("/submitted");
-            return data;
+            return data || [];
         },
     });
 };

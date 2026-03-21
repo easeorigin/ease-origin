@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -15,6 +17,8 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ResumeUploadZone } from "./uploadZone";
+import { useCreateApplication, Applicant } from "@/hooks/use-applications";
+import { publicApi } from "@/lib/axios";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -781,126 +785,236 @@ function Step6({
   errors: Partial<Record<keyof AppData, string>>;
 }) {
   type UploadState = "idle" | "uploading" | "success" | "error";
-  const [uploadState, setUploadState] = useState<UploadState>("idle");
-  const [uploadedFileName, setUploadedFileName] = useState("");
-  const [uploadError, setUploadError] = useState<string | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
+
+  type Upload = {
+    state: UploadState;
+    fileName: string;
+    error: string | null;
+    progress: number;
+  };
+
+  const initialUpload: Upload = {
+    state: "idle",
+    fileName: "",
+    error: null,
+    progress: 0,
+  };
+
+  const [uploads, setUploads] = useState<{
+    resume: Upload;
+    coverLetter: Upload;
+  }>({
+    resume: initialUpload,
+    coverLetter: initialUpload,
+  });
+
+  // 🔒 File validation (important)
+  const validateFile = (file: File) => {
+    const MAX_SIZE_MB = 5;
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      return "Only PDF or Word documents are allowed.";
+    }
+
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      return "File size must be less than 5MB.";
+    }
+
+    return null;
+  };
 
   const handleFileChange = async (
     type: "resume" | "coverLetter",
-    file: File | null,
+    file: File | null
   ) => {
     if (!file) return;
 
-    // store file for UI
+    // 🔒 Validate first
+    const validationError = validateFile(file);
+    if (validationError) {
+      setUploads((prev) => ({
+        ...prev,
+        [type]: {
+          ...prev[type],
+          state: "error",
+          error: validationError,
+        },
+      }));
+      return;
+    }
+
+    // Save file locally
     set(type === "resume" ? "resumeFile" : "coverLetterFile", file);
 
-    const formData = new FormData();
-    formData.append("file", file);
-    setUploadState("uploading");
-    setUploadError(null);
-    setUploadedFileName(file.name);
-    setUploadProgress(10); //
+    setUploads((prev) => ({
+      ...prev,
+      [type]: {
+        ...prev[type],
+        state: "uploading",
+        fileName: file.name,
+        error: null,
+        progress: 0,
+      },
+    }));
 
     try {
-      const res = await fetch(`/api/upload?type=${type}`, {
-        method: "POST",
-        body: formData,
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await publicApi.post("/upload", formData, {
+        params: { type },
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (progressEvent) => {
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / (progressEvent.total ?? 1)
+          );
+
+          setUploads((prev) => ({
+            ...prev,
+            [type]: {
+              ...prev[type],
+              progress: percent,
+            },
+          }));
+        },
       });
 
-      const result = await res.json();
+      const url = response?.data?.secure_url;
 
-      // store URL for submission
-      set(
-        type === "resume" ? "resumeUrl" : "coverLetterUrl",
-        result.secure_url,
-      );
-    } catch (err) {
+      if (!url) {
+        throw new Error("Upload failed: No URL returned");
+      }
+
+      // Save URL
+      set(type === "resume" ? "resumeUrl" : "coverLetterUrl", url);
+
+      setUploads((prev) => ({
+        ...prev,
+        [type]: {
+          ...prev[type],
+          state: "success",
+          progress: 100,
+        },
+      }));
+    } catch (err: any) {
       console.error(`${type} upload failed`, err);
+
+      setUploads((prev) => ({
+        ...prev,
+        [type]: {
+          ...prev[type],
+          state: "error",
+          error:
+            err?.response?.data?.message ||
+            err?.message ||
+            "Upload failed. Please try again.",
+          progress: 0,
+        },
+      }));
     }
   };
 
   const handleClearFile = useCallback(
-    (key: "resumeFile" | "coverLetterFile") => {
-      setUploadState("idle");
-      setUploadedFileName("");
-      setUploadError(null);
-      set(key, null); // Clear the File object
+    (type: "resume" | "coverLetter") => {
+      set(type === "resume" ? "resumeFile" : "coverLetterFile", null);
+      set(type === "resume" ? "resumeUrl" : "coverLetterUrl", "");
+
+      setUploads((prev) => ({
+        ...prev,
+        [type]: initialUpload,
+      }));
     },
-    [set],
+    [set, initialUpload],
   );
+
+  // const isUploading =
+  //   uploads.resume.state === "uploading" ||
+  //   uploads.coverLetter.state === "uploading";
 
   return (
     <div className="flex flex-col gap-5">
+      {/* Resume */}
       <div>
         <ResumeUploadZone
           label="Resume/CV"
-          uploadState={uploadState}
-          uploadProgress={uploadProgress}
-          uploadError={uploadError}
-          uploadedFileName={uploadedFileName}
-          hasError={!!(errors.resumeUrl || uploadError)}
+          uploadState={uploads.resume.state}
+          uploadProgress={uploads.resume.progress}
+          uploadError={uploads.resume.error}
+          uploadedFileName={uploads.resume.fileName}
+          hasError={!!(errors.resumeUrl || uploads.resume.error)}
           onFile={(file) => handleFileChange("resume", file)}
-          onClear={() => handleClearFile("resumeFile")}
+          onClear={() => handleClearFile("resume")}
         />
         {errors.resumeUrl && (
           <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
-            <AlertCircle className="h-3 w-3 shrink-0" /> {errors.resumeUrl}
+            <AlertCircle className="h-3 w-3 shrink-0" />
+            {errors.resumeUrl}
           </p>
         )}
       </div>
+
+      {/* Cover Letter */}
       <div>
         <ResumeUploadZone
           label="Cover Letter"
-          uploadState={uploadState}
-          uploadProgress={uploadProgress}
-          uploadError={uploadError}
-          uploadedFileName={uploadedFileName}
-          hasError={!!(errors.coverLetterUrl || uploadError)}
+          uploadState={uploads.coverLetter.state}
+          uploadProgress={uploads.coverLetter.progress}
+          uploadError={uploads.coverLetter.error}
+          uploadedFileName={uploads.coverLetter.fileName}
+          hasError={!!(errors.coverLetterUrl || uploads.coverLetter.error)}
           onFile={(file) => handleFileChange("coverLetter", file)}
-          onClear={() => handleClearFile("coverLetterFile")}
+          onClear={() => handleClearFile("coverLetter")}
         />
         {errors.coverLetterUrl && (
           <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
-            <AlertCircle className="h-3 w-3 shrink-0" /> {errors.coverLetterUrl}
+            <AlertCircle className="h-3 w-3 shrink-0" />
+            {errors.coverLetterUrl}
           </p>
         )}
       </div>
+
+      {/* Links */}
       <div className="pt-2">
         <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
           Professional Links
         </p>
+
         <div className="flex flex-col gap-4">
           <div>
             <label className={labelCls}>LinkedIn URL</label>
             <input
               className={cn(inputBase, inputOk)}
-              placeholder="https://linkedin.com/in/your-profile"
               value={data.linkedin}
               onChange={(e) => set("linkedin", e.target.value)}
+              placeholder="https://linkedin.com/in/your-profile"
             />
           </div>
+
           <div>
             <label className={labelCls}>Portfolio Website</label>
             <input
               className={cn(inputBase, inputOk)}
-              placeholder="https://yourportfolio.com"
               value={data.portfolio}
               onChange={(e) => set("portfolio", e.target.value)}
+              placeholder="https://yourportfolio.com"
             />
           </div>
+
           <div>
             <label className={labelCls}>
               GitHub{" "}
-              <span className="text-gray-400 font-normal normal-case">
-                (optional)
-              </span>
+              <span className="text-gray-400 font-normal">(optional)</span>
             </label>
             <input
               className={cn(inputBase, inputOk)}
-              placeholder="https://github.com/username"
               value={data.github}
               onChange={(e) => set("github", e.target.value)}
+              placeholder="https://github.com/username"
             />
           </div>
         </div>
@@ -1071,18 +1185,26 @@ function validate(
     if (!data.country) err.country = "Country is required.";
   }
   if (step === 3) {
-    const exps = data.experiences as Experience[];
-    if (exps.length === 0 || exps.every((e) => !e.roleTitle.trim())) {
-      err.experiences = "Please add at least one experience.";
-    }
+  const exps = data.experiences as Experience[];
+
+  const hasValidExperience = exps.some(
+    (e) =>
+      e.roleTitle.trim() &&
+      e.employer.trim() &&
+      e.startDate.trim()
+  );
+
+  if (exps.length === 0 || !hasValidExperience) {
+    err.experiences = "Please add at least one experience.";
   }
+}
   if (step === 5) {
     if (!data.noticePeriod) err.noticePeriod = "Please select a notice period.";
     if (!data.workAuthorization)
       err.workAuthorization = "Work authorization is required.";
   }
   if (step === 6) {
-    if (!data.resumeFile) err.resumeFile = "Please upload your resume.";
+    if (!data.resumeUrl) err.resumeUrl = "Please upload your resume.";
   }
   if (step === 7) {
     if (!data.confirmAccurate)
@@ -1119,7 +1241,7 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
             className={cn(
               "w-5 h-5 rounded-full text-[9px] font-bold flex items-center justify-center transition-all",
               i + 1 < step
-                ? "bg-eo-gold text-eo-navy"
+                ? "bg-eo-gold text-white"
                 : i + 1 === step
                   ? "bg-eo-navy text-white ring-2 ring-eo-navy ring-offset-2"
                   : "bg-gray-100 text-gray-400",
@@ -1213,7 +1335,6 @@ export function ApplicationDrawer({
     {},
   );
   const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const TOTAL = STEPS.length;
 
@@ -1245,15 +1366,65 @@ export function ApplicationDrawer({
     }
   };
 
-  const submit = () => {
+  function transformToApplicant(data: AppData, jobTitle: string): Applicant {
+    return {
+      fullName: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      country: data.country,
+      currentLocation: data.currentLocation,
+      willingToRelocate: data.willingToRelocate,
+
+      summary: data.summary,
+      skills: data.skills,
+
+      noticePeriod: data.noticePeriod,
+      workAuthorization: data.workAuthorization,
+      clearance: data.clearance,
+
+      linkedin: data.linkedin || undefined,
+      github: data.github || undefined,
+      portfolio: data.portfolio || undefined,
+
+      resumeUrl: data.resumeUrl,
+      coverLetterUrl: data.coverLetterUrl || undefined,
+
+      jobTitle,
+
+      experiences: data.experiences.map((exp) => ({
+        ...exp,
+        technologies: Array.isArray(exp.technologies)
+          ? exp.technologies
+          : exp.technologies
+              .split(",")
+              .map((t) => t.trim())
+              .filter(Boolean),
+      })),
+
+      education: data.education,
+      status: "pending",
+    };
+  }
+
+  const mutation = useCreateApplication();
+
+  const handleSubmit = () => {
     const e = validate(TOTAL, data);
     setErrors(e);
-    if (Object.keys(e).length > 0) return;
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 1400);
+
+    if (Object.keys(e).length > 0) {
+      scrollTop();
+      return;
+    }
+
+    const payload = transformToApplicant(data, jobTitle);
+
+    mutation.mutate(payload, {
+      onSuccess: () => {
+        setSubmitted(true);
+        setData(initialData);
+      },
+    });
   };
 
   const handleClose = () => {
@@ -1374,11 +1545,11 @@ export function ApplicationDrawer({
                   </button>
                 ) : (
                   <button
-                    onClick={submit}
-                    disabled={submitting}
-                    className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-gold text-eo-navy text-sm font-bold hover:bg-yellow-400 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    onClick={handleSubmit}
+                    disabled={mutation.isPending}
+                    className="inline-flex items-center gap-2 px-7 py-2.5 rounded-lg bg-eo-gold text-white text-sm font-bold hover:bg-white border hover:border-eo-navy hover:text-eo-navy transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    {submitting ? (
+                    {mutation.isPending ? (
                       <>
                         <span className="h-4 w-4 border-2 border-eo-navy/30 border-t-eo-navy rounded-full animate-spin" />{" "}
                         Submitting…
