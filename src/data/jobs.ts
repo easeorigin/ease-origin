@@ -1,20 +1,24 @@
-export type WorkType = "Remote" | "Hybrid" | "Onsite";
-export type Category =
-  | "Software Engineering"
-  | "Cloud Engineering"
-  | "Cybersecurity"
-  | "Data & Analytics"
-  | "Project Management"
-  | "DevOps";
+export type WorkType = "onsite" | "remote" | "hybrid";
 
+export type EmploymentType = "contract" | "part-time" | "full-time";
+
+export type Category =
+  | "software engineering"
+  | "cloud engineering"
+  | "cybersecurity"
+  | "data & analytics"
+  | "project management"
+  | "devOps"
+  | "web design"
+  | "others";
 export interface Job {
   slug: string;
   title: string;
   category: Category;
   location: string;
   workType: WorkType;
-  shortDescription: string;
-  overview: string;
+  shortDescription?: string;
+  overview?: string;
   responsibilities: string[];
   qualifications: string[];
   technologies: string[];
@@ -25,9 +29,9 @@ export const jobs: Job[] = [
   {
     slug: "senior-cloud-engineer",
     title: "Senior Cloud Engineer",
-    category: "Cloud Engineering",
+    category: "cloud engineering",
     location: "United States",
-    workType: "Remote",
+    workType: "remote",
     shortDescription:
       "Design and implement secure, scalable cloud infrastructure for federal agency modernization initiatives.",
     overview:
@@ -54,9 +58,9 @@ export const jobs: Job[] = [
   {
     slug: "cybersecurity-analyst",
     title: "Cybersecurity Analyst",
-    category: "Cybersecurity",
+    category: "cybersecurity",
     location: "United States",
-    workType: "Hybrid",
+    workType: "hybrid",
     shortDescription:
       "Implement federal cybersecurity frameworks, monitor threats, and support ATO processes for government systems.",
     overview:
@@ -83,9 +87,9 @@ export const jobs: Job[] = [
   {
     slug: "data-engineer",
     title: "Data Engineer",
-    category: "Data & Analytics",
+    category: "data & analytics",
     location: "United States",
-    workType: "Remote",
+    workType: "remote",
     shortDescription:
       "Build data pipelines and analytics infrastructure to help agencies turn complex datasets into actionable insights.",
     overview:
@@ -112,9 +116,9 @@ export const jobs: Job[] = [
   {
     slug: "devops-engineer",
     title: "DevOps / Platform Engineer",
-    category: "DevOps",
+    category: "devOps",
     location: "United States",
-    workType: "Remote",
+    workType: "remote",
     shortDescription:
       "Build and maintain CI/CD pipelines, container platforms, and developer tooling for federal IT projects.",
     overview:
@@ -141,9 +145,9 @@ export const jobs: Job[] = [
   {
     slug: "federal-project-manager",
     title: "Federal IT Project Manager",
-    category: "Project Management",
+    category: "project management",
     location: "United States",
-    workType: "Hybrid",
+    workType: "hybrid",
     shortDescription:
       "Lead delivery of complex federal IT programs, managing cross-functional teams and stakeholder relationships.",
     overview:
@@ -174,15 +178,15 @@ export function getJobBySlug(slug: string): Job | undefined {
 }
 
 export const CATEGORIES: Category[] = [
-  "Software Engineering",
-  "Cloud Engineering",
-  "Cybersecurity",
-  "Data & Analytics",
-  "Project Management",
-  "DevOps",
+  "software engineering",
+  "cloud engineering",
+  "cybersecurity",
+  "data & analytics",
+  "project management",
+  "devOps",
 ];
 
-export const WORK_TYPES: WorkType[] = ["Remote", "Hybrid", "Onsite"];
+export const WORK_TYPES: WorkType[] = ["remote", "hybrid", "onsite"];
 
 export const LOCATIONS = [
   "Anywhere",

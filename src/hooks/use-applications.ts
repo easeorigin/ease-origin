@@ -7,12 +7,13 @@ import { AxiosError } from "axios";
 
 export type ApplicationStatus =
   | "pending"
-  | "reviewed"
+  | "interwiew"
+  | "reviewing"
   | "rejected"
-  | "accepted";
+  | "hired";
 
 export type Experience = {
-  id: string;
+  _id: string;
   roleTitle: string;
   employer: string;
   employmentType: string;
@@ -24,7 +25,7 @@ export type Experience = {
 };
 
 export type Education = {
-  id: string;
+  _id: string;
   degree: string;
   courseOfStudy: string;
   school: string;
@@ -34,7 +35,7 @@ export type Education = {
 };
 
 export type Application = {
-  id: string;
+  _id: string;
   fullName: string;
   email: string;
   phone: string;
@@ -59,7 +60,7 @@ export type Application = {
   updatedAt: string;
 };
 
-export type Applicant = Omit<Application, "id" | "createdAt" | "updatedAt">;
+export type Applicant = Omit<Application, "_id" | "createdAt" | "updatedAt">;
 
 export type UpdateApplicantStatus = {
   id: string;
@@ -113,7 +114,7 @@ export const useUpdateApplicationStatus = () => {
 
   return useMutation<Application, Error, UpdateApplicantStatus>({
     mutationFn: async ({ id, status }) => {
-      const response = await api.patch(`/applications/${id}/status`, {
+      const response = await api.patch(`/applications/${id}`, {
         status,
       });
       return response.data.data;

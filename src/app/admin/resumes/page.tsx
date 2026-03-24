@@ -43,26 +43,26 @@ export default function SubmittedResumes() {
       />
 
       {/* Stats */}
-      {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: "Total Resumes", value: withResumes.length },
+          { label: "Total Resumes", value: resumes.length },
         ].map(stat => (
-          <div key={stat.label} className="bg-card border border-border rounded-xl p-4">
+          <div key={stat.label} className="bg-eo-navy border border-border rounded-xl p-4">
             <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
-            <p className="text-2xl font-bold">{stat.value}</p>
+            <p className="text-2xl font-bold text-white">{stat.value}</p>
           </div>
         ))}
-      </div> */}
+      </div>
 
       {/* Search */}
-      <div className="flex items-center bg-card p-4 rounded-xl border border-border">
+      <div className="flex items-center bg-eo-navy p-4 rounded-xl border border-border">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Search by name, role, or email..."
+            placeholder="Search by name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-background"
+            className="pl-9 bg-eo-navy"
           />
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function SubmittedResumes() {
       {/* Table */}
       <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
         <Table>
-          <TableHeader className="bg-muted/50">
+          <TableHeader className="bg-eo-navy">
             <TableRow>
               <TableHead>Applicant</TableHead>
               <TableHead>Date Submitted</TableHead>
@@ -91,7 +91,7 @@ export default function SubmittedResumes() {
               <TableRow>
                 <TableCell
                   colSpan={5}
-                  className="h-32 text-center text-muted-foreground"
+                  className="h-32 text-center text-muted-foreground bg-eo-navy"
                 >
                   {searchTerm
                     ? "No resumes match your search."

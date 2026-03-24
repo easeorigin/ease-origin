@@ -46,7 +46,7 @@ const ApplicationSchema = new Schema(
     jobTitle: { type: String },
     status: {
       type: String,
-      enum: ["pending", "reviewing", "accepted", "rejected"],
+      enum: ["pending", "reviewing", "hired", "interview", "rejected"],
       default: "pending",
     },
   },

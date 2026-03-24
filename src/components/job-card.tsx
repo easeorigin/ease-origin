@@ -40,7 +40,7 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
       {/* Color accent stripe */}
       <div className={cn("h-1 w-full", colors.bg.replace("50", "300"))} />
 
-      <div className="p-7 flex flex-col flex-grow">
+      <div className="p-7 flex flex-col grow">
         {/* Category badge */}
         <span className={cn("inline-block px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider mb-4 self-start", colors.bg, colors.text, "border", colors.border)}>
           {job.category}
@@ -50,9 +50,9 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
           {job.title}
         </h3>
 
-        <p className="text-sm text-text-tertiary leading-relaxed mb-5 flex-grow">
+        {/* <p className="text-sm text-text-tertiary leading-relaxed mb-5 flex-grow">
           {job.shortDescription}
-        </p>
+        </p> */}
 
         {/* Meta row */}
         <div className="flex flex-wrap gap-3 mb-6">

@@ -12,7 +12,7 @@ export async function GET() {
         "title slug category location workType employmentType shortDescription applicationDeadline"
       );
 
-    return NextResponse.json(jobs);
+    return NextResponse.json({ data: jobs });
 
   } catch (error) {
     console.error("Fetch public jobs error:", error);

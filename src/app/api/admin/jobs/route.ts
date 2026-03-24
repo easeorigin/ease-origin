@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
 
     const jobs = await JobModel.find().sort({ createdAt: -1 });
 
-    return NextResponse.json(jobs);
+    return NextResponse.json({ data: jobs });
 
   } catch (error) {
     console.error("Fetch jobs error:", error);

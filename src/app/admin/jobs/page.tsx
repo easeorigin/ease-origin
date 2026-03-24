@@ -22,18 +22,17 @@ import { Job, useCloseJob, useCreateJob, useDeleteJob, useJobs, useUpdateJob } f
 
 const jobFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
-  category: z.enum(["software engineering", "cloud engineering", "cybersecurity", "data & analytics", "project management", "devOps", "others"]),
+  category: z.enum(["software engineering", "cloud engineering", "cybersecurity", "data & analytics", "project management", "devOps", "web design", "others"]),
   location: z.string().min(1, "Location is required"),
   workType: z.enum(["remote", "hybrid", "onsite"]),
   employmentType: z.enum(["contract", "part-time", "full-time"]),
   aboutRole: z.string().min(1, "this field is required"),
-  shortDescription: z.string(),
   responsibilities: z.array(z.string()).default([]),
   qualifications: z.array(z.string()).default([]),
   technologies: z.array(z.string()).default([]),
   salaryRange: z.string().min(1, "This field is required"),
   applicationDeadline: z.string().min(1, "This field is required"),
-  status: z.enum(["open", "closed"]).default("open"),
+  status: z.enum(["draft","published", "closed"]).default("draft"),
 });
 
 type JobFormValues = z.infer<typeof jobFormSchema>;
@@ -111,6 +110,7 @@ export default function Jobs() {
   const [editingJob, setEditingJob] = useState<Job | null>(null);
 
   const { data: jobs, isLoading } = useJobs();
+  console.log("jobs:", jobs);
   const createMutation = useCreateJob();
   const updateMutation = useUpdateJob();
   const deleteMutation = useDeleteJob();
@@ -124,13 +124,12 @@ export default function Jobs() {
     workType: "onsite",
     employmentType: "full-time",
     aboutRole: "",
-    shortDescription: "",
     responsibilities: [],
     qualifications: [],
     technologies: [],
     salaryRange: "",
     applicationDeadline: "",
-    status: "open",
+    status: "draft",
   };
 
   const form = useForm<JobFormValues>({
@@ -165,7 +164,7 @@ export default function Jobs() {
 
   const onSubmit = (data: JobFormValues) => {
     if (editingJob) {
-      updateMutation.mutate({ id: editingJob.id, ...data }, {
+      updateMutation.mutate({ id: editingJob._id, ...data }, {
         onSuccess: () => {
           toast({ title: "Job updated successfully" });
           setIsDialogOpen(false);
@@ -212,21 +211,21 @@ export default function Jobs() {
         }
       />
 
-      <div className="flex items-center space-x-4 mb-4 bg-card p-4 rounded-xl border border-border">
+      <div className="flex items-center space-x-4 mb-4 bg-eo-navy p-4 rounded-xl border border-border">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search jobs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-background"
+            className="pl-9 bg-eo-blue"
           />
         </div>
       </div>
 
-      <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-eo-navy border border-border rounded-xl shadow-sm overflow-hidden">
         <Table>
-          <TableHeader className="bg-muted/50">
+          <TableHeader className="bg-eo-navy/50">
             <TableRow>
               <TableHead>Job Title</TableHead>
               <TableHead>Location</TableHead>
@@ -245,22 +244,22 @@ export default function Jobs() {
               <TableRow>
                 <TableCell colSpan={6} className="h-32 text-center text-muted-foreground">
                   <div className="flex flex-col items-center justify-center gap-2">
-                    <Briefcase className="w-8 h-8 opacity-20" />
+                    <Briefcase className="w-8 h-8 text-white" />
                     No jobs found.
                   </div>
                 </TableCell>
               </TableRow>
             ) : (
               filteredJobs.map((job) => (
-                <TableRow key={job.id} className="hover:bg-muted/30">
+                <TableRow key={job._id} className="text-white">
                   <TableCell>
-                    <div className="font-medium text-foreground">{job.title}</div>
+                    <div className="font-bold text-white">{job.title}</div>
                     <div className="text-xs text-muted-foreground">{job.category}</div>
                   </TableCell>
                   <TableCell className="text-sm">{job.location}</TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      <span className="text-sm">{job.employmentType}</span>
+                      <span className="text-sm capitalize">{job.employmentType}</span>
                       <span className="text-xs text-muted-foreground capitalize">{job.workType}</span>
                     </div>
                   </TableCell>
@@ -268,14 +267,14 @@ export default function Jobs() {
                     {format(new Date(job.createdAt), "MMM d, yyyy")}
                   </TableCell>
                   <TableCell>
-                    <Badge variant={job.status === "open" ? "default" : "secondary"} className="capitalize">
+                    <Badge variant={job.status === "draft" ? "default" : "secondary"} className="capitalize">
                       {job.status}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button variant="ghost" size="icon" className="h-8 w-8 border-white">
                           <MoreHorizontal className="w-4 h-4" />
                         </Button>
                       </DropdownMenuTrigger>
@@ -283,12 +282,12 @@ export default function Jobs() {
                         <DropdownMenuItem onClick={() => openEditDialog(job)}>
                           <Edit className="w-4 h-4 mr-2" /> Edit Job
                         </DropdownMenuItem>
-                        {job.status === "open" && (
-                          <DropdownMenuItem onClick={() => handleClose(job.id)}>
+                        {job.status === "draft" && (
+                          <DropdownMenuItem onClick={() => handleClose(job._id)}>
                             <XCircle className="w-4 h-4 mr-2" /> Close Job
                           </DropdownMenuItem>
                         )}
-                        <DropdownMenuItem onClick={() => handleDelete(job.id)} className="text-destructive focus:text-destructive">
+                        <DropdownMenuItem onClick={() => handleDelete(job._id)} className="text-destructive focus:text-destructive">
                           <Trash2 className="w-4 h-4 mr-2" /> Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -349,7 +348,8 @@ export default function Jobs() {
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
                       <SelectContent>
-                        <SelectItem value="open">Open</SelectItem>
+                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="published">Published</SelectItem>
                         <SelectItem value="closed">Closed</SelectItem>
                       </SelectContent>
                     </Select>

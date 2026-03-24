@@ -23,7 +23,7 @@ import { publicApi } from "@/lib/axios";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface Experience {
-  id: string;
+  _id: string;
   roleTitle: string;
   employer: string;
   employmentType: string;
@@ -35,7 +35,7 @@ interface Experience {
 }
 
 interface Education {
-  id: string;
+  _id: string;
   degree: string;
   courseOfStudy: string;
   school: string;
@@ -83,7 +83,7 @@ function makeId() {
 
 function emptyExp(): Experience {
   return {
-    id: makeId(),
+    _id: makeId(),
     roleTitle: "",
     employer: "",
     employmentType: "Full-time",
@@ -96,7 +96,7 @@ function emptyExp(): Experience {
 }
 function emptyEdu(): Education {
   return {
-    id: makeId(),
+    _id: makeId(),
     degree: "Bachelor",
     courseOfStudy: "",
     school: "",
@@ -502,12 +502,12 @@ function Step3({
   const update = (id: string, e: Experience) =>
     set(
       "experiences",
-      (data.experiences as Experience[]).map((x) => (x.id === id ? e : x)),
+      (data.experiences as Experience[]).map((x) => (x._id === id ? e : x)),
     );
   const remove = (id: string) =>
     set(
       "experiences",
-      (data.experiences as Experience[]).filter((x) => x.id !== id),
+      (data.experiences as Experience[]).filter((x) => x._id !== id),
     );
   const add = () =>
     set("experiences", [...(data.experiences as Experience[]), emptyExp()]);
@@ -515,11 +515,11 @@ function Step3({
     <div className="flex flex-col gap-4">
       {(data.experiences as Experience[]).map((exp, i) => (
         <ExperienceEntry
-          key={exp.id}
+          key={exp._id}
           exp={exp}
           index={i}
-          onChange={(e) => update(exp.id, e)}
-          onDelete={() => remove(exp.id)}
+          onChange={(e) => update(exp._id, e)}
+          onDelete={() => remove(exp._id)}
         />
       ))}
       <Err msg={errors.experiences} />
@@ -667,12 +667,12 @@ function Step4({
   const update = (id: string, e: Education) =>
     set(
       "education",
-      (data.education as Education[]).map((x) => (x.id === id ? e : x)),
+      (data.education as Education[]).map((x) => (x._id === id ? e : x)),
     );
   const remove = (id: string) =>
     set(
       "education",
-      (data.education as Education[]).filter((x) => x.id !== id),
+      (data.education as Education[]).filter((x) => x._id !== id),
     );
   const add = () =>
     set("education", [...(data.education as Education[]), emptyEdu()]);
@@ -680,11 +680,11 @@ function Step4({
     <div className="flex flex-col gap-4">
       {(data.education as Education[]).map((edu, i) => (
         <EducationEntry
-          key={edu.id}
+          key={edu._id}
           edu={edu}
           index={i}
-          onChange={(e) => update(edu.id, e)}
-          onDelete={() => remove(edu.id)}
+          onChange={(e) => update(edu._id, e)}
+          onDelete={() => remove(edu._id)}
         />
       ))}
       <button
@@ -1368,6 +1368,7 @@ export function ApplicationDrawer({
 
   function transformToApplicant(data: AppData, jobTitle: string): Applicant {
     return {
+      // _id: data._id,
       fullName: data.fullName,
       email: data.email,
       phone: data.phone,

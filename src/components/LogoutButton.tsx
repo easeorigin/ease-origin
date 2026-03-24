@@ -12,7 +12,7 @@ export function AdminLogoutButton({
   return (
     <Button
         variant="ghost"
-        className={`w-full justify-center cursor-pointer bg-[red] text-white hover:text-destructive hover:border-eo-gold hover:bg-destructive/10 ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
+        className={`w-full justify-center cursor-pointer text-white hover:text-destructive hover:border-eo-gold hover:bg-destructive/10 ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
         onClick={() =>
           signOut({
             callbackUrl: "/login",

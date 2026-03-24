@@ -47,14 +47,13 @@ import { useToast } from "@/hooks/use-toast";
 import dynamic from "next/dynamic";
 
 const ResumeDrawer = dynamic(
-  () =>
-    import("@/components/resume-drawer").then((mod) => mod.ResumeDrawer), // or mod.default if it’s default-exported
+  () => import("@/components/resume-drawer").then((mod) => mod.ResumeDrawer), // or mod.default if it’s default-exported
   { ssr: false },
 );
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case "new":
+    case "pending":
       return "bg-blue-500/10 text-blue-500 border-blue-500/20";
     case "reviewing":
       return "bg-yellow-500/10 text-yellow-500 border-yellow-500/20";
@@ -90,15 +89,12 @@ export default function Applications() {
 
   const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this application?")) {
-      deleteMutation.mutate(
-        id,
-        {
-          onSuccess: () => {
-            toast({ title: "Application deleted" });
-            setSelectedApp(null);
-          },
+      deleteMutation.mutate(id, {
+        onSuccess: () => {
+          toast({ title: "Application deleted" });
+          setSelectedApp(null);
         },
-      );
+      });
     }
   };
 
@@ -159,91 +155,100 @@ export default function Applications() {
                 </TableCell>
               </TableRow>
             ) : (
-              filteredApps.map((app) => (
-                <TableRow key={app.id} className="hover:bg-muted/30">
-                  <TableCell>
-                    <div className="font-medium text-foreground">
-                      {app.fullName}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {app.email}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="font-medium text-sm">{app.jobTitle}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {app.country} - {app.currentLocation}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-sm">
-                    {format(new Date(app.createdAt), "MMM d, yyyy")}
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant="outline"
-                      className={`capitalize border ${getStatusColor(app.status)}`}
-                    >
-                      {app.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <MoreHorizontal className="w-4 h-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-48">
-                        <DropdownMenuItem onClick={() => setSelectedApp(app)}>
-                          <Eye className="w-4 h-4 mr-2" /> View Details
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setResumeApp(app)}>
-                          <FileText className="w-4 h-4 mr-2" /> View Resume
-                        </DropdownMenuItem>
-                        {app.resumeUrl && (
-                          <DropdownMenuItem asChild>
-                            <a
-                              href={app.resumeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Download className="w-4 h-4 mr-2" /> Download
-                              Resume
-                            </a>
-                          </DropdownMenuItem>
-                        )}
-                        <DropdownMenuSeparator />
-                        <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
-                          Update Status
-                        </DropdownMenuLabel>
-                        {[
-                          "new",
-                          "reviewing",
-                          "interview",
-                          "rejected",
-                          "hired",
-                        ].map((status) => (
-                          <DropdownMenuItem
-                            key={status}
-                            onClick={() => handleStatusUpdate(app.id, status)}
-                            disabled={app.status === status}
-                            className="capitalize"
+              filteredApps.map((app) => {
+                const isFinalState =
+                  app.status === "hired" || app.status === "rejected";
+                return (
+                  <TableRow
+                    key={app._id}
+                    className="hover:bg-muted/30 text-white"
+                  >
+                    <TableCell>
+                      <div className="font-medium text-white">
+                        {app.fullName}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {app.email}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="font-medium text-sm">{app.jobTitle}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {app.country} - {app.currentLocation}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-sm">
+                      {format(new Date(app.createdAt), "MMM d, yyyy")}
+                    </TableCell>
+                    <TableCell>
+                      <Badge
+                        variant="outline"
+                        className={`capitalize border ${getStatusColor(app.status)}`}
+                      >
+                        {app.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
                           >
-                            {status}
+                            <MoreHorizontal className="w-4 h-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-48">
+                          <DropdownMenuItem onClick={() => setSelectedApp(app)}>
+                            <Eye className="w-4 h-4 mr-2" /> View Details
                           </DropdownMenuItem>
-                        ))}
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                          onClick={() => handleDelete(app.id)}
-                          className="text-destructive focus:text-destructive"
-                        >
-                          <Trash2 className="w-4 h-4 mr-2" /> Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))
+                          <DropdownMenuItem onClick={() => setResumeApp(app)}>
+                            <FileText className="w-4 h-4 mr-2" /> View Resume
+                          </DropdownMenuItem>
+                          {app.resumeUrl && (
+                            <DropdownMenuItem asChild>
+                              <a
+                                href={app.resumeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Download className="w-4 h-4 mr-2" /> Download
+                                Resume
+                              </a>
+                            </DropdownMenuItem>
+                          )}
+                          <DropdownMenuSeparator />
+                          <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
+                            Update Status
+                          </DropdownMenuLabel>
+                          {["reviewing", "interview", "rejected", "hired"].map(
+                            (status) => (
+                              <DropdownMenuItem
+                                key={status}
+                                onClick={() =>
+                                  handleStatusUpdate(app._id, status)
+                                }
+                                disabled={isFinalState || app.status === status}
+                                className="capitalize"
+                              >
+                                {status}
+                              </DropdownMenuItem>
+                            ),
+                          )}
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+                            onClick={() => handleDelete(app._id)}
+                            className="text-destructive focus:text-destructive"
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" /> Delete
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                );
+              })
             )}
           </TableBody>
         </Table>

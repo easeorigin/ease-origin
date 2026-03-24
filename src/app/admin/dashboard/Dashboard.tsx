@@ -122,11 +122,11 @@ export default function Dashboard() {
               <div className="divide-y divide-border/50">
                 {stats.recentApplications.map((app) => (
                   <div
-                    key={app.id}
+                    key={app._id}
                     className="p-4 hover:bg-muted/30 transition-colors flex items-center justify-between"
                   >
                     <div>
-                      <p className="font-medium text-sm text-foreground">
+                      <p className="font-medium text-sm text-white">
                         {app.fullName}
                       </p>
                       <p className="text-xs text-muted-foreground mt-0.5">

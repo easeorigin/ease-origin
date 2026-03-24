@@ -12,6 +12,8 @@ import { Section } from "@/components/ui/section";
 import { getJobBySlug, jobs } from "@/data/jobs";
 import { JobCard } from "@/components/job-card";
 import { ApplicationDrawer } from "@/components/application-drawer";
+import { useJobPost } from "@/hooks/use-jobs";
+import JobDetailLoading from "./loading";
 
 
 
@@ -38,11 +40,21 @@ function NotFoundState() {
 }
 
 export default function JobDetailPage() {
-  const params = useParams<{ slug: string }>();
-  const job = getJobBySlug(params.slug);
+  const { slug } = useParams<{ slug: string }>();
+
+  const mockJob = getJobBySlug(slug);
+
+  const { data: jobPost, isLoading } = useJobPost(slug);
+
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const job = jobPost ?? mockJob;
+
   if (!job) return <NotFoundState />;
+
+  if (isLoading && !job) {
+  return <JobDetailLoading />;
+}
 
   const WorkIcon = workTypeIcon[job.workType] ?? Wifi;
   const related = jobs.filter((j) => j.slug !== job.slug && j.category === job.category).slice(0, 2);
@@ -95,11 +107,11 @@ export default function JobDetailPage() {
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-sm text-gray-200">
                   <WorkIcon className="h-4 w-4 text-eo-gold" /> {job.workType}
                 </div>
-                {job.clearance && (
+                {/* {job.clearance && (
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-sm text-gray-200">
                     <Layers className="h-4 w-4 text-eo-gold" /> {job.clearance}
                   </div>
-                )}
+                )} */}
               </div>
             </motion.div>
           </div>
@@ -121,7 +133,7 @@ export default function JobDetailPage() {
               >
                 <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Job Overview</p>
                 <h2 className="text-2xl font-bold text-eo-navy mb-4">About This Role</h2>
-                <p className="text-gray-600 leading-relaxed">{job.overview}</p>
+                {/* <p className="text-gray-600 leading-relaxed">{job.overview}</p> */}
               </motion.div>
 
               {/* Responsibilities */}
@@ -225,12 +237,12 @@ export default function JobDetailPage() {
                       <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Location</p>
                       <p className="text-sm font-medium text-eo-navy">{job.location}</p>
                     </div>
-                    {job.clearance && (
+                    {/* {job.clearance && (
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Clearance</p>
                         <p className="text-sm font-medium text-eo-navy">{job.clearance}</p>
                       </div>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>

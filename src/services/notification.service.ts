@@ -9,7 +9,7 @@ export const NotificationService = {
 
     await transporter.sendMail({
       from: `"Your App" <${process.env.SMTP_USER}>`,
-      to: settings.company.email,
+      to: process.env.EMAIL_USER,
       subject: "New Subscriber",
       html: `<p><strong>${email}</strong> just subscribed.</p>`,
     });
@@ -25,7 +25,7 @@ export const NotificationService = {
 
     await transporter.sendMail({
       from: `"Your App" <${process.env.SMTP_USER}>`,
-      to: settings.company.email,
+      to: process.env.EMAIL_USER,
       subject: "New Resume Uploaded",
       html: `
         <p>${data.name} uploaded a resume.</p>

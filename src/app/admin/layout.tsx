@@ -118,7 +118,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <Link key={item.href} href={item.href} className="block">
                   <Button
                     variant={"ghost"}
-                    className={`w-full cursor-pointer justify-start ${isActive ? "bg-eo-blue text-white font-medium" : "text-eo-blue hover:text-muted-foreground"} ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
+                    className={`w-full cursor-pointer justify-start ${isActive ? "bg-eo-blue text-white border border-white font-medium" : "text-muted-foreground"} ${!isSidebarOpen ? "px-0 justify-center" : ""}`}
                     onClick={() => isMobile && setIsSidebarOpen(false)}
                   >
                     <item.icon

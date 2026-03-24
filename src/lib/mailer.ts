@@ -31,7 +31,7 @@ export const sendSubscriptionEmail = async (to: string) => {
 
                   <!-- Logo -->
                   <a href="${SITE_URL}" style="text-decoration:none; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:12px; width:100%;">
-                    <img src="${LOGO_URL}" alt="EaseOrgin" width="60"; height="40"; style="display:block;" />
+                    <img src="${LOGO_URL}" alt="EaseOrgin" width="60"; height="50"; objectFit="cover"; style="display:block;" />
                     <h1 style="color:#ffffff;font-size:24px;font-weight:800;">
                       Ease<span style="color:#F04A2A;">Origin</span>
                     </h1>
@@ -135,7 +135,7 @@ export const sendSubscriptionEmail = async (to: string) => {
               <tr>
                 <td align="center" style="padding:25px;background:#f9fafb;border-top:1px solid #e5e7eb;">
                   <p style="font-weight:800;color:#1F3B5F;margin:0 0 5px;">
-                    Ease<span style="color:#F04A2A;">Orign</span>
+                    Ease<span style="color:#F04A2A;">Origin</span>
                   </p>
 
                   <p style="color:#9ca3af;font-size:12px;margin:0;">
@@ -143,7 +143,7 @@ export const sendSubscriptionEmail = async (to: string) => {
                   </p>
 
                   <p style="color:#cbd5e1;font-size:12px;margin:8px 0;">
-                    © ${new Date().getFullYear()} EaseOrgin LLC
+                    © ${new Date().getFullYear()} EaseOrigin LLC
                   </p>
 
                   <p style="margin:10px 0 0;">
