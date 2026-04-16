@@ -9,6 +9,7 @@ import { PageHero } from "@/components/shared/page-hero";
 import { CTASection } from "@/components/shared/cta-section";
 import { jobs } from "@/data/jobs";
 import { fadeInUpWhileVisible } from "@/lib/animations";
+import { usePublicJobs } from "@/hooks/use-jobs";
 
 const benefits = [
   {
@@ -50,6 +51,7 @@ const benefits = [
 ];
 
 function WhyWorkWithUs() {
+  
   return (
     <Section className="relative overflow-hidden bg-linear-to-br from-slate-50 dark:from-gray-900 via-blue-50/30 dark:via-gray-900/30 to-indigo-50/20 dark:to-gray-800/20 border-b border-border-subtle">
       {/* Subtle glows */}
@@ -89,11 +91,17 @@ function WhyWorkWithUs() {
 }
 
 export default function CareersPage() {
+  const {
+      data: publicJobs,
+      // isLoading
+    } = usePublicJobs();
+
+    const mergedJobs = [...(publicJobs || []), ...jobs];
   return (
     <div className="min-h-screen bg-surface">
       <main>
         <PageHero
-          badge={`${jobs.length} Open Position${jobs.length !== 1 ? "s" : ""}`}
+          badge={`${jobs.length} Open Position${mergedJobs.length !== 1 ? "s" : ""}`}
           title="Careers at EaseOrigin"
           description="Join a team of highly skilled consultants delivering mission-critical technology solutions for government agencies and private sector organizations nationwide."
           primaryCta={{ href: "/careers/jobs", label: "View Open Positions" }}

@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, MapPin, Wifi, Building2, Layers, CheckCircle2,
+  ArrowLeft, MapPin, Wifi, Building2, CheckCircle2,
   ArrowRight, Tag, Briefcase
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
@@ -50,7 +50,13 @@ export default function JobDetailPage() {
 
   const job = jobPost ?? mockJob;
 
+  const capitalize = (text: string) => {
+  if (!text) return "";
+  return text.charAt(0).toUpperCase() + text.slice(1);
+};
+
   if (!job) return <NotFoundState />;
+  
 
   if (isLoading && !job) {
   return <JobDetailLoading />;
@@ -104,7 +110,7 @@ export default function JobDetailPage() {
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-sm text-gray-200">
                   <MapPin className="h-4 w-4 text-eo-gold" /> {job.location}
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-sm text-gray-200">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-sm text-gray-200 capitalize">
                   <WorkIcon className="h-4 w-4 text-eo-gold" /> {job.workType}
                 </div>
                 {/* {job.clearance && (
@@ -133,7 +139,7 @@ export default function JobDetailPage() {
               >
                 <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Job Overview</p>
                 <h2 className="text-2xl font-bold text-eo-navy mb-4">About This Role</h2>
-                {/* <p className="text-gray-600 leading-relaxed">{job.overview}</p> */}
+                <p className="text-gray-600 leading-relaxed">{job.aboutRole}</p>
               </motion.div>
 
               {/* Responsibilities */}
@@ -148,7 +154,7 @@ export default function JobDetailPage() {
                   {job.responsibilities.map((r, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-eo-gold shrink-0 mt-0.5" />
-                      <span className="text-gray-600 text-sm leading-relaxed">{r}</span>
+                      <span className="text-gray-600 text-sm leading-relaxed">{capitalize(r)}</span>
                     </li>
                   ))}
                 </ul>
@@ -187,7 +193,7 @@ export default function JobDetailPage() {
                   {job.technologies.map((tech, i) => (
                     <span
                       key={i}
-                      className="inline-block px-3 py-1.5 bg-slate-50 border border-gray-200 text-sm font-medium text-eo-navy rounded-full"
+                      className="inline-block px-3 py-1.5 bg-slate-50 border border-gray-200 text-sm font-medium text-eo-navy rounded-full capitalize"
                     >
                       {tech}
                     </span>
@@ -227,11 +233,11 @@ export default function JobDetailPage() {
                   <div className="flex flex-col gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Category</p>
-                      <p className="text-sm font-medium text-eo-navy">{job.category}</p>
+                      <p className="text-sm font-medium text-eo-navy capitalize">{job.category}</p>
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Work Type</p>
-                      <p className="text-sm font-medium text-eo-navy">{job.workType}</p>
+                      <p className="text-sm font-medium text-eo-navy capitalize">{job.workType}</p>
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Location</p>

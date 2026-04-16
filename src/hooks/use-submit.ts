@@ -12,6 +12,7 @@ export type Submission = {
   country: string;
   expertise: string;
   resumeUrl: string;
+  resumeKey: string;
   message: string;
   createdAt: string;
   updatedAt: string;
@@ -23,6 +24,7 @@ export type CreateSubmission = {
   country: string;
   expertise: string;
   resumeUrl: string;
+  resumeKey: string;
   message: string;
 };
 

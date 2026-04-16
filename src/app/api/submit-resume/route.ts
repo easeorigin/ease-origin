@@ -9,9 +9,10 @@ export async function POST(req: NextRequest) {
     await connectDB();
 
     const body = await req.json();
-    const { name, email, country, expertise, resumeUrl, message } = body;
+console.log("REQUEST BODY:", body);
+    const { name, email, country, expertise, resumeUrl, message, resumeKey } = body;
 
-    if (!name || !email || !country || !expertise || !resumeUrl || !message) {
+    if (!name || !email || !country || !expertise || !resumeUrl || !message || !resumeKey) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
       expertise,
       resumeUrl,
       message,
+      resumeKey,
     });
 
     await newSubmission.save();

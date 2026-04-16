@@ -56,11 +56,11 @@ export function JobCard({ job, index = 0 }: JobCardProps) {
 
         {/* Meta row */}
         <div className="flex flex-wrap gap-3 mb-6">
-          <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
+          <div className="flex items-center gap-1.5 text-xs text-text-tertiary capitalize">
             <MapPin className="h-3.5 w-3.5 text-text-muted" />
             {job.location}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
+          <div className="flex items-center gap-1.5 text-xs text-text-tertiary capitalize">
             <WorkIcon className="h-3.5 w-3.5 text-text-muted" />
             {job.workType}
           </div>

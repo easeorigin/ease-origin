@@ -170,7 +170,7 @@ export default function SubmittedResumes() {
       <ResumeDrawer
         open={!!resumeApp}
         onClose={() => setResumeApp(null)}
-        resumeUrl={resumeApp?.resumeUrl}
+        resumeKey={resumeApp?.resumeKey}
         applicantName={resumeApp?.name ?? ""}
       />
     </div>

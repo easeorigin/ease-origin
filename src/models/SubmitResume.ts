@@ -7,6 +7,7 @@ interface SubmitResume {
   expertise: string;
   resumeUrl: string;
   message: string;
+  resumeKey: string;
 };
 
 const SubmitResumeSchema = new Schema<SubmitResume>({
@@ -16,6 +17,7 @@ const SubmitResumeSchema = new Schema<SubmitResume>({
   expertise: { type: String, required: true },
   resumeUrl: { type: String, required: true },
   message: { type: String, required: true },
+  resumeKey: { type: String, required: true },
 }, { timestamps: true });
 
 export const SubmitResumeModel = models.SubmitResume || model<SubmitResume>("SubmitResume", SubmitResumeSchema);

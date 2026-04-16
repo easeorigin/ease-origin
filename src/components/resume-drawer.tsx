@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useCallback, memo, useEffect } from "react";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 import {
   X,
   ZoomIn,
@@ -18,28 +16,31 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 
-const Document = dynamic(
-  () => import("react-pdf").then((mod) => mod.Document),
-  { ssr: false }
-);
-
-const Page = dynamic(
-  () => import("react-pdf").then((mod) => mod.Page),
-  { ssr: false }
-);
-
 const MIN_SCALE = 0.5;
 const MAX_SCALE = 2.5;
 const SCALE_STEP = 0.2;
 
+const ResumePdfViewer = dynamic(
+  () => import("@/components/pdf-previewer").then((mod) => mod.ResumePdfViewer),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center gap-2 text-muted-foreground py-8">
+        <Loader2 className="w-5 h-5 animate-spin" />
+        <span className="text-sm">Loading resume…</span>
+      </div>
+    ),
+  }
+);
+
 interface ResumeViewerProps {
-  resumeUrl: string;
+  resumeKey: string;
   applicantName: string;
   jobTitle?: string;
 }
 
 const ResumeViewer = memo(function ResumeViewer({
-  resumeUrl,
+  resumeKey,
   applicantName,
   jobTitle,
 }: ResumeViewerProps) {
@@ -48,22 +49,38 @@ const ResumeViewer = memo(function ResumeViewer({
   const [scale, setScale] = useState(1.0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [signedUrl, setSignedUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!resumeKey) return;
+
+    const fetchSignedUrl = async () => {
+      try {
+        const res = await fetch("/api/admin/get-file-url", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ key: resumeKey }),
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch signed URL");
+        const data = await res.json();
+        if (!data.url) throw new Error("No URL in response");
+        setSignedUrl(data.url);
+      } catch (err) {
+        console.error(err);
+        setError(true);
+      }
+    };
+
+    fetchSignedUrl();
+  }, [resumeKey]);
 
   // ✅ Reset state when URL changes
   useEffect(() => {
     setLoading(true);
     setError(false);
     setPageNumber(1);
-  }, [resumeUrl]);
-
-  useEffect(() => {
-  import("react-pdf").then((mod) => {
-    mod.pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-      "pdfjs-dist/build/pdf.worker.min.mjs",
-      window.location.href
-    ).toString();
-  });
-}, []);
+  }, [signedUrl]);
 
   // ✅ Global ESC handler
   useEffect(() => {
@@ -84,7 +101,7 @@ const ResumeViewer = memo(function ResumeViewer({
       setLoading(false);
       setError(false);
     },
-    []
+    [],
   );
 
   const onDocumentLoadError = useCallback(() => {
@@ -92,24 +109,12 @@ const ResumeViewer = memo(function ResumeViewer({
     setError(true);
   }, []);
 
-  const zoomIn = () =>
-    setScale((s) => Math.min(s + SCALE_STEP, MAX_SCALE));
-  const zoomOut = () =>
-    setScale((s) => Math.max(s - SCALE_STEP, MIN_SCALE));
-  const prevPage = () =>
-    setPageNumber((p) => Math.max(p - 1, 1));
-  const nextPage = () =>
-    setPageNumber((p) => Math.min(p + 1, numPages));
+  const zoomIn = () => setScale((s) => Math.min(s + SCALE_STEP, MAX_SCALE));
+  const zoomOut = () => setScale((s) => Math.max(s - SCALE_STEP, MIN_SCALE));
+  const prevPage = () => setPageNumber((p) => Math.max(p - 1, 1));
+  const nextPage = () => setPageNumber((p) => Math.min(p + 1, numPages));
 
-  // ✅ Better PDF validation
-  const isSafePdf = (() => {
-    try {
-      const url = new URL(resumeUrl);
-      return url.pathname.toLowerCase().endsWith(".pdf");
-    } catch {
-      return false;
-    }
-  })();
+  const isSafePdf = resumeKey?.toLowerCase().endsWith(".pdf") ?? false;
 
   return (
     <div className="flex flex-col h-full">
@@ -139,11 +144,13 @@ const ResumeViewer = memo(function ResumeViewer({
                 Only PDF resumes can be previewed.
               </p>
             </div>
-            <Button asChild variant="outline">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                <Download className="w-4 h-4 mr-2" /> Download File
-              </a>
-            </Button>
+            {signedUrl && (
+              <Button asChild variant="outline">
+                <a href={signedUrl} target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4 mr-2" /> Download File
+                </a>
+              </Button>
+            )}
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
@@ -154,11 +161,13 @@ const ResumeViewer = memo(function ResumeViewer({
                 Please download the file instead.
               </p>
             </div>
-            <Button asChild variant="outline">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                <Download className="w-4 h-4 mr-2" /> Download Resume
-              </a>
-            </Button>
+            {signedUrl && (
+              <Button asChild variant="outline">
+                <a href={signedUrl} target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4 mr-2" /> Download Resume
+                </a>
+              </Button>
+            )}
           </div>
         ) : (
           <>
@@ -169,23 +178,15 @@ const ResumeViewer = memo(function ResumeViewer({
               </div>
             )}
 
-            <Document
-              key={resumeUrl} // ✅ critical fix
-              file={resumeUrl}
-              onLoadSuccess={onDocumentLoadSuccess}
-              onLoadError={onDocumentLoadError}
-              loading={null}
-              className="flex flex-col items-center gap-4"
-            >
-              <Page
-                key={pageNumber}
-                pageNumber={pageNumber}
-                scale={scale}
-                renderAnnotationLayer
-                renderTextLayer
-                className="shadow-xl rounded-sm overflow-hidden"
-              />
-            </Document>
+            {!loading && signedUrl && (
+  <ResumePdfViewer
+    signedUrl={signedUrl}
+    pageNumber={pageNumber}
+    scale={scale}
+    onLoadSuccess={onDocumentLoadSuccess}
+    onLoadError={onDocumentLoadError}
+  />
+)}
           </>
         )}
       </div>
@@ -251,7 +252,11 @@ const ResumeViewer = memo(function ResumeViewer({
 
           {/* Download */}
           <Button asChild variant="outline" size="sm">
-            <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={signedUrl ?? "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Download className="w-4 h-4 mr-2" /> Download
             </a>
           </Button>
@@ -264,7 +269,7 @@ const ResumeViewer = memo(function ResumeViewer({
 interface ResumeDrawerProps {
   open: boolean;
   onClose: () => void;
-  resumeUrl: string | null | undefined;
+  resumeKey: string | null | undefined;
   applicantName: string;
   jobTitle?: string;
 }
@@ -272,22 +277,22 @@ interface ResumeDrawerProps {
 export function ResumeDrawer({
   open,
   onClose,
-  resumeUrl,
+  resumeKey,
   applicantName,
   jobTitle,
 }: ResumeDrawerProps) {
   // ✅ Global ESC to close drawer
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
+  // useEffect(() => {
+  //   const handleEsc = (e: KeyboardEvent) => {
+  //     if (e.key === "Escape") onClose();
+  //   };
 
-    if (open) {
-      window.addEventListener("keydown", handleEsc);
-    }
+  //   if (open) {
+  //     window.addEventListener("keydown", handleEsc);
+  //   }
 
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [open, onClose]);
+  //   return () => window.removeEventListener("keydown", handleEsc);
+  // }, [open, onClose]);
 
   return (
     <>
@@ -297,7 +302,7 @@ export function ResumeDrawer({
           "fixed inset-0 z-40 bg-black/50 transition-opacity duration-300",
           open
             ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            : "opacity-0 pointer-events-none",
         )}
         onClick={onClose}
       />
@@ -310,7 +315,7 @@ export function ResumeDrawer({
           "fixed top-0 right-0 z-50 h-full bg-card border-l border-border shadow-2xl flex flex-col",
           "transition-transform duration-300 ease-in-out",
           "w-full sm:w-170",
-          open ? "translate-x-0" : "translate-x-full"
+          open ? "translate-x-0" : "translate-x-full",
         )}
       >
         {/* Header */}
@@ -328,13 +333,13 @@ export function ResumeDrawer({
 
         {/* Body */}
         <div className="flex-1 min-h-0 overflow-hidden">
-          {open && resumeUrl ? (
+          {open && resumeKey ? (
             <ResumeViewer
-              resumeUrl={resumeUrl}
+              resumeKey={resumeKey}
               applicantName={applicantName}
               jobTitle={jobTitle}
             />
-          ) : open && !resumeUrl ? (
+          ) : open && !resumeKey ? (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-8">
               <FileText className="w-10 h-10 text-muted-foreground" />
               <div>

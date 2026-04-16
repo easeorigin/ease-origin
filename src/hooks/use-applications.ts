@@ -50,6 +50,7 @@ export type Application = {
   portfolio?: string;
   coverLetterUrl?: string;
   resumeUrl: string;
+  resumeKey: string;
   experiences: Experience[];
   education: Education[];
   workAuthorization?: string;

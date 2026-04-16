@@ -355,7 +355,7 @@ export default function JobsListingPage() {
               </span>{" "}
               of{" "}
               <span className="font-semibold text-text-primary">
-                {jobs.length}
+                {mergedJobs.length}
               </span>{" "}
               positions
             </p>

@@ -68,6 +68,7 @@ interface AppData {
   resumeFile: File | null;
   coverLetterFile: File | null;
   resumeUrl: string;
+  resumeKey: string;
   coverLetterUrl: string;
   linkedin: string;
   portfolio: string;
@@ -124,6 +125,7 @@ const initialData: AppData = {
   resumeFile: null,
   coverLetterFile: null,
   resumeUrl: "",
+  resumeKey: "",
   coverLetterUrl: "",
   linkedin: "",
   portfolio: "",
@@ -1388,6 +1390,7 @@ export function ApplicationDrawer({
       portfolio: data.portfolio || undefined,
 
       resumeUrl: data.resumeUrl,
+      resumeKey: data.resumeKey,
       coverLetterUrl: data.coverLetterUrl || undefined,
 
       jobTitle,

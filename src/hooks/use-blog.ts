@@ -2,6 +2,20 @@ import { useQuery, useMutation, useQueryClient, UseQueryOptions } from "@tanstac
 import { useToast } from "@/components/ui/use-toast";
 import { api } from "@/lib/axios";
 
+export type BlogCategory =
+  | "cloud & infrastructure"
+  | "cybersecurity"
+  | "devOps"
+  | "program management"
+  | "company news"
+  | "federal iT"
+  | "aI & data"
+  | "enterprise platforms"
+  | "agile & delivery"
+  | "govCon insights"
+  | "industry insights"
+  | "perspectives";
+
 export type Blog = {
   _id: string;
   title: string;
@@ -10,6 +24,8 @@ export type Blog = {
   imageUrl: string;
   author: string;
   excerpt: string;
+  category: BlogCategory;
+  tags: string[];
   createdAt: string;
   updatedAt: string;
 };

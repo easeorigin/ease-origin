@@ -340,7 +340,7 @@ export default function Applications() {
       <ResumeDrawer
         open={!!resumeApp}
         onClose={() => setResumeApp(null)}
-        resumeUrl={resumeApp?.resumeUrl}
+        resumeKey={resumeApp?.resumeKey}
         applicantName={resumeApp?.fullName ?? ""}
         jobTitle={resumeApp?.jobTitle ?? ""}
       />

@@ -25,6 +25,7 @@ interface FormValues {
   expertise: string;
   message: string;
   resumeUrl: string;
+  resumeKey: string;
 }
 
 interface FormErrors {
@@ -34,6 +35,8 @@ interface FormErrors {
   expertise?: string;
   message?: string;
   resumeUrl?: string;
+  resumeKey?: string;
+
 }
 
 // ─── Validation ───────────────────────────────────────────────────────────────
@@ -65,6 +68,7 @@ export default function SubmitResumePage() {
     expertise: "",
     message: "",
     resumeUrl: "",
+    resumeKey: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<
@@ -90,7 +94,7 @@ export default function SubmitResumePage() {
     setUploadProgress(10); // initial feedback
 
     try {
-      const res = await fetch("/api/upload", {
+      const res = await fetch("/api/upload-files", {
         method: "POST",
         body: formData,
       });
@@ -98,6 +102,7 @@ export default function SubmitResumePage() {
       if (!res.ok) throw new Error("Upload failed");
 
       const data = await res.json();
+      console.log("UPLOAD RESPONSE:", data);
 
       setUploadProgress(100);
 
@@ -107,7 +112,8 @@ export default function SubmitResumePage() {
       // ✅ Save URL for validation + submission
       setValues((prev) => ({
         ...prev,
-        resumeUrl: data.secure_url,
+        resumeUrl: data.url,
+        resumeKey: data.key,
       }));
     } catch (err) {
       console.error("Upload failed:", err);
@@ -157,6 +163,7 @@ export default function SubmitResumePage() {
         setSubmitted(true);
       },
     });
+    console.log("SUBMIT VALUES:", values);
   };
 
   const inputBase =
@@ -237,7 +244,7 @@ export default function SubmitResumePage() {
                     Resume Submitted!
                   </h3>
                   <p className="text-gray-500 max-w-sm leading-relaxed">
-                    Thank you for your interest in eo Federal. Our recruiting
+                    Thank you for your interest in EaseOrigin. Our recruiting
                     team will review your profile and be in touch.
                   </p>
                   <Link href="/careers/jobs">
@@ -327,7 +334,7 @@ export default function SubmitResumePage() {
                         <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1.5">
                           Area of Expertise
                         </label>
-                        <div className="relative">
+                        <div className="relative capitalize">
                           <select
                             value={values.expertise}
                             onChange={(e) =>
@@ -336,12 +343,12 @@ export default function SubmitResumePage() {
                             onBlur={() => handleBlur("expertise")}
                             className={cn(
                               fieldCls("expertise"),
-                              "appearance-none pr-8",
+                              "appearance-none pr-8 capitalize",
                             )}
                           >
-                            <option value="">Select expertise</option>
+                            <option className="capitalize" value="">Select expertise</option>
                             {CATEGORIES.map((c) => (
-                              <option key={c} value={c}>
+                              <option className="capitalize" key={c} value={c}>
                                 {c}
                               </option>
                             ))}
