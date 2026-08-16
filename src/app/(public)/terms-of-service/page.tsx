@@ -36,7 +36,13 @@ export default function TermsOfService() {
 
             <h2 className="text-xl font-bold text-text-primary mt-8">Intellectual Property</h2>
             <p className="text-text-tertiary leading-relaxed mb-6">
-              All content on this website, including text, graphics, logos, and software, is the property of EaseOrigin and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from any content without written permission.
+              All content on this website, including text, graphics, logos, articles, and software, is the property of EaseOrigin LLC and is protected by applicable intellectual property laws. No license is granted. You may not reproduce, distribute, modify, or create derivative works from any content without our prior written permission.
+            </p>
+            <p className="text-text-tertiary leading-relaxed mb-6">
+              This website is built on open source software. Those third-party components remain the property of their respective owners and stay subject to their own licenses, which are not affected by anything in this section.
+            </p>
+            <p className="text-text-tertiary leading-relaxed mb-6">
+              Agency, contractor, and company names that appear on this site are used for identification only. Those names and marks belong to their owners, and their use here does not imply endorsement, sponsorship, or partnership.
             </p>
 
             <h2 className="text-xl font-bold text-text-primary mt-8">Limitation of Liability</h2>

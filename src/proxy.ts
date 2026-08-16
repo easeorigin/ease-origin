@@ -10,7 +10,8 @@ export default function proxy(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    // Fonts are self-hosted through next/font, so no Google Fonts origin is needed.
+    "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://logo.wine https://upload.wikimedia.org https://logo.clearbit.com https://*.vercel-insights.com https:",
     "font-src 'self' https://fonts.gstatic.com",
     "connect-src 'self' https://vercel.live https://va.vercel-scripts.com https://vitals.vercel-insights.com",
