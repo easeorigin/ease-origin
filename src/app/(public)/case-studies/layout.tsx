@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Real-world results from EaseOrigin engagements across cloud migration, cybersecurity, DevOps, AI/ML, and program management for federal agencies and commercial clients.",
+    "Engineering work our people have delivered across cloud migration, security compliance, and platform operations. Program experience is attributed to the organization that held the contract.",
   openGraph: {
     title: "Case Studies | EaseOrigin",
     description:
-      "Real-world results from EaseOrigin engagements across cloud migration, cybersecurity, DevOps, AI/ML, and program management for federal agencies and commercial clients.",
+      "Engineering work our people have delivered across cloud migration, security compliance, and platform operations. Program experience is attributed to the organization that held the contract.",
   },
 };
 

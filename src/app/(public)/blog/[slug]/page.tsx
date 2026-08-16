@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       url: "https://easeorigin.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://easeorigin.com/logo.png",
+        url: "https://easeorigin.com/logo/main-logo.png",
       },
     },
     mainEntityOfPage: {

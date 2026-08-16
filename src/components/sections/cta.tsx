@@ -16,13 +16,12 @@ export function CTA() {
 
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary mb-4">
-            Ready to Partner With EaseOrigin?
+            Have scope you need covered?
           </h2>
           <p className="text-lg text-text-tertiary mb-10">
-            Whether you are a prime contractor seeking specialized talent, a
-            government agency pursuing IT modernization, or a private sector
-            organization looking to scale, let&apos;s discuss how our team can
-            support your mission.
+            Send us the work. If it is a fit, you get back how we would
+            approach it and what we would need from your side. If it is not a
+            fit, we will say so rather than stretch to cover it.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -33,10 +32,10 @@ export function CTA() {
               Partner With Us
             </Link>
             <Link
-              href="/contact"
+              href="/capability-statement"
               className="px-8 py-4 text-base font-bold rounded-md bg-surface-muted text-text-primary hover:bg-border-default transition-colors border border-border-default"
             >
-              Contact Us
+              Capability Statement
             </Link>
           </div>
         </div>

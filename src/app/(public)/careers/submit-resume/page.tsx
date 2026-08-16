@@ -219,9 +219,10 @@ export default function SubmitResumePage() {
                 Submit Your Resume
               </h1>
               <p className="text-gray-300 leading-relaxed max-w-xl">
-                We partner with highly skilled consultants supporting federal
-                technology initiatives. Submit your resume and we&apos;ll reach out
-                when a matching opportunity arises.
+                We have no open requisitions right now. We do work with a network
+                of independent engineers and small firms on federal
+                subcontracts. Send your background and we will reach out if
+                scope comes up that fits it.
               </p>
             </motion.div>
           </div>

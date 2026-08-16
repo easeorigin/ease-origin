@@ -12,10 +12,12 @@ import {
   BarChart3,
   ShieldCheck,
   Cloud,
+  Info,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { CTASection } from "@/components/shared/cta-section";
 import { getCaseStudyBySlug, caseStudies } from "@/data/case-studies";
+import { attributionNotice } from "@/data/company-info";
 
 const categoryHeroImages: Record<string, string> = {
   "Cloud Infrastructure": "/images/cloud-infrastructure.jpg",
@@ -95,11 +97,16 @@ export default async function CaseStudyDetail({
 
   const Icon = categoryIcons[study.category] ?? BarChart3;
 
+  // EaseOrigin LLC authored and publishes this write-up, which is what
+  // schema.org author/publisher describe. It did not hold the contract for the
+  // work the write-up describes, so the attribution notice rides along in the
+  // structured data rather than leaving a machine-readable claim of delivery.
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: study.title,
     description: study.heroDescription,
+    disambiguatingDescription: attributionNotice,
     author: {
       "@type": "Organization",
       name: "EaseOrigin LLC",
@@ -200,8 +207,8 @@ export default async function CaseStudyDetail({
         {(study.sector ||
           study.clientLabel ||
           study.duration ||
-          study.easeOriginRole ||
-          study.contractVehicle ||
+          study.role ||
+          study.deliveredUnder ||
           study.complianceFrameworks) && (
           <section className="bg-surface-muted border-b border-border-default">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
@@ -235,25 +242,23 @@ export default async function CaseStudyDetail({
                     <span className="text-text-tertiary">{study.duration}</span>
                   </div>
                 )}
-                {study.easeOriginRole && (
+                {study.role && (
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-gray-400 shrink-0" />
                     <span className="font-semibold text-text-primary">
-                      Role:
+                      Scope of work:
                     </span>
-                    <span className="text-text-tertiary">
-                      {study.easeOriginRole}
-                    </span>
+                    <span className="text-text-tertiary">{study.role}</span>
                   </div>
                 )}
-                {study.contractVehicle && (
+                {study.deliveredUnder && (
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-gray-400 shrink-0" />
                     <span className="font-semibold text-text-primary">
-                      Contract:
+                      Delivered under:
                     </span>
                     <span className="text-text-tertiary">
-                      {study.contractVehicle}
+                      {study.deliveredUnder}
                     </span>
                   </div>
                 )}
@@ -280,6 +285,18 @@ export default async function CaseStudyDetail({
             </div>
           </section>
         )}
+
+        {/* Attribution notice, above the narrative content by design. */}
+        <section className="bg-surface border-b border-border-subtle">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex items-start gap-4 rounded-xl border border-eo-gold/40 bg-eo-gold/5 px-6 py-5">
+              <Info className="h-5 w-5 text-eo-gold shrink-0 mt-0.5" />
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {attributionNotice}
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Overview */}
         <Section className="bg-linear-to-b from-slate-50/60 via-white to-slate-50/40 dark:from-gray-900/60 dark:via-gray-900 dark:to-gray-900/40 border-b border-border-subtle">
@@ -313,7 +330,7 @@ export default async function CaseStudyDetail({
                 <Icon className="h-5 w-5 text-eo-gold" />
               </div>
               <h3 className="text-lg font-bold text-white mb-4">
-                Our Solution
+                The Solution
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm">
                 {study.solution}

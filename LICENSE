@@ -1,21 +1,20 @@
-MIT License
+Copyright (c) 2026 EaseOrigin LLC. All rights reserved.
 
-Copyright (c) 2026 Muhammad Mukhtar
+This repository and its contents, including all source code, written content,
+blog articles, case studies, page copy, design assets, and brand assets, are
+the proprietary and confidential property of EaseOrigin LLC.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+No license is granted. No part of this repository may be copied, reproduced,
+modified, merged, published, distributed, sublicensed, sold, or used to create
+derivative works without the prior written permission of EaseOrigin LLC.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Third-party dependencies retain their own licenses. See THIRD-PARTY-LICENSES.md.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+NOTICE ON PRIOR LICENSING
+
+Until this notice replaced it, this repository carried an MIT license naming a
+copyright holder other than EaseOrigin LLC. An MIT grant is irrevocable as to
+copies already made. Anyone who obtained a copy of this repository while that
+license was in effect retains an MIT license to that snapshot. This notice
+governs the repository from its commit date forward; it does not and cannot
+apply retroactively to copies already taken.

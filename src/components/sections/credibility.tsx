@@ -11,18 +11,18 @@ export function Credibility() {
   const features = [
     {
       icon: ShieldCheck,
-      title: "14+ Years of IT Experience",
-      description: "Delivering cloud, security, platform engineering, and program delivery solutions across government and enterprise environments."
+      title: "14+ Years of Hands-On Engineering",
+      description: "Cloud, security, platform engineering, and program delivery across government and enterprise environments."
     },
     {
       icon: Handshake,
-      title: "Trusted Partnerships",
-      description: "Proven relationships with prime contractors, government agencies, and commercial organizations built on reliability and results."
+      title: "Prime Contractor Delivery",
+      description: "Federal work delivered as a subcontractor under established primes, with a partner network we draw on when a program needs scope we do not cover ourselves."
     },
     {
       icon: Award,
-      title: "Certified Expertise",
-      description: "Multi-cloud certified professionals across AWS, Azure, GCP, and Oracle Cloud with security credentials for regulated government and commercial environments."
+      title: "Certified Practice",
+      description: "Hands-on across AWS, Azure, GCP, and Oracle Cloud, plus enterprise SaaS platforms including ServiceNow, Salesforce, SAP, and Dynamics 365. Certifications are held on AWS and Azure, plus CompTIA Security+; the rest is delivery experience rather than a certificate."
     }
   ];
 

@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { NetworkParticles } from "@/components/ui/network-particles";
+import { clearanceStatement } from "@/data/company-info";
 
 function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayedText, setDisplayedText] = useState("");
@@ -72,7 +73,7 @@ export function Hero() {
             >
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
-                <span>Trusted Technology Partner</span>
+                <span>Cloud and Platform Engineering</span>
               </div>
             </motion.div>
 
@@ -84,7 +85,7 @@ export function Hero() {
               className="w-full text-4xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6"
             >
               <TypewriterText
-                text="Technology Consulting That Delivers Mission Success."
+                text="Cloud platforms for regulated environments."
                 delay={450}
               />
             </motion.h1>
@@ -96,9 +97,9 @@ export function Hero() {
               }}
               className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
             >
-              EaseOrigin delivers specialized technology consulting and
-              enterprise IT solutions to government agencies, prime
-              contractors, and private sector organizations nationwide.
+              EaseOrigin builds and operates secure cloud infrastructure for
+              federal programs and regulated commercial environments. We work
+              as a subcontractor to the primes who hold the contracts.
             </motion.p>
 
             <motion.div
@@ -106,21 +107,23 @@ export function Hero() {
                 hidden: { opacity: 0, y: 25 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
               }}
-              className="flex flex-wrap gap-3 mb-8"
+              className="mb-8"
             >
-              {[
-                "14+ Years Experience",
-                "30+ Certifications",
-                "Active Clearance",
-                "Small Business",
-              ].map((signal) => (
-                <span
-                  key={signal}
-                  className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-eo-gold/15 text-eo-gold border border-eo-gold/30"
-                >
-                  {signal}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-3 mb-4">
+                {[
+                  "14+ Years Hands-On Engineering",
+                  "Small Business",
+                  "Midlothian, TX",
+                ].map((signal) => (
+                  <span
+                    key={signal}
+                    className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-eo-gold/15 text-eo-gold border border-eo-gold/30"
+                  >
+                    {signal}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm text-gray-400">{clearanceStatement}</p>
             </motion.div>
 
             <motion.div

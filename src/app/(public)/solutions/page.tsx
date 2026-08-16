@@ -176,6 +176,7 @@ const advisorySolutions = [
 
 // Agency data imported from centralized source
 import { governmentAgencies } from "@/data/agencies";
+import { attributionNotice } from "@/data/company-info";
 
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
@@ -269,7 +270,7 @@ function OverviewGrid() {
   );
 }
 
-function ContractVehiclesCallout() {
+function TeamingCallout() {
   return (
     <Section className="relative overflow-hidden bg-eo-navy text-white">
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
@@ -284,13 +285,16 @@ function ContractVehiclesCallout() {
             <FileCheck className="h-8 w-8 text-eo-gold" />
           </div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Procurement</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">Contract Vehicles</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">Teaming &amp; Subcontracting</h3>
           <p className="text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
-            EaseOrigin delivers through established government contract vehicles including SAIC Cloud One, Leidos Kobayashi Maru, NAWCAD, and GSA Schedule, making it easy for agencies and primes to access our expertise compliantly.
+            We work as a subcontractor on prime-held vehicles. Our program
+            experience page lists the federal programs our people have delivered
+            on, along with the NAICS and PSC codes, labor categories, and
+            clearance status a small business liaison officer needs.
           </p>
-          <Link href="/contract-vehicles">
+          <Link href="/program-experience">
             <span className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-eo-gold text-eo-navy font-bold hover:bg-yellow-400 transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 cursor-pointer">
-              View Contract Vehicles <ArrowRight className="h-5 w-5" />
+              View Program Experience <ArrowRight className="h-5 w-5" />
             </span>
           </Link>
         </motion.div>
@@ -314,9 +318,9 @@ function AgenciesGrid() {
 
       <div className="relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Partners</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Agencies We&apos;ve Supported</h3>
-          <p className="text-gray-500 text-lg">Supporting the agencies that serve our nation through specialized IT expertise and prime contractor partnerships.</p>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-3">Experience</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Agencies Our People Have Supported</h3>
+          <p className="text-gray-500 text-lg">{attributionNotice}</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
@@ -347,7 +351,7 @@ function SolutionsCTA() {
       variant="gradient"
       eyebrow="Get Started"
       title="Partner With EaseOrigin"
-      description="Our team works alongside government agencies and prime contractors to deliver high-impact technology solutions tailored to your mission."
+      description="We work alongside government agencies and prime contractors to deliver high-impact technology solutions tailored to your mission."
       primaryCta={{ href: "/contact", label: "Partner With Us" }}
       secondaryCta={{ href: "/contact", label: "Contact Us" }}
     />
@@ -362,7 +366,7 @@ export default function SolutionsPage() {
       <main>
         <SolutionsHero />
         <OverviewGrid />
-        <ContractVehiclesCallout />
+        <TeamingCallout />
         <AgenciesGrid />
         <SolutionsCTA />
       </main>

@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EaseOrigin
 
-## Getting Started
+Corporate website for EaseOrigin LLC, a technology consulting firm working in
+federal cloud, platform, and security engineering.
 
-First, run the development server:
+**Proprietary. All rights reserved. See [LICENSE](./LICENSE).** This repository
+is not open source and carries no license to use, copy, or redistribute it.
+
+## Stack
+
+- Next.js 16 (App Router)
+- React 19, TypeScript
+- Tailwind CSS
+- MongoDB via Mongoose, for the admin-managed job, application, and blog records
+- NextAuth for admin authentication
+- AWS S3 for uploads
+- Deployed on Vercel
+
+Public marketing content is not in a CMS. It lives in `src/data/*.ts` and is
+edited in the repo.
+
+## Running it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site comes up on http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # production build
+npm run lint     # eslint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A note if you work on a Windows mount. The `node_modules/.bin` shims land as
+zero-byte files on OneDrive and NTFS, because npm creates them as symlinks and
+the mount cannot. Anything run through those shims exits 0 without doing
+anything, so `npx tsc` and `npx next build` will look like they passed when
+they never ran. Invoke the real entry points instead:
 
-## Learn More
+```bash
+node node_modules/typescript/bin/tsc --noEmit
+node node_modules/next/dist/bin/next build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `.env.example` to `.env.local` and fill it in. It covers the MongoDB
+connection string, NextAuth secret and URL, AWS S3 credentials and bucket, and
+the mail transport. Nothing runs without them.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`.gitignore` covers `.env*`, so `.env.example` is untracked too. Get it from
+another developer rather than expecting it in a fresh clone. Never commit a
+real `.env`.
 
-## Deploy on Vercel
+There is also a Docker dev setup that builds from this repo. It lives outside
+this repository, in the operations workspace, and uses polling file watchers
+because inotify does not cross a Windows mount.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/app/(public)/    public pages
+src/app/admin/       admin dashboard, auth-gated
+src/app/api/         route handlers
+src/components/      UI, sections, shared layout
+src/data/            marketing content and company facts
+src/models/          Mongoose schemas
+```
+
+## Editing public claims
+
+`src/data/company-info.ts` holds the company facts, the program attribution
+notice, and the clearance and trademark language. Pages import from there rather
+than hardcoding, so a claim gets corrected in one place.
+
+Two rules on this site, both load-bearing:
+
+1. **Anything checkable has to be true.** Program experience is attributed to
+   the organization that actually held the contract. EaseOrigin holds no
+   contract vehicles and the site says so. No testimonials, no counts that
+   cannot be sourced on request.
+2. **No government seals or third-party logos.** Agency seals are
+   reproduction-restricted, and company marks need written permission. Named
+   organizations appear as text only.
+
+## Third-party software
+
+See [THIRD-PARTY-LICENSES.md](./THIRD-PARTY-LICENSES.md).

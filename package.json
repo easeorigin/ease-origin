@@ -2,6 +2,13 @@
   "name": "ease-origin",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
+  "author": "EaseOrigin LLC",
+  "description": "EaseOrigin LLC corporate website.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easeorigin/ease-origin.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -75,7 +82,6 @@
     "react-day-picker": "^9.11.1",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.55.0",
-    "react-icons": "^5.4.0",
     "react-pdf": "^10.4.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.2",
@@ -86,7 +92,6 @@
     "tw-animate-css": "^1.4.0",
     "uploadthing": "^7.7.4",
     "vaul": "^1.1.2",
-    "wouter": "^3.3.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -105,7 +110,6 @@
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.1.14",
-    "typescript": "^5",
-    "vite": "^7.3.0"
+    "typescript": "^5"
   }
 }

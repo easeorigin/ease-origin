@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about EaseOrigin LLC, a small business delivering federal IT consulting, cloud solutions, and cybersecurity services.",
+    "EaseOrigin LLC is a small business that builds and operates secure cloud infrastructure for federal programs and regulated commercial environments.",
   openGraph: {
     title: "About | EaseOrigin",
     description:
-      "Learn about EaseOrigin LLC, a small business delivering federal IT consulting, cloud solutions, and cybersecurity services.",
+      "EaseOrigin LLC is a small business that builds and operates secure cloud infrastructure for federal programs and regulated commercial environments.",
   },
 };
 
