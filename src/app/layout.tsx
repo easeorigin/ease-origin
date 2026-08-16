@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
   },
   description:
-    "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
+    "Cloud platform engineering, AI and large language model infrastructure, DevSecOps, security compliance, and program delivery for federal agencies and prime contractors.",
   metadataBase: new URL("https://easeorigin.com"),
   keywords: [
     "federal IT consulting",
@@ -42,6 +42,18 @@ export const metadata: Metadata = {
     "IT staffing",
     "federal contractor",
     "AI/ML solutions",
+    "LLM infrastructure",
+    "retrieval augmented generation",
+    "RAG pipelines",
+    "Model Context Protocol",
+    "LangChain",
+    "AWS Bedrock",
+    "forward deployed engineering",
+    "air-gapped deployment",
+    "Iron Bank",
+    "IL5",
+    "IL6",
+    "Kubernetes",
     "infrastructure as code",
     "small business",
     "EaseOrigin",
@@ -57,14 +69,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
     description:
-      "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
+      "Cloud platform engineering, AI and large language model infrastructure, DevSecOps, security compliance, and program delivery for federal agencies and prime contractors.",
     url: "https://easeorigin.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
     description:
-      "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
+      "Cloud platform engineering, AI and large language model infrastructure, DevSecOps, security compliance, and program delivery for federal agencies and prime contractors.",
   },
   alternates: {
     types: {
@@ -79,7 +91,7 @@ const localBusinessJsonLd = {
   name: companyInfo.name,
   url: companyInfo.url,
   description:
-    "Cloud platform engineering, infrastructure as code and CI/CD, Kubernetes operations, and security and compliance automation, plus program management and PMO governance, SAFe release train engineering, data engineering and analytics, enterprise AI platforms, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, including IL5 environments.",
+    "Cloud platform engineering, AI and large language model infrastructure, Kubernetes platform operations, infrastructure as code and CI/CD, security and compliance automation, and forward deployed implementation. Also enterprise packaging for air-gapped delivery, observability and incident response, program management and PMO governance, SAFe release train engineering, data engineering and analytics, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, up to IL6 and C2Ops boundaries.",
   address: {
     "@type": "PostalAddress",
     streetAddress: companyInfo.address.street,
@@ -110,7 +122,7 @@ const organizationJsonLd = {
   name: companyInfo.name,
   url: companyInfo.url,
   description:
-    "Cloud platform engineering, infrastructure as code and CI/CD, Kubernetes operations, and security and compliance automation, plus program management and PMO governance, SAFe release train engineering, data engineering and analytics, enterprise AI platforms, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, including IL5 environments.",
+    "Cloud platform engineering, AI and large language model infrastructure, Kubernetes platform operations, infrastructure as code and CI/CD, security and compliance automation, and forward deployed implementation. Also enterprise packaging for air-gapped delivery, observability and incident response, program management and PMO governance, SAFe release train engineering, data engineering and analytics, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, up to IL6 and C2Ops boundaries.",
   address: {
     "@type": "PostalAddress",
     streetAddress: companyInfo.address.street,

@@ -84,9 +84,23 @@ export default function ProgramExperiencePage() {
                     key={program.slug}
                     className="bg-surface border border-border-subtle rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
                   >
-                    <span className="inline-block px-3 py-1 mb-4 rounded-full bg-eo-navy/5 border border-border-default text-text-tertiary text-xs font-bold uppercase tracking-wider">
-                      {program.role}
-                    </span>
+                    {/*
+                      No badge on personnel experience. The attribution notice
+                      at the top of the page already says who held the
+                      contract, and repeating it on every card as a label was
+                      both redundant and worse: the old label read
+                      "Founder Experience (W-2)", which narrated employment and
+                      shrank the firm to one person.
+
+                      A badge appears only when EaseOrigin itself held the
+                      contract, because that is genuinely different and an
+                      evaluator should see it straight away.
+                    */}
+                    {program.role !== "Personnel Experience" && (
+                      <span className="inline-block px-3 py-1 mb-4 rounded-full bg-eo-gold/10 border border-eo-gold/30 text-eo-gold text-xs font-bold uppercase tracking-wider">
+                        {program.role}
+                      </span>
+                    )}
 
                     <h4 className="text-xl font-bold text-text-primary mb-3">
                       {program.programName}
@@ -150,9 +164,10 @@ export default function ProgramExperiencePage() {
               Teaming & Subcontracting
             </h3>
             <p className="text-text-tertiary mb-8 max-w-2xl">
-              We work as a subcontractor on prime-held vehicles. If you are a
-              small business liaison officer with a scope gap in cloud or
-              platform engineering, this is the short version.
+              We take subcontract scope on vehicles you already hold. Bringing
+              us on counts toward your small business subcontracting plan, and
+              the clearance is already active, so cleared work starts now
+              instead of after an investigation.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -160,11 +175,11 @@ export default function ProgramExperiencePage() {
                 <div className="flex items-center gap-2 mb-4">
                   <Handshake className="h-5 w-5 text-eo-blue shrink-0" />
                   <h4 className="text-base font-bold text-text-primary">
-                    What we are looking for
+                    What we take on
                   </h4>
                 </div>
                 <ul className="space-y-3">
-                  {teamingProfile.seeking.map((item) => (
+                  {teamingProfile.weTakeOn.map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
                       <span className="text-sm text-text-tertiary">{item}</span>
@@ -177,10 +192,26 @@ export default function ProgramExperiencePage() {
                 <div className="flex items-center gap-2 mb-4">
                   <Building2 className="h-5 w-5 text-eo-blue shrink-0" />
                   <h4 className="text-base font-bold text-text-primary">
-                    Labor categories
+                    What you get
                   </h4>
                 </div>
-                <ul className="space-y-3 mb-5">
+                <ul className="space-y-3">
+                  {teamingProfile.whatYouGet.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
+                      <span className="text-sm text-text-tertiary">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-surface border border-border-subtle rounded-2xl p-7">
+                <h4 className="text-base font-bold text-text-primary mb-4">
+                  Labor categories
+                </h4>
+                <ul className="space-y-3 mb-4">
                   {teamingProfile.laborCategories.map((cat) => (
                     <li key={cat.title} className="flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
@@ -188,10 +219,18 @@ export default function ProgramExperiencePage() {
                     </li>
                   ))}
                 </ul>
+                <p className="text-sm text-text-tertiary">Rates on request.</p>
+              </div>
+
+              <div className="bg-surface border border-border-subtle rounded-2xl p-7">
+                <h4 className="text-base font-bold text-text-primary mb-4">
+                  Clearance
+                </h4>
                 <p className="text-sm text-text-tertiary leading-relaxed">
-                  Rates on request. {clearanceStatement} Classified work is
-                  performed under the prime&apos;s facility clearance, which is
-                  the standard arrangement at our size.
+                  {clearanceStatement} Classified work runs under your facility
+                  clearance. The practical difference is timing: a cleared
+                  engineer can start on a cleared task order in weeks, where a
+                  new hire is a six to eighteen month wait.
                 </p>
               </div>
             </div>

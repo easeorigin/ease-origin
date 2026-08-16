@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UserCheck, Zap, ShieldCheck, Layers } from "lucide-react";
+import { UserCheck, Zap, ShieldCheck, Layers, Bot, PackageCheck } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { fadeInUpWhileVisible } from "@/lib/animations";
 import { clearanceStatement } from "@/data/company-info";
@@ -42,6 +42,24 @@ const differentiators = [
     border: "border-violet-100 dark:border-violet-900",
     iconColor: "text-violet-600",
   },
+  {
+    icon: Bot,
+    title: "AI That Ships",
+    description:
+      "Language model systems arrive with the landing zone, pipeline, and cost observability already around them, because the same practice builds both.",
+    bg: "bg-sky-50 dark:bg-sky-950",
+    border: "border-sky-100 dark:border-sky-900",
+    iconColor: "text-sky-600",
+  },
+  {
+    icon: PackageCheck,
+    title: "Air-Gapped Delivery",
+    description:
+      "Install bundles that work with no internet, hardened base images, and upgrade paths tested against the version the customer actually runs.",
+    bg: "bg-slate-100 dark:bg-slate-800",
+    border: "border-slate-200 dark:border-slate-700",
+    iconColor: "text-slate-600",
+  },
 ];
 
 export function WhyEaseOrigin() {
@@ -63,7 +81,7 @@ export function WhyEaseOrigin() {
         </h2>
       </motion.div>
 
-      <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {differentiators.map(
           ({ icon: Icon, title, description, bg, border, iconColor }, i) => (
             <motion.div

@@ -11,9 +11,24 @@
  * USAspending is not permission to describe what you built on it.
  */
 
+/**
+ * Who held the contract. This is an internal discriminator, not a label to
+ * print on a card.
+ *
+ * An earlier version of this field read "Founder Experience (W-2)" and was
+ * rendered as a badge on every entry. That was wrong twice over. "Founder"
+ * shrinks the firm to one person on a page whose job is to read as a firm, and
+ * "W-2" is employment narration, which is the thing the global attribution
+ * notice exists to make unnecessary. Say it once, at the top, in plain words.
+ *
+ * The distinction still matters internally, because the day EaseOrigin holds
+ * its own subcontract, that entry means something different to an evaluator
+ * and should be marked. Until then the notice carries the disclosure and the
+ * cards stay clean.
+ */
 export type ExperienceRole =
-  /** Performed by a person now at EaseOrigin, as a W-2 employee of the prime or sub named. */
-  | "Founder Experience (W-2)"
+  /** Delivered by EaseOrigin personnel while employed by the prime or sub named. */
+  | "Personnel Experience"
   /** EaseOrigin LLC held a subcontract. None yet. */
   | "Company Subcontract"
   /** EaseOrigin LLC held the prime contract. None yet. */
@@ -40,7 +55,7 @@ export const programExperience: ProgramExperience[] = [
     programName: "DoW Common Computing Environment",
     agency: "U.S. Air Force / DoW",
     prime: "Ikeda Innovations, subcontractor to SAIC on Cloud One",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "Oracle Cloud Infrastructure architecture and operations for the Department of War Common Computing Environment, delivered through Ikeda Innovations under SAIC's Cloud One program.",
     scope: [
@@ -57,7 +72,7 @@ export const programExperience: ProgramExperience[] = [
     programName: "Space Command and Control Software Factory (Kobayashi Maru)",
     agency: "U.S. Space Force (SSC)",
     prime: "Leidos",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "Cloud engineering and DevSecOps delivery for the Space Command and Control Software Factory supporting U.S. Space Force operations, performed under Leidos.",
     scope: [
@@ -75,7 +90,7 @@ export const programExperience: ProgramExperience[] = [
     contractNumber: "N0042118D0006",
     agency: "U.S. Navy",
     prime: "Spalding Consulting, a Saalex company",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "IT logistics, cybersecurity compliance, and enterprise architecture support to NAWCAD, performed under Spalding Consulting.",
     scope: [
@@ -92,7 +107,7 @@ export const programExperience: ProgramExperience[] = [
     programName: "GSA Modernization Support",
     agency: "General Services Administration",
     prime: "TG Federal, subcontractor to Booz Allen Hamilton",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "Cloud migration and enterprise platform delivery supporting GSA modernization work, performed under TG Federal as a subcontractor to Booz Allen Hamilton.",
     scope: [
@@ -109,7 +124,7 @@ export const programExperience: ProgramExperience[] = [
     programName: "DHS Technology Modernization",
     agency: "Department of Homeland Security",
     prime: "SteamPunk",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "Cloud and platform engineering supporting Department of Homeland Security technology modernization, performed under SteamPunk.",
     scope: [
@@ -125,7 +140,7 @@ export const programExperience: ProgramExperience[] = [
     programName: "NIH Research Computing Support",
     agency: "National Institutes of Health",
     prime: "Black Canyon Consulting",
-    role: "Founder Experience (W-2)",
+    role: "Personnel Experience",
     description:
       "Cloud infrastructure and data platform engineering supporting National Institutes of Health research computing, performed under Black Canyon Consulting.",
     scope: [
@@ -191,11 +206,28 @@ export const pscCodes: { code: string; description: string }[] = [
  * not something to work around.
  */
 export const teamingProfile = {
-  seeking: [
-    "Subcontract scope on prime-held vehicles across cloud, platform, and DevSecOps",
-    "Small business subcontracting plan credit on federal IT programs",
-    "Compliance-heavy workstreams: STIG automation, RMF packages, NIST 800-53 control implementation",
-    "Task order support on cleared programs, staffed without a hiring cycle",
+  /**
+   * Written as what the prime gets, not as what we want.
+   *
+   * The earlier version opened "What we are looking for" and described the
+   * reader as having a "scope gap". That asks for a favor. A prime carrying a
+   * subcontracting plan has goals to hit and a clearance queue that runs six to
+   * eighteen months, and both of those are our problem to solve for them. Being
+   * small is the product in this lane, so the copy should not apologize for it.
+   */
+  weTakeOn: [
+    "Cloud, platform, and DevSecOps scope on your existing vehicles",
+    "AI and language model infrastructure: retrieval pipelines, agent orchestration, and the cost and observability layer around them",
+    "Compliance work that ties up schedule: STIG automation, RMF packages, NIST 800-53 control implementation",
+    "Air-gapped packaging and delivery into IL4, IL5, IL6, and C2Ops environments",
+    "Cleared task orders that cannot wait on a hiring cycle",
+    "Surge capacity on cloud migrations and Kubernetes platform builds",
+  ],
+  whatYouGet: [
+    "Small business credit against your subcontracting plan",
+    "An active DoD clearance on day one, not after an investigation",
+    "A named engineer who scopes the work and then does it",
+    "A partner bench for specialties outside our core",
   ],
   /**
    * Rates are deliberately not published here. Publishing a range is a strong
@@ -205,7 +237,9 @@ export const teamingProfile = {
    */
   laborCategories: [
     { title: "Cloud Platform Engineer, Senior" },
+    { title: "AI / LLM Infrastructure Engineer, Senior" },
     { title: "DevSecOps Engineer, Senior" },
+    { title: "Forward Deployed Engineer" },
     { title: "Cloud Solutions Architect" },
     { title: "Infrastructure Automation Engineer" },
   ],

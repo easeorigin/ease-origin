@@ -160,16 +160,16 @@ export const solutions: Solution[] = [
     image: "images/ai-ml-platform.jpg",
     imageAlt: "AI and machine learning infrastructure",
     overview:
-      "EaseOrigin architects and deploys production-grade AI/ML platforms with sophisticated model orchestration, knowledge retrieval pipelines, and multi-provider integration. We build systems that serve thousands of concurrent users with real-time inference and full cost/performance observability.",
+      "EaseOrigin architects and deploys production language model platforms with model orchestration, knowledge retrieval pipelines, and multi-provider integration. The part most teams underestimate is everything around the model: request routing, caching, rate limiting, streaming, and the observability that tells you what a feature actually costs per user. We build that layer, and we build it on the same landing zones and pipelines we use for everything else.",
     keyCapabilities: [
-      "Multi-agent AI system architecture",
-      "Knowledge retrieval pipeline design (RAG)",
-      "Multi-provider AI integration with failover",
-      "Real-time inference with intelligent caching",
-      "Model performance and cost observability",
-      "Custom MCP server development",
-      "Conversational and analytical AI applications",
-      "AI governance and responsible deployment",
+      "Multi-agent orchestration with LangChain and LangGraph",
+      "Retrieval augmented generation pipelines with many-source connectors",
+      "Multi-provider model integration with failover across OpenAI and AWS Bedrock",
+      "Custom Model Context Protocol servers with tool calling and streaming",
+      "Real-time inference with intelligent caching and rate limiting",
+      "Model performance, cost, and quality observability",
+      "FastAPI services for language model workflow orchestration",
+      "Vector search and local retrieval for air-gapped or latency-sensitive use",
     ],
     technologies: [
       "LangChain",
@@ -177,10 +177,12 @@ export const solutions: Solution[] = [
       "AWS Bedrock",
       "OpenAI",
       "MCP",
+      "FastMCP",
       "FastAPI",
-      "Python",
-      "MongoDB",
+      "Langfuse",
+      "FAISS",
       "Vector Databases",
+      "Python",
     ],
     relatedCaseStudySlugs: ["enterprise-ai-platform", "ai-document-processing-platform", "intelligent-automation-platform"],
     accentColor: "#065F46",
@@ -262,6 +264,79 @@ export const solutions: Solution[] = [
     accentColor: "#B45309",
   },
   {
+    slug: "forward-deployment",
+    title: "Forward Deployment & Implementation",
+    shortDescription:
+      "Discovery through production rollout, working inside the customer's own environment",
+    heroDescription:
+      "We embed with your teams to turn an ambiguous requirement into a deployed, documented, supportable system.",
+    icon: "Compass",
+    image: "images/about-team.jpg",
+    imageAlt: "Technical discovery and implementation planning session",
+    overview:
+      "Software that works in a demo and software that works in a customer's environment are different problems. Forward deployment is the second one. We run technical discovery, assess the target environment, translate what stakeholders actually need into an architecture, then plan and execute the rollout and hand it over with runbooks the operating team can use. The engagement ends when your team can run it without us, not when the code ships.",
+    keyCapabilities: [
+      "Technical discovery and customer environment assessment",
+      "Requirements translation into architecture and implementation plans",
+      "Deployment planning and stakeholder alignment",
+      "Production rollout with staged cutover",
+      "Implementation runbooks and environment checklists",
+      "Adoption support and troubleshooting",
+      "Operational handoff to the customer's team",
+      "Post-deployment optimization",
+    ],
+    technologies: [
+      "Terraform",
+      "Helm",
+      "Kubernetes",
+      "Ansible",
+      "Python",
+      "Playwright",
+    ],
+    relatedCaseStudySlugs: [
+      "enterprise-ai-platform",
+      "healthcare-system-integration",
+      "cloud-modernization",
+    ],
+    accentColor: "#0369A1",
+  },
+  {
+    slug: "enterprise-packaging",
+    title: "Enterprise Packaging & Delivery",
+    shortDescription:
+      "Air-gapped installs, hardened images, and license-aware customer builds",
+    heroDescription:
+      "Package software so it installs cleanly in environments with no internet, strict image policy, and an auditor watching.",
+    icon: "Package",
+    image: "images/server-room.jpg",
+    imageAlt: "Secure infrastructure and packaging environment",
+    overview:
+      "Shipping into a classified or air-gapped environment is its own discipline. There is no package registry to pull from, the base images must come from an approved source, and every upgrade needs a rollback that works offline. We build install artifacts that survive those constraints, using hardened base images, versioned charts published as registry artifacts, and upgrade paths tested against the customer's actual starting version.",
+    keyCapabilities: [
+      "Air-gapped deployment patterns and offline install bundles",
+      "Iron Bank hardened base images and DoD supply-chain packaging",
+      "Versioned Helm charts published as registry artifacts",
+      "Customer install workflows and environment prerequisites",
+      "Upgrade and rollback planning tested against real starting versions",
+      "License and entitlement-aware packaging",
+      "Image promotion and digest pinning across environments",
+      "Software bill of materials and vulnerability burndown",
+    ],
+    technologies: [
+      "Replicated",
+      "Helm",
+      "Kustomize",
+      "Podman",
+      "Iron Bank",
+      "Renovate",
+      "Trivy",
+      "Harbor",
+    ],
+    complianceFrameworks: ["DISA STIGs", "IL4 / IL5 / IL6", "C2Ops", "RMF"],
+    relatedCaseStudySlugs: ["dod-oracle-cloud", "space-force-c2"],
+    accentColor: "#475569",
+  },
+  {
     slug: "program-management",
     title: "Program Management",
     shortDescription:
@@ -272,7 +347,7 @@ export const solutions: Solution[] = [
     image: "images/program-management.jpg",
     imageAlt: "Program management governance",
     overview:
-      "EaseOrigin delivers disciplined program management for federal IT initiatives, bringing structure, transparency, and accountability from initiation through closeout. Our PM practitioners stand up PMOs, implement earned value management systems, develop integrated master schedules, and provide the governance frameworks that keep programs on track. We specialize in CPIC/TBM alignment, OMB Exhibit 300/53 reporting, and audit readiness for GAO and Inspector General reviews.",
+      "EaseOrigin delivers program management for federal IT initiatives, from initiation through closeout. We stand up PMOs, implement earned value management, develop integrated master schedules, and put in place the governance that keeps a program legible to the people funding it. That includes CPIC and TBM alignment, OMB Exhibit 300 and 53 reporting, and audit readiness for GAO and Inspector General reviews.",
     keyCapabilities: [
       "PMO standup and governance frameworks",
       "Earned Value Management (EVM) implementation and reporting",
@@ -312,7 +387,7 @@ export const solutions: Solution[] = [
     image: "images/agile-delivery.jpg",
     imageAlt: "Agile delivery and release train management",
     overview:
-      "EaseOrigin provides Release Train Engineering as a service, launching and sustaining Agile Release Trains across federal and enterprise programs. Our RTE practitioners facilitate PI Planning on 8-12 week cadences, run Scrum of Scrums and ART Sync ceremonies, track flow metrics, and coordinate multi-ART and Solution Train delivery. We integrate SAFe practices with the realities of federal acquisition, cATO processes, and multi-contractor environments, using TechFAR-aligned Lean-Agile contract strategies.",
+      "EaseOrigin provides Release Train Engineering as a service, launching and sustaining Agile Release Trains across federal and enterprise programs. We facilitate PI Planning on 8 to 12 week cadences, run Scrum of Scrums and ART Sync, track flow metrics, and coordinate multi-ART and Solution Train delivery. The useful part is fitting SAFe to how federal acquisition actually works, including cATO processes, multi-contractor environments, and TechFAR-aligned contract strategy.",
     keyCapabilities: [
       "Release Train Engineering (RTE-as-a-Service)",
       "PI Planning facilitation and coordination",

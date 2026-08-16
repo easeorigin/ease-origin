@@ -36,12 +36,25 @@ export type BlogCategory =
   | "Industry Insights"
   | "Perspectives";
 
+/**
+ * Posts are published by the company, not bylined to a person.
+ *
+ * Two earlier versions were both wrong. "EaseOrigin Editorial" and "EaseOrigin
+ * Team" invented an editorial staff that does not exist. Replacing those with a
+ * personal byline on all 52 posts was no better: a signed post is a citable
+ * record of what its author claims to know, and GAO has treated an
+ * individual's own published profile as evidence on exactly that point.
+ *
+ * Organization-level attribution avoids both. It says who stands behind the
+ * writing without inventing headcount and without putting a person's name on
+ * something they may not have written. Note the absence of a role like "Team"
+ * or "Editorial": that word is what turned the earlier version into a
+ * headcount claim.
+ */
 export const blogAuthors: Record<string, BlogAuthor> = {
-  jimi: {
-    name: "Jimi Umar",
-    role: "Founder & Principal Consultant",
-    bio: "Jimi Umar is the founder of EaseOrigin, bringing over a decade of experience in federal IT modernization, cloud infrastructure, and cybersecurity compliance to help agencies navigate complex technology transformations.",
-    linkedin: "https://www.linkedin.com/in/jimiumar/",
+  easeorigin: {
+    name: "EaseOrigin",
+    role: "Published by EaseOrigin LLC",
   },
 };
 
@@ -56,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     coverImage:
       "/images/blog/fedramp-authorization-what-agencies-need-to-know.jpg",
     coverImageAlt: "Cloud security compliance dashboard",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-07",
     updatedAt: "2026-03-01",
     category: "Cloud & Infrastructure",
@@ -73,7 +86,7 @@ export const blogPosts: BlogPost[] = [
       '## Why Zero Trust Matters for Federal Agencies\n\nThe days of castle-and-moat security are over. Federal networks face threats that originate from every direction: compromised credentials, insider threats, supply chain attacks, and adversaries who have already breached the perimeter. Zero Trust Architecture (ZTA) addresses this reality by eliminating implicit trust and requiring continuous verification for every user, device, and connection.\n\nThe federal mandate is clear. OMB Memorandum M-22-09, "Moving the U.S. Government Toward Zero Trust Cybersecurity Principles," set specific goals for agencies to achieve across five security pillars. NIST Special Publication 800-207 provides the technical framework. Together, these documents define both the destination and the roadmap.\n\nOur people have planned and implemented Zero Trust strategies on federal programs, working under the primes that held those contracts. The approaches that survive contact with an operational environment tend to be phased rather than wholesale. This post shares what we have learned.\n\n## The Five Pillars of Zero Trust\n\nOMB M-22-09 organizes Zero Trust implementation around five pillars. Each pillar represents a domain where agencies must mature their capabilities.\n\n### 1. Identity\n\nIdentity is the foundation of Zero Trust. Every access decision starts with a verified identity.\n\n**Key Requirements:**\n- Enterprise-wide identity management with a single sign-on (SSO) solution\n- Phishing-resistant multi-factor authentication (MFA) for all users, including agency staff, contractors, and partners\n- Integration with agency ICAM (Identity, Credential, and Access Management) infrastructure\n- Continuous authentication that evaluates risk signals beyond initial login\n\n**Practical Guidance:** Start by inventorying all identity providers and authentication mechanisms across your environment. Many agencies operate multiple directories and identity systems accumulated through years of acquisitions and program-specific deployments. Consolidation is essential before meaningful Zero Trust maturity is possible.\n\n### 2. Devices\n\nEvery device accessing federal resources must be inventoried, monitored, and assessed for compliance before being granted access.\n\n**Key Requirements:**\n- Comprehensive device inventory covering both government-furnished and personally owned devices\n- Endpoint Detection and Response (EDR) deployed across all managed endpoints\n- Device health checks as a condition for access (patch level, configuration compliance, encryption status)\n- Mobile Device Management (MDM) for smartphones and tablets\n\n**Practical Guidance:** The device pillar often surfaces governance challenges. Agencies frequently discover devices on their networks that belong to no inventory. Conduct a thorough discovery exercise using network scanning, DHCP logs, and 802.1X authentication data before attempting to enforce device compliance policies.\n\n### 3. Networks\n\nZero Trust networking moves away from broad network segments toward micro-segmentation and encrypted communications.\n\n**Key Requirements:**\n- Micro-segmentation to isolate workloads and limit lateral movement\n- Encrypted DNS (DNS-over-HTTPS or DNS-over-TLS) and encrypted traffic by default\n- Software-Defined Networking (SDN) to enforce dynamic access policies\n- Network traffic analysis to detect anomalous behavior\n\n**Practical Guidance:** Micro-segmentation is where many agencies encounter the most friction. Legacy applications often depend on broad network access patterns that are poorly documented. Before segmenting, map application communication flows using network monitoring tools. Implement segmentation incrementally, starting with your highest-value assets.\n\n### 4. Applications and Workloads\n\nApplications must be treated as untrusted until verified, regardless of their network location.\n\n**Key Requirements:**\n- Application inventory with security testing integrated into the development lifecycle\n- Internet-accessible applications protected without relying on VPN as the primary control\n- Routine penetration testing and vulnerability scanning\n- Application-level authorization, not just network-level access control\n\n**Practical Guidance:** The shift toward making applications internet-accessible (rather than hiding them behind VPN) is one of the most significant cultural changes in Zero Trust. This does not mean removing all access controls. It means shifting those controls to the application layer through robust authentication, authorization, and input validation.\n\n### 5. Data\n\nData protection is the ultimate objective of Zero Trust. All other pillars exist to ensure that data is accessed only by authorized entities under appropriate conditions.\n\n**Key Requirements:**\n- Data classification and categorization across all repositories\n- Data Loss Prevention (DLP) capabilities\n- Encryption of data at rest and in transit\n- Audit logging of all data access events\n- Automated data tagging and labeling where feasible\n\n**Practical Guidance:** Data classification is one of the most resource-intensive activities in a Zero Trust program. Start with your most sensitive data stores, typically those containing PII, CUI, or classified information. Implement automated discovery and classification tools to reduce the manual burden.\n\n## A Practical Implementation Roadmap\n\nZero Trust is not a product you purchase or a switch you flip. It is a multi-year transformation. Here is a phased approach that balances quick wins with long-term maturity.\n\n### Phase 1: Foundation (Months 1 to 6)\n\n- **Inventory everything.** Users, devices, applications, data stores, and network segments. You cannot protect what you do not know about.\n- **Deploy phishing-resistant MFA.** This is the single highest-impact action you can take. Focus on privileged users and internet-facing applications first.\n- **Establish baseline visibility.** Deploy or enhance logging, SIEM integration, and network monitoring.\n\n### Phase 2: Quick Wins (Months 6 to 12)\n\n- **Implement EDR across all managed endpoints.** Ensure coverage includes servers, not just workstations.\n- **Begin micro-segmentation for critical assets.** Isolate your highest-value systems, such as financial systems, HR databases, and authentication infrastructure.\n- **Integrate device compliance checks into access decisions.** Block or quarantine non-compliant devices.\n\n### Phase 3: Maturation (Months 12 to 24)\n\n- **Roll out application-level access controls.** Move beyond VPN-dependent access for key applications.\n- **Implement data classification and DLP.** Focus on preventing exfiltration of sensitive data.\n- **Automate policy enforcement.** Use SOAR (Security Orchestration, Automation, and Response) to respond to policy violations in near real-time.\n\n### Phase 4: Optimization (Months 24 to 36)\n\n- **Continuous verification.** Implement risk-based, continuous authentication that adapts access in real time based on user behavior and environmental signals.\n- **Full micro-segmentation.** Extend segmentation across all application tiers and data stores.\n- **Measure and report.** Establish metrics that demonstrate Zero Trust maturity to agency leadership and oversight bodies.\n\n## Common Pitfalls and How to Avoid Them\n\n**Trying to do everything at once.** Zero Trust is a journey. Agencies that attempt to implement all five pillars simultaneously often stall because of resource constraints and organizational fatigue. Prioritize based on your agency\'s threat profile and existing capability gaps.\n\n**Neglecting legacy systems.** Many federal environments include legacy systems that cannot support modern authentication or encryption. Develop a strategy for these systems, whether it involves compensating controls, isolation, or planned modernization.\n\n**Underestimating the cultural shift.** Zero Trust changes how people work. Users accustomed to VPN-based access will need training and communication. IT staff accustomed to network-perimeter thinking will need new skills. Invest in change management alongside technology.\n\n**Ignoring the vendor ecosystem.** Zero Trust does not come from a single vendor. Agencies need a strategy that integrates best-of-breed solutions across identity, endpoint, network, and data domains. Avoid vendor lock-in by designing around standards and APIs.\n\n**Skipping the architecture phase.** Jumping into product procurement without a documented Zero Trust architecture leads to expensive, fragmented implementations. Take the time to develop a target architecture aligned with NIST 800-207 before selecting tools.\n\n## How EaseOrigin Helps\n\nEaseOrigin helps federal agencies develop practical Zero Trust strategies that account for real-world constraints: legacy systems, limited budgets, competing priorities, and diverse stakeholder needs. We assist with maturity assessments, architecture development, implementation planning, and hands-on technical execution across all five pillars.\n\nZero Trust is not optional for federal agencies. It is a mandate, and more importantly, it is the right approach to modern cybersecurity. The question is not whether to implement it, but how to implement it effectively. [Reach out to our team](/contact) to discuss where your agency stands and where it needs to go.',
     coverImage: "/images/blog/zero-trust-architecture-federal-networks.jpg",
     coverImageAlt: "Network security architecture diagram",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-12",
     updatedAt: "2026-03-01",
     category: "Cybersecurity",
@@ -90,7 +103,7 @@ export const blogPosts: BlogPost[] = [
       "## Why DevSecOps Matters in Federal Software Delivery\n\nFederal software projects operate under unique constraints: strict security requirements, compliance mandates, authority to operate (ATO) processes, and oversight from multiple stakeholders. Traditional development approaches that bolt security on at the end create bottlenecks, drive up costs, and introduce risk. DevSecOps solves this by embedding security into every stage of the software delivery lifecycle.\n\nThe result is faster delivery, earlier detection of vulnerabilities, and a compliance posture that is continuously validated rather than periodically audited. For federal programs, this translates to shorter ATO timelines, reduced rework, and greater confidence in the security of deployed systems.\n\nThis guide walks through the architecture, tooling, and practices needed to build a robust DevSecOps pipeline for government projects.\n\n## Pipeline Architecture Overview\n\nA well-designed DevSecOps pipeline for federal environments includes the following stages:\n\n1. **Code Commit and Version Control**\n2. **Static Analysis (SAST)**\n3. **Dependency and Composition Analysis (SCA)**\n4. **Build and Unit Testing**\n5. **Container Image Scanning**\n6. **Dynamic Analysis (DAST)**\n7. **Compliance Validation**\n8. **Artifact Promotion and Deployment**\n9. **Runtime Monitoring**\n\nEach stage acts as a quality gate. Code that fails to meet security or compliance thresholds is blocked from progressing further. This shift-left approach catches issues when they are cheapest and easiest to fix.\n\n## Security Scanning Integration\n\nThe heart of a DevSecOps pipeline is its security scanning capability. Four categories of scanning are essential.\n\n### Static Application Security Testing (SAST)\n\nSAST tools analyze source code for security vulnerabilities without executing the application. They catch common issues like SQL injection, cross-site scripting, buffer overflows, and hardcoded credentials.\n\n**Tools to consider:**\n- **SonarCloud / SonarQube:** Comprehensive code quality and security analysis supporting dozens of languages. SonarCloud offers a cloud-hosted option; SonarQube can run on-premises for environments with strict data residency requirements.\n- **Semgrep:** Lightweight, fast, and highly customizable. Excellent for writing organization-specific rules that enforce coding standards beyond generic vulnerability detection.\n\n**Integration point:** Run SAST on every pull request. Block merges when critical or high-severity findings are detected. Configure baseline profiles so that existing technical debt does not overwhelm developers with noise on every commit.\n\n### Software Composition Analysis (SCA)\n\nSCA tools inventory your third-party dependencies and flag known vulnerabilities (CVEs), outdated components, and license compliance issues.\n\n**Tools to consider:**\n- **Snyk:** Strong developer experience with IDE integrations, automatic fix PRs, and a comprehensive vulnerability database.\n- **OWASP Dependency-Check:** Open-source option that integrates well with Jenkins and other CI tools.\n- **GitHub Dependabot:** Native to GitHub repositories, automatically generates pull requests for vulnerable dependencies.\n\n**Integration point:** Run SCA during the build stage. Fail the build for critical CVEs. Generate a Software Bill of Materials (SBOM) for each release, which is increasingly a federal procurement requirement.\n\n### Container Image Scanning\n\nIf your application runs in containers (and most modern federal applications do), scanning container images for vulnerabilities is essential.\n\n**Tools to consider:**\n- **Trivy:** Open-source, fast, and covers OS packages, language-specific dependencies, and misconfigurations.\n- **Snyk Container:** Integrates container scanning into the same platform as SCA.\n- **AWS ECR Image Scanning:** Native scanning for teams using Amazon Elastic Container Registry.\n\n**Integration point:** Scan images after build and before pushing to the container registry. Block promotion of images with critical vulnerabilities. Re-scan images in the registry on a schedule to catch newly disclosed CVEs.\n\n### Dynamic Application Security Testing (DAST)\n\nDAST tools test the running application by simulating attacks against its interfaces. They find issues that SAST cannot detect, such as authentication flaws, server misconfigurations, and runtime injection vulnerabilities.\n\n**Tools to consider:**\n- **OWASP ZAP:** Open-source, widely used, and well-suited for automated pipeline integration.\n- **Burp Suite Enterprise:** Commercial option with advanced crawling and scanning capabilities.\n\n**Integration point:** Run DAST against a staging environment after deployment. DAST scans take longer than SAST, so they typically run on a nightly or per-release basis rather than on every commit.\n\n## Compliance-as-Code and Automated ATO\n\nOne of the most impactful practices in federal DevSecOps is treating compliance requirements as code that can be versioned, tested, and enforced automatically.\n\n### What Compliance-as-Code Looks Like\n\n**Infrastructure compliance:** Use tools like Chef InSpec, OpenSCAP, or AWS Config Rules to continuously validate that your infrastructure meets NIST 800-53 control requirements. Define your security baselines as code, store them in version control, and run them automatically.\n\n**Policy enforcement:** Use Open Policy Agent (OPA) or Kyverno (for Kubernetes) to enforce organizational policies at deployment time. Examples include blocking containers running as root, requiring resource limits, and enforcing network policies.\n\n**Evidence generation:** Automate the collection of compliance evidence. Every scan result, test report, and configuration check can feed directly into your System Security Plan and ATO package. This transforms the ATO process from a manual documentation exercise into a continuous, automated validation.\n\n### The Path to Continuous ATO\n\nTraditional ATO processes require months of manual evidence gathering, followed by a point-in-time assessment. Continuous ATO (cATO) replaces this with ongoing, automated compliance monitoring that gives authorizing officials real-time visibility into the system's security posture.\n\nTo achieve cATO:\n\n- Automate evidence collection for all applicable NIST controls\n- Establish dashboards that display current compliance status\n- Implement automated alerting for compliance drift\n- Maintain a living SSP that updates as the system changes\n- Work with your ISSO and AO to establish trust in the automated evidence\n\n## CI/CD Tool Selection for Federal Environments\n\nChoosing the right CI/CD platform depends on your hosting environment, security requirements, and team preferences.\n\n**Jenkins:** The most flexible option, with a massive plugin ecosystem. Runs on-premises, which satisfies strict data residency requirements. However, Jenkins requires significant operational overhead to maintain, secure, and scale. Best suited for teams with dedicated DevOps staff.\n\n**GitLab CI:** Tightly integrated with GitLab's version control and issue tracking. Available as both SaaS and self-hosted. The self-hosted option supports air-gapped environments. Strong built-in security scanning features reduce the need for third-party tools.\n\n**GitHub Actions:** Excellent developer experience with a growing marketplace of reusable actions. GitHub Enterprise Server supports on-premises deployment. The workflow syntax is approachable for teams new to CI/CD. Pairs naturally with Dependabot and GitHub Advanced Security.\n\n### Our Recommendation\n\nFor new federal projects, GitHub Actions or GitLab CI offer the best balance of capability, developer experience, and maintainability. For environments with strict on-premises or air-gapped requirements, GitLab CI self-hosted or Jenkins remain the strongest choices.\n\n## Putting It All Together: A Sample Pipeline\n\nHere is a practical pipeline flow that integrates all the practices discussed above:\n\n```\nDeveloper pushes code\n  -> SAST scan (SonarCloud)\n  -> SCA scan (Snyk)\n  -> Unit tests\n  -> Build container image\n  -> Container image scan (Trivy)\n  -> Deploy to staging\n  -> DAST scan (OWASP ZAP)\n  -> Compliance validation (InSpec)\n  -> Evidence collection and SBOM generation\n  -> Manual approval gate (for production)\n  -> Deploy to production\n  -> Runtime monitoring and alerting\n```\n\nEach stage produces artifacts and reports that feed into your compliance documentation. Failed gates block progression and notify the development team with specific remediation guidance.\n\n## Common Pitfalls\n\n**Too many false positives.** If developers are overwhelmed by irrelevant findings, they will stop paying attention. Tune your scanning tools, establish baseline suppressions for accepted risks, and prioritize critical findings.\n\n**Security scanning as a blame tool.** DevSecOps works when security findings are treated as learning opportunities, not performance metrics. Foster a culture where finding and fixing vulnerabilities early is celebrated.\n\n**Ignoring the feedback loop.** Scanning without remediation is just noise. Establish SLAs for vulnerability remediation (e.g., critical within 48 hours, high within 2 weeks) and track compliance with those SLAs.\n\n**Skipping the staging environment.** DAST and integration testing require a realistic environment. Cutting corners here means vulnerabilities reach production undetected.\n\n## Moving Forward\n\nBuilding a DevSecOps pipeline for federal projects is an investment that pays dividends in speed, security, and compliance. Start with the fundamentals: version control, SAST, SCA, and automated testing. Layer in container scanning, DAST, and compliance-as-code as your team matures.\n\nEaseOrigin helps federal programs design, implement, and optimize DevSecOps pipelines that meet the unique requirements of government software delivery. Whether you are starting from scratch or looking to mature an existing pipeline, [contact our team](/contact) to explore how we can accelerate your journey.",
     coverImage: "/images/blog/devsecops-pipeline-best-practices.jpg",
     coverImageAlt: "DevSecOps pipeline workflow",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-25",
     category: "DevOps",
     tags: ["DevSecOps", "CI/CD", "Automation", "Security"],
@@ -106,7 +119,7 @@ export const blogPosts: BlogPost[] = [
       "## Scaling Agile in the Federal Context\n\nThe Scaled Agile Framework (SAFe) has become the dominant approach for managing large-scale software delivery in the federal government. Its structured ceremonies, defined roles, and emphasis on alignment make it a natural fit for complex federal programs that span multiple teams, contractors, and fiscal year boundaries.\n\nBut SAFe in the federal world is not the same as SAFe in the private sector. Acquisition regulations, funding cycles, contractor team dynamics, and oversight requirements all create unique challenges. Our people have supported federal programs through PI Planning events, Agile Release Train launches, and the day-to-day work of shipping software inside government constraints. Here are the lessons we have learned.\n\n## PI Planning in Federal Environments\n\nProgram Increment (PI) Planning is the heartbeat of SAFe. It brings all teams together for two days of collaborative planning, producing a shared set of objectives and commitments for the upcoming increment (typically 8 to 12 weeks).\n\n### What Works Well\n\n**Visibility across the program.** In federal environments where multiple contractors work on interconnected systems, PI Planning provides a rare opportunity for everyone to see the full picture. Dependencies that would otherwise surface as surprises mid-sprint become visible during planning.\n\n**Government stakeholder alignment.** Federal product owners and program managers often struggle to communicate priorities across a fragmented contractor landscape. PI Planning creates a structured forum for government leadership to set direction and for teams to ask clarifying questions in real time.\n\n**Cross-team dependency management.** The program board, where teams post their features, dependencies, and risks, is one of the most valuable artifacts in federal SAFe. It exposes integration risks early and forces teams to negotiate realistic commitments.\n\n### What Requires Adaptation\n\n**Classification and access constraints.** In defense and intelligence programs, not all team members have the same clearance levels. This complicates PI Planning logistics. Teams may need separate planning sessions for classified and unclassified work, with careful coordination to ensure alignment.\n\n**Remote and hybrid PI Planning.** Post-pandemic, many federal programs conduct PI Planning in a hybrid format. This works, but it requires deliberate investment in collaboration tools, facilitation techniques, and breakout session management. Programs that treat virtual PI Planning as simply \"PI Planning on Zoom\" consistently underperform compared to those that redesign the experience for the remote format.\n\n**Scope uncertainty from acquisition timelines.** Federal programs often enter PI Planning without certainty about upcoming contract modifications, option year exercises, or funding levels. This makes it difficult to plan beyond the current increment. The best programs address this by maintaining a prioritized backlog at the portfolio level and explicitly calling out planning assumptions that depend on acquisition decisions.\n\n## Managing Agile Release Trains Across Contractors\n\nThe Agile Release Train (ART) is the primary organizational construct in SAFe, a long-lived team of teams that plans, commits, and delivers together. In federal programs, ARTs frequently span multiple contractors, each with their own corporate cultures, toolchains, and performance incentives.\n\n### Establishing a Shared Operating Model\n\nThe single most important success factor for multi-contractor ARTs is a shared operating model that all parties agree to follow. This model should define:\n\n- **Common tooling.** All teams on an ART should use the same project management tool (e.g., Jira, Azure DevOps), the same version control platform, and ideally the same CI/CD pipeline. Tool fragmentation across contractors creates integration friction and obscures visibility.\n- **Shared Definition of Done.** Each team may have internal quality standards, but the ART needs a unified Definition of Done that includes security scanning, code review, documentation, and testing requirements.\n- **Consistent estimation practices.** If one team estimates in story points using a Fibonacci scale and another uses t-shirt sizing, velocity comparisons and capacity planning become meaningless. Standardize the approach across the ART.\n- **Integration cadence.** Define how often teams integrate their work and who is responsible for integration testing. In federal environments, integration failures often cascade across contractor boundaries, so this is not a detail to leave ambiguous.\n\n### The Role of the Release Train Engineer\n\nThe Release Train Engineer (RTE) is the chief servant leader for the ART. In federal programs, this role carries additional weight because the RTE must navigate contractor dynamics, government oversight requirements, and inter-organizational politics.\n\nThe most effective federal RTEs share several traits. They are respected by all contractor teams, not just their own company. They have strong relationships with government product management. They are comfortable escalating risks without assigning blame. And they are relentless about protecting the team's time from non-value-added meetings and reporting demands.\n\n**Our recommendation:** Whenever possible, the RTE for a multi-contractor ART should be a government employee or a dedicated contractor whose incentives are aligned with program success rather than any single company's performance metrics.\n\n## Balancing SAFe with Federal Acquisition Realities\n\nSAFe assumes a degree of organizational stability and product-oriented thinking that federal acquisition structures do not always support. Here are the most common tension points and how to address them.\n\n### Contract Structure vs. Agile Teams\n\nFederal contracts are often structured around deliverables, labor categories, and work breakdown structures that do not map cleanly to Agile teams. A contract might specify \"6 senior developers and 2 testers\" while SAFe calls for cross-functional teams with shared ownership.\n\n**Mitigation:** Work with your contracting officer to include Agile-friendly language in statements of work. Reference the DoD Agile contracting guide for templates and best practices. Where possible, use firm-fixed-price contracts based on outcomes (e.g., working software per sprint) rather than time-and-materials based on labor hours.\n\n### Funding Cycles vs. Continuous Delivery\n\nFederal budgets operate on annual (or sometimes biennial) cycles. SAFe assumes continuous, stable funding. When funding is uncertain, teams cannot plan with confidence, and velocity suffers.\n\n**Mitigation:** Maintain a portfolio backlog that is prioritized independently of funding decisions. When new funding arrives, the backlog is ready. Use PI Planning to create plans at two levels of confidence: a committed plan based on current funding and a stretch plan contingent on expected additional resources.\n\n### Oversight and Reporting\n\nFederal programs face reporting requirements from multiple sources: the PMO, the CIO, Congress (through budget justifications), and oversight bodies like the GAO. These reporting demands can consume significant team capacity if not managed carefully.\n\n**Mitigation:** Generate reports from your Agile tooling automatically. If your Jira or Azure DevOps instance is well-maintained, most reporting needs can be met through dashboards and automated exports. Resist the temptation to create separate status decks that duplicate information already captured in the tools.\n\n## Metrics That Matter for Federal Agile Programs\n\nNot all metrics are created equal. The best federal Agile programs focus on a small set of outcome-oriented metrics that drive behavior in the right direction.\n\n**Predictability.** Measured as the ratio of actual achievements to planned objectives at the PI level. This is the single most important metric for federal stakeholders because it directly reflects the program's ability to deliver on commitments.\n\n**Lead Time.** The time from when a feature is requested to when it is delivered to users. In federal environments, long lead times often point to bureaucratic bottlenecks (approval processes, security reviews, deployment gates) rather than development issues.\n\n**Deployment Frequency.** How often the team delivers working software to a production or production-like environment. Federal programs that deploy infrequently (e.g., quarterly) lose the feedback loop that makes Agile effective.\n\n**Defect Escape Rate.** The number of defects found in production versus those found during development. A high escape rate indicates gaps in testing or quality practices within the pipeline.\n\n**Team Satisfaction.** Often overlooked, but critical for retention in the competitive federal IT labor market. Regular retrospectives and anonymous surveys provide the data.\n\n### Metrics to Avoid\n\n**Individual velocity.** Measuring individual developer output encourages gaming and discourages collaboration. Measure team velocity only.\n\n**Lines of code.** This metric incentivizes bloated code and discourages refactoring. It has no place in a mature Agile program.\n\n**Utilization rate.** Optimizing for 100% utilization destroys the slack that teams need for innovation, learning, and handling unexpected work. Target 80 to 85% utilization as a healthy range.\n\n## Key Takeaways\n\n- PI Planning is essential for alignment in multi-contractor federal programs; invest in making it effective, whether in-person or hybrid\n- Multi-contractor ARTs need a shared operating model covering tooling, estimation, integration, and Definition of Done\n- Federal acquisition structures require deliberate adaptation to work with SAFe; engage your contracting officer early\n- Focus on outcome-oriented metrics: predictability, lead time, deployment frequency, and defect escape rate\n- Protect teams from reporting overhead by automating status generation from Agile tools\n\nEaseOrigin brings hands-on SAFe experience in federal program environments. From ART launches to PI facilitation to metrics program design, we help programs deliver at scale within the realities of government. [Contact us](/contact) to discuss your program's needs.",
     coverImage: "/images/blog/safe-agile-federal-programs.jpg",
     coverImageAlt: "Agile program management board",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-04",
     category: "Program Management",
     tags: ["SAFe", "Agile", "PI Planning", "Release Train"],
@@ -123,7 +136,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/aws-govcloud-vs-azure-government.jpg",
     coverImageAlt:
       "Split-screen comparison of cloud infrastructure platforms with government security shields",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-25",
     category: "Cloud & Infrastructure",
     tags: [
@@ -147,7 +160,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/cloud-migration-legacy-gov-systems.jpg",
     coverImageAlt:
       "Illustration of legacy server racks transitioning into cloud architecture with uptime indicators",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-09",
     category: "Cloud & Infrastructure",
     tags: [
@@ -170,7 +183,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/cmmc-2-cloud-hosting-requirements.jpg",
     coverImageAlt:
       "Cloud architecture diagram with CMMC compliance checkpoints and security boundary indicators",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-20",
     updatedAt: "2026-03-01",
     category: "Cloud & Infrastructure",
@@ -195,7 +208,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/multi-cloud-strategy-federal-agencies.jpg",
     coverImageAlt:
       "Interconnected cloud provider icons with governance framework overlay for federal agencies",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-16",
     category: "Cloud & Infrastructure",
     tags: [
@@ -219,7 +232,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/nist-800-171-rev-3-changes-defense-contractors.jpg",
     coverImageAlt:
       "Security compliance document with highlighted changes and defense contractor checklist",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-06",
     updatedAt: "2026-03-01",
     category: "Cybersecurity",
@@ -244,7 +257,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/supply-chain-risk-management-federal-software.jpg",
     coverImageAlt:
       "Software supply chain diagram showing verification checkpoints from source code to deployment",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-17",
     updatedAt: "2026-03-01",
     category: "Cybersecurity",
@@ -268,7 +281,7 @@ export const blogPosts: BlogPost[] = [
       "## Why Playbooks Matter More Than Plans\n\nEvery federal agency has an incident response plan. Most are PDF documents that sit untouched on a SharePoint site until something goes wrong. When a real incident hits, teams scramble, communications break down, and critical steps get missed. The difference between agencies that handle incidents well and those that do not often comes down to one thing: whether they have actionable playbooks or just a plan on paper.\n\nAn incident response playbook translates your high-level plan into step-by-step procedures for specific incident types. It tells your analysts exactly what to do when they detect ransomware, a data exfiltration attempt, or a compromised service account. Our people have helped federal programs build playbooks their teams actually reach for under pressure.\n\n## Aligning with NIST SP 800-61 Rev 3\n\nNIST SP 800-61, the Computer Security Incident Handling Guide, provides the foundational framework for federal incident response. It defines four phases: Preparation, Detection and Analysis, Containment/Eradication/Recovery, and Post-Incident Activity.\n\nYour playbooks should map directly to these phases. Each playbook covers a specific incident category and walks through all four phases with concrete actions, decision points, and escalation criteria.\n\n**Preparation** includes pre-positioned tools, communication templates, and contact lists. Do not assume responders will remember who to call at 2 AM.\n\n**Detection and Analysis** defines the indicators of compromise (IOCs) and behavioral patterns that trigger the playbook. It specifies what logs to pull, what queries to run, and how to assess severity.\n\n**Containment, Eradication, and Recovery** provides decision trees for isolation strategies, evidence preservation steps, and system restoration procedures. This is where specificity matters most.\n\n**Post-Incident Activity** covers evidence packaging, lessons learned facilitation, and reporting requirements including CISA notifications under CIRCIA timelines.\n\n## Essential Playbook Categories\n\nFederal agencies should maintain playbooks for at least these incident types:\n\n**Ransomware:** Covers initial detection through network segmentation, backup verification, decryption assessment, and recovery prioritization. Include decision criteria for when to engage law enforcement and whether to notify CISA within the required timeframe.\n\n**Phishing and Credential Compromise:** Addresses both the initial phishing event and downstream access. Include steps for credential reset scope analysis, session token invalidation, and lateral movement detection.\n\n**Data Exfiltration:** Focuses on detection through DLP alerts, network anomalies, or user behavior analytics. Covers evidence preservation, scope assessment, and breach notification requirements under the Privacy Act and OMB M-17-12.\n\n**Insider Threat:** Requires coordination with HR, legal counsel, and potentially the OIG. Include procedures for covert monitoring (with appropriate legal authorization), evidence chain of custody, and interview protocols.\n\n**Supply Chain Compromise:** Addresses compromised software updates, third-party service breaches, and vendor credential exposure. Include procedures for impact assessment across all systems that consumed the compromised component.\n\n**Denial of Service:** Covers both volumetric DDoS and application-layer attacks. Include escalation paths to ISP and CDN providers, traffic analysis procedures, and communication templates for affected users.\n\n## Building Effective Playbooks\n\nThe best playbooks share several characteristics that make them useful during high-stress incidents.\n\n**Clear trigger conditions.** Every playbook starts with explicit criteria for when it should be activated. Vague triggers like unusual network activity are not helpful. Specific triggers like EDR alert for Cobalt Strike beacon callback, confirmed by analyst review give responders confidence they are using the right playbook.\n\n**Role-based task assignments.** Each step specifies who is responsible: the incident commander, the lead analyst, the communications officer, or the system administrator. Ambiguity about ownership causes delays.\n\n**Decision trees, not just checklists.** Real incidents require judgment calls. Should you isolate the affected server immediately, or monitor it to understand the attacker's lateral movement? Playbooks should present these decision points with criteria for each path.\n\n**Communication templates.** Pre-drafted notifications for agency leadership, CISA, affected users, and media inquiries. During an active incident, no one should be drafting communications from scratch.\n\n**Evidence preservation steps.** Every containment action should be preceded by evidence collection. Memory captures before system shutdown, network packet captures before blocking IPs, and log exports before rotation. Include specific tool commands, not just general instructions.\n\n## Testing and Maintenance\n\nPlaybooks that are not tested are assumptions, not procedures. Regular testing is essential.\n\n**Tabletop exercises** should be conducted quarterly, walking through each playbook with the full response team. These exercises reveal gaps in procedures, outdated contact information, and unclear decision criteria.\n\n**Technical exercises** should be conducted semi-annually, using simulated incidents in a test environment to validate that the technical steps actually work. Can your team execute the forensic collection commands? Do the network isolation procedures function as documented?\n\n**Post-incident updates** are mandatory. Every real incident should trigger a playbook review within 30 days. What worked? What was missing? What has changed in the environment since the playbook was last updated?\n\n## Federal Reporting Requirements\n\nFederal incident response carries specific reporting obligations that must be baked into every playbook.\n\n**CISA reporting** under the Cyber Incident Reporting for Critical Infrastructure Act (CIRCIA) requires notification of significant incidents within specified timeframes. Your playbooks should include the reporting criteria, the POC information, and the required data elements.\n\n**US-CERT** reporting categories and timeframes should be embedded in your severity assessment process. A Category 1 incident has a different reporting timeline than a Category 3.\n\n**Privacy breach notifications** under OMB M-17-12 require specific steps when PII is involved, including risk assessments, individual notifications, and Congressional reporting for breaches affecting more than a threshold number of individuals.\n\n## How EaseOrigin Helps\n\nEaseOrigin helps federal agencies build incident response playbooks that are practical, testable, and compliant. We bring experience from real federal incident response, not just theoretical frameworks. Our approach includes current-state assessment, playbook development for priority incident types, tabletop exercise facilitation, and integration with your existing SIEM and SOAR platforms.\n\nIf your agency needs to strengthen its incident response capabilities, [contact our team](/contact) to discuss how we can help.",
     coverImage: "/images/blog/incident-response-playbooks-federal-agencies.jpg",
     coverImageAlt: "Cybersecurity incident response operations center",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-11",
     category: "Cybersecurity",
     tags: ["Incident Response", "NIST", "Cybersecurity", "Federal"],
@@ -285,7 +298,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/automating-authority-to-operate.jpg",
     coverImageAlt:
       "Automated compliance pipeline visualization showing accelerated ATO timeline from months to days",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-02",
     updatedAt: "2026-03-01",
     category: "Cybersecurity",
@@ -311,7 +324,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/platform-engineering-government-developer-portals.jpg",
     coverImageAlt:
       "Internal developer portal interface showing service catalog and self-service deployment options",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-12",
     category: "DevOps",
     tags: [
@@ -334,7 +347,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/gitops-classified-environments.jpg",
     coverImageAlt:
       "Air-gapped deployment pipeline diagram showing secure artifact transfer between classification boundaries",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-03-05",
     category: "DevOps",
     tags: [
@@ -359,7 +372,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/responsible-ai-government-executive-order.jpg",
     coverImageAlt:
       "Abstract illustration representing AI governance with interconnected nodes and a shield symbol",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-02",
     updatedAt: "2026-03-01",
     category: "AI & Data",
@@ -383,7 +396,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/federal-data-mesh-breaking-agency-silos.jpg",
     coverImageAlt:
       "Diagram showing interconnected data nodes across multiple federal agency domains",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-12",
     category: "AI & Data",
     tags: [
@@ -406,7 +419,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/rag-architecture-government-knowledge-bases.jpg",
     coverImageAlt:
       "Technical diagram showing the flow of a retrieval-augmented generation system from document ingestion to response",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-28",
     category: "AI & Data",
     tags: [
@@ -429,7 +442,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/data-governance-frameworks-multi-agency.jpg",
     coverImageAlt:
       "Illustration of interconnected government buildings sharing data through a structured governance layer",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-09",
     category: "AI & Data",
     tags: [
@@ -453,7 +466,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/real-time-analytics-federal-operations-centers.jpg",
     coverImageAlt:
       "Operations center dashboard displaying real-time data streams, maps, and alert indicators",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-30",
     category: "AI & Data",
     tags: [
@@ -476,7 +489,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/ml-model-governance-regulated-industries.jpg",
     coverImageAlt:
       "Flowchart depicting the machine learning model lifecycle with governance checkpoints at each stage",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-01",
     category: "AI & Data",
     tags: [
@@ -499,7 +512,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/servicenow-federal-itsm-lessons-learned.jpg",
     coverImageAlt:
       "ServiceNow platform dashboard showing IT service management workflows and metrics",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-01",
     category: "Enterprise Platforms",
     tags: [
@@ -523,7 +536,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/salesforce-government-crm-beyond-private-sector.jpg",
     coverImageAlt:
       "Salesforce Government Cloud interface showing a federal case management dashboard",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-28",
     category: "Enterprise Platforms",
     tags: [
@@ -547,7 +560,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/microsoft-365-gcc-high-what-agencies-need-to-know.jpg",
     coverImageAlt:
       "Microsoft 365 application icons arranged within a secure government cloud boundary illustration",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-23",
     updatedAt: "2026-03-01",
     category: "Enterprise Platforms",
@@ -572,7 +585,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/low-code-platforms-government-promise-vs-reality.jpg",
     coverImageAlt:
       "Split illustration showing a visual application builder on one side and governance controls on the other",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-03-16",
     category: "Enterprise Platforms",
     tags: [
@@ -596,7 +609,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/earned-value-management-meets-agile.jpg",
     coverImageAlt:
       "A dashboard showing earned value metrics alongside an Agile sprint board in a federal program office",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-22",
     category: "Program Management",
     tags: ["EVM", "Agile", "federal IT", "program management", "SAFe"],
@@ -613,7 +626,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/federal-it-program-recovery.jpg",
     coverImageAlt:
       "A project status board transitioning from red to green indicators in a government program management office",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-07",
     category: "Program Management",
     tags: [
@@ -636,7 +649,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/omb-exhibit-300-cpic-guide.jpg",
     coverImageAlt:
       "A federal budget planning document and investment portfolio dashboard on a desk in a government office",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-23",
     category: "Program Management",
     tags: ["CPIC", "Exhibit 300", "OMB", "federal budget", "capital planning"],
@@ -653,7 +666,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/pi-planning-classified-environments.jpg",
     coverImageAlt:
       "A secure conference room with a large program board and team members collaborating during a planning session",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-04",
     category: "Agile & Delivery",
     tags: ["SAFe", "PI Planning", "classified", "DoD", "Agile at scale"],
@@ -670,7 +683,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/agile-contracts-government-techfar.jpg",
     coverImageAlt:
       "A government contract document alongside a digital sprint board showing iterative delivery milestones",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-19",
     category: "Agile & Delivery",
     tags: [
@@ -693,7 +706,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/measuring-agile-maturity-federal-programs.jpg",
     coverImageAlt:
       "A maturity assessment chart showing progressive levels of Agile adoption across federal program dimensions",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-06",
     category: "Agile & Delivery",
     tags: [
@@ -716,7 +729,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/win-as-subcontractor-prime-relationships.jpg",
     coverImageAlt:
       "Two business professionals shaking hands at a government contracting industry networking event",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-27",
     category: "GovCon Insights",
     tags: [
@@ -739,7 +752,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/understanding-gwac-bpa-idiq-vehicles.jpg",
     coverImageAlt:
       "A comparison chart showing federal contract vehicle types with icons representing GWACs, BPAs, and IDIQs",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-22",
     category: "GovCon Insights",
     tags: [
@@ -763,7 +776,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/2026-federal-it-budget-where-money-is-going.jpg",
     coverImageAlt:
       "A pie chart visualization of federal IT budget allocations across cybersecurity, cloud, AI, and modernization categories",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-18",
     updatedAt: "2026-03-01",
     category: "GovCon Insights",
@@ -789,7 +802,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/why-small-govcon-firms-outperform-technical-delivery.jpg",
     coverImageAlt:
       "A focused small team of engineers collaborating around a monitor in a modern office environment",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-03-11",
     category: "GovCon Insights",
     tags: [
@@ -813,7 +826,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/healthcare-it-modernization-hipaa-compliant-cloud.jpg",
     coverImageAlt:
       "Secure cloud infrastructure diagram overlaid on a healthcare facility setting",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-12",
     category: "Industry Insights",
     tags: [
@@ -838,7 +851,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/financial-services-infrastructure-compliance-scale.jpg",
     coverImageAlt:
       "Abstract visualization of financial data flowing through secure network infrastructure",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-28",
     category: "Industry Insights",
     tags: [
@@ -863,7 +876,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/logistics-supply-chain-technology-enterprise-transformation.jpg",
     coverImageAlt:
       "Aerial view of a distribution center with data flow overlays representing integrated logistics systems",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-18",
     category: "Industry Insights",
     tags: [
@@ -888,7 +901,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/retail-analytics-at-scale-data-silos-customer-intelligence.jpg",
     coverImageAlt:
       "Dashboard visualization showing unified retail customer data across multiple channels",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-14",
     category: "Industry Insights",
     tags: [
@@ -912,7 +925,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/energy-sector-cybersecurity-protecting-critical-infrastructure.jpg",
     coverImageAlt:
       "Power grid control room with cybersecurity monitoring displays and network diagrams",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-15",
     category: "Industry Insights",
     tags: [
@@ -936,7 +949,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/why-we-started-easeorigin.jpg",
     coverImageAlt:
       "Modern office workspace representing a collaborative technology consulting environment",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-17",
     category: "Perspectives",
     tags: ["Company Culture", "Consulting", "Mission", "Leadership", "Values"],
@@ -954,7 +967,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/small-business-it-partners-federal-contracting.jpg",
     coverImageAlt:
       "Professional meeting between government officials and small business technology consultants",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-22",
     category: "Perspectives",
     tags: [
@@ -978,7 +991,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/technical-debt-government-systems-trillion-dollar-problem.jpg",
     coverImageAlt:
       "Vintage mainframe computer hardware juxtaposed with modern cloud infrastructure",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-28",
     category: "Perspectives",
     tags: [
@@ -1001,7 +1014,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/building-engineering-culture-retains-talent.jpg",
     coverImageAlt:
       "Diverse engineering team collaborating around a whiteboard in a modern office",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-15",
     category: "Perspectives",
     tags: [
@@ -1024,7 +1037,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/cicd-pipeline-architecture-regulated-enterprises.jpg",
     coverImageAlt:
       "Automated deployment pipeline visualization with compliance checkpoints highlighted",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-09-15",
     category: "DevOps",
     tags: [
@@ -1047,7 +1060,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/cloud-cost-optimization-growing-enterprises.jpg",
     coverImageAlt:
       "Dashboard showing cloud infrastructure cost analytics and optimization opportunities",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-07",
     category: "Cloud & Infrastructure",
     tags: ["Cloud Costs", "FinOps", "AWS", "Azure", "Cost Optimization"],
@@ -1064,7 +1077,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/data-engineering-modern-enterprise-lakehouse.jpg",
     coverImageAlt:
       "Modern data architecture diagram showing bronze, silver, and gold layers of a lakehouse",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-10-22",
     category: "AI & Data",
     tags: [
@@ -1088,7 +1101,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/enterprise-ai-adoption-roadmap-poc-to-production.jpg",
     coverImageAlt:
       "Enterprise team reviewing machine learning model performance metrics on a large display",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-03",
     category: "AI & Data",
     tags: [
@@ -1112,7 +1125,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/enterprise-servicenow-salesforce-implementation-patterns.jpg",
     coverImageAlt:
       "Enterprise platform architecture diagram showing integration patterns between ServiceNow and Salesforce",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-12-19",
     category: "Enterprise Platforms",
     tags: [
@@ -1136,7 +1149,7 @@ export const blogPosts: BlogPost[] = [
       "/images/blog/migrating-on-prem-to-cloud-decision-framework.jpg",
     coverImageAlt:
       "Decision framework flowchart showing migration strategy options for enterprise workloads",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-01-09",
     category: "Cloud & Infrastructure",
     tags: [
@@ -1160,7 +1173,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/product-led-delivery-it-consulting.jpg",
     coverImageAlt:
       "Product team collaborating around a user journey map in a modern workspace",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-08-25",
     category: "Agile & Delivery",
     tags: [
@@ -1183,7 +1196,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/technical-due-diligence-investors-acquirers.jpg",
     coverImageAlt:
       "Investor reviewing technical architecture diagrams during due diligence assessment",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2025-11-12",
     category: "Industry Insights",
     tags: [
@@ -1207,7 +1220,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: "/images/blog/unified-compliance-soc2-iso27001-pci-dss.jpg",
     coverImageAlt:
       "Compliance framework comparison matrix showing control overlaps across SOC 2, ISO 27001, and PCI DSS",
-    author: blogAuthors.jimi,
+    author: blogAuthors.easeorigin,
     publishedAt: "2026-02-15",
     category: "Cybersecurity",
     tags: ["SOC 2", "ISO 27001", "PCI DSS", "Compliance", "GRC"],
