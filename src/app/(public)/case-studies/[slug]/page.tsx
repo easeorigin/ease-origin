@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -62,6 +63,9 @@ export async function generateMetadata({
   };
 }
 
+/** Unknown slugs 404 instead of rendering on demand. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }));
 }
@@ -74,25 +78,13 @@ export default async function CaseStudyDetail({
   const { slug } = await params;
   const study = getCaseStudyBySlug(slug);
 
+  /*
+    notFound() rather than our own "not found" screen. Rendering a message
+    ourselves returns HTTP 200 on a page that says it does not exist, which a
+    crawler stores as a real page. notFound() sends a genuine 404.
+  */
   if (!study) {
-    return (
-      <div className="min-h-screen bg-surface flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-text-primary mb-4">
-            Case Study Not Found
-          </h1>
-          <p className="text-text-tertiary mb-8">
-            The case study you are looking for does not exist.
-          </p>
-          <Link
-            href="/case-studies"
-            className="text-eo-blue font-semibold hover:underline"
-          >
-            View All Case Studies
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const Icon = categoryIcons[study.category] ?? BarChart3;

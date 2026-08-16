@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -217,6 +218,9 @@ export async function generateMetadata({
   };
 }
 
+/** Unknown slugs 404 instead of rendering on demand. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return solutions.map((s) => ({ slug: s.slug }));
 }
@@ -231,25 +235,16 @@ export default async function SolutionDetailPage({
   const { slug } = await params;
   const solution = getSolutionBySlug(slug);
 
+  /*
+    notFound() rather than a hand-rolled "not found" screen.
+
+    Rendering our own message returns HTTP 200 with a body that says the page
+    does not exist. That is a soft 404: a crawler stores it as a real page, and
+    anything checking status codes is told the URL is fine. notFound() sends a
+    genuine 404 and renders app/not-found.tsx, so the status and the page agree.
+  */
   if (!solution) {
-    return (
-      <div className="min-h-screen bg-surface flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-text-primary mb-4">
-            Solution Not Found
-          </h1>
-          <p className="text-text-tertiary mb-8">
-            The solution you are looking for does not exist.
-          </p>
-          <Link
-            href="/solutions"
-            className="text-eo-blue font-semibold hover:underline"
-          >
-            View All Solutions
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const Icon = iconMap[solution.icon] ?? Server;
