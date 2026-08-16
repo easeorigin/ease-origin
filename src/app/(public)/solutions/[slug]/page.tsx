@@ -5,6 +5,8 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  Compass,
+  Package,
   Server,
   Shield,
   GitBranch,
@@ -30,6 +32,8 @@ const iconMap: Record<string, React.ElementType> = {
   Layers,
   ClipboardList,
   Workflow,
+  Compass,
+  Package,
 };
 
 // ─── Category Colors (for case study cards) ──────────────────────────────────

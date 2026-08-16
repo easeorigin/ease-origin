@@ -87,9 +87,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     image: `https://easeorigin.com${post.coverImage}`,
     datePublished: post.publishedAt,
     ...(post.updatedAt && { dateModified: post.updatedAt }),
+    /*
+      Organization, not Person. Posts are published by the company and carry no
+      personal byline, so declaring a Person here would put a name into
+      machine-readable structured data that the page itself does not claim.
+    */
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: post.author.name,
+      url: "https://easeorigin.com",
     },
     publisher: {
       "@type": "Organization",

@@ -152,14 +152,14 @@ export function ResumeUploadZone({
                 {uploadState === "error" && uploadError ? (
                   <div>
                     <p className="text-sm font-semibold text-red-600">Upload failed</p>
-                    <p className="text-xs text-red-500 mt-0.5">{uploadError} — click to try again</p>
+                    <p className="text-xs text-red-500 mt-0.5">{uploadError}. Click to try again.</p>
                   </div>
                 ) : (
                   <div>
                     <p className="text-sm font-medium text-gray-600">
                       Drag & drop or <span className="text-eo-blue font-semibold">browse</span>
                     </p>
-                    <p className="text-xs text-gray-400 mt-0.5">PDF, DOC, DOCX — max 4 MB</p>
+                    <p className="text-xs text-gray-400 mt-0.5">PDF, DOC, or DOCX, up to 4 MB</p>
                   </div>
                 )}
               </motion.div>

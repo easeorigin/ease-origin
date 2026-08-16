@@ -10,17 +10,24 @@ import {
 import { attributionNotice, trademarkNotice } from "@/data/company-info";
 import { fadeInUpWhileVisible } from "@/lib/animations";
 
-function NameGrid({ names }: { names: string[] }) {
+function NameGrid({
+  items,
+}: {
+  items: { name: string; industry?: string }[];
+}) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-      {names.map((name, index) => (
+      {items.map((item, index) => (
         <motion.div
-          key={name}
+          key={item.name}
           {...fadeInUpWhileVisible}
           transition={{ duration: 0.3, delay: Math.min(index, 8) * 0.04 }}
-          className="flex items-center justify-center text-center px-4 py-3 min-h-16 bg-white/5 border border-white/10 rounded-xl text-sm font-medium text-white/70"
+          className="flex flex-col items-center justify-center text-center px-4 py-3 min-h-16 bg-white/5 border border-white/10 rounded-xl"
         >
-          {name}
+          <span className="text-sm font-medium text-white/70">{item.name}</span>
+          {item.industry && (
+            <span className="mt-1 text-[11px] text-white/40">{item.industry}</span>
+          )}
         </motion.div>
       ))}
     </div>
@@ -54,21 +61,21 @@ export function Agencies() {
         <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-4 text-center">
           Government Agencies
         </p>
-        <NameGrid names={governmentAgencies.map((a) => a.name)} />
+        <NameGrid items={governmentAgencies.map((a) => ({ name: a.name }))} />
       </div>
 
       <div className="relative z-10 mb-10">
         <p className="text-sm font-semibold uppercase tracking-widest text-blue-300/60 mb-4 text-center">
           Prime Contractors Delivered Through
         </p>
-        <NameGrid names={primeContractors.map((p) => p.name)} />
+        <NameGrid items={primeContractors} />
       </div>
 
       <div className="relative z-10 mb-8">
         <p className="text-sm font-semibold uppercase tracking-widest text-blue-300/60 mb-4 text-center">
           Commercial Organizations
         </p>
-        <NameGrid names={commercialOrganizations.map((c) => c.name)} />
+        <NameGrid items={commercialOrganizations} />
       </div>
 
       <p className="relative z-10 text-xs text-white/50 text-center max-w-3xl mx-auto leading-relaxed">

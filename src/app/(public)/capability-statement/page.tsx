@@ -4,9 +4,11 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Award,
+  Bot,
   Boxes,
   Building2,
   CheckCircle2,
+  Compass,
   Download,
   Globe,
   Info,
@@ -28,18 +30,20 @@ import { programExperience, naicsCodes } from "@/data/program-experience";
 /* ─── Core Competencies ────────────────────────────────────────────────────── */
 
 /**
- * Four leading, four secondary. This split is EDITORIAL, not a truth claim.
+ * Six leading, six secondary. This split is EDITORIAL, not a truth claim.
  *
- * All eight competencies below are real hands-on experience. A capability
- * statement gets about six seconds of attention, so the four that match the
- * primary NAICS code and the certifications held lead as cards, and the rest
- * follow as a compact line. Nothing true is hidden.
+ * Everything in both lists is real hands-on experience. A capability statement
+ * gets about six seconds of attention, so the six with the deepest evidence
+ * lead as cards and the rest follow as a compact line. Nothing true is hidden.
  *
- * An earlier pass deleted the secondary four on the mistaken view that a
- * capability without a certification behind it could not be claimed. That
- * conflated two different things. A present-tense capability claim is fine and
- * should be complete. What needs attribution is a DELIVERY claim about a
- * specific past program, which is handled separately under `attributionNotice`.
+ * Two earlier passes got this wrong in the same way. The first cut the list to
+ * four on the view that a capability without a certification behind it could
+ * not be claimed. That conflates two different things: a present-tense
+ * CAPABILITY claim is fine and should be complete, while a DELIVERY claim about
+ * a specific past program is what needs attribution, handled separately under
+ * `attributionNotice`. The second pass left AI and large language model
+ * infrastructure out entirely, which was the largest single omission on the
+ * sheet given how much of the recent work is exactly that.
  *
  * For a tailored version, promote whichever competencies match the
  * solicitation and demote the rest. Do not delete them.
@@ -49,38 +53,53 @@ const coreCompetencies = [
     icon: Server,
     title: "Cloud Platform Engineering",
     description:
-      "Architecture, migration, and operations across AWS, Azure, GCP, and Oracle Cloud, including IL5 environments.",
-    technologies: ["AWS", "Azure", "GCP", "OCI", "IL5"],
+      "Multi-account and multi-tenancy landing zones, network segmentation, and high availability across four clouds, up to IL6 and C2Ops boundaries.",
+    technologies: ["AWS", "Azure", "GCP", "OCI", "IL4/5/6"],
   },
   {
-    icon: Workflow,
-    title: "Infrastructure as Code & CI/CD",
+    icon: Bot,
+    title: "AI & LLM Infrastructure",
     description:
-      "Repeatable provisioning and delivery pipelines, from source control through automated deployment.",
-    technologies: ["Terraform", "Terragrunt", "Jenkins", "GitLab"],
+      "Production language model systems: retrieval augmented generation, multi-agent orchestration, and model serving with the caching, rate limiting, and observability that keep them affordable.",
+    technologies: ["LangChain", "LangGraph", "Bedrock", "MCP", "FastAPI"],
   },
   {
     icon: Boxes,
-    title: "Kubernetes Platform Operations",
+    title: "Platform Engineering & Kubernetes",
     description:
-      "Managed cluster design, workload onboarding, and day-two operations for containerized platforms.",
-    technologies: ["EKS", "AKS", "Helm", "ArgoCD"],
+      "Cluster design, workload onboarding, and day-two operations, with self-service paths so product teams ship without filing a ticket.",
+    technologies: ["EKS", "AKS", "OKE", "Helm", "ArgoCD"],
+  },
+  {
+    icon: Workflow,
+    title: "Infrastructure as Code, CI/CD & GitOps",
+    description:
+      "Repeatable provisioning and delivery pipelines, from source control through automated and auditable deployment.",
+    technologies: ["Terraform", "Terragrunt", "Jenkins", "GitLab", "ArgoCD"],
   },
   {
     icon: Shield,
     title: "Security & Compliance Automation",
     description:
-      "Control implementation and evidence collection for regulated and classified environments.",
-    technologies: ["STIG", "RMF", "NIST 800-53", "HIPAA"],
+      "Control implementation and evidence collection for regulated and classified environments, built into the pipeline rather than bolted on afterwards.",
+    technologies: ["STIG", "RMF", "NIST 800-53", "ACAS", "Iron Bank"],
+  },
+  {
+    icon: Compass,
+    title: "Forward Deployment & Implementation",
+    description:
+      "Technical discovery through production rollout and operational handoff, working directly with your engineering, security, and business stakeholders.",
+    technologies: ["Discovery", "Runbooks", "Rollout", "Handoff"],
   },
 ];
 
-/** Real capability, listed compactly so the four above still scan. */
+/** Real capability, listed compactly so the six above still scan. */
 const additionalCompetencies = [
+  "Enterprise packaging and delivery, including air-gapped install patterns, Iron Bank hardened images, and license and entitlement-aware customer builds",
+  "Observability, reliability, and incident response across Datadog, Prometheus, Grafana, OpenTelemetry, and Splunk, with service level objectives and on-call runbooks",
   "Program management and PMO governance, including earned value management, integrated master scheduling, and OMB and CPIC reporting",
   "SAFe release train engineering, including PI planning facilitation and Agile Release Train coordination",
   "Data engineering and analytics, including pipeline development, business intelligence, and cloud data warehousing",
-  "Enterprise AI platforms, including large language model orchestration and retrieval augmented generation pipelines",
   "Enterprise SaaS delivery across ServiceNow, Salesforce, SAP, and Microsoft Dynamics 365",
 ];
 
@@ -121,9 +140,10 @@ const relevantExperience = programExperience.map((program) => ({
  */
 const differentiators = [
   "Principal-performed delivery. The engineer who scopes the work is the engineer who does it.",
+  "Delivery into air-gapped and classified environments at IL4, IL5, IL6, and C2Ops boundaries, including Iron Bank hardened images and DoD supply-chain packaging. Few firms this size can say that.",
+  "Platform and AI engineering in one practice, so language model systems arrive with the landing zone, pipeline, and control evidence already around them.",
   "Our principal holds an active DoD security clearance and serves in the U.S. Army Reserve.",
   "AWS Solutions Architect, AWS SysOps Administrator, and AWS Developer; Azure Administrator; CompTIA Security+.",
-  "Founder-led firm with 14+ years of hands-on enterprise technology and federal program engineering.",
   "Texas principal place of business, a scored factor under Texas Education Code 44.031(b).",
 ];
 
@@ -246,7 +266,8 @@ export default function CapabilityStatementPage() {
               {companyInfo.name}
             </h1>
             <p className="text-lg text-gray-300 font-medium">
-              Cloud platform and DevSecOps engineering for federal programs
+              Cloud platform, AI infrastructure, and DevSecOps engineering for
+              federal programs
             </p>
           </div>
         </div>
@@ -273,16 +294,21 @@ export default function CapabilityStatementPage() {
               Company Overview
             </h2>
             <p className="text-text-tertiary leading-relaxed text-sm mb-3">
-              {companyInfo.name} designs and operates secure cloud platforms for
-              regulated environments. We take on cloud migration, infrastructure
-              automation, Kubernetes platform operations, and security
+              {companyInfo.name} designs and operates secure cloud platforms and
+              production AI systems for regulated environments. We take on cloud
+              migration, infrastructure automation, Kubernetes platform
+              operations, large language model infrastructure, and security
               compliance as complete workstreams, for federal agencies, prime
-              contractors, and commercial organizations.
+              contractors, and commercial organizations. We also deploy forward,
+              running discovery through rollout and handoff inside the
+              customer&apos;s own environment.
             </p>
             <p className="text-text-tertiary leading-relaxed text-sm">
               Our people have delivered on programs for the Department of War,
-              the U.S. Navy, the U.S. Space Force, and federal civilian
-              agencies, and on HIPAA-regulated commercial infrastructure.{" "}
+              the U.S. Navy, the U.S. Space Force, the Department of Homeland
+              Security, the National Institutes of Health, and the General
+              Services Administration, and on HIPAA-regulated commercial
+              infrastructure.{" "}
               {clearanceStatement} EaseOrigin holds no facility clearance, so
               classified work is performed under a prime&apos;s FCL.
             </p>
@@ -294,7 +320,7 @@ export default function CapabilityStatementPage() {
               <Star className="h-5 w-5 text-eo-blue shrink-0" />
               Core Competencies
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 print:grid-cols-4 print:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 print:grid-cols-3 print:gap-3">
               {coreCompetencies.map((comp) => {
                 const Icon = comp.icon;
                 return (

@@ -16,6 +16,8 @@ export interface GovernmentAgency {
 export interface Organization {
   id: string;
   name: string;
+  /** Sector, so a reader can see the range without us claiming a range. */
+  industry?: string;
 }
 
 /** Agencies whose programs EaseOrigin personnel have delivered on. */
@@ -42,13 +44,30 @@ export const primeContractors: Organization[] = [
   { id: "black-canyon", name: "Black Canyon Consulting" },
 ];
 
-/** Commercial organizations the same personnel have delivered for. */
+/**
+ * Commercial organizations the same personnel have delivered for.
+ *
+ * Two Six Technologies sits here because that is where the founder placed it,
+ * but it is a national security technology company doing cyber and research
+ * work for defense customers. If that engagement was federal program delivery
+ * rather than commercial work, move it to `primeContractors` and give it a
+ * backing entry in program-experience.ts, because it would then support an
+ * agency claim.
+ */
 export const commercialOrganizations: Organization[] = [
-  { id: "google", name: "Google" },
-  { id: "aws", name: "Amazon Web Services" },
-  { id: "att", name: "AT&T" },
-  { id: "capital-one", name: "Capital One" },
-  { id: "stellantis", name: "Stellantis" },
-  { id: "datassential", name: "Datassential" },
-  { id: "66-degrees", name: "66 Degrees" },
+  { id: "google", name: "Google", industry: "Technology" },
+  { id: "aws", name: "Amazon Web Services", industry: "Cloud computing" },
+  { id: "akamai", name: "Akamai", industry: "Content delivery and cloud security" },
+  { id: "bcbs", name: "Blue Cross Blue Shield", industry: "Health insurance" },
+  { id: "att", name: "AT&T", industry: "Telecommunications" },
+  { id: "capital-one", name: "Capital One", industry: "Financial services" },
+  { id: "stellantis", name: "Stellantis", industry: "Automotive" },
+  { id: "parloa", name: "Parloa", industry: "Conversational AI" },
+  {
+    id: "two-six",
+    name: "Two Six Technologies",
+    industry: "National security technology",
+  },
+  { id: "datassential", name: "Datassential", industry: "Food industry analytics" },
+  { id: "66-degrees", name: "66 Degrees", industry: "Cloud consulting" },
 ];

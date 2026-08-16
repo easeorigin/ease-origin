@@ -73,7 +73,7 @@ export function Hero() {
             >
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-eo-gold mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-eo-gold animate-pulse"></span>
-                <span>Cloud and Platform Engineering</span>
+                <span>Cloud, Platform, and AI Infrastructure</span>
               </div>
             </motion.div>
 
@@ -97,9 +97,10 @@ export function Hero() {
               }}
               className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
             >
-              EaseOrigin builds and operates secure cloud infrastructure for
-              federal programs and regulated commercial environments. We work
-              as a subcontractor to the primes who hold the contracts.
+              EaseOrigin builds and operates secure cloud infrastructure and
+              production language model systems for federal programs and
+              regulated commercial environments. We work as a subcontractor to
+              the primes who hold the contracts.
             </motion.p>
 
             <motion.div

@@ -6,8 +6,8 @@ import Image from "next/image";
 import {
   ShieldCheck, Users, Lightbulb, Star,
   Cloud, Lock, Layers,
-  CheckCircle2, Award, Code,
-  Linkedin, Mail, Workflow, Building2
+  CheckCircle2, Award, Bot,
+  Linkedin, Mail, Workflow, Building2, GraduationCap
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { PageHero } from "@/components/shared/page-hero";
@@ -20,13 +20,16 @@ import { fadeInUpWhileVisible, fadeInUpWhileVisibleLarge, staggeredFadeInUp } fr
 
 function WhoWeAre() {
   const capabilities = [
-    // These four match the capability statement exactly. Keep them in sync.
-    // A capability published here but dropped there is the kind of gap a
-    // contracting officer notices.
+    // Keep in sync with the capability statement. A capability published here
+    // but dropped there is the kind of gap a contracting officer notices, and
+    // an earlier pass cut real capability on the mistaken view that a short
+    // list was a safer list. Short is an editorial choice; accurate is not.
     { icon: Cloud,     label: "Cloud Platform Engineering" },
+    { icon: Bot,       label: "AI & LLM Infrastructure" },
     { icon: Workflow,  label: "Infrastructure as Code & CI/CD" },
     { icon: Layers,    label: "Kubernetes Operations" },
     { icon: Lock,      label: "Security & Compliance" },
+    { icon: Users,     label: "Forward Deployed Engineering" },
   ];
 
   return (
@@ -104,21 +107,29 @@ function WhoWeAre() {
 
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 
+/*
+  Roles and dates match the principal's record exactly.
+
+  The 2012 entry previously read "enterprise infrastructure and automation at
+  large scale", which promoted a support engineering role into something it was
+  not. Support is where the operational instincts came from, and saying so is
+  both accurate and more interesting than the inflated version.
+*/
 const timelineItems = [
   {
     year: "2012",
-    title: "Engineering Roots",
-    description: "Enterprise infrastructure and automation at large scale. This is where the systems habits came from.",
+    title: "Support Engineering",
+    description: "Endpoint and escalation support at Google across Windows, macOS, and Linux, with the repetitive parts automated away in Bash and PowerShell. Unglamorous, and where the operational instincts came from.",
   },
   {
     year: "2016",
-    title: "Cloud & Healthcare",
-    description: "Moved into cloud engineering for regulated environments, including healthcare systems carrying compliance obligations.",
+    title: "Cloud & Regulated Environments",
+    description: "Linux and cloud engineering at McKesson, then Blue Cross Blue Shield. Migrations onto AWS, production Kubernetes, and the first real exposure to HIPAA-aligned controls and audit trails.",
   },
   {
     year: "2018",
-    title: "Enterprise Consulting",
-    description: "Cloud consulting. Architecture and infrastructure automation for organizations of very different sizes, which is where the taste for boring, repeatable builds came from.",
+    title: "Consulting at AWS",
+    description: "DevOps consulting on customer architectures. Reusable infrastructure modules, GitOps rollouts, and migration playbooks, which is where the taste for boring, repeatable builds came from.",
   },
   {
     year: "2019",
@@ -127,8 +138,8 @@ const timelineItems = [
   },
   {
     year: "2021",
-    title: "Platform Engineering at Scale",
-    description: "Platform engineering leadership across multi-cloud environments, with containerization and observability standardized over the estate.",
+    title: "Federal Platform & AI Infrastructure",
+    description: "Principal-level platform engineering at Akamai: a federal and defense government-cloud program at IL4 through IL6, alongside production LLM infrastructure and multi-agent systems.",
   },
 ];
 
@@ -205,9 +216,19 @@ interface TeamMember {
   name: string;
   initials: string;
   title: string;
+  /** Technical focus line under the company title. */
+  subtitle: string;
   photo: string;
-  bio: string;
+  /** Paragraphs. Kept as an array so the card can space them properly. */
+  bio: string[];
+  focusAreas: string[];
+  /**
+   * Exact certificate names, including level. An evaluator who checks and
+   * finds Associate where Professional was implied stops believing the rest
+   * of the page, so the level is stated rather than left ambiguous.
+   */
   certifications: string[];
+  education: { degree: string; institution: string }[];
   linkedIn: string;
   email: string;
 }
@@ -216,16 +237,55 @@ const teamMembers: TeamMember[] = [
   {
     name: "Jimi Umar",
     initials: "JU",
-    title: "Founder & CEO",
+    title: "Founder & Principal Engineer",
+    subtitle: "Cloud Platform & AI Infrastructure",
     photo: "",
-    bio: "With over 14 years of experience in enterprise technology and cloud infrastructure, Jimi Umar founded EaseOrigin to deliver trusted consulting services to government agencies and private sector organizations. An Army Reservist with an active security clearance, he brings deep expertise across AWS, Azure, and GCP, with hands-on leadership in DevOps, cybersecurity, AI/ML platforms, and large-scale infrastructure modernization for clients spanning federal agencies (DoW, DHS, NIH, GSA) and commercial enterprises in financial services, healthcare, retail, and logistics.",
+    /*
+      Third rewrite, and the first one that is accurate.
+
+      Two errors were corrected here. The first version said "for clients
+      spanning federal agencies", which reads as EaseOrigin's client list. The
+      second said he "built and ran platforms at Google", when the Google role
+      was endpoint and escalation support. Overstating a support role is the
+      same failure this site was cleaned up to remove, so it is stated
+      correctly in the timeline instead.
+
+      Voice: earlier drafts ran on filler. "Deep expertise across",
+      "hands-on leadership in", "trusted consulting services" say nothing.
+      The specifics below carry the weight on their own.
+    */
+    bio: [
+      "Jimi Umar has spent fourteen years in cloud platform engineering and now works at principal level. The current work is a large U.S. federal and defense government-cloud program running across four environments and more than twenty tenancies at IL4, IL5, IL6, and C2Ops boundaries. That covers managed Kubernetes, container registry, object storage, KMS-backed secrets vaults, and identity domains, all of it held to continuous compliance with STIG, CIS Benchmark, and ACAS scanning. He led an ACAS vulnerability burndown and contributed to an ATO and RMF authorization package.",
+      "The commercial half of the record runs on the same patterns at different scale. Multi-account AWS foundations across twenty-seven accounts and more than a hundred ECS Fargate services. Terragrunt at scale, backed by a thirty-seven component shared module library and forty reusable Terraform modules. Roughly two dozen Kubernetes clusters across two regions, delivered through GitOps with autoscaling tuned to keep the bill honest.",
+      "More of the recent work is AI infrastructure. He architected enterprise AI platform components serving fifteen thousand concurrent users, with LangChain and LangGraph orchestration, retrieval pipelines drawing on more than forty data connectors, and multi-provider model integration. He builds multi-agent systems on Model Context Protocol using custom FastMCP servers, and runs an agent-orchestration layer of roughly thirty specialized agents against infrastructure operations.",
+      "Much of it is forward deployed work: sitting with the customer, turning ambiguous product, security, and operational requirements into architecture, runbooks, and systems that survive contact with production. He holds an active DoD security clearance and serves in the U.S. Army Reserve.",
+    ],
+    focusAreas: [
+      "Cloud platform engineering across AWS, Azure, GCP, and Oracle Cloud",
+      "AI and LLM infrastructure: LangChain, LangGraph, RAG, Model Context Protocol",
+      "Kubernetes platform operations and GitOps delivery",
+      "Infrastructure as code with Terraform and Terragrunt at scale",
+      "Security and compliance automation: STIG, RMF, NIST 800-53",
+      "Forward deployed engineering and customer implementation",
+    ],
     certifications: [
-      "AWS Solutions Architect",
-      "AWS SysOps Administrator",
-      "AWS Developer",
-      "Azure Administrator",
+      "AWS Certified Solutions Architect, Associate",
+      "AWS Certified SysOps Administrator, Associate",
+      "AWS Certified Developer, Associate",
+      "Microsoft Certified: Azure Administrator Associate",
       "CompTIA Security+",
-      "Certified Python Developer",
+      "Certified Python Associate (PCAP)",
+    ],
+    education: [
+      {
+        degree: "MS, Applied Artificial Intelligence",
+        institution: "Northeastern University",
+      },
+      { degree: "MBA", institution: "Woolfe University" },
+      {
+        degree: "BS, Mechanical Engineering",
+        institution: "University of Lagos",
+      },
     ],
     linkedIn: "https://linkedin.com/in/jimiuumar",
     email: companyInfo.email,
@@ -274,6 +334,16 @@ function Leadership() {
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
           Leadership
         </h2>
+        {/*
+          Short form of the attribution notice. The full text renders in the
+          timeline above; repeating it verbatim here would be clumsy, but the
+          card carries programs and metrics, so it needs the disclosure too.
+        */}
+        <p className="text-text-tertiary mt-4 max-w-2xl mx-auto leading-relaxed text-sm">
+          Credentials and experience below belong to our principal, earned as an
+          employee of the organizations named rather than under an EaseOrigin
+          contract.
+        </p>
       </motion.div>
 
       <div className="relative z-10 flex flex-col gap-12">
@@ -299,27 +369,71 @@ function Leadership() {
                   <p className="text-sm font-semibold text-eo-gold mt-1">
                     {member.title}
                   </p>
+                  <p className="text-sm text-text-muted mt-0.5">
+                    {member.subtitle}
+                  </p>
                 </div>
 
-                <p className="text-text-tertiary leading-relaxed mb-6 text-sm sm:text-base">
-                  {member.bio}
-                </p>
+                <div className="mb-6 flex flex-col gap-3">
+                  {member.bio.map((para, idx) => (
+                    <p
+                      key={idx}
+                      className="text-text-tertiary leading-relaxed text-sm sm:text-base"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
 
-                {/* Certifications */}
+                {/* Focus areas */}
                 <div className="mb-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
-                    Certifications
+                    Focus
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {member.certifications.map((cert) => (
-                      <span
-                        key={cert}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 text-xs font-medium text-eo-navy dark:text-blue-200"
-                      >
-                        <Award className="h-3 w-3 text-eo-gold shrink-0" />
-                        {cert}
-                      </span>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                    {member.focusAreas.map((area) => (
+                      <li key={area} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-eo-gold shrink-0 mt-0.5" />
+                        <span className="text-sm text-text-tertiary">{area}</span>
+                      </li>
                     ))}
+                  </ul>
+                </div>
+
+                {/* Certifications and education */}
+                <div className="mb-6 grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
+                      Certifications
+                    </p>
+                    <ul className="flex flex-col gap-2">
+                      {member.certifications.map((cert) => (
+                        <li key={cert} className="flex items-start gap-2">
+                          <Award className="h-3.5 w-3.5 text-eo-gold shrink-0 mt-0.5" />
+                          <span className="text-sm text-text-tertiary">{cert}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
+                      Education
+                    </p>
+                    <ul className="flex flex-col gap-2">
+                      {member.education.map((ed) => (
+                        <li key={ed.degree} className="flex items-start gap-2">
+                          <GraduationCap className="h-3.5 w-3.5 text-eo-gold shrink-0 mt-0.5" />
+                          <span className="text-sm text-text-tertiary">
+                            <span className="font-medium text-text-secondary">
+                              {ed.degree}
+                            </span>
+                            <br />
+                            {ed.institution}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
@@ -357,7 +471,7 @@ const expertiseCards = [
   {
     icon: Award,
     title: "Cloud Architecture",
-    description: "Multiple cloud platform certifications ensuring best-practice design and delivery across AWS, Azure, and multi-cloud environments.",
+    description: "Certified on AWS and Azure at associate level, with production delivery across GCP and Oracle Cloud alongside them.",
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     iconColor: "text-eo-blue",
@@ -379,9 +493,9 @@ const expertiseCards = [
     iconColor: "text-violet-600",
   },
   {
-    icon: Code,
-    title: "Full-Stack Engineering",
-    description: "Deep technical expertise spanning cloud infrastructure, AI/ML platforms, DevOps pipelines, modern data engineering, and program delivery.",
+    icon: Bot,
+    title: "AI Infrastructure",
+    description: "Production LLM platforms: orchestration, retrieval pipelines, multi-agent systems on Model Context Protocol, and the observability to run them safely. Backed by a master's in applied artificial intelligence.",
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
     iconColor: "text-amber-600",
@@ -408,7 +522,7 @@ function OurExpertise() {
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Credentials</p>
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Expertise</h2>
         <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
-          Certified, cleared, and experienced across the technologies that matter most to government and enterprise organizations.
+          What our principal is certified in, cleared for, and has actually run in production.
         </p>
       </motion.div>
 
@@ -456,7 +570,7 @@ const values = [
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "From AI-powered platforms to cloud-native architectures, we bring modern solutions and forward-thinking approaches to every engagement.",
+    description: "We work at the edge of what is currently practical, including production LLM infrastructure and multi-agent systems, without betting a client's program on something unproven.",
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
     iconColor: "text-amber-600",
@@ -485,7 +599,7 @@ function OurValues() {
         <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">What Drives Us</p>
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Values</h2>
         <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
-          Our values shape how we engage with clients, partners, and the consultants who carry our mission forward.
+          How we work with clients, primes, and the specialists we bring in on a subcontract.
         </p>
       </motion.div>
 
@@ -523,7 +637,7 @@ const impactStats = [
   { num: "14+", label: "Years of Hands-On Engineering" },
   { num: "6", label: "Professional Certifications" },
   { num: "6", label: "Distinct Federal Programs" },
-  { num: "3", label: "Major Cloud Platforms" },
+  { num: "4", label: "Cloud Platforms in Production" },
 ];
 
 const impactPoints = [
@@ -607,7 +721,7 @@ export default function AboutPage() {
           badge="Est. 2019 | Midlothian, TX"
           badgeIcon={<Building2 className="h-3.5 w-3.5" />}
           title="About EaseOrigin"
-          description="Delivering trusted technology consulting services that help government agencies and private sector organizations modernize systems, strengthen security, and drive mission success."
+          description="Cloud platform engineering, AI infrastructure, and compliance automation for federal programs and regulated industries."
           backgroundImage={{ src: "/images/about-team.jpg", alt: "EaseOrigin team collaboration" }}
         />
         <WhoWeAre />

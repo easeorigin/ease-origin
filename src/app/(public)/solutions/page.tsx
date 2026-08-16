@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import {
   Cloud, Server, Shield, Database, ArrowRight,
-  ChevronRight, Cpu, Bot, ClipboardList, Workflow, FileCheck
+  ChevronRight, Cpu, Bot, ClipboardList, Workflow, FileCheck,
+  Compass, Package
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { CTASection } from "@/components/shared/cta-section";
@@ -79,16 +80,18 @@ const technologySolutions = [
     id: "aiml",
     slug: "ai-ml",
     icon: Bot,
-    title: "AI/ML Infrastructure",
+    title: "AI & LLM Infrastructure",
     shortDesc:
-      "Design and deploy production-ready AI platforms with intelligent orchestration, knowledge retrieval, and scalable model serving.",
+      "Production language model platforms with multi-agent orchestration, retrieval pipelines, and the caching, rate limiting, and cost observability that make them viable at scale.",
     services: [
-      "Enterprise AI platform design",
-      "LLM deployment & orchestration",
-      "RAG pipeline development",
-      "Intelligent automation solutions",
-      "Model serving & optimization",
-      "AI/ML observability & cost tracking",
+      "Multi-agent orchestration (LangChain, LangGraph)",
+      "Retrieval augmented generation pipelines",
+      "Multi-provider model integration (OpenAI, AWS Bedrock)",
+      "Custom Model Context Protocol servers",
+      "Real-time inference with intelligent caching",
+      "Model cost, performance, and quality observability",
+      "FastAPI services for model workflow orchestration",
+      "Vector search and local retrieval",
     ],
     image: `images/ai-ml-platform.jpg`,
     imageAlt: "AI and machine learning infrastructure",
@@ -132,6 +135,46 @@ const technologySolutions = [
 ];
 
 const advisorySolutions = [
+  {
+    id: "forward",
+    slug: "forward-deployment",
+    icon: Compass,
+    title: "Forward Deployment & Implementation",
+    shortDesc:
+      "Technical discovery through production rollout and operational handoff, run inside the customer's own environment rather than from the outside.",
+    services: [
+      "Technical discovery and environment assessment",
+      "Requirements translation into architecture",
+      "Deployment planning and stakeholder alignment",
+      "Production rollout with staged cutover",
+      "Implementation runbooks and checklists",
+      "Adoption support and troubleshooting",
+      "Operational handoff to the customer's team",
+      "Post-deployment optimization",
+    ],
+    image: `images/about-team.jpg`,
+    imageAlt: "Technical discovery and implementation planning session",
+  },
+  {
+    id: "packaging",
+    slug: "enterprise-packaging",
+    icon: Package,
+    title: "Enterprise Packaging & Delivery",
+    shortDesc:
+      "Air-gapped install bundles, Iron Bank hardened images, and upgrade paths tested against the version the customer is actually on.",
+    services: [
+      "Air-gapped deployment patterns and offline bundles",
+      "Iron Bank hardened images and DoD supply-chain packaging",
+      "Versioned Helm charts as registry artifacts",
+      "Customer install workflows and prerequisites",
+      "Upgrade and rollback planning",
+      "License and entitlement-aware packaging",
+      "Image promotion and digest pinning",
+      "Software bill of materials and vulnerability burndown",
+    ],
+    image: `images/server-room.jpg`,
+    imageAlt: "Secure infrastructure and packaging environment",
+  },
   {
     id: "pm",
     slug: "program-management",
@@ -185,7 +228,7 @@ function SolutionsHero() {
     <PageHero
       badge="Technology Consulting"
       title="Our Solutions"
-      description="We build the technology and manage the programs that deliver it. EaseOrigin provides specialized consulting services that help government agencies, prime contractors, and private sector organizations modernize systems, strengthen security, and accelerate delivery."
+      description="We build the platforms, the AI systems that run on them, and the delivery process that gets both into production. EaseOrigin works with government agencies, prime contractors, and private sector organizations on cloud modernization, security compliance, and language model infrastructure."
       primaryCta={{ href: "/contact", label: "Partner With Us" }}
       tall
       backgroundImage={{ src: "/images/solutions-hero.jpg", alt: "Technology solutions and infrastructure" }}

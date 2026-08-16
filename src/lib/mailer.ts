@@ -13,7 +13,7 @@ export const sendSubscriptionEmail = async (to: string) => {
   const LOGO_URL = process.env.EMAIL_LOGO_URL;
 
   await transporter.sendMail({
-    from: `"EaseOrgin" <${process.env.EMAIL_USER}>`,
+    from: `"EaseOrigin" <${process.env.EMAIL_USER}>`,
     to,
     subject: "You're on the list! 🎉",
     html: `
@@ -31,7 +31,7 @@ export const sendSubscriptionEmail = async (to: string) => {
 
                   <!-- Logo -->
                   <a href="${SITE_URL}" style="text-decoration:none; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:12px; width:100%;">
-                    <img src="${LOGO_URL}" alt="EaseOrgin" width="60"; height="50"; objectFit="cover"; style="display:block;" />
+                    <img src="${LOGO_URL}" alt="EaseOrigin" width="60"; height="50"; objectFit="cover"; style="display:block;" />
                     <h1 style="color:#ffffff;font-size:24px;font-weight:800;">
                       Ease<span style="color:#F04A2A;">Origin</span>
                     </h1>
@@ -48,7 +48,7 @@ export const sendSubscriptionEmail = async (to: string) => {
                   </h1>
 
                   <p style="color:#94A3B8;font-size:14px;line-height:1.6;margin:0;">
-                    Welcome to EaseOrgin's monthly intelligence brief — federal IT insights delivered straight to your inbox.
+                    Welcome to EaseOrigin's monthly intelligence brief. Federal IT insights delivered straight to your inbox.
                   </p>
 
                 </td>
@@ -69,7 +69,7 @@ export const sendSubscriptionEmail = async (to: string) => {
                       "Cybersecurity and FedRAMP policy changes",
                       "Cloud modernization trends across agencies",
                       "IT talent and clearance market intelligence",
-                      "EaseOrgin case studies and capabilities spotlight",
+                      "EaseOrigin case studies and capabilities spotlight",
                     ]
                       .map(
                         (item) => `
@@ -115,10 +115,10 @@ export const sendSubscriptionEmail = async (to: string) => {
                     <tr>
                       <td>
                         <p style="color:#ffffff;font-weight:bold;font-size:14px;margin:0 0 8px;">
-                          Looking for federal IT talent?
+                          Need cloud, platform, or AI depth on a federal program?
                         </p>
                         <p style="color:#94A3B8;font-size:12px;margin:0 0 20px;">
-                          EaseOrgin connects agencies and prime contractors with cleared, mission-ready consultants.
+                          EaseOrigin takes subcontract scope on prime-held vehicles, with an active DoD clearance and small business credit.
                         </p>
                         <a href="${SITE_URL}/contact"
                           style="display:inline-block;padding:12px 24px;background:#F04A2A;color:#FFFFFF;font-weight:bold;border-radius:8px;text-decoration:none;">

@@ -12,7 +12,7 @@ export function Credibility() {
     {
       icon: ShieldCheck,
       title: "14+ Years of Hands-On Engineering",
-      description: "Cloud, security, platform engineering, and program delivery across government and enterprise environments."
+      description: "Cloud platforms, language model infrastructure, security compliance, and program delivery across government and enterprise environments."
     },
     {
       icon: Handshake,
@@ -22,7 +22,7 @@ export function Credibility() {
     {
       icon: Award,
       title: "Certified Practice",
-      description: "Hands-on across AWS, Azure, GCP, and Oracle Cloud, plus enterprise SaaS platforms including ServiceNow, Salesforce, SAP, and Dynamics 365. Certifications are held on AWS and Azure, plus CompTIA Security+; the rest is delivery experience rather than a certificate."
+      description: "Hands-on across AWS, Azure, GCP, and Oracle Cloud, plus language model platforms and enterprise SaaS including ServiceNow, Salesforce, SAP, and Dynamics 365. Certifications are held on AWS and Azure, plus CompTIA Security+. The rest is delivery experience, not a certificate, and we say which is which."
     }
   ];
 
