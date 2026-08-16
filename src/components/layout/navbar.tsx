@@ -25,7 +25,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Solutions", href: "/solutions", internal: true },
-    { name: "Contract Vehicles", href: "/contract-vehicles", internal: true },
+    { name: "Program Experience", href: "/program-experience", internal: true },
     { name: "Case Studies", href: "/case-studies", internal: true },
     { name: "About", href: "/about", internal: true },
     { name: "Careers", href: "/careers", internal: true },

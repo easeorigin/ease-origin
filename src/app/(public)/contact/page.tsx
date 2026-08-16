@@ -183,7 +183,7 @@ function ContactFormSection() {
 
       <div className="relative z-10 grid lg:grid-cols-5 gap-12 lg:gap-16">
 
-        {/* Left — Contact Info */}
+        {/* Left: contact info */}
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -231,7 +231,7 @@ function ContactFormSection() {
           </div>
         </motion.div>
 
-        {/* Right — Contact Form */}
+        {/* Right: contact form */}
         <motion.div
           initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -247,7 +247,7 @@ function ContactFormSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary">Message Sent!</h3>
                 <p className="text-text-tertiary max-w-sm leading-relaxed">
-                  Thank you for reaching out. A member of our team will be in touch within one business day.
+                  Thank you for reaching out. We will be in touch within one business day.
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setServerError(null); setValues({ name: "", email: "", company: "", subject: "", message: "" }); setTouched({}); setErrors({}); }}
@@ -426,7 +426,7 @@ function MapSection() {
       <div className="w-full h-80 md:h-96 relative overflow-hidden shadow-inner dark:invert dark:hue-rotate-180">
         <iframe
           title="EaseOrigin Office Location, Midlothian, TX"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.2!2d-96.9945!3d32.4824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s211+E+Avenue+G%2C+Midlothian%2C+TX+76065!5e0!3m2!1sen!2sus!4v1000000000000!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.2!2d-96.9945!3d32.4824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s211+E+Avenue+G+Ste+306%2C+Midlothian%2C+TX+76065!5e0!3m2!1sen!2sus!4v1000000000000!5m2!1sen!2sus"
           width="100%"
           height="100%"
           style={{ border: 0, filter: "grayscale(20%) contrast(1.05)" }}
@@ -467,7 +467,7 @@ function ConsultantCTA() {
                 Interested in Working With EaseOrigin?
               </h3>
               <p className="text-gray-300 leading-relaxed mb-6 max-w-xl">
-                We partner with highly skilled consultants supporting federal technology initiatives. Explore open positions or submit your resume for future consideration.
+                We have no open requisitions. We do keep a network of independent engineers and small firms we bring in when a subcontract needs scope we do not cover. If that is you, send your background over.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
@@ -500,7 +500,7 @@ export default function ContactPage() {
         <PageHero
           badge="Get In Touch"
           title="Contact Us"
-          description="We welcome inquiries from government agencies, prime contractors, and technology consultants. Our team typically responds within one business day."
+          description="We welcome inquiries from government agencies, prime contractors, and technology consultants. We typically respond within one business day."
           backgroundImage={{ src: "/images/contact-hero.jpg", alt: "Professional business meeting" }}
         />
         <ContactFormSection />

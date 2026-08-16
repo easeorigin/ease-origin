@@ -92,8 +92,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/contract-vehicles" className="hover:text-eo-gold transition-colors">
-                  Contract Vehicles
+                <Link href="/program-experience" className="hover:text-eo-gold transition-colors">
+                  Program Experience
                 </Link>
               </li>
               <li>

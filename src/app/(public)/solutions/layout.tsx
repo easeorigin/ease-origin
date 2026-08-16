@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "EaseOrigin technology solutions: cloud infrastructure, cybersecurity, DevOps, AI/ML, data analytics, SaaS, program management, and agile delivery for government and enterprise.",
+    "Cloud platform engineering, DevSecOps, cybersecurity, data and analytics, AI platforms, enterprise SaaS, program management, and agile delivery across AWS, Azure, GCP, and Oracle Cloud.",
   openGraph: {
     title: "Solutions | EaseOrigin",
     description:
-      "EaseOrigin technology solutions: cloud infrastructure, cybersecurity, DevOps, AI/ML, data analytics, SaaS, program management, and agile delivery for government and enterprise.",
+      "Cloud platform engineering, DevSecOps, cybersecurity, data and analytics, AI platforms, enterprise SaaS, program management, and agile delivery across AWS, Azure, GCP, and Oracle Cloud.",
   },
 };
 

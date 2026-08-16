@@ -11,39 +11,47 @@ import { jobs } from "@/data/jobs";
 import { fadeInUpWhileVisible } from "@/lib/animations";
 import { usePublicJobs } from "@/hooks/use-jobs";
 
-const benefits = [
+/**
+ * Reframed from an employer pitch to a teaming pitch.
+ *
+ * EaseOrigin carries no standing bench and runs no benefits program, so the
+ * previous copy (career guidance, benefits packages, clearance sponsorship)
+ * described things that do not exist. What follows is what the firm actually
+ * offers the people it works with.
+ */
+const workingWithUs = [
   {
     icon: Heart,
-    title: "Meaningful Work",
+    title: "Whole Workstreams",
     description:
-      "Support technology initiatives that directly impact government operations, enterprise systems, and public services at a national scale.",
+      "Our engagements are scoped as workstreams: a platform build, a compliance package, a migration. You own real scope, not a seat someone else defined.",
     color: "text-rose-500",
     bg: "bg-rose-50 dark:bg-rose-950",
     border: "border-rose-100 dark:border-rose-900",
   },
   {
     icon: Users,
-    title: "Consultant Support",
+    title: "A Working Bench",
     description:
-      "We partner with our consultants to provide career guidance, mentorship, and professional development at every stage.",
+      "We team with independent engineers and small firms to cover scope our practice does not. Specialists get brought in on the work that fits them.",
     color: "text-eo-blue",
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
   },
   {
     icon: DollarSign,
-    title: "Competitive Benefits",
+    title: "Subcontract Terms",
     description:
-      "Competitive compensation, benefits packages, and long-term placement opportunities on government and commercial programs.",
+      "Engagements run as subcontracts with rates agreed up front. We are not a staffing firm and do not offer W-2 placement or benefits.",
     color: "text-emerald-600",
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
   },
   {
     icon: Shield,
-    title: "Clearance Support",
+    title: "Cleared Programs",
     description:
-      "We guide consultants through the security clearance process and connect cleared professionals with high-value opportunities.",
+      "Some of our scope sits behind a clearance. Bring your own. We do not sponsor investigations, and classified work runs under the prime's facility clearance.",
     color: "text-eo-gold",
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
@@ -61,15 +69,17 @@ function WhyWorkWithUs() {
         {...fadeInUpWhileVisible}
         className="text-center mb-12"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Why EaseOrigin</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Why Work With Us</h2>
+        <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Delivery Model</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">How We Work</h2>
         <p className="mt-4 text-text-tertiary max-w-xl mx-auto leading-relaxed">
-          We believe great technology starts with great people. Here&apos;s what makes EaseOrigin different.
+          We deliver federal scope as subcontracts and pull in specialists from
+          our network when a program calls for them. Here is what that looks
+          like from the inside.
         </p>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {benefits.map(({ icon: Icon, title, description, color, bg, border }, i) => (
+        {workingWithUs.map(({ icon: Icon, title, description, color, bg, border }, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 24 }}
@@ -92,31 +102,51 @@ function WhyWorkWithUs() {
 
 export default function CareersPage() {
   const {
-      data: publicJobs,
-      // isLoading
-    } = usePublicJobs();
+    data: publicJobs,
+    // isLoading
+  } = usePublicJobs();
 
-    const mergedJobs = [...(publicJobs || []), ...jobs];
+  /**
+   * The static `jobs` list is intentionally empty. Anything here comes from the
+   * admin-managed API, so the count and the copy both have to hold at zero
+   * without implying a hiring pipeline that does not exist.
+   */
+  const mergedJobs = [...(publicJobs || []), ...jobs];
+  const openCount = mergedJobs.length;
+  const hasOpenings = openCount > 0;
+
   return (
     <div className="min-h-screen bg-surface">
       <main>
         <PageHero
-          badge={`${jobs.length} Open Position${mergedJobs.length !== 1 ? "s" : ""}`}
-          title="Careers at EaseOrigin"
-          description="Join a team of highly skilled consultants delivering mission-critical technology solutions for government agencies and private sector organizations nationwide."
-          primaryCta={{ href: "/careers/jobs", label: "View Open Positions" }}
-          secondaryCta={{ href: "/careers/submit-resume", label: "Submit Resume" }}
+          badge={
+            hasOpenings
+              ? `${openCount} Open Position${openCount !== 1 ? "s" : ""}`
+              : "Partner Network"
+          }
+          title="Work With EaseOrigin"
+          description={
+            hasOpenings
+              ? "We deliver cloud, platform, and security workstreams on federal programs, and we bring in specialists from our network when a program calls for them."
+              : "We have no open positions right now. We do keep a working network of engineers and small firms we bring onto federal scope as it comes in, and we would rather know what you do before the work shows up than after."
+          }
+          primaryCta={
+            hasOpenings
+              ? { href: "/careers/jobs", label: "View Open Positions" }
+              : { href: "/careers/submit-resume", label: "Join Our Network" }
+          }
+          secondaryCta={{ href: "/program-experience", label: "How We Team" }}
           showScrollIndicator
           backgroundImage={{ src: "/images/careers-office.jpg", alt: "Modern technology workplace" }}
         />
         <WhyWorkWithUs />
         <CTASection
           variant="navy"
-          eyebrow="Join Our Team"
-          title="Explore Opportunities With EaseOrigin"
-          description="We're actively hiring technology professionals across cloud, cybersecurity, data, AI/ML, and DevOps disciplines."
-          primaryCta={{ href: "/careers/jobs", label: "View Open Positions" }}
-          secondaryCta={{ href: "/careers/submit-resume", label: "Submit Resume" }}
+          eyebrow="Our Network"
+          title="Tell Us What You Build"
+          description="We keep a standing list of engineers and small firms we can bring onto federal scope. Send us what you do and the clearance you hold, and we will reach out when the work matches."
+          primaryCta={{ href: "/careers/submit-resume", label: "Join Our Network" }}
+          secondaryCta={{ href: "/contact", label: "Contact Us" }}
         />
       </main>
     </div>

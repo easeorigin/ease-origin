@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
   },
   description:
-    "EaseOrigin delivers specialized IT consulting for government agencies and prime contractors, including cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery.",
+    "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
   metadataBase: new URL("https://easeorigin.com"),
   keywords: [
     "federal IT consulting",
@@ -57,14 +57,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
     description:
-      "EaseOrigin delivers specialized IT consulting for government agencies and prime contractors, including cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery.",
+      "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
     url: "https://easeorigin.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "EaseOrigin | Federal IT Consulting & Cloud Solutions",
     description:
-      "EaseOrigin delivers specialized IT consulting for government agencies and prime contractors, including cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery.",
+      "Cloud platform engineering, DevSecOps, security compliance, data and AI platforms, and program delivery for federal agencies and prime contractors.",
   },
   alternates: {
     types: {
@@ -79,7 +79,7 @@ const localBusinessJsonLd = {
   name: companyInfo.name,
   url: companyInfo.url,
   description:
-    "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, program management, and agile delivery for government agencies and prime contractors.",
+    "Cloud platform engineering, infrastructure as code and CI/CD, Kubernetes operations, and security and compliance automation, plus program management and PMO governance, SAFe release train engineering, data engineering and analytics, enterprise AI platforms, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, including IL5 environments.",
   address: {
     "@type": "PostalAddress",
     streetAddress: companyInfo.address.street,
@@ -110,7 +110,7 @@ const organizationJsonLd = {
   name: companyInfo.name,
   url: companyInfo.url,
   description:
-    "Federal IT consulting firm delivering cloud infrastructure, cybersecurity, DevOps, AI/ML solutions, program management, and agile delivery for government agencies and prime contractors.",
+    "Cloud platform engineering, infrastructure as code and CI/CD, Kubernetes operations, and security and compliance automation, plus program management and PMO governance, SAFe release train engineering, data engineering and analytics, enterprise AI platforms, and enterprise SaaS delivery. Work spans AWS, Azure, GCP, and Oracle Cloud, including IL5 environments.",
   address: {
     "@type": "PostalAddress",
     streetAddress: companyInfo.address.street,
@@ -122,6 +122,11 @@ const organizationJsonLd = {
   telephone: companyInfo.phone,
   email: companyInfo.email,
   naics: companyInfo.identifiers.naics,
+  foundingDate: companyInfo.founded,
+  foundingLocation: {
+    "@type": "Place",
+    name: companyInfo.formationStateName,
+  },
   identifier: [
     { "@type": "PropertyValue", name: "UEI", value: companyInfo.identifiers.uei },
     { "@type": "PropertyValue", name: "CAGE", value: companyInfo.identifiers.cage },

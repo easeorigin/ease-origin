@@ -4,40 +4,40 @@ import { motion } from "framer-motion";
 import { UserCheck, Zap, ShieldCheck, Layers } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { fadeInUpWhileVisible } from "@/lib/animations";
+import { clearanceStatement } from "@/data/company-info";
 
 const differentiators = [
   {
     icon: UserCheck,
-    title: "Direct Access to Senior Talent",
+    title: "Principal-Performed Delivery",
     description:
-      "No layers of management. Work directly with experienced engineers and consultants who understand your mission.",
+      "The engineer you meet is the engineer who does the work. Nothing gets handed down to a delivery team you never spoke to.",
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     iconColor: "text-eo-blue",
   },
   {
     icon: Zap,
-    title: "Small Business Agility",
+    title: "Small Business Credit",
     description:
-      "Move faster with streamlined processes, flexible engagement models, and rapid onboarding.",
+      "A subcontract can be in place in weeks rather than quarters, and it counts toward your small business subcontracting goals.",
     bg: "bg-amber-50 dark:bg-amber-950",
     border: "border-amber-100 dark:border-amber-900",
     iconColor: "text-amber-600",
   },
   {
     icon: ShieldCheck,
-    title: "Cleared Workforce",
-    description:
-      "Our team holds active security clearances, ready for classified and sensitive government environments.",
+    title: "Cleared Principal",
+    description: `${clearanceStatement} Classified work is performed under a prime's facility clearance.`,
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
     iconColor: "text-emerald-600",
   },
   {
     icon: Layers,
-    title: "Full-Stack Expertise",
+    title: "Build and Compliance Together",
     description:
-      "From cloud infrastructure to program management, one partner covers your entire technology lifecycle.",
+      "The same practice that builds the platform writes the STIG automation and the control evidence. Security is not handed off to a separate team.",
     bg: "bg-violet-50 dark:bg-violet-950",
     border: "border-violet-100 dark:border-violet-900",
     iconColor: "text-violet-600",

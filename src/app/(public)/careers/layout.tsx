@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join EaseOrigin and build technology solutions for government agencies and enterprises. Explore open positions in cloud, cybersecurity, DevOps, AI/ML, and program management.",
+    "EaseOrigin has no open requisitions. We work with a network of independent engineers and small firms on federal cloud, platform, and security subcontracts.",
   openGraph: {
     title: "Careers | EaseOrigin",
     description:
-      "Join EaseOrigin and build technology solutions for government agencies and enterprises. Explore open positions in cloud, cybersecurity, DevOps, AI/ML, and program management.",
+      "EaseOrigin has no open requisitions. We work with a network of independent engineers and small firms on federal cloud, platform, and security subcontracts.",
   },
 };
 

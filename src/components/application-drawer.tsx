@@ -1034,7 +1034,7 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
         {label}
       </span>
       <span className="text-sm text-eo-navy mt-0.5 leading-snug">
-        {value || <span className="text-gray-300 italic">—</span>}
+        {value || <span className="text-gray-300 italic">Not provided</span>}
       </span>
     </div>
   );
@@ -1286,7 +1286,7 @@ function SuccessScreen({
         </h2>
         <p className="text-gray-500 leading-relaxed max-w-sm mx-auto">
           Thank you for applying for{" "}
-          <strong className="text-eo-navy">{jobTitle}</strong>. Our team will
+          <strong className="text-eo-navy">{jobTitle}</strong>. We will
           review your application and contact you if your qualifications match
           our needs.
         </p>
@@ -1458,7 +1458,7 @@ export function ApplicationDrawer({
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
           />
 
-          {/* Drawer — slides from bottom, full width */}
+          {/* Drawer, slides from bottom, full width */}
           <motion.div
             key="drawer"
             initial={{ y: "100%" }}

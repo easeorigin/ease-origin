@@ -5,27 +5,28 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import {
   ShieldCheck, Users, Lightbulb, Star,
-  Cloud, Lock, BarChart3, Layers,
+  Cloud, Lock, Layers,
   CheckCircle2, Award, Code,
-  Linkedin, Mail, ClipboardList, Workflow, Building2
+  Linkedin, Mail, Workflow, Building2
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { PageHero } from "@/components/shared/page-hero";
 import { CTASection } from "@/components/shared/cta-section";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { companyInfo } from "@/data/company-info";
+import { companyInfo, attributionNotice } from "@/data/company-info";
 import { fadeInUpWhileVisible, fadeInUpWhileVisibleLarge, staggeredFadeInUp } from "@/lib/animations";
 
 // ─── Who We Are ───────────────────────────────────────────────────────────────
 
 function WhoWeAre() {
   const capabilities = [
-    { icon: Cloud,          label: "Cloud Infrastructure" },
-    { icon: Lock,           label: "Cybersecurity"        },
-    { icon: Layers,         label: "Enterprise Platforms" },
-    { icon: BarChart3,      label: "Data & Analytics"     },
-    { icon: ClipboardList,  label: "Program Management"   },
-    { icon: Workflow,       label: "Agile Delivery"       },
+    // These four match the capability statement exactly. Keep them in sync.
+    // A capability published here but dropped there is the kind of gap a
+    // contracting officer notices.
+    { icon: Cloud,     label: "Cloud Platform Engineering" },
+    { icon: Workflow,  label: "Infrastructure as Code & CI/CD" },
+    { icon: Layers,    label: "Kubernetes Operations" },
+    { icon: Lock,      label: "Security & Compliance" },
   ];
 
   return (
@@ -45,17 +46,17 @@ function WhoWeAre() {
           <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Story</p>
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6 leading-tight">Who We Are</h2>
           <p className="text-text-tertiary leading-relaxed mb-4 text-lg">
-            EaseOrigin is a technology consulting firm that partners with government agencies, prime contractors, and private sector organizations to deliver specialized IT expertise across mission-critical initiatives.
+            EaseOrigin builds and operates cloud infrastructure for organizations that answer to a regulator or a contracting officer. Most of our federal work is delivered as a subcontract under a prime.
           </p>
           <p className="text-text-tertiary leading-relaxed mb-8">
-            Our team delivers deep expertise in cloud infrastructure, cybersecurity, enterprise platforms, data analytics, and program delivery, helping organizations across government and industry modernize systems and strengthen their technological foundation.
+            The work runs from landing zone design and infrastructure as code through Kubernetes operations and the security controls that have to hold up in an audit. We stay narrow on purpose. A firm our size is more useful deep than broad.
           </p>
 
           {/* Mission statement */}
           <div className="border-l-4 border-eo-gold pl-6 py-1">
             <p className="text-sm font-semibold uppercase tracking-widest text-eo-gold mb-2">Our Mission</p>
             <p className="text-text-primary font-medium leading-relaxed">
-              To be the most trusted technology consulting partner, delivering expertise and outcomes that strengthen the technology foundation of organizations across government and industry.
+              Build platforms that hold up under audit and still get out of the engineers&apos; way. Tell clients what we can and cannot do, before they ask.
             </p>
           </div>
         </motion.div>
@@ -82,12 +83,12 @@ function WhoWeAre() {
               <p className="text-sm font-bold text-text-primary">{label}</p>
             </motion.div>
           ))}
-          {/* Stats box */}
+          {/* Stats box. Every number here has to be sourceable on request. */}
           <div className="col-span-2 bg-eo-navy rounded-2xl p-7 flex gap-8">
             {[
-              { num: "14+", label: "Years of IT experience" },
-              { num: "14", label: "Organizations served" },
-              { num: "30+", label: "Team certifications" },
+              { num: "14+", label: "Years of hands-on engineering" },
+              { num: "6", label: "Professional certifications" },
+              { num: "6", label: "Distinct federal programs" },
             ].map(({ num, label }, i) => (
               <div key={i} className="text-center flex-1">
                 <AnimatedCounter value={num} className="text-2xl font-extrabold text-eo-gold" />
@@ -107,27 +108,27 @@ const timelineItems = [
   {
     year: "2012",
     title: "Engineering Roots",
-    description: "Our journey began in enterprise technology, building deep expertise in infrastructure, automation, and large-scale systems at one of the world's leading technology companies.",
+    description: "Enterprise infrastructure and automation at large scale. This is where the systems habits came from.",
   },
   {
     year: "2016",
     title: "Cloud & Healthcare",
-    description: "Expanded into cloud engineering and regulated environments, developing critical capabilities in compliant infrastructure and healthcare technology systems.",
+    description: "Moved into cloud engineering for regulated environments, including healthcare systems carrying compliance obligations.",
   },
   {
     year: "2018",
     title: "Enterprise Consulting",
-    description: "Transitioned to cloud consulting, designing scalable architectures and infrastructure automation for organizations ranging from startups to large enterprises.",
+    description: "Cloud consulting. Architecture and infrastructure automation for organizations of very different sizes, which is where the taste for boring, repeatable builds came from.",
   },
   {
     year: "2019",
     title: "EaseOrigin Founded",
-    description: "Launched EaseOrigin to deliver enterprise-grade technology consulting to both government agencies and private sector organizations, bridging commercial innovation with mission-critical reliability.",
+    description: "EaseOrigin LLC was formed in Oklahoma in August 2019. The firm registered to transact business in Texas in 2023 and now runs from Midlothian.",
   },
   {
     year: "2021",
-    title: "Scaling Impact",
-    description: "Took on platform engineering leadership at enterprise scale, managing complex multi-cloud environments with comprehensive containerization and observability.",
+    title: "Platform Engineering at Scale",
+    description: "Platform engineering leadership across multi-cloud environments, with containerization and observability standardized over the estate.",
   },
 ];
 
@@ -140,9 +141,19 @@ function Timeline() {
         {...fadeInUpWhileVisible}
         className="text-center mb-14"
       >
-        <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Company History</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">Our Journey</h2>
+        <p className="text-xs font-semibold uppercase tracking-widest text-eo-gold mb-2">Background</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-text-primary">How We Got Here</h2>
+        <p className="text-text-tertiary mt-4 max-w-2xl mx-auto leading-relaxed">
+          Entries before 2019 are our principal&apos;s engineering background,
+          not work performed by the firm.
+        </p>
       </motion.div>
+
+      <div className="relative z-10 max-w-3xl mx-auto mb-12 rounded-xl border border-eo-gold/40 bg-eo-gold/5 px-6 py-5">
+        <p className="text-sm text-text-secondary leading-relaxed">
+          {attributionNotice}
+        </p>
+      </div>
 
       {/* Vertical timeline */}
       <div className="relative max-w-3xl mx-auto">
@@ -340,8 +351,6 @@ function Leadership() {
   );
 }
 
-console.log("Leadership", Leadership);
-
 // ─── Our Expertise ───────────────────────────────────────────────────────────
 
 const expertiseCards = [
@@ -431,7 +440,7 @@ const values = [
   {
     icon: ShieldCheck,
     title: "Integrity",
-    description: "We operate with transparency and accountability. Our team understands the responsibility of working in trusted environments across government and industry.",
+    description: "We operate with transparency and accountability. We understand the responsibility of working in trusted environments across government and industry.",
     bg: "bg-blue-50 dark:bg-blue-950",
     border: "border-blue-100 dark:border-blue-900",
     iconColor: "text-eo-blue",
@@ -439,7 +448,7 @@ const values = [
   {
     icon: Users,
     title: "Collaboration",
-    description: "We integrate seamlessly with your teams, whether supporting prime contractors on government missions or partnering with enterprise technology organizations.",
+    description: "We work inside your existing process rather than around it, whether that is a prime contractor on a federal program or an enterprise technology group.",
     bg: "bg-emerald-50 dark:bg-emerald-950",
     border: "border-emerald-100 dark:border-emerald-900",
     iconColor: "text-emerald-600",
@@ -504,19 +513,25 @@ function OurValues() {
 
 // ─── Impact ───────────────────────────────────────────────────────────────────
 
+/**
+ * Company-level counts were removed here. "22+ Projects Delivered" and
+ * "14 Organizations Served" were corporate claims EaseOrigin cannot source,
+ * and a single unsourceable number takes the credibility of the whole page
+ * with it. What is left is checkable.
+ */
 const impactStats = [
-  { num: "14+", label: "Years of IT Experience" },
-  { num: "22+", label: "Projects Delivered" },
-  { num: "30+", label: "Team Certifications" },
-  { num: "14", label: "Organizations Served" },
+  { num: "14+", label: "Years of Hands-On Engineering" },
+  { num: "6", label: "Professional Certifications" },
+  { num: "6", label: "Distinct Federal Programs" },
+  { num: "3", label: "Major Cloud Platforms" },
 ];
 
 const impactPoints = [
-  "Strengthening cybersecurity across government and commercial organizations",
-  "Modernizing mission-critical systems and enterprise infrastructure",
-  "Enabling cloud adoption and platform engineering at scale",
-  "Delivering AI-powered solutions and data-driven insights for federal and private sector clients",
-  "Providing structured program management and agile delivery across industries",
+  "Landing zones and account structure for regulated cloud environments",
+  "Infrastructure as code, so a rebuild is a pipeline run rather than a project",
+  "STIG and RMF control automation, with the evidence collected as it goes",
+  "Kubernetes platform operations, including day-two work most teams postpone",
+  "Migrations off platforms that have reached end of life",
 ];
 
 function Impact() {
@@ -561,7 +576,7 @@ function Impact() {
           className="flex flex-col gap-4"
         >
           <p className="text-text-tertiary leading-relaxed mb-4">
-            EaseOrigin supports programs that strengthen infrastructure, enhance cybersecurity, and modernize critical systems, making technology across government and industry more resilient, efficient, and mission-ready.
+            EaseOrigin works on programs that keep infrastructure secure and running. The work is mostly unglamorous: hardening what exists, automating the compliance evidence, and moving systems off platforms that are past end of life.
           </p>
           {impactPoints.map((point, i) => (
             <motion.div
@@ -597,7 +612,7 @@ export default function AboutPage() {
         />
         <WhoWeAre />
         <Timeline />
-        {/* <Leadership /> — Ready to enable when team data is finalized */}
+        <Leadership />
         <OurExpertise />
         <OurValues />
         <Impact />

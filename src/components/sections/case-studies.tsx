@@ -37,9 +37,9 @@ export function CaseStudies() {
       <div className="relative z-10 flex flex-col md:flex-row justify-between items-end mb-12">
         <div className="max-w-2xl mb-6 md:mb-0">
           <h2 className="text-eo-gold font-semibold tracking-wider uppercase text-sm mb-3">
-            Proven Success
+            Selected Engagements
           </h2>
-          <WordReveal text="Delivering Results for Our Clients" as="h3" className="text-3xl md:text-4xl font-bold text-text-primary" />
+          <WordReveal text="Cloud, Security, and Platform Delivery" as="h3" className="text-3xl md:text-4xl font-bold text-text-primary" />
         </div>
         <Link href="/case-studies">
           <span className="hidden lg:inline-flex items-center text-text-primary font-semibold hover:text-eo-blue transition-colors cursor-pointer group">

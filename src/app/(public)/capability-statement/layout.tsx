@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Capability Statement",
   description:
-    "EaseOrigin capability statement: core competencies, contract vehicles, past performance, NAICS codes, and company details for federal procurement.",
+    "EaseOrigin capability statement: core competencies, relevant program experience, NAICS and PSC codes, and company data for federal procurement.",
   openGraph: {
     title: "Capability Statement | EaseOrigin",
     description:
-      "EaseOrigin capability statement: core competencies, contract vehicles, past performance, NAICS codes, and company details for federal procurement.",
+      "EaseOrigin capability statement: core competencies, relevant program experience, NAICS and PSC codes, and company data for federal procurement.",
   },
 };
 
